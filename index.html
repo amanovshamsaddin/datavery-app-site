@@ -3,71 +3,479 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shamsaddin Amanov - Master of Data Science student at Monash University. Portfolio, projects, and insights.">
   <title>Shamsaddin Amanov | Data Science Portfolio</title>
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
   
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3 { font-family: 'Merriweather', serif; color: #1a202c; }
-    nav { border-bottom: 1px solid #e2e8f0; margin-bottom: 3rem; padding-bottom: 1rem; }
-    .hero { padding: 4rem 0; text-align: center; margin-bottom: 4rem;}
-    .hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-    .project-card { border: 1px solid #e2e8f0; padding: 2rem; border-radius: 8px; }
+    /* Global Variables & Theming */
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-color: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --transition-speed: 0.3s;
+    }
+
+    [data-theme="dark"] {
+      --primary: #60a5fa;
+      --primary-hover: #93c5fd;
+      --bg-color: #0f172a;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Merriweather', serif;
+      color: var(--text-main);
+    }
+
+    /* Navigation (Clean & Sticky) */
+    nav.top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+      transition: background-color var(--transition-speed);
+    }
+    nav.top-nav ul { margin: 0; padding: 0; }
+    nav.top-nav li { margin-left: 1.5rem; }
+    nav.top-nav a { font-weight: 500; color: var(--text-main); }
+    nav.top-nav a:hover { color: var(--primary); }
+
+    /* Hero Section (Clear Value Proposition) */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .hero-content { max-width: 800px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
+    .hero p.lead { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 0.75rem 2rem; border-radius: 6px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background-color: var(--primary); color: #fff; border: none; }
+    .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+    .btn-outline { border: 2px solid var(--border-color); color: var(--text-main); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+
+    /* Sections */
+    section { padding: 6rem 0; border-bottom: 1px solid var(--border-color); }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-header h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+
+    /* About Section */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-text p { margin-bottom: 1.5rem; font-size: 1.05rem; }
+    
+    /* Skills Matrix */
+    .skills-container { background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); }
+    .skill-group { margin-bottom: 1.5rem; }
+    .skill-name { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: 500; }
+    .progress-bar { width: 100%; background-color: var(--border-color); border-radius: 4px; height: 8px; overflow: hidden; }
+    .progress-fill { height: 100%; background-color: var(--primary); border-radius: 4px; transition: width 1s ease-in-out; }
+
+    /* Project Filtering & Cards */
+    .filter-controls { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .filter-btn { background: none; border: 1px solid var(--border-color); color: var(--text-main); padding: 0.5rem 1.5rem; border-radius: 50px; cursor: pointer; transition: all 0.2s; }
+    .filter-btn.active, .filter-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+    
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+    .project-card { 
+      background: var(--card-bg); 
+      border: 1px solid var(--border-color); 
+      border-radius: 12px; 
+      overflow: hidden; 
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .project-img { width: 100%; height: 200px; background-color: var(--border-color); display: flex; align-items: center; justify-content: center; font-family: monospace; color: var(--text-muted); }
+    .project-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .tag { font-size: 0.75rem; background: var(--bg-color); border: 1px solid var(--border-color); padding: 0.2rem 0.6rem; border-radius: 4px; }
+    .project-title { font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 700; }
+    .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+    .project-metrics { background: rgba(37, 99, 235, 0.05); padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.85rem; border-left: 3px solid var(--primary); }
+    .project-links { display: flex; gap: 1rem; margin-top: auto; }
+    .project-links a { text-decoration: none; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
+
+    /* Code Snippet Section */
+    .code-container { background: #1d1f21; border-radius: 12px; overflow: hidden; margin-top: 2rem; }
+    .code-header { background: #2c2e33; padding: 0.5rem 1rem; color: #a1a1aa; font-family: monospace; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; }
+    .code-dots { display: flex; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+
+    /* Philosophy & Podcast Section */
+    .thought-leadership { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    @media (max-width: 768px) { .thought-leadership { grid-template-columns: 1fr; } }
+    .thought-card { background: var(--card-bg); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-color); }
+    .thought-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+
+    /* Footer & Contact */
+    .contact-form { max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 3rem; border-radius: 12px; border: 1px solid var(--border-color); }
+    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; font-size: 1.5rem; }
+    .social-links a { color: var(--text-muted); transition: color 0.2s; }
+    .social-links a:hover { color: var(--primary); }
+    footer { padding: 4rem 0 2rem; text-align: center; color: var(--text-muted); }
+
+    /* Dark Mode Toggle Button */
+    #theme-toggle { background: none; border: none; font-size: 1.25rem; color: var(--text-main); cursor: pointer; padding: 0.5rem; }
   </style>
 </head>
 <body>
+
+  <nav class="top-nav container-fluid">
+    <div class="container">
+      <ul>
+        <li><a href="#" style="font-size: 1.25rem; font-family: 'Merriweather', serif; font-weight: 900;">Datavery<span style="color: var(--primary);">.app</span></a></li>
+      </ul>
+      <ul>
+        <li class="hidden-mobile"><a href="#about">About</a></li>
+        <li class="hidden-mobile"><a href="#portfolio">Portfolio</a></li>
+        <li class="hidden-mobile"><a href="#insights">Insights</a></li>
+        <li class="hidden-mobile"><a href="#contact">Contact</a></li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
   <main class="container">
-    
-    <nav>
-      <ul>
-        <li><strong>Datavery.app</strong></li>
-      </ul>
-      <ul>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
 
-    <section class="hero">
-      <h1>Shamsaddin Amanov</h1>
-      <p>Master of Data Science Student at Monash University</p>
-      <br>
-      <a href="#projects" role="button">View My Work</a>
-    </section>
-
-    <section id="projects">
-      <h2>Featured Work</h2>
-      <div class="grid">
-        <article class="project-card">
-          <h3>Data Visualization Dashboard</h3>
-          <p>An interactive dashboard built with Python and Pandas to uncover hidden trends in complex datasets.</p>
-          <a href="#">View Repository</a>
-        </article>
-        <article class="project-card">
-          <h3>Predictive Modeling</h3>
-          <p>Applying machine learning algorithms using scikit-learn to forecast outcomes based on historical data.</p>
-          <a href="#">View Repository</a>
-        </article>
+    <section class="hero" id="home" style="border-bottom: none;">
+      <div class="hero-content">
+        <span class="hero-badge"><i class="fas fa-graduation-cap"></i> Monash University Cohort '28</span>
+        <h1>Turning Complex Data into <br><span style="color: var(--primary);">Strategic Clarity.</span></h1>
+        <p class="lead">I am Shamsaddin Amanov, a Master of Data Science student specializing in predictive modeling, machine learning, and translating raw datasets into compelling business narratives.</p>
+        <div class="hero-buttons">
+          <a href="#portfolio" class="btn btn-primary"><i class="fas fa-project-diagram"></i> View Sample Projects</a>
+          <a href="#" class="btn btn-outline"><i class="fas fa-file-pdf"></i> Download CV</a>
+        </div>
       </div>
     </section>
 
-    <hr style="margin: 4rem 0;">
-
     <section id="about">
-      <h2>About Me</h2>
-      <p>I am a data scientist currently pursuing my Master's degree at Monash University in Melbourne. I focus on transforming raw data into clear, strategic insights.</p>
-      <p>When I am not training machine learning models or writing code, I am usually diving deep into philosophical frameworks, exploring global cinema, or playing high-speed bullet chess.</p>
+      <div class="section-header">
+        <h2>About My Journey</h2>
+        <p>Bridging the gap between statistical rigor and real-world application.</p>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>The Academic & Professional Focus</h3>
+          <p>Currently pursuing my Master's degree in Data Science at Monash University in Melbourne. My academic focus centers on advanced machine learning algorithms, scalable cloud deployment, and ethical AI practices. I am passionate about building automated pipelines that don't just process data, but tell a story.</p>
+          
+          <h3>Beyond the Code</h3>
+          <p>Analytical thinking doesn't stop at the terminal. I view complex problems through the lens of my philosophical framework, <strong>Omittoism</strong>. When I'm stepping away from Jupyter notebooks, you'll likely find me analyzing the cinematography of Abbas Kiarostami and Park Chan-wook, or testing my rapid tactical execution in high-speed bullet chess on Lichess (2230+ rating).</p>
+        </div>
+
+        <div class="skills-container">
+          <h3 style="margin-bottom: 2rem;">Technical Skills Matrix</h3>
+          
+          <div class="skill-group">
+            <div class="skill-name"><span>Python (Pandas, Scikit-Learn)</span><span>90%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+          </div>
+          
+          <div class="skill-group">
+            <div class="skill-name"><span>SQL & Database Architecture</span><span>85%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-name"><span>Machine Learning / Predictive Analytics</span><span>80%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-name"><span>Data Visualization (Tableau, Matplotlib)</span><span>95%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-name"><span>Cloud Deployment (AWS/GCP)</span><span>70%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <footer style="margin-top: 4rem; margin-bottom: 2rem; text-align: center; font-size: 0.9em; color: #64748b;">
-      <p>Connect with me:</p>
-      <a href="https://www.linkedin.com/company/datavery/">LinkedIn</a> | <a href="https://github.com/amanovshamsaddin">GitHub</a> | <a href="mailto:amanovshams@gmail.com">Email</a>
-      <p style="margin-top: 1rem;">© 2026 Shamsaddin Amanov</p>
-    </footer>
+    <section id="portfolio">
+      <div class="section-header">
+        <h2>Project Portfolio <span style="font-size: 1rem; color: var(--primary);">(Sample Repository)</span></h2>
+        <p>A demonstration of methodologies, code structure, and business impact analysis.</p>
+      </div>
+
+      <div class="filter-controls">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="ml">Machine Learning</button>
+        <button class="filter-btn" data-filter="dataviz">Data Visualization</button>
+        <button class="filter-btn" data-filter="nlp">NLP / APIs</button>
+      </div>
+
+      <div class="projects-grid">
+        
+        <article class="project-card" data-category="ml">
+          <div class="project-img">[ Dataviz Dashboard Image Placeholder ]</div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">XGBoost</span>
+              <span class="tag">Sample</span>
+            </div>
+            <h3 class="project-title">[SAMPLE] Churn Prediction Model</h3>
+            <p class="project-desc">Developed an end-to-end classification pipeline to identify high-risk customers for a simulated telecom dataset.</p>
+            <div class="project-metrics">
+              <strong>Business Impact:</strong> Model achieved 92% AUC, theoretically reducing customer churn by 14% through targeted intervention.
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/amanovshamsaddin"><i class="fab fa-github"></i> Source Code</a>
+              <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="dataviz">
+          <div class="project-img">[ Interactive Map Placeholder ]</div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">Tableau</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Sample</span>
+            </div>
+            <h3 class="project-title">[SAMPLE] Global Supply Chain Dashboard</h3>
+            <p class="project-desc">Cleaned and aggregated over 2 million rows of shipping data to create an interactive diagnostic dashboard.</p>
+            <div class="project-metrics">
+              <strong>Key Finding:</strong> Identified a $2M bottleneck in Q3 logistics through geographical clustering analysis.
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/amanovshamsaddin"><i class="fab fa-github"></i> Documentation</a>
+              <a href="#"><i class="fas fa-chart-bar"></i> View Dashboard</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="nlp">
+          <div class="project-img">[ Sentiment Graph Placeholder ]</div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">PyTorch</span>
+              <span class="tag">HuggingFace</span>
+              <span class="tag">Sample</span>
+            </div>
+            <h3 class="project-title">[SAMPLE] Financial Sentiment API</h3>
+            <p class="project-desc">Fine-tuned a BERT model to analyze real-time financial news headlines and output market sentiment scores via a REST API.</p>
+            <div class="project-metrics">
+              <strong>Architecture:</strong> Containerized with Docker and deployed to AWS EC2 with sub-100ms latency.
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/amanovshamsaddin"><i class="fab fa-github"></i> View API Docs</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="code">
+      <div class="section-header">
+        <h2>Clean, Documented Code</h2>
+        <p>A glimpse into my coding style and emphasis on readability.</p>
+      </div>
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots">
+            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+          </div>
+          <span>feature_engineering.py — [SAMPLE]</span>
+        </div>
+        <pre><code class="language-python">
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+
+def build_features(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    [SAMPLE FUNCTION]
+    Cleans raw data and engineers time-series features for predictive modeling.
+    Ensures robust handling of missing values and scales numerical inputs.
+    """
+    # Create a copy to avoid SettingWithCopyWarning
+    data = df.copy()
+    
+    # 1. Handle missing values via rolling median
+    data['revenue'] = data['revenue'].fillna(data['revenue'].rolling(7, min_periods=1).median())
+    
+    # 2. Engineer temporal features
+    data['day_of_week'] = data['timestamp'].dt.dayofweek
+    data['is_weekend'] = np.where(data['day_of_week'] >= 5, 1, 0)
+    
+    # 3. Scale continuous variables for gradient descent stability
+    scaler = StandardScaler()
+    data[['revenue', 'user_sessions']] = scaler.fit_transform(data[['revenue', 'user_sessions']])
+    
+    return data
+        </code></pre>
+      </div>
+    </section>
+
+    <section id="insights">
+      <div class="section-header">
+        <h2>Thought Leadership</h2>
+        <p>Media, Philosophy, and Ongoing Conversations.</p>
+      </div>
+      
+      <div class="thought-leadership">
+        <div class="thought-card">
+          <i class="fas fa-microphone-alt thought-icon"></i>
+          <h3>Var Olma Lüksü - V.O.L.</h3>
+          <p>I host "The Luxury of Existence", a Turkish-language podcast exploring deep intellectual and philosophical themes. It serves as an audio journal where analytical logic meets existential inquiry.</p>
+          <a href="#" style="font-weight: 600;">Listen to the latest episode &rarr;</a>
+        </div>
+
+        <div class="thought-card">
+          <i class="fas fa-book-open thought-icon"></i>
+          <h3>The Manifesto of Omittoism</h3>
+          <p>Author of Omittoism, a philosophical framework I've developed and published. This work heavily influences my approach to problem-solving, teaching me to look beyond surface-level data to the underlying systemic structures.</p>
+          <a href="#" style="font-weight: 600;">Read the Manifesto &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="border-bottom: none;">
+      <div class="section-header">
+        <h2>Let's Collaborate</h2>
+        <p>Whether it is a dataset that needs deciphering or a research discussion.</p>
+      </div>
+      
+      <div class="contact-form">
+        <form onsubmit="event.preventDefault(); alert('This is a static portfolio sample. In a real setup, this would connect to an endpoint like Formspree.');">
+          <div class="grid">
+            <label for="name">
+              Name
+              <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </label>
+            <label for="email">
+              Email
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </label>
+          </div>
+          <label for="message">
+            Project / Inquiry Details
+            <textarea id="message" name="message" placeholder="I'm reaching out regarding..." rows="4" required></textarea>
+          </label>
+          <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+        </form>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.linkedin.com/company/datavery/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/amanovshamsaddin" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:amanovshams@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </section>
 
   </main>
+
+  <footer>
+    <div class="container">
+      <p>Building <strong>datavery.app</strong> | Hosted securely via GitHub Pages.</p>
+      <p style="font-size: 0.85rem; margin-top: 1rem;">© 2026 Shamsaddin Amanov. Accessibility compliant (WCAG). Designed for optimal performance.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    // 1. Dark Mode Toggle Logic
+    const toggleBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+    const icon = toggleBtn.querySelector('i');
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = htmlEl.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      htmlEl.setAttribute('data-theme', newTheme);
+      
+      // Toggle Icon
+      if(newTheme === 'dark') {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    });
+
+    // 2. Project Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
