@@ -1,12 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="light">
 <head>
-    <title>Amanov Shamsaddin | Data Science</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shamsaddin Amanov | Data Science Portfolio</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Merriweather', serif; color: #1a202c; }
+    nav { border-bottom: 1px solid #e2e8f0; margin-bottom: 3rem; padding-bottom: 1rem; }
+    .hero { padding: 4rem 0; text-align: center; margin-bottom: 4rem;}
+    .hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    .project-card { border: 1px solid #e2e8f0; padding: 2rem; border-radius: 8px; }
+  </style>
 </head>
 <body>
-    <h1>Welcome to Datavery.app</h1>
-    <p>Data Science Portfolio - Monash University</p>
-    <hr>
-    <p>Coming soon...</p>
+  <main class="container">
+    
+    <nav>
+      <ul>
+        <li><strong>Datavery.app</strong></li>
+      </ul>
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <h1>Shamsaddin Amanov</h1>
+      <p>Master of Data Science Student at Monash University</p>
+      <br>
+      <a href="#projects" role="button">View My Work</a>
+    </section>
+
+    <section id="projects">
+      <h2>Featured Work</h2>
+      <div class="grid">
+        <article class="project-card">
+          <h3>Data Visualization Dashboard</h3>
+          <p>An interactive dashboard built with Python and Pandas to uncover hidden trends in complex datasets.</p>
+          <a href="#">View Repository</a>
+        </article>
+        <article class="project-card">
+          <h3>Predictive Modeling</h3>
+          <p>Applying machine learning algorithms using scikit-learn to forecast outcomes based on historical data.</p>
+          <a href="#">View Repository</a>
+        </article>
+      </div>
+    </section>
+
+    <hr style="margin: 4rem 0;">
+
+    <section id="about">
+      <h2>About Me</h2>
+      <p>I am a data scientist currently pursuing my Master's degree at Monash University in Melbourne. I focus on transforming raw data into clear, strategic insights.</p>
+      <p>When I am not training machine learning models or writing code, I am usually diving deep into philosophical frameworks, exploring global cinema, or playing high-speed bullet chess.</p>
+    </section>
+
+    <footer style="margin-top: 4rem; margin-bottom: 2rem; text-align: center; font-size: 0.9em; color: #64748b;">
+      <p>Connect with me:</p>
+      <a href="#">LinkedIn</a> | <a href="#">GitHub</a> | <a href="mailto:your.email@example.com">Email</a>
+      <p style="margin-top: 1rem;">© 2026 Shamsaddin Amanov</p>
+    </footer>
+
+  </main>
 </body>
 </html>
