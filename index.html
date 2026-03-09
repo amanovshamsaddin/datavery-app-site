@@ -919,113 +919,7 @@
     .lang-fill.animated { transform: scaleX(1); }
 
     /* =========================================================
-       9. PHILOSOPHY / OMITTOISM SECTION
-       ========================================================= */
-    .philosophy-section { background: var(--bg-secondary); }
-
-    .philosophy-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .manifesto-block {
-      position: relative;
-      padding: 2.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      transition: border-color 0.3s;
-    }
-    .manifesto-block:hover { border-color: var(--gold); }
-
-    .manifesto-block blockquote {
-      font-family: 'Lora', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--text);
-      line-height: 1.85;
-      border: none;
-      margin: 0;
-      padding: 0;
-      position: relative;
-    }
-
-    .manifesto-block blockquote::before {
-      content: '\201C';
-      font-size: 5rem;
-      color: var(--gold);
-      opacity: 0.25;
-      position: absolute;
-      top: -1.5rem;
-      left: -1rem;
-      font-family: 'Lora', serif;
-      line-height: 1;
-    }
-
-    .manifesto-block cite {
-      display: block;
-      margin-top: 1.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--text-faint);
-      letter-spacing: 0.1em;
-      font-style: normal;
-      text-transform: uppercase;
-    }
-
-    .pillar-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .pillar-item {
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      padding: 1.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      transition: border-color 0.25s, transform 0.25s var(--ease-out);
-    }
-    .pillar-item:hover {
-      border-color: var(--gold);
-      transform: translateX(4px);
-    }
-
-    .pillar-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--gold);
-      background: var(--gold-dim);
-      border: 1px solid rgba(251,191,36,0.2);
-      border-radius: var(--radius-xs);
-      padding: 0.25rem 0.45rem;
-      letter-spacing: 0.1em;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .pillar-content h4 {
-      font-size: 1rem;
-      margin-bottom: 0.35rem;
-      color: var(--text);
-      font-family: 'DM Serif Display', Georgia, serif;
-    }
-
-    .pillar-content p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      font-family: 'Lora', serif;
-    }
-
-    /* =========================================================
-       10. TECHNICAL STACK / SKILLS
+       9. TECHNICAL STACK / SKILLS
        ========================================================= */
     .stack-grid {
       display: grid;
@@ -1420,7 +1314,6 @@
        ========================================================= */
     @media (max-width: 900px) {
       .grid-2,
-      .philosophy-grid,
       .contact-grid,
       .hero-cols { grid-template-columns: 1fr; gap: 2.5rem; }
 
@@ -1473,7 +1366,6 @@
       <ul class="nav-links" role="list">
         <li><a href="#infrastructure" data-nav="infrastructure">Infrastructure</a></li>
         <li><a href="#log"            data-nav="log">Log</a></li>
-        <li><a href="#philosophy"     data-nav="philosophy">Omittoism</a></li>
         <li><a href="#stack"          data-nav="stack">Stack</a></li>
         <li><a href="#contact"        data-nav="contact">Contact</a></li>
       </ul>
@@ -1495,7 +1387,6 @@
   <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Mobile navigation">
     <a href="#infrastructure" class="mobile-link">Infrastructure</a>
     <a href="#log"            class="mobile-link">Background Log</a>
-    <a href="#philosophy"     class="mobile-link">Omittoism</a>
     <a href="#stack"          class="mobile-link">Technical Stack</a>
     <a href="#contact"        class="mobile-link">Contact</a>
   </div>
@@ -1526,7 +1417,7 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
                 View Architecture
               </a>
-              <a href="#philosophy" class="btn btn-outline">Explore Omittoism</a>
+              <a href="#contact" class="btn btn-outline">Initialize Contact</a>
             </div>
           </div>
 
@@ -1560,8 +1451,6 @@
                 <span class="hero-stat-label">Curiosity</span>
               </div>
             </div>
-
-            <a href="#contact" class="btn btn-outline" style="margin-top:0.5rem;">Initialize Contact</a>
           </div>
         </div>
       </div>
@@ -1840,87 +1729,13 @@
     </section>
 
     <!-- ====================================================
-         PHILOSOPHY / OMITTOISM
-         ==================================================== -->
-    <section id="philosophy" class="philosophy-section">
-      <div class="container">
-        <div class="reveal">
-          <span class="section-label">03 — PHILOSOPHICAL FRAMEWORK</span>
-          <h2 class="section-title">Omittoism</h2>
-          <p class="section-desc">
-            A post-theistic philosophical framework authored by Shamsaddin Amanov — exploring consciousness,
-            ethics, and existence after the collapse of traditional metaphysical certainties.
-          </p>
-        </div>
-
-        <div class="philosophy-grid">
-          <!-- Manifesto quote -->
-          <div class="reveal">
-            <div class="manifesto-block">
-              <blockquote>
-                "When the divine scaffolding is removed, what remains is not chaos —
-                it is the raw, unmediated responsibility of the conscious being to construct
-                meaning from first principles."
-                <cite>— Shamsaddin Amanov, Omittoism: Core Thesis</cite>
-              </blockquote>
-            </div>
-
-            <div style="margin-top:1.5rem; padding:1.5rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);">
-              <h4 style="font-family:'DM Serif Display',serif; font-size:0.95rem; margin-bottom:0.75rem; color:var(--text);">Why Philosophy & Data Science?</h4>
-              <p style="font-size:0.88rem; color:var(--text-muted); font-family:'Lora',serif; line-height:1.75; margin:0;">
-                Data without epistemology is noise with a spreadsheet. Omittoism asks what it means
-                to <em>know</em> — the same question that motivates rigorous model validation, feature
-                selection discipline, and intellectual honesty about uncertainty. The frameworks are
-                not separate tracks. They are the same inquiry at different levels of abstraction.
-              </p>
-            </div>
-          </div>
-
-          <!-- Pillars -->
-          <div class="reveal reveal-delay-1">
-            <h3 style="font-family:'DM Serif Display',serif; font-size:1.1rem; margin-bottom:1.5rem; color:var(--text);">Core Pillars</h3>
-            <ul class="pillar-list">
-              <li class="pillar-item">
-                <span class="pillar-num">01</span>
-                <div class="pillar-content">
-                  <h4>Post-Theistic Ontology</h4>
-                  <p>Existence is not validated by a divine observer. The self is the only persistent referent available to consciousness — and therefore bears total ethical weight.</p>
-                </div>
-              </li>
-              <li class="pillar-item">
-                <span class="pillar-num">02</span>
-                <div class="pillar-content">
-                  <h4>Constructed Meaning</h4>
-                  <p>Meaning is not discovered. It is architected — deliberately, iteratively, and with full awareness that the architect is also the subject of the construction.</p>
-                </div>
-              </li>
-              <li class="pillar-item">
-                <span class="pillar-num">03</span>
-                <div class="pillar-content">
-                  <h4>Radical Epistemic Humility</h4>
-                  <p>Certainty is a claim that requires extraordinary justification. The default state of the honest mind is calibrated uncertainty — not paralysis, but precision.</p>
-                </div>
-              </li>
-              <li class="pillar-item">
-                <span class="pillar-num">04</span>
-                <div class="pillar-content">
-                  <h4>Ethical Responsibility Without Deity</h4>
-                  <p>The removal of divine moral authority does not dissolve ethics. It concentrates them — entirely within the capacity and conscience of the individual.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ====================================================
          TECHNICAL STACK
          ==================================================== -->
     <section id="stack">
       <div class="container">
         <div class="reveal">
-          <span class="section-label">04 — TECHNICAL STACK</span>
+          <span class="section-label">03 — TECHNICAL STACK</span>
           <h2 class="section-title">Tools & Proficiencies</h2>
           <p class="section-desc">
             Current technical capabilities — honestly rated. Learning-phase tools are marked accordingly.
@@ -2002,7 +1817,7 @@
     <section id="contact">
       <div class="container">
         <div class="reveal">
-          <span class="section-label">05 — INITIALIZE PROTOCOL</span>
+          <span class="section-label">04 — INITIALIZE PROTOCOL</span>
           <h2 class="section-title">Establish Connection</h2>
           <p class="section-desc">
             Open channel for academic collaboration, data operations, philosophical debate,
@@ -2020,7 +1835,7 @@
               <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
               amanovshams@gmail.com
             </a>
-            <a href="https://www.linkedin.com/in/theamanov/" target="_blank" rel="noopener noreferrer" class="contact-link-row">
+            <a href="https://www.linkedin.com/in/amanovshamsaddin/" target="_blank" rel="noopener noreferrer" class="contact-link-row">
               <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               /in/amanovshamsaddin
             </a>
@@ -2089,7 +1904,6 @@
           <ul>
             <li><a href="#infrastructure">Infrastructure</a></li>
             <li><a href="#log">Background Log</a></li>
-            <li><a href="#philosophy">Omittoism</a></li>
             <li><a href="#stack">Technical Stack</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
