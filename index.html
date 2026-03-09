@@ -1930,7 +1930,7 @@ cform.addEventListener('submit', async e => {
     if (res.ok) {
       cform.style.display = 'none';
       document.getElementById('form-success').classList.add('show');
-      showToast('success', '✓', 'Message sent! I'll reply soon.');
+      showToast('success', '✓', "Message sent! I'll reply soon.");
     } else {
       throw new Error('Server error ' + res.status);
     }
@@ -3016,14 +3016,15 @@ document.querySelectorAll('pre').forEach(pre => {
 });
 
 /* §P — INIT ═══════════════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-  // Hide boot after animation
-  setTimeout(hideBoot, 2200);
-  // Route
+// Script is at bottom of <body> — DOM is already fully parsed by the time
+// this inline script runs. DOMContentLoaded has ALREADY fired at this point,
+// so addEventListener('DOMContentLoaded', fn) would silently never call fn.
+// Fix: run init directly. DOM is guaranteed ready here.
+(function init() {
+  setTimeout(hideBoot, 2000);
   initRoute();
-  // Reveal on initial page
-  setTimeout(runReveal, 300);
-});
+  setTimeout(runReveal, 250);
+})();
 </script>
 </body>
 </html>
