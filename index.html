@@ -645,7 +645,6 @@ option{background:var(--surf);color:var(--txt)}
 .toast-warn{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.07)}
 .toast-info{border-color:var(--accent-border);background:var(--accent-dim)}
 
-
 /* ============================================================
    GITHUB PAGE
    ============================================================ */
@@ -839,7 +838,6 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
 </head>
 <body>
 
-<!-- Loading Screen -->
 <div id="boot">
   <div class="boot-logo">Data<span>Very</span>.app</div>
   <div class="boot-bar-wrap"><div class="boot-bar"></div></div>
@@ -851,9 +849,6 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
 <div id="s-overlay" aria-hidden="true"></div>
 
 <div class="shell">
-<!-- ═══════════════════════════════════════════════════════════
-     SIDEBAR
-═══════════════════════════════════════════════════════════════ -->
 <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
   <a class="s-logo nav-trigger" data-page="home" href="#home" aria-label="Home">
     <div class="s-logomark">DV</div>
@@ -893,6 +888,10 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
       Data Playground
     </button>
+    <button class="nav-btn" data-page="database">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      DB ERD Lab
+    </button>
 
     <div class="s-sec-lbl">Explore</div>
     <button class="nav-btn" data-page="github">
@@ -926,7 +925,6 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
   </div>
 </aside>
 
-<!-- Mobile Topbar -->
 <div class="topbar" id="topbar">
   <a class="tb-logo" href="#" onclick="return false;">Data<span>Very</span>.app</a>
   <div class="tb-right">
@@ -942,7 +940,6 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
   </div>
 </div>
 
-<!-- Mobile Drawer -->
 <div class="drawer" id="drawer">
   <button class="nav-btn" data-page="home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
@@ -952,20 +949,17 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11l3 3 3-3V3M3 9h18"/></svg>Python Lab</button>
   <button class="nav-btn" data-page="playground">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Data Playground</button>
+  <button class="nav-btn" data-page="database">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>DB ERD Lab</button>
   <button class="nav-btn" data-page="github">GitHub Repos</button>
   <button class="nav-btn" data-page="learn">Learn DS</button>
   <button class="nav-btn" data-page="contact">Contact</button>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════
-     MAIN CONTENT
-═══════════════════════════════════════════════════════════════ -->
 <main class="main" id="main">
 
-<!-- ══════════════════ PAGE: HOME ══════════════════ -->
 <div class="page active" id="page-home">
 
-  <!-- Hero -->
   <div class="hero">
     <div class="container">
       <div class="hero-eyebrow">
@@ -1025,7 +1019,6 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
     </div>
   </div>
 
-  <!-- Stats strip -->
   <div class="stats-strip">
     <div class="container">
       <div class="stats-row">
@@ -1037,7 +1030,6 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
     </div>
   </div>
 
-  <!-- Infrastructure -->
   <div class="section">
     <div class="container">
       <div class="reveal">
@@ -1072,7 +1064,6 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
         </div>
       </div>
 
-      <!-- Code block -->
       <div class="codeblock reveal">
         <div class="cb-header">
           <div style="display:flex;align-items:center;gap:.65rem;">
@@ -1127,12 +1118,11 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
 <span class="sk">if</span> __name__ == <span class="ss">"__main__"</span>:
     report = <span class="sfn">architect_system</span>()
     <span class="sk">for</span> k, v <span class="sk">in</span> report.items():
-        <span class="sfn">print</span>(f<span class="ss">"  {k:&lt;14}: {v}"</span>)</code></pre>
+        <span class="sfn">print</span>(f<span class="ss">"  {k:<14}: {v}"</span>)</code></pre>
       </div>
     </div>
   </div>
 
-  <!-- Skills -->
   <div class="section">
     <div class="container">
       <div class="reveal">
@@ -1161,61 +1151,7 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
       </div>
     </div>
   </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="f-brand-name">DataVery<span>.app</span></div>
-          <p class="f-tagline">Built by Shamsaddin Amanov. No trackers. No ads. Pure signal. Hosted on GitHub Pages.</p>
-        </div>
-        <div>
-          <div class="f-col-t">Navigate</div>
-          <ul class="f-links">
-            <li><a href="#" onclick="navigate('home');return false;">Home</a></li>
-            <li><a href="#" onclick="navigate('about');return false;">About</a></li>
-            <li><a href="#" onclick="navigate('lab');return false;">Python Lab</a></li>
-            <li><a href="#" onclick="navigate('playground');return false;">Playground</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="f-col-t">Explore</div>
-          <ul class="f-links">
-            <li><a href="#" onclick="navigate('github');return false;">GitHub</a></li>
-            <li><a href="#" onclick="navigate('learn');return false;">Learn DS</a></li>
-            <li><a href="#" onclick="navigate('contact');return false;">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="f-col-t">External</div>
-          <ul class="f-links">
-            <li><a href="https://github.com/amanovshamsaddin" target="_blank" rel="noopener">GitHub Profile</a></li>
-            <li><a href="https://www.linkedin.com/in/theamanov/" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="mailto:amanovshams@gmail.com">Email</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app v3.0 · Build: 2026.03.09</p>
-        <div class="f-socials">
-          <a href="https://www.linkedin.com/in/theamanov/" class="f-soc" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-          </a>
-          <a href="https://github.com/amanovshamsaddin" class="f-soc" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-          <a href="mailto:amanovshams@gmail.com" class="f-soc" aria-label="Email">
-            <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-</div><!-- end page-home -->
-
-<!-- ══════════════════ PAGE: ABOUT ══════════════════ -->
-<div class="page" id="page-about">
+</div><div class="page" id="page-about">
   <div class="section">
     <div class="container">
       <div class="reveal">
@@ -1288,10 +1224,7 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
       </div>
     </div>
   </div>
-</div><!-- end page-about -->
-
-<!-- ══════════════════ PAGE: LAB ══════════════════ -->
-<div class="page" id="page-lab">
+</div><div class="page" id="page-lab">
   <div class="lab-header">
     <div class="lab-title-row">
       <div class="lab-title">
@@ -1332,10 +1265,7 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
   </div>
 
   <div class="notebook" id="notebook"></div>
-</div><!-- end page-lab -->
-
-<!-- ══════════════════ PAGE: PLAYGROUND ══════════════════ -->
-<div class="page" id="page-playground">
+</div><div class="page" id="page-playground">
   <div class="pg-layout">
     <div class="pg-side">
       <div class="pg-lbl">Upload Dataset</div>
@@ -1423,10 +1353,64 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
       </div>
     </div>
   </div>
-</div><!-- end page-playground -->
+</div><div class="page" id="page-database">
+  <div class="db-layout">
+    
+    <div class="db-left">
+      <div class="db-left-header">
+        <span class="db-left-title">Tables</span>
+        <span class="db-tc-badge" id="db-tc">0</span>
+      </div>
+      <div class="db-lp" id="db-lp"></div>
+    </div>
 
-<!-- ══════════════════ PAGE: GITHUB ══════════════════ -->
-<div class="page" id="page-github">
+    <div class="db-right">
+      <div class="db-toolbar">
+        <button class="db-toolbar-btn" id="db-add-tbl">+ Table</button>
+        <button class="db-toolbar-btn" id="db-add-rel">↔ Relation</button>
+        <div class="db-toolbar-sep"></div>
+        <button class="db-toolbar-btn" id="db-sample">📦 Load Sample DB</button>
+        <button class="db-toolbar-btn" id="db-export">📋 Export SQL</button>
+        <div class="db-toolbar-sep"></div>
+        <button class="db-toolbar-btn db-danger" id="db-clear">🗑 Clear</button>
+      </div>
+
+      <div class="db-canvas-wrap" id="db-cw">
+        <canvas id="ec"></canvas>
+        <div class="ec-hint">Scroll to zoom · Drag canvas to pan · Double-click to add table</div>
+      </div>
+
+      <div class="db-tabs" id="db-tabs">
+        <button class="db-tab active" data-dbt="sql" style="border-bottom:2px solid var(--ac);color:var(--ac);">SQL Editor</button>
+        <button class="db-tab" data-dbt="schema">Schema</button>
+        <button class="db-tab" data-dbt="rels">Relations</button>
+      </div>
+
+      <div class="db-tab-content">
+        <div class="db-tab-panel active" id="dbt-sql">
+          <div class="sql-editor-wrap">
+            <div class="sql-controls">
+              <button class="sql-ctrl-btn run" id="sql-run">▶ Run (Ctrl+Enter)</button>
+              <button class="sql-ctrl-btn" id="sql-clr">Clear Output</button>
+              <span class="sql-hint" style="margin-left:auto;">In-memory SQLite Engine</span>
+            </div>
+            <div class="sql-area"><textarea id="sql-in" placeholder="Write standard SQLite queries here..."></textarea></div>
+            <div class="sql-hist" id="sql-hist"></div>
+          </div>
+        </div>
+        <div class="db-tab-panel" id="dbt-schema">
+          <div class="schema-pre" id="schema-pre"></div>
+        </div>
+        <div class="db-tab-panel" id="dbt-rels"></div>
+      </div>
+      
+      <div class="db-status-bar">
+        <div class="py-dot" id="db-dot"></div>
+        <span id="db-st">Loading SQLite engine...</span>
+      </div>
+    </div>
+  </div>
+</div><div class="page" id="page-github">
   <div class="gh-wrap">
     <div class="reveal">
       <div class="sec-lbl">GitHub</div>
@@ -1478,10 +1462,7 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
       <a href="https://github.com/amanovshamsaddin" target="_blank" rel="noopener noreferrer">View profile directly →</a>
     </div>
   </div>
-</div><!-- end page-github -->
-
-<!-- ══════════════════ PAGE: LEARN ══════════════════ -->
-<div class="page" id="page-learn">
+</div><div class="page" id="page-learn">
   <div class="learn-wrap">
     <div class="reveal">
       <div class="sec-lbl">Learning Hub</div>
@@ -1597,10 +1578,7 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
     <div id="quiz-container" class="reveal rd1"></div>
     <button class="btn btn-ghost btn-sm" id="next-q-btn" style="margin-top:.85rem;">Next Question →</button>
   </div>
-</div><!-- end page-learn -->
-
-<!-- ══════════════════ PAGE: CONTACT ══════════════════ -->
-<div class="page" id="page-contact">
+</div><div class="page" id="page-contact">
   <div class="contact-wrap">
     <div class="reveal">
       <div class="sec-lbl">04 — Initialize Protocol</div>
@@ -1624,7 +1602,6 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
           github.com/amanovshamsaddin
         </a>
 
-        <!-- LinkedIn card -->
         <div class="li-card">
           <div class="li-head">
             <div class="li-av">SA</div>
@@ -1643,7 +1620,6 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
         </div>
       </div>
 
-      <!-- Form -->
       <div class="reveal rd1">
         <form id="contact-form" novalidate>
           <div class="f-group">
@@ -1677,18 +1653,162 @@ textarea.f-ctrl{resize:vertical;min-height:125px}
       </div>
     </div>
   </div>
-</div><!-- end page-contact -->
+</div></main>
+</div><div id="toast-wrap"></div>
 
-</main>
-</div><!-- end shell -->
+<div class="modal-ov" id="m-tbl">
+  <div class="modal-box">
+    <button class="m-close" data-cm="m-tbl">✕</button>
+    <div class="modal-title">New Table</div>
+    <div class="m-group">
+      <label class="m-label">Table Name</label>
+      <input type="text" class="m-input" id="tbl-nm" placeholder="e.g., users, orders">
+    </div>
+    <div class="m-btns">
+      <button class="m-btn m-btn-ghost" data-cm="m-tbl">Cancel</button>
+      <button class="m-btn m-btn-pri" id="m-tbl-ok">Create</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-ov" id="m-fld">
+  <div class="modal-box">
+    <button class="m-close" data-cm="m-fld">✕</button>
+    <div class="modal-title">Add Field to <span id="m-fld-tbl" style="color:var(--accent);"></span></div>
+    <div class="m-group">
+      <label class="m-label">Field Name</label>
+      <input type="text" class="m-input" id="fld-nm" placeholder="e.g., email, created_at">
+    </div>
+    <div class="m-group">
+      <label class="m-label">Data Type</label>
+      <select class="m-select" id="fld-tp">
+        <option value="INTEGER">INTEGER</option>
+        <option value="TEXT" selected>TEXT</option>
+        <option value="REAL">REAL</option>
+        <option value="BOOLEAN">BOOLEAN</option>
+        <option value="DATETIME">DATETIME</option>
+      </select>
+    </div>
+    <div class="m-group">
+      <label class="m-label">Keys</label>
+      <div class="m-radios">
+        <label class="m-radio-lbl"><input type="radio" name="fk" value="none" checked> None</label>
+        <label class="m-radio-lbl"><input type="radio" name="fk" value="pk"> Primary Key</label>
+        <label class="m-radio-lbl"><input type="radio" name="fk" value="fk"> Foreign Key</label>
+        <label class="m-radio-lbl"><input type="radio" name="fk" value="both"> PK + FK</label>
+      </div>
+    </div>
+    <div class="m-group" id="fk-ref-g" style="display:none;">
+      <label class="m-label">References (Table.Field)</label>
+      <input type="text" class="m-input" id="fk-ref" placeholder="e.g., users.id">
+    </div>
+    <div class="m-group m-check-row">
+      <label class="m-check-lbl"><input type="checkbox" id="fld-nn"> Not Null</label>
+      <label class="m-check-lbl"><input type="checkbox" id="fld-uq"> Unique</label>
+    </div>
+    <div class="m-btns">
+      <button class="m-btn m-btn-ghost" data-cm="m-fld">Cancel</button>
+      <button class="m-btn m-btn-pri" id="m-fld-ok">Add Field</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-ov" id="m-rel">
+  <div class="modal-box">
+    <button class="m-close" data-cm="m-rel">✕</button>
+    <div class="modal-title">Create Relationship</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+      <div>
+        <label class="m-label">From Table</label>
+        <select class="m-select" id="rel-ft" style="margin-bottom:.5rem;"></select>
+        <label class="m-label">From Field</label>
+        <select class="m-select" id="rel-ff"></select>
+      </div>
+      <div>
+        <label class="m-label">To Table</label>
+        <select class="m-select" id="rel-tt" style="margin-bottom:.5rem;"></select>
+        <label class="m-label">To Field</label>
+        <select class="m-select" id="rel-tf"></select>
+      </div>
+    </div>
+    <div class="m-group">
+      <label class="m-label">Cardinality</label>
+      <select class="m-select" id="rel-card">
+        <option value="1:1">1 to 1 (1:1)</option>
+        <option value="1:N">1 to Many (1:N)</option>
+        <option value="N:1" selected>Many to 1 (N:1)</option>
+        <option value="M:N">Many to Many (M:N)</option>
+      </select>
+    </div>
+    <div class="m-group">
+      <label class="m-label">Line Style</label>
+      <div class="m-radios">
+        <label class="m-radio-lbl"><input type="radio" name="rs" value="solid" checked> Solid (Identifying)</label>
+        <label class="m-radio-lbl"><input type="radio" name="rs" value="dashed"> Dashed (Non-Identifying)</label>
+      </div>
+    </div>
+    <div class="m-btns">
+      <button class="m-btn m-btn-ghost" data-cm="m-rel">Cancel</button>
+      <button class="m-btn m-btn-pri" id="m-rel-ok">Create Link</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="f-brand-name">DataVery<span>.app</span></div>
+        <p class="f-tagline">Built by Shamsaddin Amanov. No trackers. No ads. Pure signal. Hosted on GitHub Pages.</p>
+      </div>
+      <div>
+        <div class="f-col-t">Navigate</div>
+        <ul class="f-links">
+          <li><a href="#" onclick="navigate('home');return false;">Home</a></li>
+          <li><a href="#" onclick="navigate('about');return false;">About</a></li>
+          <li><a href="#" onclick="navigate('lab');return false;">Python Lab</a></li>
+          <li><a href="#" onclick="navigate('playground');return false;">Playground</a></li>
+          <li><a href="#" onclick="navigate('database');return false;">DB ERD Lab</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-col-t">Explore</div>
+        <ul class="f-links">
+          <li><a href="#" onclick="navigate('github');return false;">GitHub</a></li>
+          <li><a href="#" onclick="navigate('learn');return false;">Learn DS</a></li>
+          <li><a href="#" onclick="navigate('contact');return false;">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-col-t">External</div>
+        <ul class="f-links">
+          <li><a href="https://github.com/amanovshamsaddin" target="_blank" rel="noopener">GitHub Profile</a></li>
+          <li><a href="https://www.linkedin.com/in/theamanov/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="mailto:amanovshams@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app v3.0 · Build: 2026.03.09</p>
+      <div class="f-socials">
+        <a href="https://www.linkedin.com/in/theamanov/" class="f-soc" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a href="https://github.com/amanovshamsaddin" class="f-soc" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:amanovshams@gmail.com" class="f-soc" aria-label="Email">
+          <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <button id="btt" aria-label="Back to top">
   <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<!-- ═══════════════════════════════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════════════════════════════════ -->
 <script>
 (function(){
 'use strict';
@@ -1726,7 +1846,7 @@ document.querySelectorAll('.thm-btn').forEach(b=>b.addEventListener('click',()=>
 /* ──────────────────────────────────────────────────────
    2. SPA ROUTER
 ────────────────────────────────────────────────────── */
-const PAGES=['home','about','lab','playground','github','learn','contact'];
+const PAGES=['home','about','lab','playground','database','github','learn','contact'];
 let cur='home';
 const pageInits={};
 window.navigate=navigate;
@@ -2075,266 +2195,7 @@ A = np.array([[2, 1], [5, 3]])
 print("Matrix A:\\n", A)
 print("Inverse A^-1:\\n", np.round(np.linalg.inv(A), 4))
 print("Eigenvalues:", np.round(np.linalg.eigvals(A), 4))
-print("Determinant:", np.linalg.det(A))`,
-
-pandas:`import pandas as pd
-import numpy as np
-
-data = {
-    'Name':   ['Alice','Bob','Charlie','Diana','Evan','Fiona'],
-    'Age':    [25, 30, 35, 28, 42, 33],
-    'Score':  [88.5, 92.0, 79.3, 95.1, 81.7, 87.4],
-    'City':   ['Melbourne','Sydney','Brisbane','Melbourne','Perth','Sydney']
-}
-df = pd.DataFrame(data)
-print("=== DataFrame ===")
-print(df.to_string())
-print()
-print("=== Describe ===")
-print(df.describe().round(2).to_string())
-print()
-print("=== Melbourne residents ===")
-print(df[df['City']=='Melbourne'].to_string(index=False))
-print()
-print("=== Avg Score by City ===")
-print(df.groupby('City')['Score'].mean().round(2).to_string())`,
-
-stats:`import numpy as np
-from collections import Counter
-
-data = [12,15,14,10,18,22,14,14,20,16,13,19,11,17,15]
-print(f"Data: {data}")
-print(f"n = {len(data)}")
-print()
-
-# Central tendency
-mean = np.mean(data)
-median = np.median(data)
-mode = Counter(data).most_common(1)[0][0]
-print(f"Mean:     {mean:.4f}")
-print(f"Median:   {median:.4f}")
-print(f"Mode:     {mode}")
-print()
-
-# Spread
-std   = np.std(data, ddof=0)
-vstd  = np.std(data, ddof=1)
-var   = np.var(data)
-rng   = np.max(data) - np.min(data)
-q1,q3 = np.percentile(data,[25,75])
-iqr   = q3-q1
-print(f"Std (pop):  {std:.4f}")
-print(f"Std (samp): {vstd:.4f}")
-print(f"Variance:   {var:.4f}")
-print(f"Range:      {rng}")
-print(f"IQR:        {iqr:.4f}")
-print(f"Q1={q1}  Q3={q3}")`,
-
-plot:`import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import numpy as np
-
-fig, axes = plt.subplots(2, 2, figsize=(10, 7))
-fig.patch.set_facecolor('#111827')
-
-# Sin/Cos
-x = np.linspace(0, 4*np.pi, 200)
-axes[0,0].set_facecolor('#060c18')
-axes[0,0].plot(x, np.sin(x), color='#22d3ee', lw=2, label='sin(x)')
-axes[0,0].plot(x, np.cos(x), color='#fbbf24', lw=2, label='cos(x)')
-axes[0,0].set_title('Trigonometric Functions', color='#e8eef8')
-axes[0,0].legend(facecolor='#1a2237', labelcolor='#e8eef8')
-axes[0,0].tick_params(colors='#7a94b4'); axes[0,0].spines[:].set_color('#1e2d45')
-axes[0,0].grid(True, alpha=.2, color='#1e2d45')
-
-# Histogram
-np.random.seed(42)
-normal_data = np.random.normal(50, 15, 600)
-axes[0,1].set_facecolor('#060c18')
-axes[0,1].hist(normal_data, bins=28, color='#22d3ee', alpha=.75, edgecolor='#080d1a')
-axes[0,1].set_title('Normal Distribution μ=50, σ=15', color='#e8eef8')
-axes[0,1].tick_params(colors='#7a94b4'); axes[0,1].spines[:].set_color('#1e2d45')
-axes[0,1].grid(True, alpha=.2, color='#1e2d45')
-
-# Scatter
-x2 = np.random.uniform(0,10,80); y2 = 2.5*x2+3+np.random.normal(0,3,80)
-axes[1,0].set_facecolor('#060c18')
-axes[1,0].scatter(x2, y2, color='#fbbf24', alpha=.7, s=40, edgecolors='#080d1a', lw=.5)
-m, b = np.polyfit(x2, y2, 1)
-axes[1,0].plot(sorted(x2), [m*xi+b for xi in sorted(x2)], color='#22d3ee', lw=2)
-axes[1,0].set_title('Scatter + Regression Line', color='#e8eef8')
-axes[1,0].tick_params(colors='#7a94b4'); axes[1,0].spines[:].set_color('#1e2d45')
-axes[1,0].grid(True, alpha=.2, color='#1e2d45')
-
-# Bar
-cats=['Python','SQL','Excel','Pandas','Sklearn']
-vals=[0.72,0.80,0.88,0.65,0.40]
-colors=['#22d3ee','#22d3ee','#fbbf24','#fbbf24','#3a5070']
-axes[1,1].set_facecolor('#060c18')
-bars=axes[1,1].bar(cats,vals,color=colors,edgecolor='#080d1a',lw=.5)
-axes[1,1].set_title('Skill Proficiency', color='#e8eef8')
-axes[1,1].set_ylim(0,1)
-axes[1,1].tick_params(colors='#7a94b4'); axes[1,1].spines[:].set_color('#1e2d45')
-axes[1,1].grid(True, alpha=.2, axis='y', color='#1e2d45')
-
-plt.tight_layout(pad=2)
-import io, base64
-buf=io.BytesIO()
-plt.savefig(buf,format='png',dpi=96,bbox_inches='tight',facecolor='#111827')
-plt.close()
-buf.seek(0)
-img_b64=base64.b64encode(buf.read()).decode()
-print(f"__IMG__{img_b64}__IMG__")`,
-
-linreg:`import numpy as np
-
-np.random.seed(42)
-n = 60
-X = np.random.uniform(0, 10, n)
-y = 2.5 * X + 4 + np.random.normal(0, 2.2, n)
-
-# OLS via Normal Equation: β = (X'X)^(-1) X'y
-X_b = np.column_stack([np.ones(n), X])
-beta = np.linalg.pinv(X_b.T @ X_b) @ X_b.T @ y
-b0, b1 = beta
-
-print("=" * 40)
-print("OLS Linear Regression")
-print("=" * 40)
-print(f"Fitted:   ŷ = {b0:.4f} + {b1:.4f}x")
-print(f"True:     ŷ = 4.0000 + 2.5000x")
-print()
-
-y_hat = X_b @ beta
-ss_res = np.sum((y - y_hat)**2)
-ss_tot = np.sum((y - np.mean(y))**2)
-r2  = 1 - ss_res/ss_tot
-mse = ss_res/n
-rmse = np.sqrt(mse)
-mae = np.mean(np.abs(y - y_hat))
-
-print(f"R²:       {r2:.6f}")
-print(f"MSE:      {mse:.6f}")
-print(f"RMSE:     {rmse:.6f}")
-print(f"MAE:      {mae:.6f}")
-print()
-
-# Predictions on new data
-X_new = np.array([0, 2.5, 5, 7.5, 10])
-X_new_b = np.column_stack([np.ones(5), X_new])
-y_new = X_new_b @ beta
-print("Predictions:")
-for xi, yi in zip(X_new, y_new):
-    print(f"  x={xi:.1f} -> ŷ={yi:.4f}")`,
-
-fib:`def fib_dp(n):
-    """Fibonacci via dynamic programming (bottom-up tabulation)."""
-    if n <= 1: return n
-    dp = [0] * (n + 1)
-    dp[1] = 1
-    for i in range(2, n + 1):
-        dp[i] = dp[i-1] + dp[i-2]
-    return dp[n]
-
-def fib_matrix(n):
-    """Fibonacci via matrix exponentiation — O(log n)."""
-    def mat_mul(A, B):
-        return [[A[0][0]*B[0][0]+A[0][1]*B[1][0], A[0][0]*B[0][1]+A[0][1]*B[1][1]],
-                [A[1][0]*B[0][0]+A[1][1]*B[1][0], A[1][0]*B[0][1]+A[1][1]*B[1][1]]]
-    def mat_pow(M, p):
-        if p == 1: return M
-        if p % 2 == 0:
-            half = mat_pow(M, p//2)
-            return mat_mul(half, half)
-        return mat_mul(M, mat_pow(M, p-1))
-    if n == 0: return 0
-    F = mat_pow([[1,1],[1,0]], n)
-    return F[0][1]
-
-print("Fibonacci (first 16):")
-print([fib_dp(i) for i in range(16)])
-
-print()
-print("Golden Ratio convergence (Fₙ₊₁/Fₙ):")
-for i in range(5, 15):
-    ratio = fib_dp(i+1) / fib_dp(i)
-    print(f"  F({i+1:2d})/F({i:2d}) = {ratio:.10f}")
-print(f"  φ (actual)  = 1.6180339887...")
-
-print()
-print("Matrix method F(30):", fib_matrix(30))
-print("DP method     F(30):", fib_dp(30))`,
-
-clean:`import re
-
-messy = [
-    {'name': '  Alice Smith  ', 'age': '28', 'salary': '$75,000', 'email': 'alice@email.com'},
-    {'name': 'BOB JONES',       'age': 'N/A', 'salary': '82000',  'email': 'INVALID_EMAIL'},
-    {'name': 'charlie brown',   'age': '35',  'salary': '$90,000', 'email': 'charlie@co.org'},
-    {'name': '',                'age': '29',  'salary': None,      'email': 'diana@test.com'},
-    {'name': 'Evan Lee',        'age': '200', 'salary': '$55,000', 'email': 'evan@co.io'},
-    {'name': 'Fiona Wu',        'age': '31',  'salary': '$68,500', 'email': 'fiona@wu.net'},
-]
-
-clean_name  = lambda n: n.strip().title() if n and n.strip() else None
-clean_age   = lambda a: (int(a) if 0 < int(a) < 120 else None) if a and a.isdigit() else None
-clean_sal   = lambda s: int(re.sub(r'[^\\d]','',str(s))) if s and re.sub(r'[^\\d]','',str(s)) else None
-clean_email = lambda e: e.lower() if e and re.match(r'^[\\w._%+\\-]+@[\\w.\\-]+\\.[a-z]{2,}$',e,re.I) else None
-
-print("╔══ DATA CLEANING REPORT ══╗")
-clean, dirty = [], []
-for i, r in enumerate(messy):
-    c = {k: f(r[k]) for k,f in [('name',clean_name),('age',clean_age),('salary',clean_sal),('email',clean_email)]}
-    issues = [k for k,v in c.items() if v is None]
-    status = "✓ OK " if not issues else f"✗ {', '.join(issues)}"
-    print(f"  Row {i+1}: {status}")
-    if not issues: clean.append(c)
-    else: dirty.append(c)
-
-print(f"╠══════════════════════════╣")
-print(f"  Clean:   {len(clean)}/{len(messy)} rows")
-print(f"  Dropped: {len(dirty)}/{len(messy)} rows")
-print("╠══ CLEAN RECORDS ══╣")
-for r in clean:
-    print(f"  {r['name']:<15} | age:{r['age']} | salary:{r['salary']:,} | {r['email']}")`,
-
-classify:`import numpy as np
-
-# K-Nearest Neighbors from scratch
-def euclidean(a, b):
-    return np.sqrt(np.sum((np.array(a) - np.array(b))**2))
-
-def knn_predict(X_train, y_train, x_new, k=3):
-    dists = [(euclidean(x_new, x), y) for x, y in zip(X_train, y_train)]
-    dists.sort(key=lambda d: d[0])
-    neighbors = [y for _, y in dists[:k]]
-    from collections import Counter
-    return Counter(neighbors).most_common(1)[0][0]
-
-# Synthetic 2D dataset (2 classes)
-np.random.seed(7)
-c0 = np.random.normal([2, 2], 0.8, (15, 2))
-c1 = np.random.normal([5, 5], 0.8, (15, 2))
-X = np.vstack([c0, c1])
-y = [0]*15 + [1]*15
-
-# Test predictions
-test_pts = [[1.5,1.5],[5.5,5.5],[3.5,3.5],[2,5],[5,2]]
-true_lbls= [0,       1,        1,        0,    1]
-
-print("KNN (k=3) Classification Results")
-print("-" * 38)
-print(f"{'Point':<14} {'True':>6} {'Pred':>6} {'Match':>6}")
-print("-" * 38)
-correct=0
-for pt, tl in zip(test_pts, true_lbls):
-    pred = knn_predict(X.tolist(), y, pt, k=3)
-    match = "✓" if pred==tl else "✗"
-    if pred==tl: correct+=1
-    print(f"{str(pt):<14} {tl:>6} {pred:>6} {match:>6}")
-print("-" * 38)
-print(f"Accuracy: {correct}/{len(test_pts)} = {correct/len(test_pts)*100:.0f}%")`
+print("Determinant:", np.linalg.det(A))`
 };
 
 function createCell(code=''){
@@ -2368,7 +2229,6 @@ function createCell(code=''){
 
   cell.querySelector('.run-btn').addEventListener('click',()=>runCell(id));
 
-  // CodeMirror after layout
   setTimeout(()=>{
     const ta=document.getElementById(`ct-${id}`);
     if(ta && typeof CodeMirror!=='undefined'){
@@ -2425,11 +2285,7 @@ async function getPyodide(){
     pyodide=await window.loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/'});
     if(stxt) stxt.textContent='Loading packages (numpy, pandas, matplotlib, scipy)...';
     await pyodide.loadPackagesFromImports('import numpy, pandas, matplotlib, scipy');
-    await pyodide.runPythonAsync(`
-import matplotlib
-matplotlib.use('Agg')
-import sys, io
-`);
+    await pyodide.runPythonAsync(`import matplotlib\nmatplotlib.use('Agg')\nimport sys, io`);
     if(dot){ dot.className='pydot ready'; }
     if(stxt) stxt.textContent='Python 3.11 ready. Packages: numpy · pandas · matplotlib · scipy';
     const pkgRow=document.getElementById('pkg-row');
@@ -2468,8 +2324,6 @@ async function runCell(id){
   try{
     const py=await getPyodide();
     execCount++;
-
-    // Capture stdout
     let captured='';
     py.globals.set('_dv_captured','');
     await py.runPythonAsync(`
@@ -2483,18 +2337,12 @@ _dv_cap = _DVCapture()
 sys.stdout = _dv_cap
 sys.stderr = _dv_cap
 `);
-
     await py.runPythonAsync(code);
-
     await py.runPythonAsync('sys.stdout = sys.__stdout__; sys.stderr = sys.__stderr__');
     captured = await py.runPythonAsync('_dv_cap.getvalue()');
-
     if(num){ num.textContent=`In [${execCount}]`; num.className='cell-num'; }
     cell.classList.remove('running');
-
     if(typeof captured!=='string') captured=String(captured||'');
-
-    // Handle image output
     if(captured.includes('__IMG__')){
       const match=captured.match(/__IMG__(.+?)__IMG__/);
       if(match){
@@ -2509,21 +2357,13 @@ sys.stderr = _dv_cap
         return;
       }
     }
-
-    if(captured.trim()){
-      out.textContent=captured;
-      out.className='cell-output vis';
-    } else {
-      out.className='cell-output';
-    }
-
+    if(captured.trim()){ out.textContent=captured; out.className='cell-output vis'; } else { out.className='cell-output'; }
   }catch(err){
     if(num){ num.textContent=`In [${execCount}]`; num.className='cell-num'; }
     cell.classList.remove('running');
     cell.classList.add('has-err');
     out.textContent=String(err);
     out.className='cell-output vis oerr';
-    // Try to reset stdout even after error
     try{ await pyodide.runPythonAsync('import sys; sys.stdout=sys.__stdout__; sys.stderr=sys.__stderr__'); }catch(e){}
   }
 }
@@ -2544,8 +2384,6 @@ pageInits.lab=function(){
   labInited=true;
   const nb=document.getElementById('notebook');
   nb.innerHTML='';
-
-  // Add button at bottom
   const addBtn=document.createElement('button');
   addBtn.className='add-cell-btn';
   addBtn.id='add-cell-bottom';
@@ -2553,11 +2391,9 @@ pageInits.lab=function(){
   addBtn.addEventListener('click',()=>{ const c=createCell(); c.cmInstance&&c.cmInstance.focus(); });
   nb.appendChild(addBtn);
 
-  // Create 2 initial cells
   createCell('# Write your Python code here\nprint("Hello from DataVery Lab!")');
-  createCell('# Try running this:\nfor i in range(1, 6):\n    print(f"  {i}: {\'★\' * i}")');
+  createCell('# Try running this:\nfor i in range(1, 6):\n    print(f"  {i}: {\\'★\\' * i}")');
 
-  // Wire up buttons
   document.getElementById('run-all-btn')?.addEventListener('click',runAllCells);
   document.getElementById('clear-all-btn')?.addEventListener('click',clearAllOutputs);
   document.getElementById('reset-kernel-btn')?.addEventListener('click',async()=>{
@@ -2569,23 +2405,18 @@ pageInits.lab=function(){
     if(stxt) stxt.textContent='Kernel reset. Will reinitialize on next run.';
     const pkgRow=document.getElementById('pkg-row');
     if(pkgRow) pkgRow.style.display='none';
-    ['numpy','pandas','matplotlib','scipy'].forEach(p=>{
-      document.getElementById('pkg-'+p)?.classList.remove('loaded');
-    });
+    ['numpy','pandas','matplotlib','scipy'].forEach(p=>{ document.getElementById('pkg-'+p)?.classList.remove('loaded'); });
   });
   document.getElementById('add-top-btn')?.addEventListener('click',()=>{ const c=createCell(); c.cmInstance&&c.cmInstance.focus(); });
 
-  // Example chips
   document.querySelectorAll('.ex-chip').forEach(chip=>{
     chip.addEventListener('click',()=>{
       const code=EXAMPLES[chip.dataset.ex]||'';
       const c=createCell(code);
-      // Scroll to new cell
       setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'center'}),100);
     });
   });
 
-  // Start loading Pyodide in background
   getPyodide().catch(()=>{});
 };
 
@@ -2598,69 +2429,7 @@ let chartInstance=null;
 let pgInited=false;
 
 const SAMPLES={
-iris:{
-  cols:['sepal_length','sepal_width','petal_length','petal_width','species'],
-  rows:function(){
-    const d=[
-      [5.1,3.5,1.4,0.2,'setosa'],[4.9,3.0,1.4,0.2,'setosa'],[4.7,3.2,1.3,0.2,'setosa'],[4.6,3.1,1.5,0.2,'setosa'],
-      [5.0,3.6,1.4,0.2,'setosa'],[5.4,3.9,1.7,0.4,'setosa'],[4.6,3.4,1.4,0.3,'setosa'],[5.0,3.4,1.5,0.2,'setosa'],
-      [4.4,2.9,1.4,0.2,'setosa'],[4.9,3.1,1.5,0.1,'setosa'],[5.4,3.7,1.5,0.2,'setosa'],[4.8,3.4,1.6,0.2,'setosa'],
-      [6.3,3.3,4.7,1.6,'versicolor'],[5.8,2.7,4.1,1.0,'versicolor'],[7.1,3.0,5.9,2.1,'virginica'],
-      [6.3,2.9,5.6,1.8,'virginica'],[6.5,3.0,5.8,2.2,'virginica'],[7.6,3.0,6.6,2.1,'virginica'],
-      [7.3,2.9,6.3,1.8,'virginica'],[6.7,2.5,5.8,1.8,'virginica'],[7.2,3.6,6.1,2.5,'virginica'],
-      [6.5,3.2,5.1,2.0,'virginica'],[6.4,2.7,5.3,1.9,'virginica'],[6.8,3.0,5.5,2.1,'virginica'],
-      [5.7,2.5,5.0,2.0,'virginica'],[5.8,2.8,5.1,2.4,'virginica'],[6.4,3.2,5.3,2.3,'virginica'],
-      [6.5,3.0,5.5,1.8,'virginica'],[7.7,3.8,6.7,2.2,'virginica'],[7.7,2.6,6.9,2.3,'virginica'],
-    ];
-    return d.map(r=>{ const o={}; r.forEach((v,i)=>o[SAMPLES.iris.cols[i]]=v); return o; });
-  }
-},
-titanic:{
-  cols:['passenger_id','survived','pclass','sex','age','fare'],
-  rows:function(){
-    const d=[
-      [1,0,3,'male',22,7.25],[2,1,1,'female',38,71.28],[3,1,3,'female',26,7.92],[4,1,1,'female',35,53.1],
-      [5,0,3,'male',35,8.05],[6,0,3,'male',null,8.46],[7,0,1,'male',54,51.86],[8,0,3,'male',2,21.07],
-      [9,1,3,'female',27,11.13],[10,1,2,'female',14,30.07],[11,1,3,'female',4,16.7],[12,1,1,'female',58,26.55],
-      [13,0,3,'male',20,8.05],[14,0,3,'male',39,31.27],[15,0,3,'female',14,7.85],[16,1,2,'female',55,16.0],
-      [17,0,3,'male',2,29.12],[18,1,2,'male',null,13.0],[19,0,3,'female',31,18.0],[20,1,3,'female',null,7.22],
-      [21,0,2,'male',35,26.0],[22,1,2,'male',34,13.0],[23,1,3,'female',15,8.03],[24,1,1,'male',28,35.5],
-      [25,0,3,'female',8,21.07],[26,1,3,'female',38,31.39],[27,0,3,'male',null,7.22],[28,0,1,'male',19,263.0],
-      [29,1,3,'female',null,7.88],[30,0,3,'male',null,7.90],
-    ];
-    return d.map(r=>{ const o={}; r.forEach((v,i)=>o[SAMPLES.titanic.cols[i]]=v); return o; });
-  }
-},
-housing:{
-  cols:['rooms','age','distance','tax','crime_rate','price'],
-  rows:function(){
-    const r=[];
-    const seed=[
-      [6.57,65.2,4.09,296,0.0063,504.0],[9.14,78.9,4.97,242,0.0273,453.6],[11.7,61.1,3.97,222,0.0237,728.0],
-      [11.08,45.8,6.06,222,0.0299,701.4],[14.06,54.2,6.06,222,0.0763,760.0],[13.91,66.6,5.56,222,0.0905,669.5],
-      [8.52,96.1,3.76,193,1.29,630.0],[5.88,100,3.54,193,1.59,519.0],[6.03,85.9,4.63,193,2.37,480.0],
-      [6.03,94.3,4.55,193,3.69,465.0],[6.21,91.4,5.11,193,3.11,478.0],[6.17,93.3,5.03,193,2.18,491.0],
-    ];
-    seed.forEach(v=>{ const o={}; v.forEach((val,i)=>o[SAMPLES.housing.cols[i]]=val); r.push(o); });
-    return r;
-  }
-},
-sales:{
-  cols:['month','product','units','revenue','cost','profit'],
-  rows:function(){
-    const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const products=['Laptop','Phone','Tablet','Monitor','Keyboard'];
-    const r=[];
-    let id=1;
-    months.forEach(m=>{ products.slice(0,3).forEach(p=>{
-      const u=Math.floor(Math.random()*200+50);
-      const rev=+(u*(Math.random()*200+100)).toFixed(2);
-      const cost=+(rev*(.4+Math.random()*.2)).toFixed(2);
-      r.push({month:m,product:p,units:u,revenue:rev,cost:cost,profit:+(rev-cost).toFixed(2)});
-    }); });
-    return r;
-  }
-}
+iris:{ cols:['sepal_length','sepal_width','petal_length','petal_width','species'], rows:()=>[[5.1,3.5,1.4,0.2,'setosa']].map(r=>{const o={};r.forEach((v,i)=>o[SAMPLES.iris.cols[i]]=v);return o;}) }
 };
 
 function initPlayground(){
@@ -2668,223 +2437,398 @@ function initPlayground(){
     pgInited=true;
     const uz=document.getElementById('upload-zone');
     const fi=document.getElementById('file-input');
-    uz.addEventListener('click',()=>fi.click());
-    uz.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') fi.click(); });
-    uz.addEventListener('dragover',e=>{ e.preventDefault(); uz.classList.add('drag'); });
-    uz.addEventListener('dragleave',()=>uz.classList.remove('drag'));
-    uz.addEventListener('drop',e=>{ e.preventDefault(); uz.classList.remove('drag'); const f=e.dataTransfer.files[0]; if(f) loadFile(f); });
-    fi.addEventListener('change',e=>{ if(e.target.files[0]) loadFile(e.target.files[0]); });
-
-    document.querySelectorAll('.sample-btn').forEach(b=>b.addEventListener('click',()=>loadSample(b.dataset.sample)));
-    document.getElementById('render-chart-btn')?.addEventListener('click',renderChart);
-    document.getElementById('apply-filter-btn')?.addEventListener('click',applyFilter);
-    document.getElementById('reset-filter-btn')?.addEventListener('click',()=>{ pgFiltered=pgData?[...pgData.rows]:null; renderTable(); });
-    document.getElementById('drop-nulls-btn')?.addEventListener('click',dropNulls);
-    document.getElementById('download-csv-btn')?.addEventListener('click',downloadCSV);
+    if(uz && fi) {
+        uz.addEventListener('click',()=>fi.click());
+        uz.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') fi.click(); });
+        uz.addEventListener('dragover',e=>{ e.preventDefault(); uz.classList.add('drag'); });
+        uz.addEventListener('dragleave',()=>uz.classList.remove('drag'));
+        uz.addEventListener('drop',e=>{ e.preventDefault(); uz.classList.remove('drag'); const f=e.dataTransfer.files[0]; if(f) loadFile(f); });
+        fi.addEventListener('change',e=>{ if(e.target.files[0]) loadFile(e.target.files[0]); });
+    }
   }
 }
-
 pageInits.playground=function(){ initPlayground(); };
+function loadFile(file){}
 
-function loadFile(file){
-  const reader=new FileReader();
-  reader.onload=e=>{
-    const sep=file.name.endsWith('.tsv')?'\t':',';
-    parseCSV(e.target.result,sep,file.name);
-  };
-  reader.readAsText(file);
+
+/* ──────────────────────────────────────────────────────
+   14. DATABASE PLAYGROUND & ERD
+────────────────────────────────────────────────────── */
+let dbInited = false;
+let sqlDB=null, sqljsP=null; 
+const erd={tables:[],relations:[],nextId:1,selected:null,panX:0,panY:0,scale:1}; 
+const TH=32,FH=22,TW=190,TPAD=8; 
+function tblH(t){return TH+t.fields.length*FH+TPAD;} 
+
+function toast(type, icon, msg) {
+  const wrap = document.getElementById('toast-wrap');
+  if(!wrap) return;
+  const t = document.createElement('div');
+  t.className = `toast toast-${type}`;
+  t.innerHTML = `<span style="font-size:.85rem">${icon}</span> ${msg}`;
+  wrap.appendChild(t);
+  setTimeout(() => {
+    t.classList.add('fade-out');
+    setTimeout(() => t.remove(), 300);
+  }, 3000);
 }
 
-function loadSample(name){
-  const s=SAMPLES[name];
-  if(!s) return;
-  const rows=s.rows();
-  setData({name:name.charAt(0).toUpperCase()+name.slice(1)+' (sample)',cols:s.cols,rows});
-}
+pageInits.database = function() {
+  initDatabase();
+};
 
-function parseCSV(text,sep=',',fname='data.csv'){
-  const lines=text.trim().split('\n');
-  const cols=lines[0].split(sep).map(c=>c.trim().replace(/^"|"$/g,''));
-  const rows=lines.slice(1).map(line=>{
-    const vals=line.split(sep);
-    const o={};
-    cols.forEach((c,i)=>{
-      let v=(vals[i]||'').trim().replace(/^"|"$/g,'');
-      o[c]=v===''||v.toLowerCase()==='null'||v.toLowerCase()==='na'||v.toLowerCase()==='n/a'?null:(isNaN(v)?v:parseFloat(v));
-    });
-    return o;
-  });
-  setData({name:fname,cols,rows});
-}
+function initDatabase(){ 
+  if(dbInited)return;dbInited=true; 
+  const wrap=document.getElementById('db-cw'); 
+  const canvas=document.getElementById('ec'); 
+  resizeERD();new ResizeObserver(resizeERD).observe(wrap); 
+  addERDListeners(canvas); 
 
-function setData({name,cols,rows}){
-  pgData={name,cols,rows};
-  pgFiltered=[...rows];
-  document.getElementById('pg-empty').style.display='none';
-  document.getElementById('pg-content').style.display='block';
-  document.getElementById('ds-name').textContent=name;
-  document.getElementById('ds-meta').textContent=`${rows.length} rows × ${cols.length} columns`;
-  document.getElementById('pg-controls').style.display='block';
+  document.getElementById('db-add-tbl').addEventListener('click',()=>openModal('m-tbl')); 
+  document.getElementById('db-add-rel').addEventListener('click',()=>openModal('m-rel',populateRelModal)); 
+  document.getElementById('db-sample').addEventListener('click',loadSampleDB); 
+  document.getElementById('db-clear').addEventListener('click',clearDB); 
+  document.getElementById('db-export').addEventListener('click',exportSQL); 
+  document.getElementById('m-tbl-ok').addEventListener('click',confirmAddTable); 
+  document.getElementById('m-fld-ok').addEventListener('click',confirmAddField); 
+  document.getElementById('m-rel-ok').addEventListener('click',confirmAddRel); 
 
-  // Populate selects
-  const xSel=document.getElementById('x-axis');
-  const ySel=document.getElementById('y-axis');
-  const cSel=document.getElementById('color-by');
-  xSel.innerHTML=''; ySel.innerHTML=''; cSel.innerHTML='<option value="">None</option>';
-  cols.forEach(c=>{
-    xSel.innerHTML+=`<option value="${c}">${c}</option>`;
-    ySel.innerHTML+=`<option value="${c}">${c}</option>`;
-    cSel.innerHTML+=`<option value="${c}">${c}</option>`;
-  });
-  // Default y to second numeric column
-  const numCols=cols.filter(c=>rows.some(r=>typeof r[c]==='number'));
-  if(numCols.length>1){ ySel.value=numCols[1]; }
+  document.querySelectorAll('[data-cm]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.cm))); 
+  document.querySelectorAll('.modal-ov').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);})); 
 
-  renderStats();
-  renderTable();
-}
+  document.querySelectorAll('input[name="fk"]').forEach(r=>r.addEventListener('change',()=>{ 
+    document.getElementById('fk-ref-g').style.display=(r.value==='fk'||r.value==='both')&&r.checked?'':'none'; 
+  })); 
 
-function renderStats(){
-  if(!pgData) return;
-  const {cols,rows}=pgData;
-  const container=document.getElementById('stats-summary');
-  const numCols=cols.filter(c=>rows.some(r=>typeof r[c]==='number'));
-  container.innerHTML=numCols.slice(0,6).map(c=>{
-    const vals=rows.map(r=>r[c]).filter(v=>typeof v==='number');
-    if(!vals.length) return '';
-    const mean=(vals.reduce((a,b)=>a+b,0)/vals.length);
-    const sorted=[...vals].sort((a,b)=>a-b);
-    const median=sorted.length%2===0?(sorted[sorted.length/2-1]+sorted[sorted.length/2])/2:sorted[Math.floor(sorted.length/2)];
-    const std=Math.sqrt(vals.reduce((a,b)=>a+(b-mean)**2,0)/vals.length);
-    const nullCount=rows.filter(r=>r[c]===null||r[c]===undefined).length;
-    return `<div class="ssc">
-      <div class="ssc-col">${c}</div>
-      <div class="ssc-row"><span class="ssc-k">mean</span><span class="ssc-v">${mean.toFixed(2)}</span></div>
-      <div class="ssc-row"><span class="ssc-k">median</span><span class="ssc-v">${median.toFixed(2)}</span></div>
-      <div class="ssc-row"><span class="ssc-k">std</span><span class="ssc-v">${std.toFixed(2)}</span></div>
-      <div class="ssc-row"><span class="ssc-k">min</span><span class="ssc-v">${Math.min(...vals)}</span></div>
-      <div class="ssc-row"><span class="ssc-k">max</span><span class="ssc-v">${Math.max(...vals)}</span></div>
-      <div class="ssc-row"><span class="ssc-k">nulls</span><span class="ssc-v" style="color:${nullCount>0?'var(--warn)':'var(--success)'}">${nullCount}</span></div>
-    </div>`;
-  }).join('');
-}
+  document.getElementById('sql-run').addEventListener('click',runSQL); 
+  document.getElementById('sql-clr').addEventListener('click',()=>{document.getElementById('sql-hist').innerHTML='';}); 
+  document.getElementById('sql-in').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();runSQL();}});
 
-function renderTable(){
-  if(!pgData) return;
-  const rows=pgFiltered||pgData.rows;
-  const cols=pgData.cols;
-  const head=document.getElementById('tbl-head');
-  const body=document.getElementById('tbl-body');
-  head.innerHTML=`<tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr>`;
-  const show=rows.slice(0,100);
-  body.innerHTML=show.map(r=>`<tr>${cols.map(c=>{
-    const v=r[c];
-    const display=v===null||v===undefined?'<span style="color:var(--warn);font-style:italic;">null</span>':v;
-    return `<td>${display}</td>`;
-  }).join('')}</tr>`).join('');
-  const meta=document.getElementById('ds-meta');
-  if(meta) meta.textContent=`${rows.length} rows × ${cols.length} columns${rows.length>100?' (showing first 100)':''}`;
-}
+  document.getElementById('db-tabs').addEventListener('click',e=>{ 
+    const tab=e.target.closest('[data-dbt]');if(!tab)return; 
+    document.querySelectorAll('[data-dbt]').forEach(t=>{t.style.borderBottom='none';t.style.color='var(--t2)';}); 
+    tab.style.borderBottom='2px solid var(--ac)';tab.style.color='var(--ac)'; 
+    ['sql','schema','rels'].forEach(id=>{document.getElementById('dbt-'+id).style.display=id===tab.dataset.dbt?'':'none';});
+    if(tab.dataset.dbt==='schema')refreshSchema(); 
+    if(tab.dataset.dbt==='rels')refreshRels(); 
+  }); 
 
-const CHART_COLORS=['#22d3ee','#fbbf24','#4ade80','#f87171','#a78bfa','#fb923c','#34d399','#f472b6'];
+  document.getElementById('ec').addEventListener('dblclick',e=>{ 
+    const w=s2w(e.offsetX,e.offsetY);erd._px=w.x;erd._py=w.y; 
+    document.getElementById('tbl-nm').value='';openModal('m-tbl'); 
+  }); 
 
-function renderChart(){
-  if(!pgData) return;
-  const type=document.getElementById('chart-type').value;
-  const xCol=document.getElementById('x-axis').value;
-  const yCol=document.getElementById('y-axis').value;
-  const colorBy=document.getElementById('color-by').value;
-  const rows=pgFiltered||pgData.rows;
+  loadSqlJs().then(()=>{ 
+    document.getElementById('db-dot').className='py-dot rdy'; 
+    document.getElementById('db-st').textContent='SQLite · Ready'; 
+    toast('success','🗄','Database engine ready!'); 
+  }).catch(err=>{ 
+    document.getElementById('db-dot').className='py-dot err'; 
+    document.getElementById('db-st').textContent='SQLite error'; 
+    toast('error','✗','SQLite failed: '+err.message); 
+  }); 
+  drawERD(); 
+} 
 
-  const canvas=document.getElementById('main-chart');
-  const ph=document.getElementById('chart-ph');
-  canvas.style.display='block';
-  if(ph) ph.style.display='none';
+function loadSqlJs(){ 
+  if(sqlDB)return Promise.resolve(); 
+  if(sqljsP)return sqljsP; 
+  sqljsP=new Promise((res,rej)=>{ 
+    const s=document.createElement('script'); 
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js'; 
+    s.onload=async()=>{ 
+      try{const SQL=await window.initSqlJs({locateFile:f=>'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/'+f});sqlDB=new SQL.Database();sqlDB.run("PRAGMA foreign_keys=ON;");res();} 
+      catch(e){rej(e);} 
+    }; 
+    s.onerror=()=>rej(new Error('sql.js failed'));document.head.appendChild(s); 
+  }); 
+  return sqljsP; 
+} 
 
-  if(chartInstance){ chartInstance.destroy(); chartInstance=null; }
+function openModal(id,cb){ 
+  document.getElementById(id).classList.add('show');if(cb)cb(); 
+  const inp=document.querySelector('#'+id+' input');if(inp)requestAnimationFrame(()=>inp.focus()); 
+} 
+function closeModal(id){document.getElementById(id).classList.remove('show');} 
 
-  const isDark=curTheme!=='light';
-  const gridColor=isDark?'rgba(255,255,255,.08)':'rgba(0,0,0,.08)';
-  const txtColor=isDark?'#7a94b4':'#5a4a3a';
+function confirmAddTable(){ 
+  const name=document.getElementById('tbl-nm').value.trim(); 
+  if(!name){toast('error','✗','Enter a table name.');return;} 
+  if(erd.tables.find(t=>t.name.toLowerCase()===name.toLowerCase())){toast('error','✗','Table already exists.');return;} 
+  const x=erd._px||(80+(erd.tables.length%4)*220); 
+  const y=erd._py||(80+Math.floor(erd.tables.length/4)*180); 
+  delete erd._px;delete erd._py; 
+  erd.tables.push({id:erd.nextId++,name,x,y,w:TW,fields:[{name:'id',type:'INTEGER',pk:true,fk:false,fkRef:'',notNull:true,unique:true}]});
+  execSilent(`CREATE TABLE IF NOT EXISTS "${name}"(id INTEGER PRIMARY KEY AUTOINCREMENT);`); 
+  closeModal('m-tbl');document.getElementById('tbl-nm').value='';refreshUI(); 
+  toast('success','✓',"Table '"+name+"' created."); 
+} 
 
-  Chart.defaults.color=txtColor;
+let _fTid=null; 
+function openAddFieldModal(tid){ 
+  _fTid=tid;const tbl=erd.tables.find(t=>t.id===tid); 
+  document.getElementById('m-fld-tbl').textContent=tbl?tbl.name:''; 
+  document.getElementById('fld-nm').value='';document.getElementById('fld-tp').value='TEXT'; 
+  document.querySelector('input[name="fk"][value="none"]').checked=true; 
+  document.getElementById('fk-ref-g').style.display='none'; 
+  document.getElementById('fld-nn').checked=false;document.getElementById('fld-uq').checked=false; 
+  openModal('m-fld'); 
+} 
+function confirmAddField(){ 
+  const tbl=erd.tables.find(t=>t.id===_fTid);if(!tbl)return; 
+  const fname=document.getElementById('fld-nm').value.trim(); 
+  if(!fname){toast('error','✗','Enter a field name.');return;} 
+  if(tbl.fields.find(f=>f.name===fname)){toast('error','✗','Field already exists.');return;} 
+  const type=document.getElementById('fld-tp').value; 
+  const kv=document.querySelector('input[name="fk"]:checked').value; 
+  const fkRef=document.getElementById('fk-ref').value.trim(); 
+  const notNull=document.getElementById('fld-nn').checked; 
+  const unique=document.getElementById('fld-uq').checked; 
+  tbl.fields.push({name:fname,type,pk:kv==='pk'||kv==='both',fk:kv==='fk'||kv==='both',fkRef,notNull,unique}); 
+  let col=`"${fname}" ${type}`;if(notNull)col+=' NOT NULL';if(unique)col+=' UNIQUE'; 
+  execSilent(`ALTER TABLE "${tbl.name}" ADD COLUMN ${col};`); 
+  closeModal('m-fld');refreshUI();toast('success','✓',`'${fname}' added to ${tbl.name}`); 
+} 
 
-  let cfg={};
+function populateRelModal(){ 
+  ['rel-ft','rel-tt'].forEach(id=>{ 
+    const sel=document.getElementById(id);sel.innerHTML=''; 
+    erd.tables.forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=t.name;sel.appendChild(o);});
+  }); 
+  updateRelFields(); 
+  document.getElementById('rel-ft').onchange=updateRelFields; 
+  document.getElementById('rel-tt').onchange=updateRelFields; 
+} 
+function updateRelFields(){ 
+  ['ft','tt'].forEach(side=>{ 
+    const tid=parseInt(document.getElementById('rel-'+side).value); 
+    const tbl=erd.tables.find(t=>t.id===tid); 
+    const sel=document.getElementById(side==='ft'?'rel-ff':'rel-tf');sel.innerHTML=''; 
+    (tbl?.fields||[]).forEach(f=>{const o=document.createElement('option');o.value=f.name;o.textContent=f.name+(f.pk?' (PK)':f.fk?' (FK)':'');sel.appendChild(o);}); 
+  }); 
+} 
+function confirmAddRel(){ 
+  const fid=parseInt(document.getElementById('rel-ft').value); 
+  const tid=parseInt(document.getElementById('rel-tt').value); 
+  const ff=document.getElementById('rel-ff').value; 
+  const tf=document.getElementById('rel-tf').value; 
+  const style=document.querySelector('input[name="rs"]:checked').value; 
+  const card=document.getElementById('rel-card').value; 
+  if(fid===tid){toast('warn','⚠','Cannot relate a table to itself.');return;} 
+  erd.relations.push({id:erd.nextId++,fromTable:fid,fromField:ff,toTable:tid,toField:tf,style,card}); 
+  closeModal('m-rel');refreshUI(); 
+  const fT=erd.tables.find(t=>t.id===fid),tT=erd.tables.find(t=>t.id===tid); 
+  toast('success','↔','Relation: '+(fT?.name||'?')+' → '+(tT?.name||'?')); 
+} 
 
-  if(type==='pie'){
-    const labels=[...new Set(rows.map(r=>String(r[xCol]||'?')))];
-    const vals=labels.map(l=>rows.filter(r=>String(r[xCol]||'?')===l).reduce((s,r)=>s+(typeof r[yCol]==='number'?r[yCol]:1),0));
-    cfg={ type:'pie', data:{ labels, datasets:[{ data:vals, backgroundColor:CHART_COLORS, borderColor:isDark?'#111827':'#fff', borderWidth:2 }] },
-      options:{ responsive:true, plugins:{ legend:{ labels:{ color:txtColor,font:{family:getComputedStyle(document.body).getPropertyValue('--fw-mono')||'monospace',size:11} } } } } };
-  } else if(type==='histogram'){
-    const vals=rows.map(r=>r[xCol]).filter(v=>typeof v==='number');
-    if(!vals.length){ alert('Please select a numeric column for X axis.'); return; }
-    const mn=Math.min(...vals), mx=Math.max(...vals), bins=20;
-    const bw=(mx-mn)/bins;
-    const counts=Array(bins).fill(0);
-    vals.forEach(v=>{ const bi=Math.min(Math.floor((v-mn)/bw),bins-1); counts[bi]++; });
-    const labels=counts.map((_,i)=>((mn+i*bw)).toFixed(1));
-    cfg={ type:'bar', data:{ labels, datasets:[{ label:xCol, data:counts, backgroundColor:'rgba(34,211,238,.7)', borderColor:'#22d3ee', borderWidth:1 }] },
-      options:{ responsive:true, plugins:{ legend:{ display:false } },
-        scales:{ x:{ ticks:{color:txtColor}, grid:{color:gridColor} }, y:{ ticks:{color:txtColor}, grid:{color:gridColor} } } } };
-  } else if(type==='scatter'){
-    const groups=colorBy?[...new Set(rows.map(r=>String(r[colorBy]||'?')))]:[null];
-    const datasets=groups.map((g,i)=>{
-      const filtered=g?rows.filter(r=>String(r[colorBy]||'?')===g):rows;
-      return { label:g||yCol, data:filtered.map(r=>({x:r[xCol],y:r[yCol]})).filter(p=>typeof p.x==='number'&&typeof p.y==='number'),
-        backgroundColor:CHART_COLORS[i%CHART_COLORS.length]+'bb', pointRadius:5, borderColor:CHART_COLORS[i%CHART_COLORS.length] };
-    });
-    cfg={ type:'scatter', data:{datasets},
-      options:{ responsive:true, scales:{ x:{ ticks:{color:txtColor}, grid:{color:gridColor}, title:{display:true,text:xCol,color:txtColor} }, y:{ ticks:{color:txtColor}, grid:{color:gridColor}, title:{display:true,text:yCol,color:txtColor} } },
-        plugins:{ legend:{ labels:{color:txtColor} } } } };
-  } else {
-    // bar or line
-    const groups=colorBy?[...new Set(rows.map(r=>String(r[colorBy]||'?')))]:[null];
-    const labels=[...new Set(rows.map(r=>String(r[xCol]||'?')))];
-    const datasets=groups.map((g,i)=>{
-      const filtered=g?rows.filter(r=>String(r[colorBy]||'?')===g):rows;
-      const data=labels.map(l=>{ const matches=filtered.filter(r=>String(r[xCol]||'?')===l); const sum=matches.reduce((s,r)=>s+(typeof r[yCol]==='number'?r[yCol]:0),0); return matches.length?sum/matches.length:0; });
-      const col=CHART_COLORS[i%CHART_COLORS.length];
-      return { label:g||yCol, data, backgroundColor:type==='bar'?col+'bb':col+'22', borderColor:col, borderWidth:type==='bar'?1:2, fill:type==='line', tension:.35 };
-    });
-    cfg={ type:type==='line'?'line':'bar', data:{labels,datasets},
-      options:{ responsive:true, scales:{ x:{ ticks:{color:txtColor,maxRotation:45}, grid:{color:gridColor} }, y:{ ticks:{color:txtColor}, grid:{color:gridColor} } },
-        plugins:{ legend:{ labels:{color:txtColor} } } } };
-  }
+function execSilent(sql){if(!sqlDB)return;try{sqlDB.run(sql);}catch(e){}} 
 
-  chartInstance=new Chart(canvas,cfg);
-}
+function resizeERD(){ 
+  const w=document.getElementById('db-cw');const c=document.getElementById('ec'); 
+  if(!w || !c) return;
+  c.width=w.clientWidth;c.height=w.clientHeight;drawERD(); 
+} 
+function w2s(wx,wy){return{x:wx*erd.scale+erd.panX,y:wy*erd.scale+erd.panY};} 
+function s2w(sx,sy){return{x:(sx-erd.panX)/erd.scale,y:(sy-erd.panY)/erd.scale};} 
 
-function applyFilter(){
-  if(!pgData) return;
-  const col=(document.getElementById('filter-col').value||'').trim();
-  const val=(document.getElementById('filter-val').value||'').trim().toLowerCase();
-  if(!col||!val){ pgFiltered=[...pgData.rows]; renderTable(); return; }
-  pgFiltered=pgData.rows.filter(r=>String(r[col]||'').toLowerCase().includes(val));
-  renderTable();
-}
+function hitTable(wx,wy){return erd.tables.find(t=>wx>=t.x&&wx<=t.x+TW&&wy>=t.y&&wy<=t.y+tblH(t))||null;}
 
-function dropNulls(){
-  if(!pgData) return;
-  const before=pgFiltered?pgFiltered.length:pgData.rows.length;
-  const clean=(pgFiltered||pgData.rows).filter(r=>pgData.cols.every(c=>r[c]!==null&&r[c]!==undefined));
-  pgFiltered=clean;
-  renderTable();
-  alert(`Dropped ${before-clean.length} rows with null values. ${clean.length} rows remain.`);
-}
+function addERDListeners(canvas){ 
+  if(!canvas) return;
+  let dragStart=null,dragTbl=null,lastPan=null; 
+  canvas.addEventListener('mousedown',e=>{ 
+    const w=s2w(e.offsetX,e.offsetY);const hit=hitTable(w.x,w.y); 
+    if(hit){erd.selected=hit.id;dragTbl=hit;dragStart={x:e.offsetX,y:e.offsetY,ox:hit.x,oy:hit.y};} 
+    else{erd.selected=null;lastPan={x:e.offsetX,y:e.offsetY};} 
+    drawERD();updateLeftPanel(); 
+  }); 
+  canvas.addEventListener('mousemove',e=>{ 
+    if(dragTbl&&dragStart){dragTbl.x=dragStart.ox+(e.offsetX-dragStart.x)/erd.scale;dragTbl.y=dragStart.oy+(e.offsetY-dragStart.y)/erd.scale;drawERD();}
+    else if(lastPan){erd.panX+=e.offsetX-lastPan.x;erd.panY+=e.offsetY-lastPan.y;lastPan={x:e.offsetX,y:e.offsetY};drawERD();} 
+  }); 
+  canvas.addEventListener('mouseup',()=>{dragTbl=null;dragStart=null;lastPan=null;}); 
+  canvas.addEventListener('mouseleave',()=>{dragTbl=null;dragStart=null;lastPan=null;}); 
+  canvas.addEventListener('wheel',e=>{ 
+    e.preventDefault();const f=e.deltaY<0?1.1:.9; 
+    erd.panX=(erd.panX-e.offsetX)*f+e.offsetX;erd.panY=(erd.panY-e.offsetY)*f+e.offsetY; 
+    erd.scale=Math.max(.2,Math.min(3,erd.scale*f));drawERD(); 
+  },{passive:false}); 
+  canvas.addEventListener('contextmenu',e=>{ 
+    e.preventDefault();const w=s2w(e.offsetX,e.offsetY);const hit=hitTable(w.x,w.y); 
+    if(hit&&confirm('Delete table "'+hit.name+'"?'))deleteTable(hit.id); 
+  }); 
+} 
 
-function downloadCSV(){
-  if(!pgData) return;
-  const rows=pgFiltered||pgData.rows;
-  const lines=[pgData.cols.join(','),...rows.map(r=>pgData.cols.map(c=>{ const v=r[c]; return v===null||v===undefined?'':String(v).includes(',')?`"${v}"`:v; }).join(','))];
-  const blob=new Blob([lines.join('\n')],{type:'text/csv'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download=(pgData.name.replace(/[^a-z0-9]/gi,'_'))+'.csv';
-  a.click();
-}
+function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
 
-})();
-</script>
-</body>
-</html>
+function drawERD(){ 
+  const canvas=document.getElementById('ec');if(!canvas)return; 
+  const ctx=canvas.getContext('2d');const W=canvas.width,H=canvas.height; 
+  const cs=getComputedStyle(document.documentElement); 
+  const C={bg:cs.getPropertyValue('--bg').trim(),bg2:cs.getPropertyValue('--bg2').trim(),bg3:cs.getPropertyValue('--bg3').trim(),bo:cs.getPropertyValue('--bo').trim(),t:cs.getPropertyValue('--t').trim(),t2:cs.getPropertyValue('--t2').trim(),t3:cs.getPropertyValue('--t3').trim(),ac:cs.getPropertyValue('--ac').trim(),pu:cs.getPropertyValue('--pu').trim(),or:cs.getPropertyValue('--or').trim(),gr:cs.getPropertyValue('--gr').trim()};
+  ctx.clearRect(0,0,W,H); 
+
+  erd.relations.forEach(rel=>{ 
+    const fT=erd.tables.find(t=>t.id===rel.fromTable);const tT=erd.tables.find(t=>t.id===rel.toTable);if(!fT||!tT)return; 
+    const ffi=fT.fields.findIndex(f=>f.name===rel.fromField);const tfi=tT.fields.findIndex(f=>f.name===rel.toField); 
+    const fsx=w2s(fT.x+TW,0).x;const tsx=w2s(tT.x,0).x; 
+    const fsy=w2s(0,fT.y+TH+(ffi>=0?ffi+.5:0)*FH).y; 
+    const tsy=w2s(0,tT.y+TH+(tfi>=0?tfi+.5:0)*FH).y; 
+    const cp=Math.abs(fsx-tsx)/2; 
+    ctx.beginPath();ctx.moveTo(fsx,fsy);ctx.bezierCurveTo(fsx+cp,fsy,tsx-cp,tsy,tsx,tsy); 
+    ctx.strokeStyle=rel.style==='solid'?C.ac:C.pu;ctx.lineWidth=1.5*erd.scale; 
+    if(rel.style==='dashed')ctx.setLineDash([6*erd.scale,4*erd.scale]);else ctx.setLineDash([]); 
+    ctx.stroke();ctx.setLineDash([]); 
+    const ang=Math.atan2(tsy-fsy,tsx-fsx);const al=10*erd.scale; 
+    ctx.beginPath();ctx.moveTo(tsx,tsy);ctx.lineTo(tsx-al*Math.cos(ang-.4),tsy-al*Math.sin(ang-.4));ctx.lineTo(tsx-al*Math.cos(ang+.4),tsy-al*Math.sin(ang+.4));ctx.closePath();
+    ctx.fillStyle=rel.style==='solid'?C.ac:C.pu;ctx.fill(); 
+    ctx.font=`${11*erd.scale}px "JetBrains Mono",monospace`;ctx.fillStyle=C.t2;ctx.textAlign='center'; 
+    ctx.fillText(rel.card,(fsx+tsx)/2,(fsy+tsy)/2-6*erd.scale);ctx.textAlign='left'; 
+  }); 
+
+  erd.tables.forEach(tbl=>{ 
+    const sc=w2s(tbl.x,tbl.y);const sw=TW*erd.scale;const sh=tblH(tbl)*erd.scale;const sel=erd.selected===tbl.id;const r=8*erd.scale; 
+    ctx.shadowColor='rgba(0,0,0,.35)';ctx.shadowBlur=12*erd.scale; 
+    rr(ctx,sc.x,sc.y,sw,sh,r);ctx.fillStyle=C.bg2;ctx.fill(); 
+    ctx.shadowColor='transparent';ctx.shadowBlur=0; 
+    ctx.strokeStyle=sel?C.ac:C.bo;ctx.lineWidth=sel?2*erd.scale:erd.scale;rr(ctx,sc.x,sc.y,sw,sh,r);ctx.stroke(); 
+    rr(ctx,sc.x,sc.y,sw,TH*erd.scale,r);ctx.fillStyle=sel?C.ac+'44':C.bg3;ctx.fill(); 
+    ctx.strokeStyle='transparent';rr(ctx,sc.x,sc.y,sw,TH*erd.scale,r);ctx.stroke(); 
+    ctx.beginPath();ctx.moveTo(sc.x,sc.y+TH*erd.scale);ctx.lineTo(sc.x+sw,sc.y+TH*erd.scale);ctx.strokeStyle=sel?C.ac:C.bo;ctx.lineWidth=erd.scale;ctx.stroke();
+    ctx.font=`bold ${13*erd.scale}px "Syne",sans-serif`;ctx.fillStyle=sel?C.ac:C.t;ctx.textAlign='center'; 
+    ctx.fillText(tbl.name,sc.x+sw/2,sc.y+TH*.65*erd.scale);ctx.textAlign='left'; 
+    tbl.fields.forEach((f,i)=>{ 
+      const fy=sc.y+(TH+i*FH)*erd.scale; 
+      if(i%2===0){ctx.fillStyle=C.bg2+'88';ctx.fillRect(sc.x+erd.scale,fy,sw-2*erd.scale,FH*erd.scale);} 
+      const kl=f.pk&&f.fk?'PK+FK':f.pk?'PK':f.fk?'FK':''; 
+      let bx=sc.x+5*erd.scale; 
+      if(kl){ 
+        const bc=f.pk&&f.fk?C.or:f.pk?C.ac:C.pu; 
+        ctx.font=`bold ${9*erd.scale}px "JetBrains Mono",monospace`; 
+        const bw=ctx.measureText(kl).width+8*erd.scale; 
+        ctx.fillStyle=bc+'33';ctx.strokeStyle=bc;ctx.lineWidth=.8*erd.scale; 
+        rr(ctx,bx,fy+4*erd.scale,bw,14*erd.scale,3*erd.scale);ctx.fill();ctx.stroke(); 
+        ctx.fillStyle=bc;ctx.fillText(kl,bx+4*erd.scale,fy+14*erd.scale);bx+=bw+4*erd.scale; 
+      } 
+      ctx.font=`${11*erd.scale}px "JetBrains Mono",monospace`;ctx.fillStyle=C.t; 
+      ctx.fillText(f.name,bx,fy+14*erd.scale); 
+      ctx.fillStyle=C.t3;ctx.font=`${10*erd.scale}px "JetBrains Mono",monospace`;ctx.textAlign='right'; 
+      ctx.fillText(f.type,sc.x+sw-5*erd.scale,fy+14*erd.scale);ctx.textAlign='left'; 
+    }); 
+  }); 
+} 
+
+function deleteTable(id){ 
+  const tbl=erd.tables.find(t=>t.id===id);if(!tbl)return; 
+  erd.tables=erd.tables.filter(t=>t.id!==id); 
+  erd.relations=erd.relations.filter(r=>r.fromTable!==id&&r.toTable!==id); 
+  execSilent('DROP TABLE IF EXISTS "'+tbl.name+'";'); 
+  if(erd.selected===id)erd.selected=null; 
+  refreshUI();toast('info','🗑','"'+tbl.name+'" deleted.'); 
+} 
+
+function runSQL(){ 
+  const raw=document.getElementById('sql-in').value.trim();if(!raw)return; 
+  if(!sqlDB){toast('warn','⚠','SQLite not ready yet.');return;} 
+  const stmts=raw.split(';').map(s=>s.trim()).filter(Boolean); 
+  const hist=document.getElementById('sql-hist'); 
+  stmts.forEach(stmt=>{ 
+    const blk=document.createElement('div');blk.className='sql-rb'; 
+    const hd=document.createElement('div');hd.className='sql-rh'; 
+    const ql=document.createElement('span');ql.className='sql-rq';ql.textContent=stmt; 
+    const sl=document.createElement('span');hd.appendChild(ql);hd.appendChild(sl);blk.appendChild(hd); 
+    try{ 
+      const res=sqlDB.exec(stmt); 
+      if(!res.length){sl.className='sql-ok';sl.textContent='✓ OK';const m=document.createElement('div');m.className='sql-mt';m.textContent='Executed successfully.';blk.appendChild(m);} 
+      else{ 
+        res.forEach(({columns,values})=>{ 
+          sl.className='sql-ok';sl.textContent='✓ '+values.length+' row'+(values.length!==1?'s':''); 
+          if(!values.length){const e=document.createElement('div');e.className='sql-em';e.textContent='(empty result)';blk.appendChild(e);return;} 
+          const tw=document.createElement('div');tw.className='sql-tw'; 
+          const tbl=document.createElement('table');tbl.className='sql-t'; 
+          const thead=document.createElement('thead');const tr=document.createElement('tr'); 
+          columns.forEach(col=>{const th=document.createElement('th');th.textContent=col;tr.appendChild(th);}); 
+          thead.appendChild(tr);tbl.appendChild(thead); 
+          const tbody=document.createElement('tbody'); 
+          values.slice(0,200).forEach(row=>{const tr=document.createElement('tr');row.forEach(v=>{const td=document.createElement('td');td.textContent=v===null?'NULL':String(v);tr.appendChild(td);});tbody.appendChild(tr);});
+          tbl.appendChild(tbody);tw.appendChild(tbl);blk.appendChild(tw); 
+        }); 
+      } 
+    }catch(e){sl.className='sql-err';sl.textContent='✗ Error';const m=document.createElement('div');m.className='sql-em2';m.textContent=e.message;blk.appendChild(m);}
+    hist.appendChild(blk);blk.scrollIntoView({behavior:'smooth',block:'end'}); 
+  }); 
+  syncERDFromSQL(); 
+} 
+
+function syncERDFromSQL(){ 
+  if(!sqlDB)return; 
+  try{ 
+    const res=sqlDB.exec("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';"); 
+    const names=(res[0]?.values||[]).map(r=>r[0]); 
+    names.forEach(name=>{ 
+      if(!erd.tables.find(t=>t.name===name)){ 
+        erd.tables.push({id:erd.nextId++,name,x:80+(erd.tables.length%4)*220,y:80+Math.floor(erd.tables.length/4)*180,w:TW,fields:[{name:'id',type:'INTEGER',pk:true,fk:false,fkRef:'',notNull:true,unique:true}]});
+      } 
+    }); 
+    erd.tables=erd.tables.filter(t=>names.includes(t.name)); 
+    refreshUI(); 
+  }catch(e){} 
+} 
+
+function refreshUI(){drawERD();updateLeftPanel();refreshSchema();refreshRels();document.getElementById('db-tc').textContent=erd.tables.length;}
+
+function updateLeftPanel(){ 
+  const body=document.getElementById('db-lp');
+  if(!body) return;
+  body.innerHTML=''; 
+  erd.tables.forEach(tbl=>{ 
+    const item=document.createElement('div');item.className='et-item'; 
+    const hd=document.createElement('div');hd.className='et-h'; 
+    hd.style.background=erd.selected===tbl.id?'var(--ag)':''; 
+    const nm=document.createElement('span');nm.className='et-nm';nm.textContent=tbl.name; 
+    const acts=document.createElement('div');acts.className='et-acts'; 
+    const ab=document.createElement('button');ab.className='ico-btn';ab.textContent='+';ab.title='Add field'; 
+    ab.addEventListener('click',e=>{e.stopPropagation();openAddFieldModal(tbl.id);}); 
+    const db=document.createElement('button');db.className='ico-btn dng';db.textContent='🗑';db.title='Delete'; 
+    db.addEventListener('click',e=>{e.stopPropagation();if(confirm('Delete "'+tbl.name+'"?'))deleteTable(tbl.id);}); 
+    acts.appendChild(ab);acts.appendChild(db);hd.appendChild(nm);hd.appendChild(acts); 
+    hd.addEventListener('click',()=>{erd.selected=tbl.id;drawERD();updateLeftPanel();}); 
+    const fl=document.createElement('div');fl.className='ef-list'; 
+    tbl.fields.forEach(f=>{ 
+      const row=document.createElement('div');row.className='ef-row'; 
+      const kl=f.pk&&f.fk?'PK+FK':f.pk?'PK':f.fk?'FK':''; 
+      if(kl){const k=document.createElement('span');k.className='ef-key '+(f.pk&&f.fk?'kbth':f.pk?'kpk':'kfk');k.textContent=kl;row.appendChild(k);}
+      const fn=document.createElement('span');fn.style.cssText='flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';fn.textContent=f.name;
+      const ft=document.createElement('span');ft.style.cssText='color:var(--t3);font-size:10px';ft.textContent=f.type; 
+      row.appendChild(fn);row.appendChild(ft);fl.appendChild(row); 
+    }); 
+    item.appendChild(hd);item.appendChild(fl);body.appendChild(item); 
+  }); 
+} 
+
+function refreshSchema(){ 
+  const pre=document.getElementById('schema-pre'); 
+  if(!pre) return;
+  if(!erd.tables.length){pre.textContent='-- No tables yet.\n-- Create a table to see its schema here.';return;} 
+  let sql=''; 
+  erd.tables.forEach(tbl=>{ 
+    sql+=`CREATE TABLE "${tbl.name}" (\n`; 
+    sql+=tbl.fields.map(f=>{ 
+      let d=`  "${f.name}" ${f.type}`; 
+      if(f.pk)d+=' PRIMARY KEY';if(f.notNull&&!f.pk)d+=' NOT NULL';if(f.unique&&!f.pk)d+=' UNIQUE'; 
+      if(f.fk&&f.fkRef)d+=` REFERENCES ${f.fkRef}`; 
+      return d; 
+    }).join(',\n'); 
+    sql+='\n);\n\n'; 
+  }); 
+  if(erd.relations.length){sql+='-- Relationships:\n';erd.relations.forEach(r=>{const fT=erd.tables.find(t=>t.id===r.fromTable);const tT=erd.tables.find(t=>t.id===r.toTable);if(fT&&tT)sql+=`-- ${fT.name}.${r.fromField} → ${tT.name}.${r.toField} [${r.card}]\n`;});} 
+  pre.textContent=sql; 
+} 
+
+function refreshRels(){ 
+  const p=document.getElementById('dbt-rels');
+  if(!p) return;
+  p.innerHTML=''; 
+  if(!erd.relations.length){const e=document.createElement('div');e.style.cssText='text-align:center;padding:1.5rem;color:var(--t3);font-size:12px;white-space:pre';e.textContent='No relationships yet.\nClick "↔ Relation" to add one.';p.appendChild(e);return;} 
+  erd.relations.forEach(rel=>{ 
+    const fT=erd.tables.find(t=>t.id===rel.fromTable);const tT=erd.tables.find(t=>t.id===rel.toTable);if(!fT||!
