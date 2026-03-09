@@ -26,11 +26,11 @@
   <!-- Favicon (inline SVG as data URI) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b1223'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='18' fill='%2322d3ee'>D</text></svg>">
 
-  <!-- Fonts: Syne (distinctive heading) + Space Mono (technical) + Lora (philosophical body) -->
+  <!-- Fonts: DM Serif Display (editorial headings) + Space Mono (technical) + Lora (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" media="print" onload="this.media='all'">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" media="print" onload="this.media='all'">
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -188,10 +188,11 @@
     nav, main, footer { position: relative; z-index: 1; }
 
     h1, h2, h3, h4 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'DM Serif Display', Georgia, serif;
       color: var(--text);
       line-height: 1.1;
-      letter-spacing: -0.02em;
+      letter-spacing: 0em;
+      font-weight: 400;
     }
 
     .mono {
@@ -426,7 +427,7 @@
     .section-title {
       font-size: clamp(1.8rem, 4vw, 2.8rem);
       margin-bottom: 1.25rem;
-      font-weight: 700;
+      font-weight: 400;
     }
 
     .section-desc {
@@ -449,6 +450,22 @@
       border-bottom: 1px solid var(--border);
       position: relative;
       overflow: hidden;
+    }
+
+    /* Hero two-column split */
+    .hero-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .hero-left { }
+
+    .hero-right {
+      padding-top: 1rem;
+      border-left: 1px solid var(--border);
+      padding-left: 4rem;
     }
 
     /* Radial scanner effect on hero */
@@ -516,15 +533,21 @@
     }
 
     .hero-h1 {
-      font-size: clamp(2.6rem, 6vw, 5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.03em;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.12;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
     }
 
-    .hero-h1 .text-accent { color: var(--primary); }
-    .hero-h1 .text-gold   { color: var(--gold); }
+    .hero-h1 .text-accent {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .hero-h1 .text-gold { color: var(--text); } /* no second accent color */
 
     /* Typewriter cursor */
     .typewriter-cursor {
@@ -713,8 +736,8 @@
     .card-title {
       font-size: 1.05rem;
       margin: 1.25rem 0 0.5rem;
-      font-weight: 700;
-      font-family: 'Syne', sans-serif;
+      font-weight: 400;
+      font-family: 'DM Serif Display', Georgia, serif;
     }
 
     .card-desc {
@@ -854,9 +877,9 @@
     }
 
     .tl-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'DM Serif Display', Georgia, serif;
       font-size: 1.1rem;
-      font-weight: 700;
+      font-weight: 400;
       color: var(--text);
       margin-bottom: 0.2rem;
     }
@@ -991,7 +1014,7 @@
       font-size: 1rem;
       margin-bottom: 0.35rem;
       color: var(--text);
-      font-family: 'Syne', sans-serif;
+      font-family: 'DM Serif Display', Georgia, serif;
     }
 
     .pillar-content p {
@@ -1119,7 +1142,7 @@
     .contact-info h3 {
       font-size: 1.2rem;
       margin-bottom: 1rem;
-      font-family: 'Syne', sans-serif;
+      font-family: 'DM Serif Display', Georgia, serif;
     }
 
     .contact-info p {
@@ -1398,7 +1421,15 @@
     @media (max-width: 900px) {
       .grid-2,
       .philosophy-grid,
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-grid,
+      .hero-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .hero-right {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--border);
+        padding-top: 2rem;
+      }
 
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-block::after { display: none; }
@@ -1483,47 +1514,55 @@
           SYSTEM.STATUS: INITIALIZED — MONASH &middot; 2026
         </div>
 
-        <h1 class="hero-h1 reveal reveal-delay-1">
-          Building Predictive Systems<br>
-          from <span class="text-accent">First</span> <span class="text-gold">Principles</span><span class="typewriter-cursor" aria-hidden="true"></span>
-        </h1>
+        <div class="hero-cols">
+          <!-- LEFT: heading -->
+          <div class="hero-left">
+            <h1 class="hero-h1 reveal reveal-delay-1">
+              Building<br>Predictive<br>Systems from<br><span class="text-accent">First Principles</span><span class="typewriter-cursor" aria-hidden="true"></span>
+            </h1>
 
-        <p class="hero-lead reveal reveal-delay-2">
-          I am <strong>Shamsaddin Amanov</strong> — Master of Data Science candidate at Monash University,
-          former Joint Interest Accounting Analyst at ExxonMobil, and author of the post-theistic
-          philosophical framework <em>Omittoism</em>. I operate at the intersection of strict
-          statistical architecture and deep philosophical inquiry.
-        </p>
+            <div class="btn-group reveal reveal-delay-3">
+              <a href="#infrastructure" class="btn btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                View Architecture
+              </a>
+              <a href="#philosophy" class="btn btn-outline">Explore Omittoism</a>
+            </div>
+          </div>
 
-        <div class="hero-meta reveal reveal-delay-3" aria-label="Key facts">
-          <div class="hero-stat">
-            <span class="hero-stat-val" data-count="6">0</span>
-            <span class="hero-stat-label">Languages</span>
-          </div>
-          <div class="hero-stat-divider" aria-hidden="true"></div>
-          <div class="hero-stat">
-            <span class="hero-stat-val" data-count="2"><span class="stat-unit">+</span>2</span>
-            <span class="hero-stat-label">Years Corporate</span>
-          </div>
-          <div class="hero-stat-divider" aria-hidden="true"></div>
-          <div class="hero-stat">
-            <span class="hero-stat-val" data-count="3">0</span>
-            <span class="hero-stat-label">Continents Lived</span>
-          </div>
-          <div class="hero-stat-divider" aria-hidden="true"></div>
-          <div class="hero-stat">
-            <span class="hero-stat-val">∞</span>
-            <span class="hero-stat-label">Curiosity</span>
-          </div>
-        </div>
+          <!-- RIGHT: bio + stats -->
+          <div class="hero-right reveal reveal-delay-2">
+            <p class="hero-lead">
+              I am <strong>Shamsaddin Amanov</strong> — Master of Data Science candidate at Monash University,
+              former Joint Interest Accounting Analyst at ExxonMobil, and author of the post-theistic
+              philosophical framework <em>Omittoism</em>. I operate at the intersection of strict
+              statistical architecture and deep philosophical inquiry.
+            </p>
 
-        <div class="btn-group reveal reveal-delay-4">
-          <a href="#infrastructure" class="btn btn-primary">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-            View Architecture
-          </a>
-          <a href="#philosophy" class="btn btn-outline">Explore Omittoism</a>
-          <a href="#contact"    class="btn btn-outline">Initialize Contact</a>
+            <div class="hero-meta" aria-label="Key facts">
+              <div class="hero-stat">
+                <span class="hero-stat-val" data-count="6">0</span>
+                <span class="hero-stat-label">Languages</span>
+              </div>
+              <div class="hero-stat-divider" aria-hidden="true"></div>
+              <div class="hero-stat">
+                <span class="hero-stat-val" data-count="2">0</span>
+                <span class="hero-stat-label">Yrs Corporate</span>
+              </div>
+              <div class="hero-stat-divider" aria-hidden="true"></div>
+              <div class="hero-stat">
+                <span class="hero-stat-val" data-count="3">0</span>
+                <span class="hero-stat-label">Continents</span>
+              </div>
+              <div class="hero-stat-divider" aria-hidden="true"></div>
+              <div class="hero-stat">
+                <span class="hero-stat-val">∞</span>
+                <span class="hero-stat-label">Curiosity</span>
+              </div>
+            </div>
+
+            <a href="#contact" class="btn btn-outline" style="margin-top:0.5rem;">Initialize Contact</a>
+          </div>
         </div>
       </div>
     </section>
@@ -1755,7 +1794,7 @@
 
           <!-- Right column: Languages + Early -->
           <div class="reveal reveal-delay-1">
-            <h3 style="font-family:'Syne',sans-serif; font-size:1.15rem; margin-bottom:1.75rem; color:var(--text);">Linguistic & Cultural Stack</h3>
+            <h3 style="font-family:'DM Serif Display',serif; font-size:1.15rem; margin-bottom:1.75rem; color:var(--text);">Linguistic & Cultural Stack</h3>
 
             <div class="lang-row">
               <span class="lang-name">AZERI / TURKISH</span>
@@ -1789,7 +1828,7 @@
             </div>
 
             <div style="margin-top:3rem; padding:2rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);">
-              <h3 style="font-family:'Syne',sans-serif; font-size:1rem; margin-bottom:0.75rem; color:var(--text);">Early Foundation</h3>
+              <h3 style="font-family:'DM Serif Display',serif; font-size:1rem; margin-bottom:0.75rem; color:var(--text);">Early Foundation</h3>
               <p style="font-size:0.88rem; color:var(--text-muted); font-family:'Lora',serif; line-height:1.75; margin:0;">
                 Graduated from the Bilasuvar School-Lyceum Complex (2016) with 545/700 in central examinations.
                 The foundation — discipline, multilingualism, and philosophical curiosity — was laid long before the corporate career began.
@@ -1827,7 +1866,7 @@
             </div>
 
             <div style="margin-top:1.5rem; padding:1.5rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);">
-              <h4 style="font-family:'Syne',sans-serif; font-size:0.95rem; margin-bottom:0.75rem; color:var(--text);">Why Philosophy & Data Science?</h4>
+              <h4 style="font-family:'DM Serif Display',serif; font-size:0.95rem; margin-bottom:0.75rem; color:var(--text);">Why Philosophy & Data Science?</h4>
               <p style="font-size:0.88rem; color:var(--text-muted); font-family:'Lora',serif; line-height:1.75; margin:0;">
                 Data without epistemology is noise with a spreadsheet. Omittoism asks what it means
                 to <em>know</em> — the same question that motivates rigorous model validation, feature
@@ -1839,7 +1878,7 @@
 
           <!-- Pillars -->
           <div class="reveal reveal-delay-1">
-            <h3 style="font-family:'Syne',sans-serif; font-size:1.1rem; margin-bottom:1.5rem; color:var(--text);">Core Pillars</h3>
+            <h3 style="font-family:'DM Serif Display',serif; font-size:1.1rem; margin-bottom:1.5rem; color:var(--text);">Core Pillars</h3>
             <ul class="pillar-list">
               <li class="pillar-item">
                 <span class="pillar-num">01</span>
