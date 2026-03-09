@@ -3,931 +3,2354 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="description" content="Shamsaddin Amanov - Full-time Data Scientist, Part-time Philosopher, and System Architect. Documenting academic research at Monash University and philosophical frameworks.">
+
+  <!-- SEO Core -->
+  <meta name="description" content="Shamsaddin Amanov — Master of Data Science at Monash University, former ExxonMobil analyst, and author of the post-theistic philosophical framework Omittoism.">
   <meta name="author" content="Shamsaddin Amanov">
-  <meta name="theme-color" content="#0f172a">
-  
+  <meta name="keywords" content="data science, machine learning, Monash University, ExxonMobil, Omittoism, philosophy, data architecture">
+  <meta name="theme-color" content="#080d1a">
+  <link rel="canonical" href="https://datavery.app">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://datavery.app">
+  <meta property="og:title" content="Shamsaddin Amanov | Data Architecture & Philosophy">
+  <meta property="og:description" content="Master of Data Science at Monash University. Former ExxonMobil Analyst. Author of Omittoism. Building predictive systems from first principles.">
+  <meta property="og:image" content="https://datavery.app/og-preview.png">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Shamsaddin Amanov | DataVery.app">
+  <meta property="twitter:description" content="Data Scientist. Philosopher. Architect of predictive systems.">
+
   <title>Shamsaddin Amanov | Data Architecture & Philosophy</title>
-  
+
+  <!-- Favicon (inline SVG as data URI) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b1223'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='18' fill='%2322d3ee'>D</text></svg>">
+
+  <!-- Fonts: Syne (distinctive heading) + Space Mono (technical) + Lora (philosophical body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" media="print" onload="this.media='all'">
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" media="print" onload="this.media='all'">
 
+  <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Shamsaddin Amanov",
     "jobTitle": "Data Scientist & Author",
+    "description": "Master of Data Science student at Monash University, former ExxonMobil analyst, and author of the post-theistic philosophical framework Omittoism.",
     "affiliation": [
       { "@type": "Organization", "name": "Monash University" },
       { "@type": "Organization", "name": "ExxonMobil" }
     ],
     "url": "https://datavery.app",
+    "email": "amanovshams@gmail.com",
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Monash University" },
+      { "@type": "CollegeOrUniversity", "name": "University of Szeged" }
+    ],
     "sameAs": [
-      "https://www.linkedin.com/company/datavery/",
+      "https://www.linkedin.com/in/amanovshamsaddin/",
       "https://github.com/amanovshamsaddin"
     ]
   }
   </script>
 
   <style>
-    /* --- 1. CORE VARIABLES & THEMING --- */
+    /* =========================================================
+       1. DESIGN TOKENS & THEMING
+       ========================================================= */
     :root {
-      /* Base Colors */
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --accent-data: #0ea5e9; /* Technical cyan accent */
-      
-      /* Light Theme Surface */
-      --bg-color: #f8fafc;
-      --surface-color: #ffffff;
-      --surface-hover: #f1f5f9;
-      
-      /* Light Theme Text */
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #cbd5e1;
-      --grid-color: rgba(100, 116, 139, 0.05);
-      
-      /* Skeleton Loaders */
-      --skeleton-base: #e2e8f0;
-      --skeleton-shine: #f8fafc;
-      
-      /* Geometry & Physics */
-      --radius-sm: 4px;
-      --radius-md: 6px;
-      --transition-standard: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      /* Brand */
+      --primary:         #22d3ee;
+      --primary-dim:     rgba(34, 211, 238, 0.15);
+      --primary-hover:   #67e8f9;
+      --gold:            #f59e0b;
+      --gold-dim:        rgba(245, 158, 11, 0.12);
+      --danger:          #ef4444;
+
+      /* Light Surface */
+      --bg:              #f5f7fa;
+      --bg-secondary:    #eef1f7;
+      --surface:         #ffffff;
+      --surface-raised:  #f0f4fb;
+      --border:          #d1d9e6;
+      --border-strong:   #a0aec0;
+
+      /* Light Text */
+      --text:            #0d1321;
+      --text-muted:      #556277;
+      --text-faint:      #8899aa;
+
+      /* Light Code */
+      --code-bg:         #1a202c;
+      --code-border:     #2d3748;
+
+      /* Misc */
+      --radius-xs:  3px;
+      --radius-sm:  6px;
+      --radius-md:  10px;
+      --radius-lg:  16px;
+      --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in:    cubic-bezier(0.4, 0, 1, 1);
+      --shadow-sm:  0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:  0 4px 16px rgba(0,0,0,0.10);
+      --shadow-lg:  0 16px 40px rgba(0,0,0,0.15);
+      --nav-bg:     rgba(245, 247, 250, 0.82);
+      --bg-rgb:     245, 247, 250;
+
+      /* Skeleton */
+      --skel-base:  #dde3ef;
+      --skel-shine: #eef1f7;
     }
 
     [data-theme="dark"] {
-      /* Dark Theme Surface */
-      --primary: #3b82f6;
-      --primary-hover: #60a5fa;
-      --accent-data: #22d3ee;
-      --bg-color: #0b1120;
-      --surface-color: #151e32;
-      --surface-hover: #1e293b;
-      
-      /* Dark Theme Text */
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: #334155;
-      --grid-color: rgba(148, 163, 184, 0.03);
-      
-      /* Skeleton Loaders */
-      --skeleton-base: #1e293b;
-      --skeleton-shine: #334155;
-      --shadow-md: 0 10px 25px rgba(0,0,0,0.5);
+      --primary:         #22d3ee;
+      --primary-dim:     rgba(34, 211, 238, 0.12);
+      --primary-hover:   #67e8f9;
+      --gold:            #fbbf24;
+      --gold-dim:        rgba(251, 191, 36, 0.10);
+
+      --bg:              #080d1a;
+      --bg-secondary:    #0c1225;
+      --surface:         #111827;
+      --surface-raised:  #1a2237;
+      --border:          #1e2d45;
+      --border-strong:   #2d4060;
+
+      --text:            #e8eef8;
+      --text-muted:      #7a94b4;
+      --text-faint:      #4a6080;
+
+      --code-bg:         #060c18;
+      --code-border:     #1e2d45;
+
+      --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
+      --shadow-md:  0 4px 20px rgba(0,0,0,0.5);
+      --shadow-lg:  0 20px 60px rgba(0,0,0,0.7);
+      --nav-bg:     rgba(8, 13, 26, 0.85);
+      --bg-rgb:     8, 13, 26;
+
+      --skel-base:  #111827;
+      --skel-shine: #1e2d45;
     }
 
-    /* --- 2. GLOBAL RESET & TYPOGRAPHY --- */
+    /* =========================================================
+       2. RESET & BASE
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     html {
       scroll-behavior: smooth;
       font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      transition: background-color var(--transition-standard), color var(--transition-standard);
-      line-height: 1.7;
-      margin: 0;
-      padding: 0;
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
       overflow-x: hidden;
-      /* Technical Subtle Grid Background */
-      background-image: 
-        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-      background-size: 40px 40px;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      position: relative;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Merriweather', serif;
-      color: var(--text-main);
-      letter-spacing: -0.01em;
-      margin-top: 0;
+    /* Subtle dot-grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
     }
 
-    /* Monospace Utility for Technical Elements */
-    .mono {
-      font-family: 'JetBrains Mono', monospace;
+    /* Atmospheric glow in dark mode */
+    [data-theme="dark"] body::after {
+      content: '';
+      position: fixed;
+      top: -30vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 80vh;
+      background: radial-gradient(ellipse at center, rgba(34,211,238,0.035) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Everything above the background layers */
+    nav, main, footer { position: relative; z-index: 1; }
+
+    h1, h2, h3, h4 {
+      font-family: 'Syne', sans-serif;
+      color: var(--text);
+      line-height: 1.1;
       letter-spacing: -0.02em;
     }
+
+    .mono {
+      font-family: 'Space Mono', monospace;
+      letter-spacing: -0.02em;
+    }
+
+    p { color: var(--text-muted); }
 
     a {
       color: var(--primary);
       text-decoration: none;
-      transition: color 0.2s;
+      transition: color 0.2s, opacity 0.2s;
     }
-    
-    a:hover {
-      color: var(--accent-data);
+    a:hover { color: var(--primary-hover); }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+      border-radius: var(--radius-xs);
     }
 
-    /* Accessibility Focus */
-    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-      outline: 2px solid var(--accent-data);
-      outline-offset: 2px;
-    }
+    img { max-width: 100%; display: block; }
 
-    /* --- 3. LAYOUT UTILITIES --- */
+    /* =========================================================
+       3. LAYOUT
+       ========================================================= */
     .container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 2rem;
     }
-    
+
+    section {
+      padding: 7rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      gap: 4rem;
       align-items: start;
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
-    section {
-      padding: 8rem 0;
-      border-bottom: 1px solid var(--border-color);
-      position: relative;
-    }
-
-    /* --- 4. NAVIGATION SYSTEM --- */
-    nav.top-nav {
+    /* =========================================================
+       4. NAVIGATION
+       ========================================================= */
+    .top-nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background-color: rgba(var(--bg-color-rgb), 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 0;
-    }
-
-    nav.top-nav .nav-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav.top-nav ul {
-      margin: 0;
+      z-index: 999;
+      background-color: var(--nav-bg);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid var(--border);
       padding: 0;
+      transition: background-color 0.4s ease, border-color 0.4s ease;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .logo-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .logo-link:hover { color: var(--primary); }
+    .logo-link em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .nav-links {
       display: flex;
       align-items: center;
       list-style: none;
+      gap: 0.25rem;
     }
 
-    nav.top-nav li {
-      margin-left: 2rem;
+    .nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
-
-    nav.top-nav a {
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: var(--text-main);
+    .nav-links a:hover {
+      color: var(--text);
+      background: var(--primary-dim);
     }
-
-    nav.top-nav a:hover {
+    .nav-links a.active {
       color: var(--primary);
+      background: var(--primary-dim);
     }
-    
-    .logo-link {
-      font-size: 1.2rem;
-      font-weight: 700;
+
+    .nav-controls {
       display: flex;
       align-items: center;
-      letter-spacing: 0.05em;
+      gap: 0.75rem;
     }
 
-    .logo-link span {
-      color: var(--accent-data);
-    }
-
+    /* Theme Toggle */
     #theme-toggle {
       background: none;
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
       cursor: pointer;
-      padding: 0.5rem;
-      border-radius: var(--radius-md);
+      padding: 0.45rem 0.55rem;
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       transition: all 0.2s;
+      line-height: 0;
     }
-
     #theme-toggle:hover {
-      background: var(--surface-color);
       border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-dim);
     }
+    #theme-toggle svg { width: 15px; height: 15px; }
 
-    #theme-toggle svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-
-    /* --- 5. HERO SECTION (TECHNICAL TONE) --- */
-    .hero {
-      min-height: 80vh;
-      display: flex;
+    /* Hamburger */
+    .hamburger {
+      display: none;
       flex-direction: column;
-      justify-content: center;
-      padding-top: 6rem;
-      border-bottom: 1px solid var(--border-color);
+      gap: 5px;
+      background: none;
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.6rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .hamburger:hover { border-color: var(--primary); }
+    .hamburger span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--text-muted);
+      border-radius: 2px;
+      transition: all 0.3s var(--ease-out);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile Drawer */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      z-index: 998;
+      flex-direction: column;
+      gap: 0.5rem;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: transform 0.3s var(--ease-out), opacity 0.3s ease;
+    }
+    .mobile-nav.open {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .mobile-nav a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--primary); }
+
+    /* =========================================================
+       5. SECTION META LABELS
+       ========================================================= */
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--primary);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::after {
+      content: '';
+      display: block;
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--primary);
+      opacity: 0.4;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin-bottom: 3.5rem;
+      font-family: 'Lora', serif;
+      line-height: 1.8;
+    }
+
+    /* =========================================================
+       6. HERO
+       ========================================================= */
+    .hero {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      align-items: center;
+      padding: 6rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Radial scanner effect on hero */
+    .hero-scanner {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      pointer-events: none;
+      opacity: 0.5;
+      animation: scanPulse 6s ease-in-out infinite;
+    }
+    .hero-scanner::before {
+      content: '';
+      position: absolute;
+      inset: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+    .hero-scanner::after {
+      content: '';
+      position: absolute;
+      inset: 120px;
+      border-radius: 50%;
+      border: 1px solid var(--primary);
+      opacity: 0.3;
+    }
+
+    @keyframes scanPulse {
+      0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.5; }
+      50%       { transform: translateY(-50%) scale(1.04); opacity: 0.25; }
     }
 
     .status-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.4rem 1rem;
-      background-color: var(--surface-color);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      background-color: var(--accent-data);
-      border-radius: 50%;
-      animation: pulse-tech 2s infinite;
-    }
-
-    @keyframes pulse-tech {
-      0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4); }
-      70% { box-shadow: 0 0 0 6px rgba(34, 211, 238, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-      line-height: 1.1;
-      max-width: 900px;
-    }
-
-    .hero h1 strong {
-      font-weight: 700;
-    }
-
-    .hero p.lead {
-      font-size: clamp(1.1rem, 2vw, 1.2rem);
-      color: var(--text-muted);
-      margin-bottom: 3rem;
-      max-width: 700px;
-      line-height: 1.8;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius-sm);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background-color: var(--primary);
-      color: #fff;
-      border: 1px solid var(--primary);
-    }
-
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-2px);
-      color: #fff;
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--text-main);
-      transform: translateY(-2px);
-    }
-
-    /* --- 6. SECTION INDEXING (DATA ARCHITECTURE) --- */
-    .section-index {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--accent-data);
-      margin-bottom: 1.5rem;
-      display: block;
+      gap: 0.65rem;
+      padding: 0.35rem 0.9rem;
+      background: var(--primary-dim);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      border-radius: var(--radius-xs);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--primary);
+      margin-bottom: 2.5rem;
       letter-spacing: 0.1em;
     }
 
-    .section-header h2 {
-      font-size: 2.2rem;
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,211,238,0.4); }
+      50%       { opacity: 0.7; box-shadow: 0 0 0 6px rgba(34,211,238,0); }
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
       margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
     }
 
-    .section-header p {
+    .hero-h1 .text-accent { color: var(--primary); }
+    .hero-h1 .text-gold   { color: var(--gold); }
+
+    /* Typewriter cursor */
+    .typewriter-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.85em;
+      background: var(--primary);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: cursor-blink 1.1s step-end infinite;
+    }
+
+    @keyframes cursor-blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .hero-lead {
+      font-family: 'Lora', serif;
+      font-size: clamp(1rem, 2vw, 1.15rem);
       color: var(--text-muted);
-      max-width: 600px;
-      font-size: 1.05rem;
-    }
-
-    /* --- 7. TIMELINE & BACKGROUND (RESUME LOG) --- */
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-      border-left: 1px solid var(--border-color);
-    }
-
-    .timeline-item {
-      position: relative;
+      max-width: 620px;
+      line-height: 1.85;
       margin-bottom: 3rem;
     }
 
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -2.35rem;
-      top: 0.2rem;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--bg-color);
-      border: 2px solid var(--primary);
-    }
-
-    .timeline-date {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .timeline-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-      color: var(--text-main);
-    }
-
-    .timeline-org {
-      font-family: 'Merriweather', serif;
-      font-style: italic;
-      color: var(--accent-data);
-      margin-bottom: 0.75rem;
-    }
-
-    .timeline-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    /* Skills List */
-    .tech-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .hero-meta {
       display: flex;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
       flex-wrap: wrap;
-      gap: 0.5rem;
     }
 
-    .tech-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      padding: 0.3rem 0.6rem;
-      background: var(--surface-color);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      color: var(--text-muted);
-    }
-
-    /* --- 8. INFRASTRUCTURE & SKELETONS --- */
-    .infra-card {
-      background: var(--surface-color);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 2rem;
-      transition: var(--transition-standard);
+    .hero-stat {
       display: flex;
       flex-direction: column;
-      height: 100%;
+      gap: 0.2rem;
+    }
+
+    .hero-stat-val {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-stat-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--border);
+      align-self: center;
+    }
+
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.2s var(--ease-out);
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #030712;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      color: #030712;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(34,211,238,0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      color: var(--text-muted);
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-dim);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       7. INFRASTRUCTURE CARDS
+       ========================================================= */
+    .infra-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: border-color 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .infra-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease-out);
     }
 
     .infra-card:hover {
-      border-color: var(--accent-data);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .infra-card:hover::before { transform: scaleX(1); }
+
+    /* Skeleton loader */
+    @keyframes skeletonShimmer {
+      0%   { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
     }
 
-    /* Skeleton CSS Animation */
-    .skeleton-box {
-      background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-shine) 50%, var(--skeleton-base) 75%);
-      background-size: 200% 100%;
-      animation: skelLoading 2s infinite linear;
+    .skel {
+      background: linear-gradient(90deg, var(--skel-base) 25%, var(--skel-shine) 50%, var(--skel-base) 75%);
+      background-size: 800px 100%;
+      animation: skeletonShimmer 2.2s infinite linear;
+      border-radius: var(--radius-xs);
+    }
+
+    .skel-visual {
+      height: 130px;
+      width: 100%;
+      margin-bottom: 1.5rem;
       border-radius: var(--radius-sm);
+      /* Override: draw fake chart lines */
+      position: relative;
     }
-    @keyframes skelLoading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-    .skel-visual { height: 140px; width: 100%; margin-bottom: 1.5rem; }
-    
-    .meta-row {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--text-muted);
+    .skel-visual svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.15;
+    }
+
+    .card-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-faint);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 0.5rem;
-      margin-bottom: 0.5rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.45rem;
     }
 
-    .meta-row span:last-child {
-      color: var(--text-main);
-      font-weight: 600;
+    .card-meta .status-provn { color: var(--gold); }
+    .card-meta .status-wait  { color: var(--text-faint); }
+    .card-meta .status-cncpt { color: var(--primary); }
+
+    .card-title {
+      font-size: 1.05rem;
+      margin: 1.25rem 0 0.5rem;
+      font-weight: 700;
+      font-family: 'Syne', sans-serif;
     }
 
-    .infra-title {
-      font-size: 1.1rem;
-      margin: 1.5rem 0 0.5rem;
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-family: 'Lora', serif;
+      flex-grow: 1;
     }
 
-    /* --- 9. TECHNICAL CODE PREVIEW --- */
+    /* Code block */
     .code-wrapper {
-      background: #0d1117; /* GitHub Dark Dimmed feel */
-      border: 1px solid #30363d;
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
       border-radius: var(--radius-md);
       overflow: hidden;
       margin-top: 3rem;
     }
 
     .code-header {
-      background: #161b22;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #30363d;
+      background: rgba(255,255,255,0.03);
+      padding: 0.7rem 1.25rem;
+      border-bottom: 1px solid var(--code-border);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .code-filename {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: #8b949e;
+    .code-header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
+
+    .code-dots {
+      display: flex;
+      gap: 5px;
+    }
+    .code-dots span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .code-dots .dot-r { background: #ff5f57; }
+    .code-dots .dot-y { background: #febc2e; }
+    .code-dots .dot-g { background: #28c840; }
+
+    .code-filename {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+    }
+
+    .copy-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-faint);
+      background: none;
+      border: 1px solid var(--code-border);
+      border-radius: var(--radius-xs);
+      padding: 0.25rem 0.6rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .copy-btn:hover { color: var(--primary); border-color: var(--primary); }
+    .copy-btn.copied { color: #4ade80; border-color: #4ade80; }
 
     .code-body {
-      padding: 1.5rem;
+      padding: 1.75rem;
       margin: 0;
       overflow-x: auto;
+      tab-size: 2;
     }
-
     .code-body code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      line-height: 1.6;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.75;
       color: #c9d1d9;
-    }
-    
-    /* Syntax Highlight Colors */
-    .syn-keyword { color: #ff7b72; }
-    .syn-func { color: #d2a8ff; }
-    .syn-string { color: #a5d6ff; }
-    .syn-comment { color: #8b949e; font-style: italic; }
-
-    /* --- 10. PHILOSOPHY & MEDIA CARDS --- */
-    .media-card {
-      background: var(--surface-color);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 2.5rem;
-      transition: var(--transition-standard);
-    }
-    
-    .media-card:hover {
-      background: var(--surface-hover);
+      white-space: pre;
     }
 
-    .media-icon {
-      width: 32px;
-      height: 32px;
-      fill: var(--primary);
-      margin-bottom: 1.5rem;
+    .s-kw  { color: #ff7b72; }
+    .s-fn  { color: #d2a8ff; }
+    .s-str { color: #a5d6ff; }
+    .s-num { color: #79c0ff; }
+    .s-cm  { color: #8b949e; font-style: italic; }
+    .s-dt  { color: #ffa657; }
+
+    /* =========================================================
+       8. BACKGROUND LOG / TIMELINE
+       ========================================================= */
+    .timeline {
+      position: relative;
+      padding-left: 1.75rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--primary), transparent);
     }
 
-    .media-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
+    .tl-item {
+      position: relative;
+      padding-bottom: 3rem;
+      padding-left: 1rem;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -2.15rem;
+      top: 0.15rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--primary);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .tl-item:hover .tl-dot {
+      background: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-dim);
     }
 
-    .media-card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-    
-    .stats-row {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-color);
-    }
-    
-    .stat-item {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .stat-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--text-main); font-size: 1rem; }
-    .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-
-    /* --- 11. CONTACT & FOOTER --- */
-    input, textarea {
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      background: var(--surface-color);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      color: var(--text-main);
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s;
-    }
-
-    input:focus, textarea:focus {
-      border-color: var(--accent-data);
-      background: var(--bg-color);
-    }
-    
-    label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
+    .tl-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
       display: block;
       text-transform: uppercase;
     }
 
-    footer {
-      padding: 4rem 0 2rem;
-      border-top: 1px solid var(--border-color);
-      background: var(--surface-color);
+    .tl-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
     }
 
-    .footer-content {
+    .tl-org {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: var(--primary);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .tl-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-family: 'Lora', serif;
+    }
+
+    /* Language stack rows */
+    .lang-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+    }
+    .lang-row:last-of-type { border-bottom: none; }
+
+    .lang-name { color: var(--text); min-width: 140px; letter-spacing: 0.05em; }
+    .lang-level { color: var(--text-muted); flex: 1; font-size: 0.7rem; letter-spacing: 0.08em; }
+    .lang-bar { width: 80px; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .lang-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--gold)); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform 1s var(--ease-out); }
+    .lang-fill.animated { transform: scaleX(1); }
+
+    /* =========================================================
+       9. PHILOSOPHY / OMITTOISM SECTION
+       ========================================================= */
+    .philosophy-section { background: var(--bg-secondary); }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .manifesto-block {
+      position: relative;
+      padding: 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: border-color 0.3s;
+    }
+    .manifesto-block:hover { border-color: var(--gold); }
+
+    .manifesto-block blockquote {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text);
+      line-height: 1.85;
+      border: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .manifesto-block blockquote::before {
+      content: '\201C';
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: 0.25;
+      position: absolute;
+      top: -1.5rem;
+      left: -1rem;
+      font-family: 'Lora', serif;
+      line-height: 1;
+    }
+
+    .manifesto-block cite {
+      display: block;
+      margin-top: 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      font-style: normal;
+      text-transform: uppercase;
+    }
+
+    .pillar-list {
+      list-style: none;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .pillar-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: border-color 0.25s, transform 0.25s var(--ease-out);
+    }
+    .pillar-item:hover {
+      border-color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    .pillar-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(251,191,36,0.2);
+      border-radius: var(--radius-xs);
+      padding: 0.25rem 0.45rem;
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .pillar-content h4 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+    }
+
+    .pillar-content p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-family: 'Lora', serif;
+    }
+
+    /* =========================================================
+       10. TECHNICAL STACK / SKILLS
+       ========================================================= */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .skill-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .skill-chip:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .skill-name {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text);
+      letter-spacing: 0.04em;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.2s var(--ease-out);
+    }
+    .skill-fill.animated { transform: scaleX(1); }
+
+    .skill-fill.lvl-exp    { background: var(--primary); }
+    .skill-fill.lvl-mid    { background: var(--gold); }
+    .skill-fill.lvl-learn  { background: var(--border-strong); }
+
+    /* =========================================================
+       11. STATISTICS COUNTER STRIP
+       ========================================================= */
+    .stats-strip {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3.5rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
       text-align: center;
     }
 
-    .social-links {
-      display: flex;
-      gap: 1.5rem;
+    .stat-block { position: relative; }
+    .stat-block:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .stat-number {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-number .stat-unit {
+      font-size: 0.6em;
+      color: var(--primary);
+    }
+
+    .stat-desc {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       12. CONTACT
+       ========================================================= */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .contact-info p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      font-family: 'Lora', serif;
+      line-height: 1.75;
       margin-bottom: 2rem;
     }
 
-    .social-links a {
+    .contact-link-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.9rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.75rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .contact-link-row:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateX(4px);
+    }
+    .contact-link-row svg {
+      width: 16px; height: 16px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* Form */
+    .form-group { margin-bottom: 1.25rem; }
+
+    .form-label {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: 'Lora', serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: var(--text-faint); }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-dim);
+    }
+
+    .form-input.error,
+    .form-textarea.error {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+    }
+
+    .form-error-msg {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--danger);
+      margin-top: 0.35rem;
+      display: none;
+      letter-spacing: 0.04em;
+    }
+    .form-error-msg.visible { display: block; }
+
+    .form-textarea { resize: vertical; min-height: 140px; }
+
+    .form-submit {
+      width: 100%;
+      justify-content: center;
+      padding: 0.9rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-submit .btn-spinner {
+      display: none;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(3,7,18,0.3);
+      border-top-color: #030712;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    .form-submit.loading .btn-spinner { display: block; }
+    .form-submit.loading .btn-text { opacity: 0.6; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(34,211,238,0.06);
+      border: 1px solid rgba(34,211,238,0.25);
+      border-radius: var(--radius-md);
+    }
+    .form-success.visible { display: block; }
+    .form-success h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    .form-success p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-family: 'Lora', serif;
+    }
+
+    /* =========================================================
+       13. FOOTER
+       ========================================================= */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 0 2rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .footer-brand h3 em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .footer-brand p {
+      font-size: 0.88rem;
+      font-family: 'Lora', serif;
+      color: var(--text-muted);
+      max-width: 280px;
+    }
+
+    .footer-links-group h4 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-links-group a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-family: 'Lora', serif;
+      transition: color 0.2s;
+    }
+    .footer-links-group a:hover { color: var(--primary); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      letter-spacing: 0.06em;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-icon {
+      width: 36px; height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
       border-radius: var(--radius-sm);
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
       transition: all 0.2s;
     }
-
-    .social-links a:hover {
+    .social-icon:hover {
       background: var(--primary);
       border-color: var(--primary);
-      color: #fff;
+      color: #030712;
       transform: translateY(-2px);
     }
+    .social-icon svg { width: 16px; height: 16px; fill: currentColor; }
 
-    .social-links svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-    }
-
-    .version-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+    /* =========================================================
+       14. BACK TO TOP
+       ========================================================= */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 42px; height: 42px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 500;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s, border-color 0.2s, background 0.2s;
       color: var(--text-muted);
-      margin-top: 1.5rem;
     }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-dim);
+    }
+    #back-to-top svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-    /* --- 12. UTILITIES & ANIMATIONS --- */
+    /* =========================================================
+       15. SCROLL REVEAL
+       ========================================================= */
     .reveal {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
     }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* =========================================================
+       16. RESPONSIVE
+       ========================================================= */
+    @media (max-width: 900px) {
+      .grid-2,
+      .philosophy-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-block::after { display: none; }
+      .stat-block:nth-child(odd)::after {
+        display: block;
+        top: 10%; height: 80%;
+      }
+
+      .hero-scanner { display: none; }
+      .footer-top { flex-direction: column; }
     }
 
-    @media (max-width: 768px) {
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      nav.top-nav li { margin-left: 1rem; }
-      .hidden-mobile { display: none; }
-      .hero { padding-top: 4rem; text-align: left; }
-      .btn-group { flex-direction: column; width: 100%; }
-      .btn { justify-content: center; width: 100%; }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-nav { display: flex; }
+
+      section { padding: 4.5rem 0; }
+      .container { padding: 0 1.25rem; }
+
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .btn-group { flex-direction: column; }
+      .btn { justify-content: center; }
+
+      .hero-meta { gap: 1.5rem; }
+      .hero-stat-divider { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <nav class="top-nav">
-    <div class="container nav-wrapper">
-      <a href="#home" class="logo-link" aria-label="Return to index">
-        DataVery<span>.app</span>
+  <!-- ====================================================
+       NAVIGATION
+       ==================================================== -->
+  <nav class="top-nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="#home" class="logo-link" aria-label="DataVery home">
+        DataVery<em>.app</em>
       </a>
-      <ul>
-        <li class="hidden-mobile"><a href="#log">Log</a></li>
-        <li class="hidden-mobile"><a href="#infrastructure">Infrastructure</a></li>
-        <li>
-          <button id="theme-toggle" aria-label="Toggle System Theme">
-            <svg id="theme-icon" viewBox="0 0 24 24">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </button>
-        </li>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#infrastructure" data-nav="infrastructure">Infrastructure</a></li>
+        <li><a href="#log"            data-nav="log">Log</a></li>
+        <li><a href="#philosophy"     data-nav="philosophy">Omittoism</a></li>
+        <li><a href="#stack"          data-nav="stack">Stack</a></li>
+        <li><a href="#contact"        data-nav="contact">Contact</a></li>
       </ul>
+
+      <div class="nav-controls">
+        <button id="theme-toggle" aria-label="Toggle color theme">
+          <svg id="theme-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" width="16" height="16">
+            <path id="theme-path" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <main>
-    <section class="hero container reveal" id="home">
-      <div class="status-badge mono">
-        <div class="status-dot"></div>
-        SYSTEM.STATUS: INITIALIZED
-      </div>
-      
-      <h1>
-        Building Predictive Systems from <br>
-        <strong>First Principles.</strong>
-      </h1>
-      
-      <p class="lead">
-        I am Shamsaddin Amanov. Master of Data Science student at Monash University, former corporate financial analyst at ExxonMobil Hungary, and author of a post-theistic philosophical framework "Omittoism". Bridging the gap between strict statistical architecture and deep philosophical inquiry.
-      </p>
-      
-      <div class="btn-group">
-        <a href="#infrastructure" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-          View Architecture
-        </a>
-        <a href="#contact" class="btn btn-outline">
-          Initialize Contact
-        </a>
-      </div>
-    </section>
-    
-    <section id="infrastructure" class="container reveal">
-      <span class="section-index">01 — SYSTEM INFRASTRUCTURE</span>
-      <div class="section-header">
-        <h2>Monash Repository Allocations</h2>
-        <p>These repositories are initialized and awaiting datasets from the upcoming Monash Data Science curriculum. No fabricated history; pure architectural readiness.</p>
-      </div>
+  <!-- Mobile drawer -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Mobile navigation">
+    <a href="#infrastructure" class="mobile-link">Infrastructure</a>
+    <a href="#log"            class="mobile-link">Background Log</a>
+    <a href="#philosophy"     class="mobile-link">Omittoism</a>
+    <a href="#stack"          class="mobile-link">Technical Stack</a>
+    <a href="#contact"        class="mobile-link">Contact</a>
+  </div>
 
-      <div class="grid-3">
-        <article class="infra-card">
-          <div class="skeleton-box skel-visual"></div>
-          <div class="meta-row"><span>STATUS</span><span>PROVISIONED</span></div>
-          <div class="meta-row"><span>STACK</span><span>PYTHON / PANDAS</span></div>
-          <h3 class="infra-title">Statistical Data Exploration</h3>
-          <p style="font-size: 0.9rem; color: var(--text-muted); flex-grow: 1;">Allocated for initial descriptive statistics, data wrangling, and exploratory data analysis (EDA) coursework.</p>
-        </article>
+  <main id="main-content">
 
-        <article class="infra-card">
-          <div class="skeleton-box skel-visual"></div>
-          <div class="meta-row"><span>STATUS</span><span>AWAITING SCHEMA</span></div>
-          <div class="meta-row"><span>STACK</span><span>SQL / POSTGRES</span></div>
-          <h3 class="infra-title">Relational Database Design</h3>
-          <p style="font-size: 0.9rem; color: var(--text-muted); flex-grow: 1;">Reserved for complex querying, database normalization, and relational architecture projects.</p>
-        </article>
+    <!-- ====================================================
+         HERO
+         ==================================================== -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-scanner" aria-hidden="true"></div>
 
-        <article class="infra-card">
-          <div class="skeleton-box skel-visual"></div>
-          <div class="meta-row"><span>STATUS</span><span>CONCEPT PHASE</span></div>
-          <div class="meta-row"><span>STACK</span><span>SCIKIT-LEARN</span></div>
-          <h3 class="infra-title">Predictive Modeling</h3>
-          <p style="font-size: 0.9rem; color: var(--text-muted); flex-grow: 1;">Infrastructure ready for training, testing, and deploying foundational machine learning algorithms.</p>
-        </article>
-      </div>
-
-      <div class="code-wrapper reveal">
-        <div class="code-header">
-          <span class="code-filename">portfolio_initialization.py</span>
-          <span class="code-filename">UTF-8</span>
+        <div class="status-badge mono reveal">
+          <div class="status-dot" aria-hidden="true"></div>
+          SYSTEM.STATUS: INITIALIZED — MONASH &middot; 2026
         </div>
-        <pre class="code-body"><code><span class="syn-comment"># Initializing the Master of Data Science environment at Monash (2026)</span>
-<span class="syn-keyword">import</span> numpy <span class="syn-keyword">as</span> np
-<span class="syn-keyword">import</span> pandas <span class="syn-keyword">as</span> pd
-<span class="syn-keyword">from</span> sklearn.pipeline <span class="syn-keyword">import</span> Pipeline
-<span class="syn-keyword">from</span> sklearn.preprocessing <span class="syn-keyword">import</span> StandardScaler
 
-<span class="syn-keyword">def</span> <span class="syn-func">architect_system</span>(integrity_check: bool = <span class="syn-keyword">True</span>) -> str:
-    <span class="syn-string">"""
-    Sets up the foundational logic for the coming years of study.
-    Ensures no fabricated data is pushed to production.
-    """</span>
-    <span class="syn-keyword">if</span> integrity_check:
-        <span class="syn-keyword">return</span> <span class="syn-string">"System ready. Awaiting academic input."</span>
-        
-<span class="syn-keyword">if</span> __name__ == <span class="syn-string">"__main__"</span>:
-    status = architect_system()
-    <span class="syn-func">print</span>(f<span class="syn-string">"Day 1 Log: {status}"</span>)</code></pre>
-      </div>
-    </section>
+        <h1 class="hero-h1 reveal reveal-delay-1">
+          Building Predictive Systems<br>
+          from <span class="text-accent">First</span> <span class="text-gold">Principles</span><span class="typewriter-cursor" aria-hidden="true"></span>
+        </h1>
 
-    <section id="log" class="container reveal">
-      <span class="section-index">02 — BACKGROUND LOG</span>
-      <div class="section-header">
-        <h2>My Professional & Academic Trajectory</h2>
-        <p>A systematic record of formal education and corporate deployments of the author, Shamsaddin Amanov.</p>
-      </div>
+        <p class="hero-lead reveal reveal-delay-2">
+          I am <strong>Shamsaddin Amanov</strong> — Master of Data Science candidate at Monash University,
+          former Joint Interest Accounting Analyst at ExxonMobil, and author of the post-theistic
+          philosophical framework <em>Omittoism</em>. I operate at the intersection of strict
+          statistical architecture and deep philosophical inquiry.
+        </p>
 
-      <div class="grid-2">
-        <div class="timeline">
-          <div class="timeline-item">
-            <span class="timeline-date mono">FEB 2026 — PRESENT</span>
-            <div class="timeline-title">Master of Data Science</div>
-            <div class="timeline-org">Monash University | Melbourne, Australia</div>
-            <p class="timeline-desc">Currently enrolled at the Clayton School of Information Technology. Transitioning into advanced analytics, machine learning pipelines, and predictive architecture.</p>
+        <div class="hero-meta reveal reveal-delay-3" aria-label="Key facts">
+          <div class="hero-stat">
+            <span class="hero-stat-val" data-count="6">0</span>
+            <span class="hero-stat-label">Languages</span>
           </div>
-
-          <div class="timeline-item">
-            <span class="timeline-date mono">JUL 2024 — JUL 2025</span>
-            <div class="timeline-title">Military Service</div>
-            <div class="timeline-org">Internal Troops of Azerbaijani Army | Azerbaijan</div>
-            <p class="timeline-desc">Completed a one-year compulsory deployment, fulfilling civic duty with a focus on operational discipline.</p>
+          <div class="hero-stat-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val" data-count="2"><span class="stat-unit">+</span>2</span>
+            <span class="hero-stat-label">Years Corporate</span>
           </div>
-
-          <div class="timeline-item">
-            <span class="timeline-date mono">SEP 2022 — JUN 2024</span>
-            <div class="timeline-title">Joint Interest Accounting Analyst</div>
-            <div class="timeline-org">ExxonMobil | Budapest, Hungary</div>
-            <p class="timeline-desc">Managed complex corporate financial operations and operations management analysis. (Note: Concurrently admitted to Master in Marketing at Corvinus University, voluntarily withdrawn to focus on analytical career pivot).</p>
+          <div class="hero-stat-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val" data-count="3">0</span>
+            <span class="hero-stat-label">Continents Lived</span>
           </div>
-
-          <div class="timeline-item">
-            <span class="timeline-date mono">SEP 2018 — FEB 2022</span>
-            <div class="timeline-title">BSc Business Administration & Management</div>
-            <div class="timeline-org">University of Szeged | Hungary</div>
-            <p class="timeline-desc">Thesis: <em>"The Right to Exist: The Position of Universal Basic Income in the Works of the Most Influential Contemporary Philosophers."</em> Evaluated economic theory via Marx, Rawls, and Foucault.</p>
+          <div class="hero-stat-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val">∞</span>
+            <span class="hero-stat-label">Curiosity</span>
           </div>
         </div>
 
-        <div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem;">Linguistic & Cultural Stack</h3>
-          <p style="color: var(--text-muted); margin-bottom: 2rem;">Multilingual communication frameworks supporting global academic and professional operations.</p>
-          
-          <div class="meta-row"><span>AZERI & TURKISH</span><span>NATIVE (L1)</span></div>
-          <div class="meta-row"><span>ENGLISH</span><span>IELTS 7.5 (C1)</span></div>
-          <div class="meta-row"><span>GERMAN</span><span>B1</span></div>
-          <div class="meta-row"><span>NORWEGIAN</span><span>A2</span></div>
-          <div class="meta-row"><span>SPANISH</span><span>A2</span></div>
+        <div class="btn-group reveal reveal-delay-4">
+          <a href="#infrastructure" class="btn btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            View Architecture
+          </a>
+          <a href="#philosophy" class="btn btn-outline">Explore Omittoism</a>
+          <a href="#contact"    class="btn btn-outline">Initialize Contact</a>
+        </div>
+      </div>
+    </section>
 
-          <h3 style="font-size: 1.2rem; margin-top: 3rem; margin-bottom: 1rem;">Early Foundation</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">
-            Graduated from the Bilasuvar School-Lyceum Complex in 2016, achieving 80% (545/700) in central examinations. Subsequently joined to the two years of a Public Policy undergraduate program at Qafqaz University before relocating to Europe (re-start of the degree).
+    <!-- ====================================================
+         STATS STRIP
+         ==================================================== -->
+    <div class="stats-strip">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-block reveal">
+            <span class="stat-number"><span class="counter" data-target="18">0</span><span class="stat-unit">mo</span></span>
+            <span class="stat-desc">At ExxonMobil</span>
+          </div>
+          <div class="stat-block reveal reveal-delay-1">
+            <span class="stat-number"><span class="counter" data-target="7">0</span><span class="stat-unit">.5</span></span>
+            <span class="stat-desc">IELTS Score</span>
+          </div>
+          <div class="stat-block reveal reveal-delay-2">
+            <span class="stat-number"><span class="counter" data-target="5">0</span></span>
+            <span class="stat-desc">Countries Resided</span>
+          </div>
+          <div class="stat-block reveal reveal-delay-3">
+            <span class="stat-number"><span class="counter" data-target="1">0</span></span>
+            <span class="stat-desc">Philosophical Framework</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         INFRASTRUCTURE
+         ==================================================== -->
+    <section id="infrastructure">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">01 — SYSTEM INFRASTRUCTURE</span>
+          <h2 class="section-title">Monash Repository Allocations</h2>
+          <p class="section-desc">
+            These repositories are provisioned and awaiting datasets from the Monash Data Science curriculum.
+            No fabricated history; pure architectural readiness. Skeletons resolve to real work as coursework advances.
           </p>
         </div>
+
+        <div class="grid-3">
+          <article class="infra-card reveal reveal-delay-1">
+            <div class="skel skel-visual" role="img" aria-label="Placeholder chart visualization">
+              <svg viewBox="0 0 400 130" preserveAspectRatio="none">
+                <polyline points="0,100 60,75 120,85 180,50 240,65 300,30 360,45 400,20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <polyline points="0,120 60,100 120,110 180,80 240,90 300,55 360,70 400,50" fill="none" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="card-meta"><span>STATUS</span><span class="status-provn">PROVISIONED</span></div>
+            <div class="card-meta"><span>STACK</span><span>PYTHON / PANDAS</span></div>
+            <h3 class="card-title">Statistical Data Exploration</h3>
+            <p class="card-desc">Allocated for initial descriptive statistics, data wrangling, and exploratory data analysis (EDA) coursework. Awaiting first dataset upload.</p>
+          </article>
+
+          <article class="infra-card reveal reveal-delay-2">
+            <div class="skel skel-visual" role="img" aria-label="Placeholder schema visualization">
+              <svg viewBox="0 0 400 130" preserveAspectRatio="none">
+                <rect x="20" y="40" width="80" height="60" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+                <rect x="160" y="20" width="80" height="90" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+                <rect x="300" y="50" width="80" height="50" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+                <line x1="100" y1="70" x2="160" y2="65" stroke="currentColor" stroke-width="1"/>
+                <line x1="240" y1="65" x2="300" y2="75" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="card-meta"><span>STATUS</span><span class="status-wait">AWAITING SCHEMA</span></div>
+            <div class="card-meta"><span>STACK</span><span>SQL / POSTGRES</span></div>
+            <h3 class="card-title">Relational Database Design</h3>
+            <p class="card-desc">Reserved for complex querying, normalization theory, and relational architecture projects. Schema design pending first assignment briefing.</p>
+          </article>
+
+          <article class="infra-card reveal reveal-delay-3">
+            <div class="skel skel-visual" role="img" aria-label="Placeholder model visualization">
+              <svg viewBox="0 0 400 130" preserveAspectRatio="none">
+                <circle cx="60"  cy="65" r="25" fill="none" stroke="currentColor" stroke-width="1"/>
+                <circle cx="200" cy="40" r="20" fill="none" stroke="currentColor" stroke-width="1"/>
+                <circle cx="200" cy="90" r="20" fill="none" stroke="currentColor" stroke-width="1"/>
+                <circle cx="340" cy="65" r="25" fill="none" stroke="currentColor" stroke-width="1"/>
+                <line x1="85" y1="55" x2="180" y2="42" stroke="currentColor" stroke-width="1"/>
+                <line x1="85" y1="75" x2="180" y2="88" stroke="currentColor" stroke-width="1"/>
+                <line x1="220" y1="42" x2="315" y2="58" stroke="currentColor" stroke-width="1"/>
+                <line x1="220" y1="88" x2="315" y2="72" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="card-meta"><span>STATUS</span><span class="status-cncpt">CONCEPT PHASE</span></div>
+            <div class="card-meta"><span>STACK</span><span>SCIKIT-LEARN</span></div>
+            <h3 class="card-title">Predictive Modeling</h3>
+            <p class="card-desc">Infrastructure ready for training, testing, and deploying foundational machine learning algorithms. Neural architecture diagrams in draft.</p>
+          </article>
+        </div>
+
+        <!-- Code block -->
+        <div class="code-wrapper reveal">
+          <div class="code-header">
+            <div class="code-header-left">
+              <div class="code-dots" aria-hidden="true">
+                <span class="dot-r"></span>
+                <span class="dot-y"></span>
+                <span class="dot-g"></span>
+              </div>
+              <span class="code-filename">portfolio_init.py</span>
+            </div>
+            <button class="copy-btn" id="copy-code" aria-label="Copy code to clipboard">COPY</button>
+          </div>
+          <pre class="code-body" id="code-block"><code><span class="s-cm"># Monash University — Master of Data Science Environment Bootstrap (2026)</span>
+<span class="s-cm"># Author: Shamsaddin Amanov | amanovshams@gmail.com</span>
+
+<span class="s-kw">import</span> numpy <span class="s-kw">as</span> np
+<span class="s-kw">import</span> pandas <span class="s-kw">as</span> pd
+<span class="s-kw">from</span> sklearn.pipeline <span class="s-kw">import</span> Pipeline
+<span class="s-kw">from</span> sklearn.preprocessing <span class="s-kw">import</span> StandardScaler
+<span class="s-kw">from</span> dataclasses <span class="s-kw">import</span> dataclass, field
+<span class="s-kw">from</span> typing <span class="s-kw">import</span> List, Optional
+
+<span class="s-kw">@dataclass</span>
+<span class="s-kw">class</span> <span class="s-dt">ResearchRepository</span>:
+    name:        str
+    domain:      str
+    stack:       List[str]
+    integrity:   bool = <span class="s-kw">True</span>
+    datasets:    List[str] = field(default_factory=list)
+    status:      str = <span class="s-str">"PROVISIONED"</span>
+
+    <span class="s-kw">def</span> <span class="s-fn">load_dataset</span>(self, source: str) -> Optional[pd.DataFrame]:
+        <span class="s-str">"""Validate and ingest a dataset. No fabricated history."""</span>
+        <span class="s-kw">if not</span> self.integrity:
+            <span class="s-kw">raise</span> ValueError(<span class="s-str">"Integrity check failed. Refusing ingest."</span>)
+        <span class="s-kw">try</span>:
+            df = pd.read_csv(source)
+            self.datasets.append(source)
+            self.status = <span class="s-str">"ACTIVE"</span>
+            <span class="s-kw">return</span> df
+        <span class="s-kw">except</span> FileNotFoundError:
+            <span class="s-kw">return</span> <span class="s-kw">None</span>  <span class="s-cm"># Dataset pending; system waits.</span>
+
+
+<span class="s-kw">def</span> <span class="s-fn">architect_system</span>() -> dict:
+    <span class="s-str">"""
+    Bootstrap the foundational architecture for the coming years of study.
+    Returns a status report; all repositories begin in integrity-locked state.
+    """</span>
+    repositories = [
+        <span class="s-dt">ResearchRepository</span>(<span class="s-str">"stats-eda"</span>,     <span class="s-str">"Exploratory Analysis"</span>,  [<span class="s-str">"pandas"</span>, <span class="s-str">"seaborn"</span>]),
+        <span class="s-dt">ResearchRepository</span>(<span class="s-str">"db-design"</span>,     <span class="s-str">"Relational Databases"</span>,  [<span class="s-str">"postgres"</span>, <span class="s-str">"sqlalchemy"</span>]),
+        <span class="s-dt">ResearchRepository</span>(<span class="s-str">"ml-predictive"</span>, <span class="s-str">"Predictive Modeling"</span>,   [<span class="s-str">"sklearn"</span>, <span class="s-str">"xgboost"</span>]),
+    ]
+
+    pipeline = Pipeline([
+        (<span class="s-str">"scaler"</span>, StandardScaler()),
+    ])
+
+    <span class="s-kw">return</span> {
+        <span class="s-str">"operator"</span>:     <span class="s-str">"Shamsaddin Amanov"</span>,
+        <span class="s-str">"institution"</span>:  <span class="s-str">"Monash University — Clayton"</span>,
+        <span class="s-str">"repositories"</span>: len(repositories),
+        <span class="s-str">"integrity"</span>:    <span class="s-kw">all</span>(r.integrity <span class="s-kw">for</span> r <span class="s-kw">in</span> repositories),
+        <span class="s-str">"status"</span>:       <span class="s-str">"System ready. Awaiting academic input."</span>,
+    }
+
+
+<span class="s-kw">if</span> __name__ == <span class="s-str">"__main__"</span>:
+    report = architect_system()
+    <span class="s-kw">for</span> key, value <span class="s-kw">in</span> report.items():
+        <span class="s-fn">print</span>(f<span class="s-str">"  {key:&lt;14}: {value}"</span>)</code></pre>
+        </div>
       </div>
     </section>
 
+    <!-- ====================================================
+         BACKGROUND LOG
+         ==================================================== -->
+    <section id="log">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">02 — BACKGROUND LOG</span>
+          <h2 class="section-title">Professional & Academic Trajectory</h2>
+          <p class="section-desc">
+            A systematic record of formal education, corporate deployments, and civic duties.
+            Each entry represents a deliberate pivot toward greater analytical depth.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <!-- Timeline -->
+          <div class="timeline reveal">
+            <div class="tl-item">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <span class="tl-date">FEB 2026 — PRESENT</span>
+              <div class="tl-title">Master of Data Science</div>
+              <span class="tl-org">Monash University &middot; Melbourne, Australia</span>
+              <p class="tl-desc">Enrolled at the Clayton School of Information Technology. Transitioning from corporate financial analysis into advanced analytics, ML pipelines, and predictive systems architecture.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <span class="tl-date">JUL 2024 — JUL 2025</span>
+              <div class="tl-title">Military Service</div>
+              <span class="tl-org">Internal Troops of Azerbaijani Army &middot; Azerbaijan</span>
+              <p class="tl-desc">Completed one-year compulsory deployment. Civic duty fulfilled; operational discipline reinforced.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <span class="tl-date">SEP 2022 — JUN 2024</span>
+              <div class="tl-title">Joint Interest Accounting Analyst</div>
+              <span class="tl-org">ExxonMobil &middot; Budapest, Hungary</span>
+              <p class="tl-desc">Managed complex multi-party corporate financial operations for a major energy corporation. Concurrently admitted to the MSc Marketing programme at Corvinus University — voluntarily withdrawn to pursue an analytical career pivot into data science.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <span class="tl-date">SEP 2018 — FEB 2022</span>
+              <div class="tl-title">BSc Business Administration & Management</div>
+              <span class="tl-org">University of Szeged &middot; Hungary</span>
+              <p class="tl-desc">Thesis: <em>"The Right to Exist: The Position of Universal Basic Income in the Works of the Most Influential Contemporary Philosophers."</em> Economic theory evaluated via Marx, Rawls, and Foucault.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot" aria-hidden="true"></div>
+              <span class="tl-date">2016 — 2018</span>
+              <div class="tl-title">Public Policy Programme (Partial)</div>
+              <span class="tl-org">Qafqaz University &middot; Azerbaijan</span>
+              <p class="tl-desc">Two years of undergraduate Public Policy studies before relocating to Europe and restarting the degree. Foundation in political science and governance theory.</p>
+            </div>
+          </div>
+
+          <!-- Right column: Languages + Early -->
+          <div class="reveal reveal-delay-1">
+            <h3 style="font-family:'Syne',sans-serif; font-size:1.15rem; margin-bottom:1.75rem; color:var(--text);">Linguistic & Cultural Stack</h3>
+
+            <div class="lang-row">
+              <span class="lang-name">AZERI / TURKISH</span>
+              <span class="lang-level">NATIVE · L1</span>
+              <div class="lang-bar"><div class="lang-fill" data-width="1"></div></div>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">ENGLISH</span>
+              <span class="lang-level">C1 · IELTS 7.5</span>
+              <div class="lang-bar"><div class="lang-fill" data-width="0.88"></div></div>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">GERMAN</span>
+              <span class="lang-level">B1 · INTERMEDIATE</span>
+              <div class="lang-bar"><div class="lang-fill" data-width="0.55"></div></div>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">NORWEGIAN</span>
+              <span class="lang-level">A2 · BEGINNER</span>
+              <div class="lang-bar"><div class="lang-fill" data-width="0.28"></div></div>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">SPANISH</span>
+              <span class="lang-level">A2 · BEGINNER</span>
+              <div class="lang-bar"><div class="lang-fill" data-width="0.28"></div></div>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">RUSSIAN</span>
+              <span class="lang-level">A1 · BASIC</span>
+              <div class="lang-bar"><div class="lang-fill" data-width="0.14"></div></div>
+            </div>
+
+            <div style="margin-top:3rem; padding:2rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);">
+              <h3 style="font-family:'Syne',sans-serif; font-size:1rem; margin-bottom:0.75rem; color:var(--text);">Early Foundation</h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); font-family:'Lora',serif; line-height:1.75; margin:0;">
+                Graduated from the Bilasuvar School-Lyceum Complex (2016) with 545/700 in central examinations.
+                The foundation — discipline, multilingualism, and philosophical curiosity — was laid long before the corporate career began.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="container reveal">
-      <span class="section-index">3 — INITIALIZE PROTOCOL</span>
-      <div class="section-header">
-        <h2>Establish Connection</h2>
-        <p>Open channel for academic research, data operations, or philosophical debate.</p>
-      </div>
+    <!-- ====================================================
+         PHILOSOPHY / OMITTOISM
+         ==================================================== -->
+    <section id="philosophy" class="philosophy-section">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">03 — PHILOSOPHICAL FRAMEWORK</span>
+          <h2 class="section-title">Omittoism</h2>
+          <p class="section-desc">
+            A post-theistic philosophical framework authored by Shamsaddin Amanov — exploring consciousness,
+            ethics, and existence after the collapse of traditional metaphysical certainties.
+          </p>
+        </div>
 
-      <div style="max-width: 600px; margin: 0 auto;">
-        <form id="sysContactForm" onsubmit="event.preventDefault(); alert('System Log: Message architecture compiled. Awaiting backend API integration.');">
-          <label for="name">Identifier (Name)</label>
-          <input type="text" id="name" required placeholder="Dr. John von Neumann">
-          
-          <label for="email">Return Protocol (Email)</label>
-          <input type="email" id="email" required placeholder="john@institute.edu">
-          
-          <label for="message">Data Payload (Message)</label>
-          <textarea id="message" rows="5" required placeholder="Regarding the systemic analysis of..."></textarea>
-          
-          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Execute Transmission</button>
-        </form>
+        <div class="philosophy-grid">
+          <!-- Manifesto quote -->
+          <div class="reveal">
+            <div class="manifesto-block">
+              <blockquote>
+                "When the divine scaffolding is removed, what remains is not chaos —
+                it is the raw, unmediated responsibility of the conscious being to construct
+                meaning from first principles."
+                <cite>— Shamsaddin Amanov, Omittoism: Core Thesis</cite>
+              </blockquote>
+            </div>
+
+            <div style="margin-top:1.5rem; padding:1.5rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);">
+              <h4 style="font-family:'Syne',sans-serif; font-size:0.95rem; margin-bottom:0.75rem; color:var(--text);">Why Philosophy & Data Science?</h4>
+              <p style="font-size:0.88rem; color:var(--text-muted); font-family:'Lora',serif; line-height:1.75; margin:0;">
+                Data without epistemology is noise with a spreadsheet. Omittoism asks what it means
+                to <em>know</em> — the same question that motivates rigorous model validation, feature
+                selection discipline, and intellectual honesty about uncertainty. The frameworks are
+                not separate tracks. They are the same inquiry at different levels of abstraction.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillars -->
+          <div class="reveal reveal-delay-1">
+            <h3 style="font-family:'Syne',sans-serif; font-size:1.1rem; margin-bottom:1.5rem; color:var(--text);">Core Pillars</h3>
+            <ul class="pillar-list">
+              <li class="pillar-item">
+                <span class="pillar-num">01</span>
+                <div class="pillar-content">
+                  <h4>Post-Theistic Ontology</h4>
+                  <p>Existence is not validated by a divine observer. The self is the only persistent referent available to consciousness — and therefore bears total ethical weight.</p>
+                </div>
+              </li>
+              <li class="pillar-item">
+                <span class="pillar-num">02</span>
+                <div class="pillar-content">
+                  <h4>Constructed Meaning</h4>
+                  <p>Meaning is not discovered. It is architected — deliberately, iteratively, and with full awareness that the architect is also the subject of the construction.</p>
+                </div>
+              </li>
+              <li class="pillar-item">
+                <span class="pillar-num">03</span>
+                <div class="pillar-content">
+                  <h4>Radical Epistemic Humility</h4>
+                  <p>Certainty is a claim that requires extraordinary justification. The default state of the honest mind is calibrated uncertainty — not paralysis, but precision.</p>
+                </div>
+              </li>
+              <li class="pillar-item">
+                <span class="pillar-num">04</span>
+                <div class="pillar-content">
+                  <h4>Ethical Responsibility Without Deity</h4>
+                  <p>The removal of divine moral authority does not dissolve ethics. It concentrates them — entirely within the capacity and conscience of the individual.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- ====================================================
+         TECHNICAL STACK
+         ==================================================== -->
+    <section id="stack">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">04 — TECHNICAL STACK</span>
+          <h2 class="section-title">Tools & Proficiencies</h2>
+          <p class="section-desc">
+            Current technical capabilities — honestly rated. Learning-phase tools are marked accordingly.
+            Fabrication of expertise is a data integrity violation.
+          </p>
+        </div>
+
+        <div class="stack-grid reveal reveal-delay-1">
+          <div class="skill-chip">
+            <span class="skill-name">Python</span>
+            <div class="skill-bar"><div class="skill-fill lvl-mid" style="--w:0.72"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">Pandas</span>
+            <div class="skill-bar"><div class="skill-fill lvl-mid" style="--w:0.65"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">NumPy</span>
+            <div class="skill-bar"><div class="skill-fill lvl-mid" style="--w:0.60"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">SQL</span>
+            <div class="skill-bar"><div class="skill-fill lvl-exp" style="--w:0.75"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">Excel / VBA</span>
+            <div class="skill-bar"><div class="skill-fill lvl-exp" style="--w:0.85"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">Scikit-Learn</span>
+            <div class="skill-bar"><div class="skill-fill lvl-learn" style="--w:0.40"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">PostgreSQL</span>
+            <div class="skill-bar"><div class="skill-fill lvl-learn" style="--w:0.42"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">Matplotlib</span>
+            <div class="skill-bar"><div class="skill-fill lvl-learn" style="--w:0.48"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">HTML / CSS</span>
+            <div class="skill-bar"><div class="skill-fill lvl-mid" style="--w:0.68"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">Git / GitHub</span>
+            <div class="skill-bar"><div class="skill-fill lvl-mid" style="--w:0.60"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">R (Stats)</span>
+            <div class="skill-bar"><div class="skill-fill lvl-learn" style="--w:0.30"></div></div>
+          </div>
+          <div class="skill-chip">
+            <span class="skill-name">Tableau</span>
+            <div class="skill-bar"><div class="skill-fill lvl-learn" style="--w:0.35"></div></div>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem; display:flex; gap:2rem; flex-wrap:wrap;" class="reveal">
+          <div style="display:flex; align-items:center; gap:0.6rem; font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--text-faint);">
+            <div style="width:24px; height:3px; background:var(--primary); border-radius:2px;"></div>
+            PROFICIENT (CYAN)
+          </div>
+          <div style="display:flex; align-items:center; gap:0.6rem; font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--text-faint);">
+            <div style="width:24px; height:3px; background:var(--gold); border-radius:2px;"></div>
+            INTERMEDIATE (GOLD)
+          </div>
+          <div style="display:flex; align-items:center; gap:0.6rem; font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--text-faint);">
+            <div style="width:24px; height:3px; background:var(--border-strong); border-radius:2px;"></div>
+            IN PROGRESS (GREY)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         CONTACT
+         ==================================================== -->
+    <section id="contact">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">05 — INITIALIZE PROTOCOL</span>
+          <h2 class="section-title">Establish Connection</h2>
+          <p class="section-desc">
+            Open channel for academic collaboration, data operations, philosophical debate,
+            or simply to say hello from across the planet.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Info column -->
+          <div class="reveal">
+            <h3>Direct Channels</h3>
+            <p>Response time is typically within 48 hours. For urgent matters, email is the most reliable protocol.</p>
+
+            <a href="mailto:amanovshams@gmail.com" class="contact-link-row">
+              <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+              amanovshams@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/amanovshamsaddin/" target="_blank" rel="noopener noreferrer" class="contact-link-row">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              /in/amanovshamsaddin
+            </a>
+            <a href="https://github.com/amanovshamsaddin" target="_blank" rel="noopener noreferrer" class="contact-link-row">
+              <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              github.com/amanovshamsaddin
+            </a>
+          </div>
+
+          <!-- Form column -->
+          <div class="reveal reveal-delay-1">
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="cf-name">Identifier — Name</label>
+                <input class="form-input" type="text" id="cf-name" name="name" placeholder="Dr. John von Neumann" required autocomplete="name">
+                <span class="form-error-msg" id="err-name">Please enter your name.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cf-email">Return Protocol — Email</label>
+                <input class="form-input" type="email" id="cf-email" name="email" placeholder="john@institute.edu" required autocomplete="email">
+                <span class="form-error-msg" id="err-email">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cf-subject">Subject</label>
+                <input class="form-input" type="text" id="cf-subject" name="subject" placeholder="Regarding statistical architecture...">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cf-message">Data Payload — Message</label>
+                <textarea class="form-textarea" id="cf-message" name="message" rows="5" placeholder="Regarding the systemic analysis of..." required></textarea>
+                <span class="form-error-msg" id="err-message">Please include a message.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary form-submit" id="form-submit">
+                <div class="btn-spinner" aria-hidden="true"></div>
+                <span class="btn-text">Execute Transmission</span>
+              </button>
+            </form>
+
+            <div class="form-success" id="form-success" role="status" aria-live="polite">
+              <h4>Transmission Received</h4>
+              <p>Message compiled and logged. Expect a response within 48 hours. Thank you for making contact.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    <div class="container footer-content">
-      <div class="social-links">
-        <a href="https://www.linkedin.com/company/datavery/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-        </a>
-        <a href="https://github.com/amanovshamsaddin" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-        <a href="mailto:amanovshams@gmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
-        </a>
+  <!-- ====================================================
+       FOOTER
+       ==================================================== -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>DataVery<em>.app</em></h3>
+          <p>Built by Shamsaddin Amanov. Hosted on GitHub Pages. No trackers. No ads. Pure signal.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#infrastructure">Infrastructure</a></li>
+            <li><a href="#log">Background Log</a></li>
+            <li><a href="#philosophy">Omittoism</a></li>
+            <li><a href="#stack">Technical Stack</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-group">
+          <h4>External</h4>
+          <ul>
+            <li><a href="https://github.com/amanovshamsaddin" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/amanovshamsaddin/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="mailto:amanovshams@gmail.com">Email</a></li>
+          </ul>
+        </div>
       </div>
-      
-      <p style="margin-bottom: 0; color: var(--text-muted);">Architected by <strong>Shamsaddin Amanov</strong>. Hosted on GitHub Pages.</p>
-      
-      <div class="version-tag">
-        datavery.app v1.0.0 | Environment: Production | Build: 2026.03.02
+
+      <div class="footer-bottom">
+        <p class="mono">&copy; <span id="footer-year">2026</span> Shamsaddin Amanov &mdash; datavery.app v2.0.0 &middot; Build: 2026.03.09</p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/amanovshamsaddin/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="https://github.com/amanovshamsaddin" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+            <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="mailto:amanovshams@gmail.com" class="social-icon" aria-label="Send email">
+            <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <!-- Back to top -->
+  <button id="back-to-top" aria-label="Scroll back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <!-- ====================================================
+       JAVASCRIPT
+       ==================================================== -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      
-      // --- A. THEME ARCHITECTURE (PERSISTENT) ---
-      const toggleBtn = document.getElementById('theme-toggle');
-      const htmlEl = document.documentElement;
-      const themeIcon = document.getElementById('theme-icon');
-      
-      const moonPath = "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z";
-      const sunPath = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z";
+  (function () {
+    'use strict';
 
-      // Load System Preference or Storage
-      const savedTheme = localStorage.getItem('datavery-theme') || 'dark'; // Defaulting to dark for tech aesthetic
-      htmlEl.setAttribute('data-theme', savedTheme);
-      themeIcon.innerHTML = savedTheme === 'dark' 
-        ? `<path d="${sunPath}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>`
-        : `<path d="${moonPath}"></path>`;
+    /* ── A. THEME SYSTEM ─────────────────────────────────────── */
+    const html        = document.documentElement;
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon   = document.getElementById('theme-icon');
 
-      toggleBtn.addEventListener('click', () => {
-        const currentTheme = htmlEl.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        htmlEl.setAttribute('data-theme', newTheme);
-        localStorage.setItem('datavery-theme', newTheme);
-        
-        themeIcon.innerHTML = newTheme === 'dark' 
-          ? `<path d="${sunPath}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>`
-          : `<path d="${moonPath}"></path>`;
+    const SUN_PATH  = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z";
+    const MOON_PATH = "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z";
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      try { localStorage.setItem('datavery-theme', theme); } catch(e) {}
+
+      if (theme === 'dark') {
+        themeIcon.setAttribute('viewBox', '0 0 24 24');
+        themeIcon.innerHTML = `<path d="${SUN_PATH}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>`;
+      } else {
+        themeIcon.setAttribute('viewBox', '0 0 24 24');
+        themeIcon.innerHTML = `<path d="${MOON_PATH}" fill="currentColor"></path>`;
+      }
+    }
+
+    // Load saved or default
+    let saved = 'dark';
+    try { saved = localStorage.getItem('datavery-theme') || 'dark'; } catch(e) {}
+    setTheme(saved);
+
+    themeToggle.addEventListener('click', () => {
+      setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+
+    /* ── B. MOBILE NAVIGATION ────────────────────────────────── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileLinks = mobileNav.querySelectorAll('.mobile-link');
+
+    function closeMobileNav() {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      mobileNav.style.display = '';
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      if (isOpen) {
+        mobileNav.style.display = 'flex';
+        // Force reflow then animate
+        requestAnimationFrame(() => requestAnimationFrame(() => mobileNav.classList.add('open')));
+      } else {
+        mobileNav.classList.remove('open');
+        setTimeout(() => { mobileNav.style.display = ''; }, 300);
+      }
+    });
+
+    mobileLinks.forEach(link => link.addEventListener('click', closeMobileNav));
+
+    // Close on escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMobileNav();
+    });
+
+    /* ── C. SCROLL SPY ───────────────────────────────────────── */
+    const navLinks = document.querySelectorAll('.nav-links a[data-nav]');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActiveNav() {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        if (window.scrollY >= top) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.nav === current);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+    /* ── D. INTERSECTION OBSERVER ────────────────────────────── */
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    /* ── E. LANGUAGE BAR ANIMATIONS ─────────────────────────── */
+    const langFills = document.querySelectorAll('.lang-fill');
+    const langObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const fill = entry.target;
+        const w = parseFloat(fill.dataset.width || 0.5);
+        fill.style.transform = `scaleX(${w})`;
+        fill.classList.add('animated');
+        langObserver.unobserve(fill);
+      });
+    }, { threshold: 0.5 });
+
+    langFills.forEach(el => langObserver.observe(el));
+
+    /* ── F. SKILL BAR ANIMATIONS ─────────────────────────────── */
+    const skillFills = document.querySelectorAll('.skill-fill');
+    const skillObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const fill = entry.target;
+        const w = getComputedStyle(fill).getPropertyValue('--w') || '0.5';
+        fill.style.transform = `scaleX(${parseFloat(w)})`;
+        fill.classList.add('animated');
+        skillObserver.unobserve(fill);
+      });
+    }, { threshold: 0.3 });
+
+    skillFills.forEach(el => skillObserver.observe(el));
+
+    /* ── G. ANIMATED COUNTERS ────────────────────────────────── */
+    function animateCounter(el, target, duration = 1200) {
+      const start = performance.now();
+      const update = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+
+    const counterEls = document.querySelectorAll('.counter');
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target, 10);
+        animateCounter(el, target);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    counterEls.forEach(el => counterObserver.observe(el));
+
+    /* ── H. HERO COUNTERS (simple) ───────────────────────────── */
+    const heroCounters = document.querySelectorAll('[data-count]');
+    const heroObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.count, 10);
+        animateCounter(el, target, 900);
+        heroObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    heroCounters.forEach(el => heroObserver.observe(el));
+
+    /* ── I. COPY CODE BUTTON ─────────────────────────────────── */
+    const copyBtn = document.getElementById('copy-code');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const codeEl = document.getElementById('code-block');
+        const text = codeEl ? codeEl.innerText : '';
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.textContent = 'COPIED!';
+          copyBtn.classList.add('copied');
+          setTimeout(() => {
+            copyBtn.textContent = 'COPY';
+            copyBtn.classList.remove('copied');
+          }, 2000);
+        }).catch(() => {
+          copyBtn.textContent = 'ERROR';
+          setTimeout(() => { copyBtn.textContent = 'COPY'; }, 2000);
+        });
+      });
+    }
+
+    /* ── J. CONTACT FORM VALIDATION ─────────────────────────── */
+    const form       = document.getElementById('contact-form');
+    const submitBtn  = document.getElementById('form-submit');
+    const successBox = document.getElementById('form-success');
+
+    function validate(input, errId, check) {
+      const isValid = check(input.value.trim());
+      input.classList.toggle('error', !isValid);
+      const errEl = document.getElementById(errId);
+      if (errEl) errEl.classList.toggle('visible', !isValid);
+      return isValid;
+    }
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const nameField    = document.getElementById('cf-name');
+        const emailField   = document.getElementById('cf-email');
+        const messageField = document.getElementById('cf-message');
+
+        const validName    = validate(nameField,    'err-name',    v => v.length >= 2);
+        const validEmail   = validate(emailField,   'err-email',   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+        const validMessage = validate(messageField, 'err-message', v => v.length >= 10);
+
+        if (!validName || !validEmail || !validMessage) return;
+
+        // Simulate async submission
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+
+        await new Promise(resolve => setTimeout(resolve, 1800)); // Simulated network request
+
+        submitBtn.classList.remove('loading');
+        form.style.display = 'none';
+        successBox.classList.add('visible');
+
+        // NOTE: Integrate with Formspree, EmailJS, or a backend API here:
+        // fetch('https://formspree.io/f/YOUR_ID', { method: 'POST', body: new FormData(form) })
       });
 
-      // --- B. INTERSECTION OBSERVER (SCROLL PHYSICS) ---
-      const revealElements = document.querySelectorAll('.reveal');
-      const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-
-      const revealOnScroll = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-          }
+      // Real-time validation feedback on blur
+      ['cf-name', 'cf-email', 'cf-message'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('blur', () => {
+          if (id === 'cf-name')    validate(el, 'err-name',    v => v.length >= 2);
+          if (id === 'cf-email')   validate(el, 'err-email',   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+          if (id === 'cf-message') validate(el, 'err-message', v => v.length >= 10);
         });
-      }, revealOptions);
+        el.addEventListener('input', () => {
+          el.classList.remove('error');
+          const errEl = el.closest('.form-group')?.querySelector('.form-error-msg');
+          if (errEl) errEl.classList.remove('visible');
+        });
+      });
+    }
 
-      revealElements.forEach(el => revealOnScroll.observe(el));
+    /* ── K. BACK TO TOP ──────────────────────────────────────── */
+    const backToTop = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    /* ── L. FOOTER YEAR ──────────────────────────────────────── */
+    const yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  })();
   </script>
 </body>
 </html>
