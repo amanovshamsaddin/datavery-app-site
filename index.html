@@ -1024,7 +1024,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
         <svg viewBox="0 0 24 24"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
         <p>Drop CSV here</p><small>or click to browse</small>
       </div>
-      <input type="file" id="file-input" accept=".csv,.tsv">
+      <input type="file" id="file-input" accept=".csv,.tsv" style="display:none">
       <div class="pg-lbl">Sample Datasets</div>
       <button class="sample-btn" data-sample="iris">🌸 Iris Flowers</button>
       <button class="sample-btn" data-sample="titanic">🚢 Titanic</button>
@@ -1124,8 +1124,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
         <div class="marie-output" id="marie-output">(no output)</div>
         <div class="marie-input-row">
           <input type="number" id="marie-input-val" placeholder="Input value (for INPUT instruction)">
-          <button class="marie-btn" id="marie-input
--submit">Send</button>
+          <button class="marie-btn" id="marie-input-submit">Send</button>
         </div>
       </div>
     </div>
@@ -1191,9 +1190,9 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
         <div class="li-card">
           <div class="li-head"><div class="li-av">SA</div><div><div class="li-n">Shamsaddin Amanov</div><div class="li-t">MDS Candidate · Monash · Former ExxonMobil</div></div></div>
           <div class="li-metrics">
-            <div class="li-m"><div class="li-mv">500+</div><div class="li-ml">Connections</div></div>
+            <div class="li-m"><div class="li-mv">8500+</div><div class="li-ml">Connections</div></div>
             <div class="li-m"><div class="li-mv">6</div><div class="li-ml">Languages</div></div>
-            <div class="li-m"><div class="li-mv">5</div><div class="li-ml">Countries</div></div>
+            <div class="li-m"><div class="li-mv">5</div><div class="li-ml">Countries resided</div></div>
           </div>
           <a href="https://www.linkedin.com/in/theamanov/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;">View LinkedIn Profile →</a>
         </div>
@@ -1912,7 +1911,7 @@ pageInits.lab=function(){
 /* ═══════════════════════════════════════════════
    DATABASE ERD LAB
 ═══════════════════════════════════════════════ */
-let dbInited=false,sqlDB=null,sqljsP=null;
+let dbInited=false,sqlDB=null,sqljsP=null,dbSqlCM=null;
 const erd={tables:[],relations:[],nextId:1,selected:null,panX:0,panY:0,scale:1,drawMode:false,drawFrom:null};
 const TH=32,FH=22,TW=195,TPAD=10;
 function tblH(t){return TH+t.fields.length*FH+TPAD;}
@@ -2154,7 +2153,7 @@ function deleteTable(id){
 }
 
 function runSQL(){
-  const raw=document.getElementById('sql-in').value.trim();if(!raw)return;
+  const raw=(dbSqlCM?dbSqlCM.getValue():(document.getElementById('sql-in')?.value||'')).trim();if(!raw)return;
   if(!sqlDB){toast('warn','⚠','SQLite not ready.');return;}
   const stmts=raw.split(';').map(s=>s.trim()).filter(Boolean);
   const hist=document.getElementById('sql-hist');
@@ -2293,8 +2292,7 @@ pageInits.database=function(){
   document.getElementById('sql-run').addEventListener('click',runSQL);
   document.getElementById('sql-clr').addEventListener('click',()=>{document.getElementById('sql-hist').innerHTML='';});
   document.getElementById('sql-in').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();runSQL();}});
-  let sqlCM;
-  setTimeout(()=>{const ta=document.getElementById('sql-in');if(!ta||typeof CodeMirror==='undefined')return;sqlCM=CodeMirror.fromTextArea(ta,{mode:'sql',theme:curTheme==='light'?'default':'dracula',lineNumbers:true,autoCloseBrackets:true,extraKeys:{'Ctrl-Enter':runSQL}});},100);
+  setTimeout(()=>{const ta=document.getElementById('sql-in');if(!ta||typeof CodeMirror==='undefined')return;dbSqlCM=CodeMirror.fromTextArea(ta,{mode:'sql',theme:curTheme==='light'?'default':'dracula',lineNumbers:true,autoCloseBrackets:true,extraKeys:{'Ctrl-Enter':runSQL}});},100);
   document.getElementById('db-tabs').addEventListener('click',e=>{const tab=e.target.closest('[data-dbt]');if(!tab)return;document.querySelectorAll('[data-dbt]').forEach(t=>t.classList.remove('active'));tab.classList.add('active');['sql','schema','rels'].forEach(id=>{const p=document.getElementById('dbt-'+id);if(p)p.classList.toggle('active',id===tab.dataset.dbt);});if(tab.dataset.dbt==='schema')refreshSchema();if(tab.dataset.dbt==='rels')refreshRels();});
   loadSqlJs().then(()=>{document.getElementById('db-dot').className='db-dot rdy';document.getElementById('db-st').textContent='SQLite ready ✓';toast('success','🗄','Database engine ready!');}).catch(()=>{document.getElementById('db-dot').className='db-dot err';document.getElementById('db-st').textContent='SQLite load failed';});
   drawERD();
@@ -2558,7 +2556,7 @@ pageInits.playground=function(){initPlayground();};
 /* ═══════════════════════════════════════════════
    MARIE SIMULATOR
 ═══════════════════════════════════════════════ */
-let marieCM=null,marieInited=false;
+let marieCM=null,marieInited=false,marieRunInterval=null;
 const MARIE_MEMORY_SIZE=4096;
 
 const marieVM={
@@ -2649,14 +2647,14 @@ function marieStep(){
     case 0x2:marieVM.MAR=operand;marieVM.MBR=marieVM.AC;marieVM.memory[marieVM.MAR]=marieVM.MBR;marieVM.changedMem.add(operand);break;
     case 0x3:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=(marieVM.AC+marieVM.MBR)&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;marieVM.changedRegs.add('AC');break;
     case 0x4:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=(marieVM.AC-marieVM.MBR)&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;marieVM.changedRegs.add('AC');break;
-    case 0x5:
+    case 0x5:{
       const iv=parseInt(document.getElementById('marie-input-val').value);
       if(!isNaN(iv)){marieVM.AC=iv&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;document.getElementById('marie-input-val').value='';marieVM.changedRegs.add('AC');}
       else{marieVM.waitingInput=true;marieVM.PC--;document.getElementById('marie-status').textContent='⏸ Waiting for INPUT…';toast('warn','⌨️','Enter a value and click Send.');return false;}
-      break;
+      break;}
     case 0x6:marieVM.outputLog.push(String(marieVM.AC));updateMarieOutput();break;
     case 0x7:marieVM.halted=true;marieVM.running=false;document.getElementById('marie-status').textContent='■ Halted';updateMarieControls(false,true);break;
-    case 0x8:const cond=(operand>>10)&0x3;if((cond===0&&marieVM.AC<0)||(cond===1&&marieVM.AC===0)||(cond===2&&marieVM.AC>0))marieVM.PC++;marieVM.changedRegs.add('PC');break;
+    case 0x8:{const cond=(operand>>10)&0x3;if((cond===0&&marieVM.AC<0)||(cond===1&&marieVM.AC===0)||(cond===2&&marieVM.AC>0))marieVM.PC++;marieVM.changedRegs.add('PC');break;}
     case 0x9:marieVM.PC=operand;marieVM.changedRegs.add('PC');break;
     case 0xA:marieVM.AC=0;marieVM.changedRegs.add('AC');break;
     case 0xB:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=(marieVM.AC+marieVM.MBR)&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;marieVM.changedRegs.add('AC');break;
@@ -2758,7 +2756,7 @@ pageInits.github=async function(){
     (Array.isArray(repos)?repos:[]).forEach(r=>{
       const lc=LANG_COLORS[r.language]||'#8b949e';
       const card=document.createElement('a');card.className='repo-card';card.href=r.html_url;card.target='_blank';card.rel='noopener noreferrer';
-      card.innerHTML=`<div class="repo-name">📁 ${r.name}</div><p class="repo-desc">${r.description||'No description.'}</p><div class="repo-meta">${r.language?`<span class="rm-i"><span class="lang-dot" style="background:${lc}"></span>${r.language}</span>`:''}<span class="rm-i">⭐ ${r.stargazers_count||0}</span><span class="rm-i">🍴 ${r.forks_count||0}</span></div>`;
+      card.innerHTML=`<div class="repo-name">📁 ${esc(r.name)}</div><p class="repo-desc">${esc(r.description||'No description.')}</p><div class="repo-meta">${r.language?`<span class="rm-i"><span class="lang-dot" style="background:${lc}"></span>${esc(r.language)}</span>`:''}<span class="rm-i">⭐ ${r.stargazers_count||0}</span><span class="rm-i">🍴 ${r.forks_count||0}</span></div>`;
       grid.appendChild(card);
     });
     if(!grid.children.length)grid.innerHTML='<p style="font-family:var(--ff-m);font-size:.7rem;color:var(--txt3);">No public repositories yet.</p>';
@@ -2880,7 +2878,7 @@ function renderWeek(container,course,wk){
         </div>`).join('')}
     </div>
     <div class="wk-practice">
-      <button class="btn btn-pri" data-page="${wk.practice}">${practiceLabel}</button>
+      <button class="btn btn-pri" onclick="navigate('${wk.practice}')">${practiceLabel}</button>
       <button class="btn btn-ghost" onclick="copyWeekNotes('${wk.title.replace(/'/g,"\\'")}')">📋 Copy Notes</button>
     </div>`;
   container.scrollTop=0;
