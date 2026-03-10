@@ -2322,7 +2322,18 @@ const DATASETS={
 monash:{
   name:'Monash University',
   tables:{
-    students:{cols:['student_id','name','email','gpa','year'],rows:[[1,'Shamsaddin Amanov','amanovshams@gmail.com',3.9,2026],[2,'Alice Chen','alice@monash.edu',3.7,2026],[3,'Bob Smith','bob@monash.edu',3.2,2025],[4,'Carol White','carol@monash.edu',3.8,2026],[5,'Dave Brown','dave@monash.edu',2.9,2025]]},
+    students:{cols:['student_id','name','email','gpa','year'],rows:[
+      [1,'Shamsaddin Amanov','amanovshams@gmail.com',3.9,2026],[2,'Alice Chen','alice@monash.edu',3.7,2026],[3,'Bob Smith','bob@monash.edu',3.2,2025],[4,'Carol White','carol@monash.edu',3.8,2026],[5,'Dave Brown','dave@monash.edu',2.9,2025],
+      [6,'Eve Davis','eve@monash.edu',4.0,2026],[7,'Frank Miller','frank@monash.edu',3.1,2024],[8,'Grace Wilson','grace@monash.edu',3.6,2025],[9,'Harry Taylor','harry@monash.edu',2.7,2024],[10,'Ivy Thomas','ivy@monash.edu',3.9,2026],
+      [11,'Jack Moore','jack@monash.edu',3.4,2025],[12,'Karen Jackson','karen@monash.edu',3.8,2026],[13,'Leo Martin','leo@monash.edu',3.0,2024],[14,'Mia Lee','mia@monash.edu',3.5,2025],[15,'Noah Perez','noah@monash.edu',3.3,2026],
+      [16,'Olivia Thompson','olivia@monash.edu',3.7,2025],[17,'Paul White','paul@monash.edu',2.8,2024],[18,'Quinn Harris','quinn@monash.edu',3.9,2026],[19,'Ryan Clark','ryan@monash.edu',3.2,2025],[20,'Sophia Lewis','sophia@monash.edu',3.6,2026],
+      [21,'Tom Robinson','tom@monash.edu',3.1,2024],[22,'Uma Walker','uma@monash.edu',3.8,2025],[23,'Victor Hall','victor@monash.edu',2.9,2026],[24,'Wendy Allen','wendy@monash.edu',3.5,2024],[25,'Xander Young','xander@monash.edu',3.4,2025],
+      [26,'Yara King','yara@monash.edu',3.7,2026],[27,'Zack Wright','zack@monash.edu',3.0,2024],[28,'Amy Scott','amy@monash.edu',3.9,2025],[29,'Brian Green','brian@monash.edu',3.3,2026],[30,'Chloe Baker','chloe@monash.edu',3.6,2024],
+      [31,'Daniel Adams','daniel@monash.edu',3.2,2025],[32,'Emma Nelson','emma@monash.edu',3.8,2026],[33,'Felix Carter','felix@monash.edu',2.8,2024],[34,'Gina Mitchell','gina@monash.edu',3.5,2025],[35,'Henry Perez','harry.p@monash.edu',3.7,2026],
+      [36,'Isla Roberts','isla@monash.edu',3.1,2024],[37,'James Turner','james@monash.edu',3.9,2025],[38,'Kelly Phillips','karen.p@monash.edu',3.4,2026],[39,'Liam Campbell','leo.c@monash.edu',3.0,2024],[40,'Mila Parker','mia.p@monash.edu',3.6,2025],
+      [41,'Nathan Evans','noah.e@monash.edu',3.3,2026],[42,'Olive Edwards','olivia.e@monash.edu',3.8,2024],[43,'Peter Collins','paul.c@monash.edu',2.9,2025],[44,'Ruby Stewart','quinn.s@monash.edu',3.7,2026],[45,'Sam Sanchez','ryan.s@monash.edu',3.2,2024],
+      [46,'Tara Morris','sophia.m@monash.edu',3.9,2025],[47,'Uriel Rogers','tom.r@monash.edu',3.5,2026],[48,'Violet Reed','uma.r@monash.edu',3.1,2024],[49,'Will Cook','victor.c@monash.edu',3.6,2025],[50,'Xena Morgan','wendy.m@monash.edu',3.8,2026]
+    ]},
     courses:{cols:['course_id','code','title','credits','semester'],rows:[[1,'FIT9136','Python Programming',6,'S1 2026'],[2,'FIT9132','Introduction to Databases',6,'S1 2026'],[3,'FIT9137','Computer Architecture',6,'S1 2026'],[4,'FIT9132B','Advanced Databases',6,'S2 2026']]},
     enrollment:{cols:['id','student_id','course_id','grade','semester'],rows:[[1,1,1,'A','S1 2026'],[2,1,2,'A','S1 2026'],[3,1,3,'B+','S1 2026'],[4,2,1,'B','S1 2026'],[5,3,2,'A-','S1 2026'],[6,4,1,'A+','S1 2026'],[7,4,3,'B','S1 2026'],[8,5,2,'C+','S1 2026']]},
     lecturers:{cols:['id','name','email','course_id'],rows:[[1,'Jingwen Ye','jingwen.ye@monash.edu',1],[2,'Lindsay Smith','lindsay.smith@monash.edu',2],[3,'Safi Uddin','safi.uddin@monash.edu',3]]}
@@ -2331,7 +2342,18 @@ monash:{
 sales:{
   name:'E-Commerce',
   tables:{
-    products:{cols:['id','name','category','price','stock'],rows:[[1,'Laptop Pro','Electronics',1299.99,45],[2,'Wireless Mouse','Electronics',29.99,200],[3,'SQL Textbook','Books',89.99,75],[4,'Desk Chair','Furniture',349.99,20],[5,'USB Hub','Electronics',49.99,150]]},
+    products:{cols:['id','name','category','price','stock'],rows:[
+      [1,'Laptop Pro','Electronics',1299.99,45],[2,'Wireless Mouse','Electronics',29.99,200],[3,'SQL Textbook','Books',89.99,75],[4,'Desk Chair','Furniture',349.99,20],[5,'USB Hub','Electronics',49.99,150],
+      [6,'Mechanical Keyboard','Electronics',129.99,80],[7,'27" 4K Monitor','Electronics',299.99,50],[8,'Standing Desk','Furniture',499.99,15],[9,'Webcam 1080p','Electronics',79.99,120],[10,'Bluetooth Speaker','Electronics',59.99,90],
+      [11,'Noise Cancelling Headphones','Electronics',249.99,40],[12,'Smartphone Stand','Accessories',14.99,300],[13,'Python Crash Course','Books',39.99,100],[14,'Ergonomic Mouse','Electronics',45.99,110],[15,'Laptop Sleeve','Accessories',24.99,250],
+      [16,'LED Desk Lamp','Furniture',34.99,85],[17,'HDMI Cable 6ft','Accessories',9.99,500],[18,'USB-C Charging Cable','Accessories',12.99,450],[19,'External SSD 1TB','Electronics',159.99,60],[20,'Flash Drive 128GB','Electronics',22.99,200],
+      [21,'Office Desk','Furniture',250.00,25],[22,'File Cabinet','Furniture',120.00,30],[23,'Notebook 3-Pack','Office',15.99,400],[24,'Gel Pens 10-Pack','Office',11.99,350],[25,'Highlighters 5-Pack','Office',8.99,280],
+      [26,'Whiteboard 36x24','Office',45.99,45],[27,'Sticky Notes 12-Pad','Office',6.99,500],[28,'Heavy Duty Stapler','Office',14.99,150],[29,'Paper Clips 1000ct','Office',4.99,600],[30,'Printer Paper 500sht','Office',9.99,800],
+      [31,'Wireless Laser Printer','Electronics',199.99,35],[32,'Ink Cartridge Black','Accessories',35.99,120],[33,'Ink Cartridge Color','Accessories',45.99,100],[34,'Dual-Band Wifi Router','Electronics',149.99,55],[35,'Ethernet Cable 50ft','Accessories',19.99,180],
+      [36,'10-Outlet Surge Protector','Accessories',25.99,220],[37,'Uninterruptible Power Supply','Electronics',189.99,20],[38,'Condenser Microphone','Electronics',99.99,65],[39,'Microphone Boom Arm','Accessories',39.99,90],[40,'10" Ring Light','Accessories',49.99,110],
+      [41,'Collapsible Green Screen','Accessories',55.99,40],[42,'1080p Capture Card','Electronics',129.99,30],[43,'Action Camera 4K','Electronics',299.99,25],[44,'Adjustable Camera Tripod','Accessories',34.99,85],[45,'SD Card 64GB Extreme','Electronics',18.99,250],
+      [46,'MicroSD Card 128GB','Electronics',24.99,220],[47,'Tablet 10" 64GB','Electronics',349.99,50],[48,'Tablet Stylus Pen','Accessories',89.99,75],[49,'GPS Smartwatch','Electronics',199.99,60],[50,'Waterproof Fitness Tracker','Electronics',99.99,100]
+    ]},
     customers:{cols:['id','name','email','city','total_orders'],rows:[[1,'John Doe','john@email.com','Melbourne',12],[2,'Jane Smith','jane@email.com','Sydney',8],[3,'Bob Jones','bob@email.com','Brisbane',3],[4,'Carol Brown','carol@email.com','Perth',21]]},
     orders:{cols:['id','customer_id','product_id','qty','total','order_date'],rows:[[1,1,1,1,1299.99,'2026-01-15'],[2,1,2,2,59.98,'2026-01-22'],[3,2,3,1,89.99,'2026-02-01'],[4,3,4,1,349.99,'2026-02-14'],[5,4,5,3,149.97,'2026-03-01'],[6,1,3,2,179.98,'2026-03-05']]}
   }
@@ -2339,7 +2361,18 @@ sales:{
 library:{
   name:'Library',
   tables:{
-    books:{cols:['id','title','author','year','genre','available'],rows:[[1,'Clean Code','Robert Martin',2008,'Tech',1],[2,'The Pragmatic Programmer','Andrew Hunt',2019,'Tech',0],[3,'Thinking Fast and Slow','Daniel Kahneman',2011,'Psychology',1],[4,'Data Science Handbook','Jake VanderPlas',2016,'Tech',1],[5,'Introduction to Algorithms','Cormen et al',2009,'CS',0]]},
+    books:{cols:['id','title','author','year','genre','available'],rows:[
+      [1,'Clean Code','Robert Martin',2008,'Tech',1],[2,'The Pragmatic Programmer','Andrew Hunt',2019,'Tech',0],[3,'Thinking Fast and Slow','Daniel Kahneman',2011,'Psychology',1],[4,'Data Science Handbook','Jake VanderPlas',2016,'Tech',1],[5,'Introduction to Algorithms','Cormen et al',2009,'CS',0],
+      [6,'Design Patterns','Erich Gamma',1994,'Tech',1],[7,'Artificial Intelligence','Stuart Russell',2020,'CS',1],[8,'Deep Learning','Ian Goodfellow',2016,'Tech',0],[9,'Code Complete','Steve McConnell',2004,'Tech',1],[10,'Refactoring','Martin Fowler',2018,'Tech',1],
+      [11,'The Mythical Man-Month','Fred Brooks',1995,'Tech',0],[12,'Cracking the Coding Interview','Gayle Laakmann',2015,'Tech',1],[13,'Head First Java','Kathy Sierra',2005,'Tech',1],[14,'Python Crash Course','Eric Matthes',2019,'Tech',1],[15,'Fluent Python','Luciano Ramalho',2015,'Tech',0],
+      [16,'Automate the Boring Stuff','Al Sweigart',2019,'Tech',1],[17,'Effective Java','Joshua Bloch',2018,'Tech',1],[18,'Clean Architecture','Robert Martin',2017,'Tech',1],[19,'The Phoenix Project','Gene Kim',2013,'Fiction',0],[20,'Hackers & Painters','Paul Graham',2004,'Tech',1],
+      [21,'Programming Pearls','Jon Bentley',1999,'Tech',1],[22,'Algorithms to Live By','Brian Christian',2016,'Psychology',1],[23,'Grokking Algorithms','Aditya Bhargava',2016,'Tech',0],[24,'Structure and Interpretation','Harold Abelson',1996,'CS',1],[25,'Operating System Concepts','Abraham Silberschatz',2018,'CS',1],
+      [26,'Computer Networking','James Kurose',2016,'CS',1],[27,'Database System Concepts','Abraham Silberschatz',2019,'CS',0],[28,'Designing Data-Intensive Applications','Martin Kleppmann',2017,'Tech',1],[29,'Site Reliability Engineering','Betsy Beyer',2016,'Tech',1],[30,'Code','Charles Petzold',1999,'Tech',1],
+      [31,'The C Programming Language','Brian Kernighan',1988,'Tech',1],[32,'Modern C++','Scott Meyers',2014,'Tech',0],[33,'The Rust Programming Language','Steve Klabnik',2019,'Tech',1],[34,'Learning Python','Mark Lutz',2013,'Tech',1],[35,'Python Cookbook','David Beazley',2013,'Tech',1],
+      [36,'JavaScript: The Good Parts','Douglas Crockford',2008,'Tech',0],[37,'CSS Secrets','Lea Verou',2015,'Tech',1],[38,'Sapiens','Yuval Noah Harari',2015,'History',1],[39,'1984','George Orwell',1949,'Fiction',1],[40,'To Kill a Mockingbird','Harper Lee',1960,'Fiction',0],
+      [41,'The Great Gatsby','F. Scott Fitzgerald',1925,'Fiction',1],[42,'Dune','Frank Herbert',1965,'Fiction',1],[43,'A Brief History of Time','Stephen Hawking',1988,'Science',1],[44,'Atomic Habits','James Clear',2018,'Psychology',1],[45,'Outliers','Malcolm Gladwell',2008,'Psychology',0],
+      [46,'The Alchemist','Paulo Coelho',1988,'Fiction',1],[47,'Steve Jobs','Walter Isaacson',2011,'Biography',1],[48,'Elon Musk','Ashlee Vance',2015,'Biography',1],[49,'Shoe Dog','Phil Knight',2016,'Biography',0],[50,'Educated','Tara Westover',2018,'Biography',1]
+    ]},
     members:{cols:['id','name','email','joined','loans_count'],rows:[[1,'Shamsaddin A.','amanovshams@gmail.com','2026-02-01',3],[2,'Alice B.','alice@edu.au','2025-06-15',7],[3,'Bob C.','bob@edu.au','2024-11-20',2]]},
     loans:{cols:['id','member_id','book_id','borrow_date','return_date'],rows:[[1,1,2,'2026-03-01',null],[2,1,5,'2026-03-05',null],[3,2,1,'2026-02-20','2026-03-01'],[4,3,3,'2026-01-10','2026-01-20']]}
   }
@@ -2350,7 +2383,7 @@ const QUICK_QUERIES={
 monash:[
   {label:'All Students',sql:'SELECT * FROM students;'},
   {label:'All Courses',sql:'SELECT * FROM courses;'},
-  {label:'Student GPA ≥ 3.5',sql:"SELECT name, gpa FROM students\nWHERE gpa >= 3.5\nORDER BY gpa DESC;"},
+  {label:'Student GPA >= 3.5',sql:"SELECT name, gpa FROM students\nWHERE gpa >= 3.5\nORDER BY gpa DESC;"},
   {label:'Enrollment JOIN',sql:"SELECT s.name, c.code, e.grade\nFROM enrollment e\nJOIN students s ON e.student_id = s.student_id\nJOIN courses c ON e.course_id = c.course_id\nORDER BY s.name;"},
   {label:'Avg GPA by Year',sql:"SELECT year, ROUND(AVG(gpa),2) AS avg_gpa,\n       COUNT(*) AS count\nFROM students\nGROUP BY year;"},
   {label:'Courses with Lecturer',sql:"SELECT c.code, c.title, l.name AS lecturer\nFROM courses c\nLEFT JOIN lecturers l ON c.course_id = l.course_id;"}
