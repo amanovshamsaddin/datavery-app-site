@@ -1897,9 +1897,8 @@ function tblH(t){return TH+t.fields.length*FH+TPAD;}
 
 // ── SQL ENGINE: AlaSQL (pure JS, zero WASM) ──────────────────────────────
 const _ALA_URLS=[
-  'https://cdnjs.cloudflare.com/ajax/libs/alasql/4.2.1/alasql.min.js',
-  'https://cdn.jsdelivr.net/npm/alasql@4.2.1/dist/alasql.min.js',
-  'https://unpkg.com/alasql@4.2.1/dist/alasql.min.js'
+  './alasql.min.js', // Tries to fetch from datavery.app first!
+  'https://cdnjs.cloudflare.com/ajax/libs/alasql/4.2.1/alasql.min.js' // Fallback
 ];
 
 function getSQL(){
