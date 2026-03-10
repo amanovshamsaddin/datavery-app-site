@@ -1350,8 +1350,10 @@ if(cform){
   function vld(id,errId,fn){const el=document.getElementById(id);const er=document.getElementById(errId);const ok=fn(el.value.trim());el.classList.toggle('err',!ok);if(er)er.classList.toggle('show',!ok);return ok;}
   cform.addEventListener('submit',async e=>{
     e.preventDefault();
-    const ok=vld('cf-name','err-name',v=>v.length>=2)&vld('cf-email','err-email',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))&vld('cf-message','err-msg',v=>v.length>=10);
-    if(!ok)return;
+    const nameOk = vld('cf-name','err-name',v=>v.length>=2);
+    const emailOk = vld('cf-email','err-email',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+    const msgOk = vld('cf-message','err-msg',v=>v.length>=10);
+    if(!(nameOk && emailOk && msgOk)) return;
     const btn=document.getElementById('form-submit');btn.disabled=true;document.getElementById('submit-txt').textContent='Transmitting…';
     await new Promise(r=>setTimeout(r,1400));
     btn.disabled=false;document.getElementById('submit-txt').textContent='Execute Transmission';
@@ -1849,12 +1851,14 @@ window.deleteCell=function(id){
     }
 };
 
-async function getPyodide(){
-  if(pyodide)return pyodide;
-  if(pyLoading){while(pyLoading&&!pyReady)await new Promise(r=>setTimeout(r,200));return pyodide;}
-  pyLoading=true;
-  const dot=document.getElementById('pydot'),stxt=document.getElementById('py-status-txt');
-  try{
+let pyodidePromise = null;
+function getPyodide(){
+  if(pyodide) return Promise.resolve(pyodide);
+  if(pyodidePromise) return pyodidePromise;
+  const dot=document.getElementById('pydot'),stxt=document.getElementById('py-status-txt');
+
+  pyodidePromise = (async () => {
+    try{
     if(!window.loadPyodide){
       await new Promise((res,rej)=>{const s=document.createElement('script');s.src=PYODIDE_CDN;s.onload=res;s.onerror=rej;document.head.appendChild(s);});
     }
@@ -1870,7 +1874,9 @@ async function getPyodide(){
     ['numpy','pandas','matplotlib','scipy','sklearn'].forEach(p=>{document.getElementById('pkg-'+p)?.classList.add('loaded');});
     pyReady=true;pyLoading=false;toast('success','🐍','Python runtime ready!');
     return pyodide;
-  }catch(err){pyLoading=false;if(dot)dot.className='pydot err';if(stxt)stxt.textContent='Failed to load Python. Check internet connection.';throw err;}
+  }catch(err){pyodidePromise=null;if(dot)dot.className='pydot err';if(stxt)stxt.textContent='Failed to load Python. Check internet connection.';throw err;}
+  })();
+  return pyodidePromise;
 }
 
 let pyIsRunning = false;
@@ -2606,7 +2612,7 @@ function renderChart(){
   const chartData={labels,datasets:[{label:yc,data:values,backgroundColor:Array.isArray(bgColors)?bgColors:ct==='line'||ct==='area'?'rgba(34,211,238,.15)':palette[0],borderColor:ct==='line'||ct==='area'?palette[0]:undefined,borderWidth:ct==='line'||ct==='area'?2:1,tension:.4,fill:ct==='area',pointRadius:ct==='scatter'?5:3}]};
   const ctype=ct==='histogram'?'bar':ct==='area'?'line':ct;
   if(ct==='histogram'){const sorted=values.slice().sort((a,b)=>a-b);const bins=12;const min=sorted[0],max=sorted[sorted.length-1],bw=(max-min)/bins;const counts=Array(bins).fill(0);values.forEach(v=>{const bi=Math.min(Math.floor((v-min)/bw),bins-1);counts[bi]++;});chartData.labels=Array(bins).fill(0).map((_,i)=>(min+i*bw).toFixed(1));chartData.datasets[0].data=counts;chartData.datasets[0].backgroundColor=palette[0]+'cc';}
-  chartInstance=new Chart(mc,{type:ctype,data:chartData,options:{responsive:true,plugins:{legend:{display:Boolean(colorBy),labels:{color:isDark?'#7a94b4':'#5a4a3a',font:{family:"'JetBrains Mono',monospace",size:11}}},tooltip:{backgroundColor:isDark?'#1a2237':'#fff',titleColor:isDark?'#22d3ee':'#b45309',bodyColor:isDark?'#e8eef8':'#1c1309',borderColor:isDark?'#1e2d45':'#e0d8cc',borderWidth:1}},scales:ct==='pie'?{}:{x:{ticks:{color:isDark?'#7a94b4':'#5a4a3a',font:{size:10}},grid:{color:isDark?'#1e2d45':'#e0d8cc'}},y:{ticks:{color:isDark?'#7a94b4':'#5a4a3a',font:{size:10}},grid:{color:isDark?'#1e2d45':'#e0d8cc'}}}}});
+  chartInstance=new Chart(mc,{type:ctype,data:chartData,options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:Boolean(colorBy),labels:{color:isDark?'#7a94b4':'#5a4a3a',font:{family:"'JetBrains Mono',monospace",size:11}}},tooltip:{backgroundColor:isDark?'#1a2237':'#fff',titleColor:isDark?'#22d3ee':'#b45309',bodyColor:isDark?'#e8eef8':'#1c1309',borderColor:isDark?'#1e2d45':'#e0d8cc',borderWidth:1}},scales:ct==='pie'?{}:{x:{ticks:{color:isDark?'#7a94b4':'#5a4a3a',font:{size:10}},grid:{color:isDark?'#1e2d45':'#e0d8cc'}},y:{ticks:{color:isDark?'#7a94b4':'#5a4a3a',font:{size:10}},grid:{color:isDark?'#1e2d45':'#e0d8cc'}}}}});
 }
 
 function initPlayground(){
@@ -2617,7 +2623,12 @@ function initPlayground(){
   uz?.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('drag');});
   uz?.addEventListener('dragleave',()=>uz.classList.remove('drag'));
   uz?.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('drag');const f=e.dataTransfer.files[0];if(f)loadFile(f);});
-  fi?.addEventListener('change',e=>{if(e.target.files[0])loadFile(e.target.files[0]);});
+  fi?.addEventListener('change',e=>{
+    if(e.target.files[0]){
+        loadFile(e.target.files[0]);
+        e.target.value = ''; // Reset input so same file can be uploaded again
+    }
+  });
   document.querySelectorAll('.sample-btn').forEach(b=>b.addEventListener('click',()=>{const s=SAMPLE_DATA[b.dataset.sample];if(s){const parsed={cols:s.cols,rows:s.rows.map(r=>r.map(v=>String(v)))};renderPG(s.name,parsed);}}));
   document.getElementById('render-chart-btn')?.addEventListener('click',renderChart);
   document.getElementById('apply-filter-btn')?.addEventListener('click',()=>{if(!pgData)return;const col=document.getElementById('filter-col').value.trim(),val=document.getElementById('filter-val').value.trim();if(!col||!val){pgFiltered=null;}else{const ci=pgData.cols.indexOf(col);if(ci<0)return toast('error','✗','Column not found.');pgFiltered={cols:pgData.cols,rows:pgData.rows.filter(r=>String(r[ci]).toLowerCase().includes(val.toLowerCase()))};document.getElementById('ds-meta').textContent=`${pgFiltered.rows.length} rows (filtered) × ${pgData.cols.length} columns`;}});
