@@ -1778,7 +1778,7 @@ print("\\nClassification Report:")
 print(classification_report(y_test, y_pred, target_names=iris.target_names))`
 };
 
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 
 function createCell(code=''){
   cellCtr++;const id=cellCtr;
@@ -1819,7 +1819,19 @@ function createCell(code=''){
 }
 window.moveCellUp=function(id){const c=document.querySelector(`[data-id="${id}"]`);const p=c.previousElementSibling;if(p&&p.classList.contains('cell'))c.parentNode.insertBefore(c,p);};
 window.moveCellDown=function(id){const c=document.querySelector(`[data-id="${id}"]`);const n=c.nextElementSibling;if(n&&n.classList.contains('cell'))c.parentNode.insertBefore(n,c);};
-window.deleteCell=function(id){const cells=document.querySelectorAll('.cell');if(cells.length<=1){const cm=cells[0].cmInstance;if(cm)cm.setValue('');return;}document.querySelector(`[data-id="${id}"]`)?.remove();};
+window.deleteCell=function(id){
+    const cells=document.querySelectorAll('.cell');
+    if(cells.length<=1){
+        const cm=cells[0].cmInstance;
+        if(cm)cm.setValue('');
+        return;
+    }
+    const cell = document.querySelector(`[data-id="${id}"]`);
+    if(cell) {
+        if(cell.cmInstance) { cell.cmInstance.toTextArea(); }
+        cell.remove();
+    }
+};
 
 async function getPyodide(){
   if(pyodide)return pyodide;
@@ -1919,9 +1931,11 @@ function tblH(t){return TH+t.fields.length*FH+TPAD;}
 function loadSqlJs(){
   if(sqlDB)return Promise.resolve();
   if(sqljsP)return sqljsP;
+  async function createErdDB(){const SQL=await window.initSqlJs({locateFile:f=>'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/'+f});sqlDB=new SQL.Database();sqlDB.run("PRAGMA foreign_keys=ON;");}
   sqljsP=new Promise((res,rej)=>{
+    if(window.initSqlJs){createErdDB().then(res).catch(rej);return;}
     const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js';
-    s.onload=async()=>{try{const SQL=await window.initSqlJs({locateFile:f=>'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/'+f});sqlDB=new SQL.Database();sqlDB.run("PRAGMA foreign_keys=ON;");res();}catch(e){rej(e);}};
+    s.onload=()=>createErdDB().then(res).catch(rej);
     s.onerror=()=>rej(new Error('sql.js failed'));document.head.appendChild(s);
   });
   return sqljsP;
@@ -2120,7 +2134,8 @@ function confirmAddField(){
   const fkRef=document.getElementById('fk-ref').value.trim();
   const notNull=document.getElementById('fld-nn').checked,unique=document.getElementById('fld-uq').checked,ai=document.getElementById('fld-ai').checked;
   tbl.fields.push({name:fname,type,pk:kv==='pk'||kv==='both',fk:kv==='fk'||kv==='both',fkRef,notNull,unique,ai});
-  let col=`"${fname}" ${type}`;if(ai&&type==='INTEGER')col+=' AUTOINCREMENT';if(notNull)col+=' NOT NULL';if(unique)col+=' UNIQUE';
+  const safeFname = fname.replace(/"/g, '""');
+  let col=`"${safeFname}" ${type}`;if(ai&&type==='INTEGER')col+=' AUTOINCREMENT';if(notNull)col+=' NOT NULL';if(unique)col+=' UNIQUE';
   execSilent(`ALTER TABLE "${tbl.name}" ADD COLUMN ${col};`);
   closeModal('m-fld');refreshUI();toast('success','✓',`'${fname}' added to ${tbl.name}.`);
 }
@@ -2435,7 +2450,7 @@ function runSBQuery(){
 }
 
 function formatSQL(sql){
-  const kws=['SELECT','FROM','WHERE','JOIN','LEFT JOIN','RIGHT JOIN','INNER JOIN','ON','GROUP BY','ORDER BY','HAVING','LIMIT','OFFSET','INSERT INTO','VALUES','UPDATE','SET','DELETE FROM','CREATE TABLE','DROP TABLE','ALTER TABLE','ADD COLUMN','AND','OR','NOT','AS','DISTINCT','COUNT','SUM','AVG','MIN','MAX','NULL','IS NULL','IS NOT NULL','IN','BETWEEN','LIKE'];
+  const kws=['LEFT JOIN','RIGHT JOIN','INNER JOIN','INSERT INTO','DELETE FROM','CREATE TABLE','DROP TABLE','ALTER TABLE','ADD COLUMN','GROUP BY','ORDER BY','IS NOT NULL','IS NULL','SELECT','FROM','WHERE','JOIN','HAVING','LIMIT','OFFSET','VALUES','UPDATE','SET','AND','OR','NOT','AS','DISTINCT','COUNT','SUM','AVG','MIN','MAX','NULL','IN','BETWEEN','LIKE','ON'];
   let formatted=sql.replace(/\s+/g,' ').trim();
   kws.forEach(k=>{const re=new RegExp('\\b'+k+'\\b','gi');formatted=formatted.replace(re,'\n'+k);});
   return formatted.replace(/\n+/g,'\n').trim();
@@ -2598,10 +2613,9 @@ function marieAssemble(src){
   let addr=orgAddr;
   lines.forEach((rawLine,lineNo)=>{
     let line=rawLine.replace(/\/.*$/,'').trim();if(!line)return;
-    const labelMatch=line.match(/^([A-Za-z_][A-Za-z0-9_]*)\s*,?\s*(.*)/);
+    const commaIdx=line.indexOf(',');
     let label='',rest=line;
-    if(labelMatch&&labelMatch[2]&&/^[A-Z]/i.test(labelMatch[2].trim())){label=labelMatch[1].toUpperCase();rest=labelMatch[2].trim();}
-    else if(labelMatch&&!labelMatch[2]){label=labelMatch[1].toUpperCase();rest='';}
+    if(commaIdx>0){label=line.slice(0,commaIdx).trim().toUpperCase();rest=line.slice(commaIdx+1).trim();}
     const parts=rest.trim().split(/\s+/);const mnem=parts[0]?.toUpperCase();
     if(mnem==='ORG'){orgAddr=parseInt(parts[1],16)||parseInt(parts[1],10);addr=orgAddr;return;}
     if(mnem==='END')return;
@@ -2612,10 +2626,9 @@ function marieAssemble(src){
   addr=orgAddr;
   lines.forEach((rawLine,lineNo)=>{
     let line=rawLine.replace(/\/.*$/,'').trim();if(!line)return;
-    const labelMatch=line.match(/^([A-Za-z_][A-Za-z0-9_]*)\s*,?\s*(.*)/);
-    let rest=line;
-    if(labelMatch&&labelMatch[2]&&/^[A-Z]/i.test(labelMatch[2].trim()))rest=labelMatch[2].trim();
-    else if(labelMatch&&!labelMatch[2])rest='';
+    const commaIdx=line.indexOf(',');
+    let label='',rest=line;
+    if(commaIdx>0){label=line.slice(0,commaIdx).trim().toUpperCase();rest=line.slice(commaIdx+1).trim();}
     const parts=rest.trim().split(/\s+/);const mnem=parts[0]?.toUpperCase(),arg=parts[1];
     if(!mnem||mnem==='ORG'||mnem==='END')return;
     let word=0;
@@ -2706,7 +2719,6 @@ function updateMarieControls(assembled,halted){
   document.getElementById('marie-stop').disabled=!marieVM.running;
 }
 
-let marieRunInterval=null;
 function marieRunLoop(){
   if(marieVM.halted||marieVM.waitingInput){clearInterval(marieRunInterval);marieRunInterval=null;updateMarieControls(true,marieVM.halted);return;}
   marieStep();
