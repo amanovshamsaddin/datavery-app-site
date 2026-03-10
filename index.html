@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="terminal">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1257,8 +1257,8 @@ window.addEventListener('load',()=>setTimeout(()=>document.getElementById('boot'
 
 /* ─── THEME ─── */
 const html=document.documentElement;
-let curTheme='dark';
-try{curTheme=localStorage.getItem('dv-theme')||'dark';}catch(e){}
+let curTheme='terminal';
+try{curTheme=localStorage.getItem('dv-theme')||'terminal';}catch(e){}
 function setTheme(t){
   curTheme=t;html.setAttribute('data-theme',t);
   try{localStorage.setItem('dv-theme',t);}catch(e){}
