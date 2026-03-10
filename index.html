@@ -1966,14 +1966,24 @@ function getSQL() {
   globalSqlPromise = new Promise((resolve, reject) => {
     let isResolved = false;
     
-    const init = () => window.initSqlJs({locateFile: f => 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/' + f})
-      .then(SQL => { isResolved = true; globalSQL = SQL; resolve(SQL); })
-      .catch(e => { isResolved = true; reject(e); });
+    const init = () => {
+      try {
+        // Fallback to highly stable version 1.8.0
+        window.initSqlJs({locateFile: f => 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/' + f})
+          .then(SQL => { isResolved = true; globalSQL = SQL; resolve(SQL); })
+          .catch(e => { isResolved = true; reject(e); });
+      } catch (e) {
+        // This catches the synchronous error if window.initSqlJs is undefined
+        isResolved = true; 
+        reject(new Error('initSqlJs is undefined. The CDN may have failed to deliver the script.'));
+      }
+    };
       
     if(window.initSqlJs) { init(); return; }
     
     const s = document.createElement('script');
-    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js';
+    // Using 1.8.0 to ensure CDNJS hits a valid file
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js';
     s.onload = init;
     s.onerror = () => { isResolved = true; reject(new Error('sql.js script blocked by browser')); };
     document.head.appendChild(s);
