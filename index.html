@@ -644,6 +644,36 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
 .t-warn{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.07)}
 .t-info{border-color:var(--abdr);background:var(--adim)}
 
+/* ===== PYTHON LAB PRO ADDITIONS ===== */
+.holo-widget {
+  background: transparent;
+  color: var(--txt3);
+  font-family: var(--ff-m);
+  font-size: 0.7rem;
+  font-style: italic;
+  padding: 0.1rem 0.5rem;
+  margin-left: 2rem;
+  border-left: 2px solid var(--success);
+  display: inline-block;
+  opacity: 0.8;
+  white-space: pre-wrap;
+}
+.holo-widget.err {
+  border-left-color: var(--danger);
+  color: #ff7b72;
+}
+.vfs-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--bdr);
+}
+.vfs-del {
+  background: none; border: none; color: var(--danger); cursor: pointer;
+}
+.vfs-del:hover { color: #ff7b72; }
+
 /* ===== MISC ===== */
 #btt{position:fixed;bottom:1.5rem;right:1.5rem;width:36px;height:36px;background:var(--surf);border:1px solid var(--bdr);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s,border-color .2s;color:var(--txt2)}
 #btt.show{opacity:1;transform:translateY(0)}
@@ -909,50 +939,63 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
 
 <!-- ===== PYTHON LAB ===== -->
 <div class="page" id="page-lab">
-  <div class="lab-header">
-    <div class="lab-title-row">
-      <div class="lab-title">🐍 DataVery Python Lab</div>
-      <div class="lab-actions">
-        <button class="assist-btn" id="assist-btn">🤖 Assist: ON</button>
-        <button class="btn btn-ghost btn-sm" id="run-all-btn">▶ Run All</button>
-        <button class="btn btn-ghost btn-sm" id="clear-all-btn">⬜ Clear</button>
-        <button class="btn btn-ghost btn-sm" id="reset-kernel-btn">↺ Reset</button>
-        <button class="btn btn-ghost btn-sm" id="add-top-btn">+ Cell</button>
+  <div class="lab-layout" style="display:grid; grid-template-columns: 280px 1fr; height: calc(100vh - 52px);">
+    
+    <div class="lab-sidebar" style="background: var(--surf); border-right: 1px solid var(--bdr); display: flex; flex-direction: column; overflow: hidden;">
+      
+      <div style="padding: 1rem; border-bottom: 1px solid var(--bdr);">
+        <div class="sec-lbl" style="margin-bottom: 0.5rem;">Virtual File System</div>
+        <div class="upload-zone" id="py-vfs-drop" role="button" tabindex="0" style="padding: 1rem; margin-bottom: 0.5rem;">
+          <p style="font-size: 0.65rem; margin:0;">Drop CSV/TXT here to load to EMFS</p>
+        </div>
+        <input type="file" id="py-vfs-input" style="display:none" multiple>
+        <div id="py-vfs-list" style="max-height: 150px; overflow-y: auto; font-family: var(--ff-m); font-size: 0.6rem; color: var(--txt2);">
+          </div>
+      </div>
+
+      <div style="padding: 1rem; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+        <div class="sec-lbl" style="margin-bottom: 0.5rem;">Variable Inspector</div>
+        <div style="overflow-y: auto; flex: 1;">
+          <table class="dtbl" style="font-size: 0.6rem;">
+            <thead><tr><th>Name</th><th>Type</th><th>Value</th></tr></thead>
+            <tbody id="py-var-table">
+              <tr><td colspan="3" style="text-align:center; color:var(--txt3);">Run code to inspect variables</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="py-status">
-      <div class="pydot" id="pydot"></div>
-      <span id="py-status-txt">Loading Python runtime (Pyodide)… First load: ~20s.</span>
-    </div>
-    <div class="pkg-row" id="pkg-row" style="display:none;">
-      <span class="pkg-lbl">Packages:</span>
-      <span class="pkg-chip" id="pkg-numpy">numpy</span>
-      <span class="pkg-chip" id="pkg-pandas">pandas</span>
-      <span class="pkg-chip" id="pkg-matplotlib">matplotlib</span>
-      <span class="pkg-chip" id="pkg-scipy">scipy</span>
-      <span class="pkg-chip" id="pkg-sklearn">scikit-learn</span>
+
+    <div class="lab-main" style="display: flex; flex-direction: column; overflow: hidden; background: var(--bg);">
+      <div class="lab-header">
+        <div class="lab-title-row">
+          <div class="lab-title">🐍 DataVery Python Lab Pro</div>
+          <div class="lab-actions">
+            <button class="assist-btn" id="holo-mode-btn" title="Live inline execution">👻 Holo: OFF</button>
+            <button class="btn btn-ghost btn-sm" id="run-all-btn">▶ Run All</button>
+            <button class="btn btn-ghost btn-sm" id="clear-all-btn">⬜ Clear</button>
+            <button class="btn btn-ghost btn-sm" id="reset-kernel-btn">↺ Reboot Kernel</button>
+            <button class="btn btn-ghost btn-sm" id="add-top-btn">+ Top Cell</button>
+          </div>
+        </div>
+        <div class="py-status">
+          <div class="pydot" id="pydot"></div>
+          <span id="py-status-txt">Booting Pyodide Environment (Downloading WASM binaries)...</span>
+        </div>
+        <div class="pkg-row" id="pkg-row" style="display:none;">
+          <span class="pkg-lbl">Kernel:</span>
+          <span class="pkg-chip loaded">AST Evaluator</span>
+          <span class="pkg-chip loaded">Custom Matplotlib Hook</span>
+          <span class="pkg-chip" id="pkg-numpy">numpy</span>
+          <span class="pkg-chip" id="pkg-pandas">pandas</span>
+          <span class="pkg-chip" id="pkg-sklearn">scikit-learn</span>
+        </div>
+      </div>
+      
+      <div class="notebook" id="notebook" style="flex: 1; overflow-y: auto; padding-bottom: 4rem;">
+        </div>
     </div>
   </div>
-  <div class="lab-ex">
-    <span class="ex-lbl">Basics:</span>
-    <button class="ex-chip" data-ex="hello">Hello</button>
-    <button class="ex-chip" data-ex="booleans">Booleans</button>
-    <button class="ex-chip" data-ex="while_loop">While Loop</button>
-    <button class="ex-chip" data-ex="for_loop">For Loop</button>
-    <button class="ex-chip" data-ex="functions">Functions</button>
-    <span class="ex-lbl" style="margin-left:.5rem;">OOP:</span>
-    <button class="ex-chip" data-ex="classes">Classes</button>
-    <button class="ex-chip" data-ex="inheritance">Inheritance</button>
-    <button class="ex-chip" data-ex="recursion">Recursion</button>
-    <button class="ex-chip" data-ex="exceptions">Exceptions</button>
-    <span class="ex-lbl" style="margin-left:.5rem;">DS:</span>
-    <button class="ex-chip" data-ex="numpy">NumPy</button>
-    <button class="ex-chip" data-ex="pandas">Pandas</button>
-    <button class="ex-chip" data-ex="plot">Plot</button>
-    <button class="ex-chip" data-ex="stats">Stats</button>
-    <button class="ex-chip" data-ex="ml">Sklearn</button>
-  </div>
-  <div class="notebook" id="notebook"></div>
 </div>
 
 <!-- ===== DATABASE ERD ===== -->
@@ -1454,520 +1497,389 @@ document.getElementById('m-proj-ok')?.addEventListener('click',()=>{
 pageInits.projects=function(){renderProjects();observeReveals(document.getElementById('page-projects'));};
 
 /* ═══════════════════════════════════════════════
-   PYTHON LAB — PYODIDE
+   PYTHON LAB PRO — ADVANCED PYODIDE ENGINE
 ═══════════════════════════════════════════════ */
-const PYODIDE_CDN='https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js';
-let pyodide=null,pyLoading=false,pyReady=false,execCount=0,cellCtr=0,labInited=false;
-let assistOn=true;
+const PYODIDE_CDN = 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js';
+let pyodide = null, pyReady = false, pyIsRunning = false;
+let execCount = 0, cellCtr = 0, labInited = false;
+let holoMode = false, holoTimer = null;
 
-const PY_KEYWORDS=['False','None','True','and','as','assert','async','await','break','class','continue','def','del','elif','else','except','finally','for','from','global','if','import','in','is','lambda','nonlocal','not','or','pass','raise','return','try','while','with','yield','print','len','range','input','type','int','float','str','list','dict','tuple','set','bool','enumerate','zip','map','filter','sorted','reversed','sum','min','max','abs','round','open','self','__init__','super','append','extend','insert','remove','pop','clear','copy','keys','values','items','get','update','split','join','strip','lower','upper','replace','format','isinstance','issubclass','hasattr','getattr','setattr','dir','help'];
-
-const EXAMPLES={
-hello:`# Week 1 — Introduction to Python
-print("Hello, World!")
-print("Python is running live in your browser! 🐍")
-
-# Variables and types
-name = "Shamsaddin"
-course = "FIT9136"
-year = 2026
-gpa = 4.0
-
-print(f"Student: {name}")
-print(f"Course: {course} | Year: {year}")
-print(f"Type checks: name={type(name).__name__}, year={type(year).__name__}")`,
-
-booleans:`# Week 2 — Boolean Expressions & Logical Operators (FIT9136)
-x = 10
-y = 3
-
-# Comparison operators
-print("x > y:", x > y)
-print("x == y:", x == y)
-print("x != y:", x != y)
-
-# Logical operators
-a, b = True, False
-print("\\nand:", a and b)
-print("or:", a or b)
-print("not a:", not a)
-
-# Short-circuit evaluation
-def check(val):
-    print(f"  checked({val})")
-    return val
-
-print("\\nShort-circuit (and stops early if False):")
-result = check(False) and check(True)
-print("Result:", result)`,
-
-while_loop:`# Week 2 — While Loops (FIT9136)
-# Basic while loop
-count = 0
-print("Counting up:")
-while count < 5:
-    print(f"  count = {count}")
-    count += 1
-
-# While with break and continue
-print("\\nFizz-Buzz (1-15):")
-n = 1
-while n <= 15:
-    if n % 15 == 0:
-        print("FizzBuzz")
-    elif n % 3 == 0:
-        print("Fizz")
-    elif n % 5 == 0:
-        print("Buzz")
-    else:
-        print(n)
-    n += 1`,
-
-for_loop:`# Week 3 — For Loops & Sequences (FIT9136)
-# Iterating lists
-fruits = ["apple","banana","cherry","date"]
-for i, fruit in enumerate(fruits):
-    print(f"  [{i}] {fruit}")
-
-# Range
-print("\\nSquares (range):")
-squares = [x**2 for x in range(1, 8)]
-print(squares)
-
-# Nested loop
-print("\\nMultiplication table (3x3):")
-for i in range(1, 4):
-    row = [i*j for j in range(1, 4)]
-    print(row)
-
-# Dictionary iteration
-grades = {"Alice": 92, "Bob": 85, "Shamsaddin": 97}
-print("\\nGrades:")
-for name, grade in grades.items():
-    print(f"  {name}: {grade}")`,
-
-functions:`# Week 4 — Functions, Scoping, Namespaces (FIT9136)
-def greet(name, greeting="Hello"):
-    """Return a greeting string."""
-    return f"{greeting}, {name}!"
-
-print(greet("Shamsaddin"))
-print(greet("Monash", "Welcome to"))
-
-# *args and **kwargs
-def describe(*args, **kwargs):
-    print("Args:", args)
-    print("Kwargs:", kwargs)
-
-describe(1, 2, 3, name="DataVery", version=4)
-
-# Closures
-def make_multiplier(n):
-    def multiply(x):
-        return x * n
-    return multiply
-
-triple = make_multiplier(3)
-print("\\nTriple 7:", triple(7))
-
-# Lambda
-evens = list(filter(lambda x: x % 2 == 0, range(20)))
-print("Evens:", evens)`,
-
-classes:`# Week 8 — Object-Oriented Programming 1 (FIT9136)
-class Student:
-    university = "Monash University"  # class variable
-    
-    def __init__(self, name, student_id, gpa=0.0):
-        self.name = name
-        self.student_id = student_id
-        self.gpa = gpa
-        self._courses = []
-    
-    def enroll(self, course):
-        self._courses.append(course)
-        print(f"  {self.name} enrolled in {course}")
-    
-    def __repr__(self):
-        return f"Student('{self.name}', id={self.student_id}, gpa={self.gpa})"
-    
-    @property
-    def course_count(self):
-        return len(self._courses)
-
-s = Student("Shamsaddin Amanov", "33456789", 3.9)
-s.enroll("FIT9136")
-s.enroll("FIT9132")
-s.enroll("FIT9137")
-print(s)
-print("University:", Student.university)
-print("Enrolled in", s.course_count, "courses")`,
-
-inheritance:`# Week 9 — OOP 2: Inheritance & Polymorphism (FIT9136)
-class Animal:
-    def __init__(self, name):
-        self.name = name
-    def speak(self):
-        return "..."
-    def __str__(self):
-        return f"{type(self).__name__}({self.name})"
-
-class Dog(Animal):
-    def speak(self):
-        return "Woof!"
-
-class Cat(Animal):
-    def speak(self):
-        return "Meow!"
-
-class Duck(Animal):
-    def speak(self):
-        return "Quack!"
-
-animals = [Dog("Rex"), Cat("Whiskers"), Duck("Donald")]
-for animal in animals:
-    print(f"{animal}: {animal.speak()}")
-
-# isinstance check
-print("\\nType checks:")
-print("Rex is Animal?", isinstance(animals[0], Animal))
-print("Rex is Cat?", isinstance(animals[0], Cat))`,
-
-recursion:`# Week 11 — Recursion (FIT9136)
-def factorial(n):
-    if n <= 1:
-        return 1
-    return n * factorial(n - 1)
-
-def fibonacci(n, memo={}):
-    if n in memo: return memo[n]
-    if n <= 1: return n
-    memo[n] = fibonacci(n-1, memo) + fibonacci(n-2, memo)
-    return memo[n]
-
-def binary_search(arr, target, lo=0, hi=None):
-    if hi is None: hi = len(arr) - 1
-    if lo > hi: return -1
-    mid = (lo + hi) // 2
-    if arr[mid] == target: return mid
-    elif arr[mid] < target: return binary_search(arr, target, mid+1, hi)
-    else: return binary_search(arr, target, lo, mid-1)
-
-print("Factorials:", [factorial(n) for n in range(8)])
-print("Fibonacci:", [fibonacci(n) for n in range(12)])
-
-arr = sorted([3,7,1,9,4,6,2,8,5,10])
-print("\\nSorted:", arr)
-print("Search 7:", binary_search(arr, 7))
-print("Search 99:", binary_search(arr, 99))`,
-
-exceptions:`# Week 10 — Assertions, Exceptions & Unit Testing (FIT9136)
-def safe_divide(a, b):
-    assert isinstance(a, (int,float)) and isinstance(b, (int,float)), "Numbers only"
-    if b == 0:
-        raise ZeroDivisionError("Cannot divide by zero")
-    return a / b
-
-def parse_age(s):
-    try:
-        age = int(s)
-        if age < 0 or age > 150:
-            raise ValueError(f"Unrealistic age: {age}")
-        return age
-    except ValueError as e:
-        print(f"ValueError: {e}")
-        return None
-
-# Test exception handling
-tests = [("10", "ok"), ("-5", "neg"), ("abc", "bad"), ("200", "big")]
-for val, label in tests:
-    result = parse_age(val)
-    print(f"  parse_age({val!r}) [{label}] → {result}")
-
-# Safe divide
-for a, b in [(10, 3), (7, 0)]:
-    try:
-        print(f"{a}/{b} = {safe_divide(a,b):.4f}")
-    except (ZeroDivisionError, AssertionError) as e:
-        print(f"Error: {e}")`,
-
-numpy:`import numpy as np
-
-a = np.array([1, 2, 3, 4, 5])
-b = np.linspace(0, 2*np.pi, 6)
-print("Array a:", a)
-print("linspace b:", np.round(b, 3))
-print("Mean:", np.mean(a), "| Std:", np.std(a))
-
-# Matrix operations
-A = np.array([[2, 1], [5, 3]])
-print("\\nMatrix A:\\n", A)
-print("Inverse:\\n", np.round(np.linalg.inv(A), 4))
-print("Eigenvalues:", np.round(np.linalg.eigvals(A), 4))
-
-# Broadcasting
-x = np.arange(1, 6).reshape(5, 1)
-y = np.arange(1, 6)
-print("\\nOuter product:\\n", x * y)`,
-
-pandas:`import pandas as pd
-import numpy as np
-
-# Create a realistic student dataset
-np.random.seed(42)
-df = pd.DataFrame({
-    'student_id': range(1001, 1011),
-    'name': ['Alice','Bob','Carol','Dave','Eve','Frank','Grace','Hank','Iris','Jack'],
-    'age': np.random.randint(22, 30, 10),
-    'gpa': np.round(np.random.uniform(2.5, 4.0, 10), 2),
-    'course': np.random.choice(['FIT9136','FIT9132','FIT9137'], 10)
-})
-print("DataFrame shape:", df.shape)
-print(df.head())
-print("\\nDescriptive stats:")
-print(df[['age','gpa']].describe().round(2))
-print("\\nGPA by course (mean):")
-print(df.groupby('course')['gpa'].mean().round(3))`,
-
-plot:`import matplotlib
-matplotlib.use('Agg')
+// The Python Execution Wrapper (AST Parsing & Variable Extraction)
+// This is injected into the Python kernel on boot.
+const PY_WRAPPER = `
+import sys, io, ast, json, base64, traceback
 import matplotlib.pyplot as plt
-import numpy as np
-import base64, io
 
-x = np.linspace(-3, 3, 200)
-fig, axes = plt.subplots(1, 3, figsize=(12, 3.5))
-fig.patch.set_facecolor('#111827')
-for ax in axes:
-    ax.set_facecolor('#0c1225')
-    ax.tick_params(colors='#7a94b4')
-    ax.spines['bottom'].set_color('#1e2d45')
-    ax.spines['top'].set_color('#1e2d45')
-    ax.spines['left'].set_color('#1e2d45')
-    ax.spines['right'].set_color('#1e2d45')
+# Custom Matplotlib Show Hook
+def custom_show(*args, **kwargs):
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png', bbox_inches='tight', facecolor='#111827', transparent=True)
+    buf.seek(0)
+    b64 = base64.b64encode(buf.read()).decode('utf-8')
+    print(f"__PLOT__{b64}__PLOT__")
+    plt.clf()
+plt.show = custom_show
 
-axes[0].plot(x, np.sin(x), '#22d3ee', lw=2, label='sin')
-axes[0].plot(x, np.cos(x), '#fbbf24', lw=2, label='cos')
-axes[0].set_title('Trig Functions', color='#e8eef8')
-axes[0].legend(facecolor='#1a2237', labelcolor='#e8eef8')
+def execute_dv_cell(code_str):
+    old_stdout = sys.stdout
+    old_stderr = sys.stderr
+    sys.stdout = stdout_cap = io.StringIO()
+    sys.stderr = stderr_cap = io.StringIO()
+    
+    result = None
+    exec_err = ""
+    
+    try:
+        parsed = ast.parse(code_str)
+        if parsed.body and isinstance(parsed.body[-1], ast.Expr):
+            # Evaluate the last line if it's an expression
+            exec_body = parsed.body[:-1]
+            eval_body = parsed.body[-1]
+            if exec_body:
+                exec(compile(ast.Module(exec_body, type_ignores=[]), '<ast>', 'exec'), globals())
+            result = eval(compile(ast.Expression(eval_body.value), '<ast>', 'eval'), globals())
+        else:
+            exec(code_str, globals())
+    except Exception as e:
+        exec_err = "".join(traceback.format_exception_only(type(e), e))
+        print(exec_err, file=sys.stderr)
+    finally:
+        sys.stdout = old_stdout
+        sys.stderr = old_stderr
 
-data = np.random.randn(500)
-axes[1].hist(data, bins=25, color='#22d3ee', alpha=0.8, edgecolor='#0c1225')
-axes[1].set_title('Normal Distribution', color='#e8eef8')
+    # Variable Extraction
+    vars_dict = []
+    for k, v in globals().items():
+        if not k.startswith('_') and not str(type(v)).startswith("<class 'module"):
+            v_type = type(v).__name__
+            try:
+                v_repr = str(v)[:50] + ('...' if len(str(v)) > 50 else '')
+            except:
+                v_repr = "unprintable"
+            vars_dict.append({"name": k, "type": v_type, "val": v_repr})
+            
+    out_text = stdout_cap.getvalue()
+    err_text = stderr_cap.getvalue()
+    
+    if result is not None and result is not sys.modules:
+        if isinstance(result, str):
+            out_text += f"'{result}'\\n"
+        else:
+            out_text += f"{repr(result)}\\n"
 
-sizes = [35, 25, 20, 15, 5]
-labels = ['Python','SQL','Excel','R','Other']
-colors = ['#22d3ee','#a78bfa','#fbbf24','#4ade80','#fb923c']
-axes[2].pie(sizes, labels=labels, colors=colors, autopct='%1.0f%%', textprops={'color':'#e8eef8'})
-axes[2].set_title('Skills', color='#e8eef8')
+    return json.dumps({
+        "out": out_text.strip(),
+        "err": err_text.strip(),
+        "vars": vars_dict
+    })
+`;
 
-plt.tight_layout()
-buf = io.BytesIO()
-plt.savefig(buf, format='png', dpi=96, bbox_inches='tight', facecolor='#111827')
-buf.seek(0)
-img_b64 = base64.b64encode(buf.read()).decode()
-plt.close()
-print(f"__IMG__{img_b64}__IMG__")`,
-
-stats:`import numpy as np
-from scipy import stats
-
-np.random.seed(0)
-group_a = np.random.normal(72, 8, 40)
-group_b = np.random.normal(75, 9, 40)
-
-print("=== Descriptive Statistics ===")
-for name, g in [("Group A", group_a), ("Group B", group_b)]:
-    print(f"{name}: mean={g.mean():.2f} std={g.std():.2f} median={np.median(g):.2f}")
-
-t_stat, p_val = stats.ttest_ind(group_a, group_b)
-print(f"\\nt-test: t={t_stat:.4f}, p={p_val:.4f}")
-print("Significant (p<0.05):", p_val < 0.05)
-
-r, p = stats.pearsonr(group_a[:len(group_b)], group_b)
-print(f"\\nPearson r={r:.4f}, p={p:.4f}")`,
-
-ml:`from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, accuracy_score
-
-iris = load_iris()
-X, y = iris.data, iris.target
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
-
-clf = RandomForestClassifier(n_estimators=100, random_state=42)
-clf.fit(X_train, y_train)
-y_pred = clf.predict(X_test)
-
-print("Accuracy:", round(accuracy_score(y_test, y_pred)*100, 2), "%")
-print("\\nClassification Report:")
-print(classification_report(y_test, y_pred, target_names=iris.target_names))`
-};
-
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
-
-function createCell(code=''){
-  cellCtr++;const id=cellCtr;
-  const cell=document.createElement('div');cell.className='cell';cell.dataset.id=id;
-  cell.innerHTML=`
-    <div class="cell-header">
-      <span class="cell-num" id="cn-${id}">In [${id}]</span>
-      <div class="cell-tools">
-        <button class="cell-btn run-btn" data-id="${id}">▶ Run</button>
-        <button class="cell-btn" onclick="moveCellUp(${id})" title="Move up">↑</button>
-        <button class="cell-btn" onclick="moveCellDown(${id})" title="Move down">↓</button>
-        <button class="cell-btn del-btn" onclick="deleteCell(${id})" title="Delete">✕</button>
-      </div>
-    </div>
-    <div class="cell-editor" id="ce-${id}"><textarea id="ct-${id}" style="display:none">${esc(code)}</textarea></div>
-    <div class="cell-output" id="co-${id}" role="region" aria-live="polite"></div>`;
-  const nb=document.getElementById('notebook');
-  const addBtn=document.getElementById('add-cell-bottom');
-  if(addBtn)nb.insertBefore(cell,addBtn);else nb.appendChild(cell);
-  cell.querySelector('.run-btn').addEventListener('click',()=>runCell(id));
-  setTimeout(()=>{
-    const ta=document.getElementById(`ct-${id}`);
-    if(!ta||typeof CodeMirror==='undefined')return;
-    const cm=CodeMirror.fromTextArea(ta,{
-      mode:'python',theme:curTheme==='light'?'default':'dracula',
-      lineNumbers:true,autoCloseBrackets:true,matchBrackets:true,
-      indentUnit:4,tabSize:4,indentWithTabs:false,lineWrapping:false,
-      extraKeys:{
-        'Ctrl-Enter':()=>runCell(id),'Shift-Enter':()=>runCell(id),
-        'Ctrl-/':'toggleComment',
-        'Ctrl-Space':function(cmI){if(assistOn&&window.CodeMirror?.showHint)CodeMirror.showHint(cmI,CodeMirror.hint.anyword,{completeSingle:false});}
-      }
-    });
-    let typingTimer;
-    if(assistOn) cm.on('inputRead', (cmI, e) => {
-      if(e.origin !== '+input' && e.origin !== 'paste') return;
-      const c = e.text[0];
-      if(!c || c === '\n' || c === ' ') return;
-      clearTimeout(typingTimer);
-      typingTimer = setTimeout(() => {
-        if(window.CodeMirror?.showHint) CodeMirror.showHint(cmI, CodeMirror.hint.anyword, {completeSingle: false});
-      }, 300);
-    });
-    cell.cmInstance=cm;
-  },60);
-  return cell;
-}
-window.moveCellUp=function(id){const c=document.querySelector(`[data-id="${id}"]`);const p=c.previousElementSibling;if(p&&p.classList.contains('cell'))c.parentNode.insertBefore(c,p);};
-window.moveCellDown=function(id){const c=document.querySelector(`[data-id="${id}"]`);const n=c.nextElementSibling;if(n&&n.classList.contains('cell'))c.parentNode.insertBefore(n,c);};
-window.deleteCell=function(id){
-    const cells=document.querySelectorAll('.cell');
-    if(cells.length<=1){
-        const cm=cells[0].cmInstance;
-        if(cm)cm.setValue('');
-        return;
-    }
-    const cell = document.querySelector(`[data-id="${id}"]`);
-    if(cell) {
-        if(cell.cmInstance) { cell.cmInstance.toTextArea(); }
-        cell.remove();
-    }
-};
-
+// ─── 1. PYODIDE INITIALIZATION ───────────────────────────────────────
 let pyodidePromise = null;
-function getPyodide(){
-  if(pyodide) return Promise.resolve(pyodide);
-  if(pyodidePromise) return pyodidePromise;
-  const dot=document.getElementById('pydot'),stxt=document.getElementById('py-status-txt');
+function getPyodidePro() {
+  if (pyodide) return Promise.resolve(pyodide);
+  if (pyodidePromise) return pyodidePromise;
+  
+  const dot = document.getElementById('pydot');
+  const stxt = document.getElementById('py-status-txt');
 
-  pyodidePromise = (async () => {
-    try{
-    if(!window.loadPyodide){
-      await new Promise((res,rej)=>{const s=document.createElement('script');s.src=PYODIDE_CDN;s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+  pyodidePromise = (async () => {
+    try {
+      if (!window.loadPyodide) {
+        await new Promise((res, rej) => {
+          const s = document.createElement('script');
+          s.src = PYODIDE_CDN; s.onload = res; s.onerror = rej;
+          document.head.appendChild(s);
+        });
+      }
+      if (stxt) stxt.textContent = 'Booting WASM Python Environment...';
+      pyodide = await window.loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/' });
+      
+      if (stxt) stxt.textContent = 'Mounting MicroPip & Data Science Stack...';
+      await pyodide.loadPackage(['micropip']);
+      const micropip = pyodide.pyimport("micropip");
+      await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn']);
+      
+      if (stxt) stxt.textContent = 'Injecting DataVery AST Engine...';
+      await pyodide.runPythonAsync(PY_WRAPPER);
+      
+      if (dot) dot.className = 'pydot rdy';
+      if (stxt) stxt.textContent = 'Kernel Ready ✓';
+      document.getElementById('pkg-row').style.display = 'flex';
+      ['numpy', 'pandas', 'sklearn'].forEach(p => document.getElementById('pkg-'+p)?.classList.add('loaded'));
+      
+      pyReady = true;
+      toast('success', '🐍', 'Python Lab Pro Ready!');
+      return pyodide;
+    } catch (err) {
+      pyodidePromise = null;
+      if (dot) dot.className = 'pydot err';
+      if (stxt) stxt.textContent = 'Kernel Panic: Check console.';
+      console.error(err);
+      throw err;
     }
-    if(stxt)stxt.textContent='Initializing Python 3.11…';
-    pyodide=await window.loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/'});
-    if(stxt)stxt.textContent='Loading packages…';
-    await pyodide.loadPackagesFromImports('import numpy,pandas,matplotlib,scipy');
-    try{await pyodide.loadPackage('scikit-learn');}catch(e){}
-    await pyodide.runPythonAsync('import matplotlib\nmatplotlib.use("Agg")\nimport sys,io');
-    if(dot)dot.className='pydot rdy';
-    if(stxt)stxt.textContent='Python 3.11 ready ✓ — numpy · pandas · matplotlib · scipy · scikit-learn';
-    const pkgRow=document.getElementById('pkg-row');if(pkgRow)pkgRow.style.display='flex';
-    ['numpy','pandas','matplotlib','scipy','sklearn'].forEach(p=>{document.getElementById('pkg-'+p)?.classList.add('loaded');});
-    pyReady=true;pyLoading=false;toast('success','🐍','Python runtime ready!');
-    return pyodide;
-  }catch(err){pyodidePromise=null;if(dot)dot.className='pydot err';if(stxt)stxt.textContent='Failed to load Python. Check internet connection.';throw err;}
   })();
   return pyodidePromise;
 }
 
-let pyIsRunning = false;
-async function runCell(id){
-  if (pyIsRunning) { toast('warn', '⏳', 'Kernel is busy. Please wait.'); return; }
-  const cell=document.querySelector(`[data-id="${id}"]`);if(!cell)return;
-  pyIsRunning = true;
-  const cm=cell.cmInstance;
-  const code=cm?cm.getValue():(document.getElementById(`ct-${id}`)?.value||'');
-  if(!code.trim())return;
-  const out=document.getElementById(`co-${id}`),num=document.getElementById(`cn-${id}`);
-  cell.classList.add('running');cell.classList.remove('has-err');
-  out.className='cell-output vis';out.innerHTML='<span style="color:var(--txt3);font-style:italic;">Running…</span>';
-  if(num){num.textContent='In [*]';num.className='cell-num exec';}
-  try{
-    const py=await getPyodide();execCount++;
-    await py.runPythonAsync(`
-import sys,io
-class _DVCap:
-    def __init__(self):self.buf=io.StringIO()
-    def write(self,s):self.buf.write(s)
-    def flush(self):pass
-    def getvalue(self):return self.buf.getvalue()
-_dv_cap=_DVCap();sys.stdout=_dv_cap;sys.stderr=_dv_cap`);
-    await py.runPythonAsync(code);
-    await py.runPythonAsync('sys.stdout=sys.__stdout__;sys.stderr=sys.__stderr__');
-    let captured=await py.runPythonAsync('_dv_cap.getvalue()');
-    if(num){num.textContent=`In [${execCount}]`;num.className='cell-num';}
-    cell.classList.remove('running');
-    if(typeof captured!=='string')captured=String(captured||'');
-    if(captured.includes('__IMG__')){
-      const m=captured.match(/__IMG__(.+?)__IMG__/s);
-      if(m){
-        out.innerHTML='';const img=document.createElement('img');img.src='data:image/png;base64,'+m[1];img.style.maxWidth='100%';out.appendChild(img);
-        const rest=captured.replace(/__IMG__.+?__IMG__/s,'').trim();
-        if(rest){const pre=document.createElement('div');pre.textContent=rest;out.insertBefore(pre,out.firstChild);}
-        out.className='cell-output vis';return;
-      }
+// ─── 2. CELL EXECUTION LOGIC ─────────────────────────────────────────
+async function runCellPro(id, isHolo = false) {
+  const cell = document.querySelector(`[data-id="${id}"]`);
+  if (!cell) return;
+  const cm = cell.cmInstance;
+  const rawCode = cm ? cm.getValue() : '';
+  if (!rawCode.trim()) return;
+
+  const out = document.getElementById(`co-${id}`);
+  const num = document.getElementById(`cn-${id}`);
+  
+  if (!isHolo) {
+    if (pyIsRunning) { toast('warn', '⏳', 'Kernel busy.'); return; }
+    pyIsRunning = true;
+    cell.classList.add('running');
+    cell.classList.remove('has-err');
+    out.className = 'cell-output vis';
+    out.innerHTML = '<span style="color:var(--txt3);font-style:italic;">Executing...</span>';
+    if (num) { num.textContent = 'In [*]'; num.className = 'cell-num exec'; }
+  }
+
+  try {
+    const py = await getPyodidePro();
+    if (!isHolo) execCount++;
+    
+    // Safely pass code to Python wrapper using Pyodide's dict mapping
+    py.globals.set('_dv_code_block', rawCode);
+    const jsonRes = await py.runPythonAsync(`execute_dv_cell(_dv_code_block)`);
+    const res = JSON.parse(jsonRes);
+    
+    if (isHolo) {
+      renderHolo(cm, res);
+      return;
     }
-    if(captured.trim()){out.textContent=captured;out.className='cell-output vis';}else{out.className='cell-output';}
-  }catch(err){
-    if(num){num.textContent=`In [${execCount}]`;num.className='cell-num';}
-    cell.classList.remove('running');cell.classList.add('has-err');
-    out.textContent=String(err);out.className='cell-output vis oerr';
-    try{if(pyodide)await pyodide.runPythonAsync('import sys;sys.stdout=sys.__stdout__;sys.stderr=sys.__stderr__');}catch(e){}
-  } finally {
-    pyIsRunning = false;
+
+    if (num) { num.textContent = `In [${execCount}]`; num.className = 'cell-num'; }
+    cell.classList.remove('running');
+    updateVariableInspector(res.vars);
+
+    if (res.err) {
+      cell.classList.add('has-err');
+      out.textContent = res.err;
+      out.className = 'cell-output vis oerr';
+      return;
+    }
+
+    // Process output for custom Matplotlib hook
+    if (res.out.includes('__PLOT__')) {
+      const parts = res.out.split('__PLOT__');
+      out.innerHTML = '';
+      if (parts[0].trim()) out.appendChild(document.createTextNode(parts[0]));
+      const img = document.createElement('img');
+      img.src = 'data:image/png;base64,' + parts[1];
+      out.appendChild(img);
+      if (parts[2]?.trim()) out.appendChild(document.createTextNode(parts[2]));
+      out.className = 'cell-output vis';
+    } else {
+      out.textContent = res.out;
+      out.className = res.out.trim() ? 'cell-output vis' : 'cell-output';
+    }
+
+  } catch (err) {
+    if (!isHolo) {
+      cell.classList.remove('running');
+      cell.classList.add('has-err');
+      out.textContent = "Kernel Crash: " + err.message;
+      out.className = 'cell-output vis oerr';
+      pyIsRunning = false;
+    }
+  } finally {
+    if (!isHolo) pyIsRunning = false;
   }
 }
 
-const assistBtn=document.getElementById('assist-btn');
-if(assistBtn){assistBtn.addEventListener('click',()=>{assistOn=!assistOn;assistBtn.textContent='🤖 Assist: '+(assistOn?'ON':'OFF');assistBtn.classList.toggle('on',assistOn);toast('info','🤖','Predictive assist '+(assistOn?'enabled':'disabled'));});}
-assistBtn?.classList.add('on');
+// ─── 3. HOLOGRAPHIC (QUOKKA) MODE ────────────────────────────────────
+function renderHolo(cm, res) {
+  // Clear old widgets
+  if (cm.holoWidgets) cm.holoWidgets.forEach(w => w.clear());
+  cm.holoWidgets = [];
 
-pageInits.lab=function(){
-  if(labInited)return;labInited=true;
-  const nb=document.getElementById('notebook');nb.innerHTML='';
-  const addBtn=document.createElement('button');addBtn.className='add-cell-btn';addBtn.id='add-cell-bottom';addBtn.innerHTML='+ Add Cell';
-  addBtn.addEventListener('click',()=>{const c=createCell();c.cmInstance?.focus();});
+  const text = res.err ? "✗ " + res.err.split('\n')[0] : "✓ " + res.out.replace(/\n/g, ' | ');
+  if (!text.trim() || text === "✓ ") return;
+
+  const msg = document.createElement("div");
+  msg.className = "holo-widget" + (res.err ? " err" : "");
+  msg.textContent = text.slice(0, 100) + (text.length > 100 ? '...' : '');
+  
+  // Attach to the last line of code
+  const lastLine = cm.lastLine();
+  cm.holoWidgets.push(cm.addLineWidget(lastLine, msg, { coverGutter: false, noHScroll: true }));
+}
+
+function handleHoloTyping(cm, id) {
+  if (!holoMode) return;
+  clearTimeout(holoTimer);
+  holoTimer = setTimeout(() => {
+    // Only run if kernel isn't busy with a main execution
+    if (!pyIsRunning && pyReady) {
+      runCellPro(id, true);
+    }
+  }, 800); // 800ms debounce
+}
+
+// ─── 4. VIRTUAL FILE SYSTEM & VARIABLES ──────────────────────────────
+function initVFS() {
+  const drop = document.getElementById('py-vfs-drop');
+  const inp = document.getElementById('py-vfs-input');
+  
+  drop.addEventListener('click', () => inp.click());
+  drop.addEventListener('dragover', e => { e.preventDefault(); drop.style.borderColor = 'var(--ac)'; });
+  drop.addEventListener('dragleave', () => drop.style.borderColor = '');
+  drop.addEventListener('drop', e => {
+    e.preventDefault(); drop.style.borderColor = '';
+    handleVFSFiles(e.dataTransfer.files);
+  });
+  inp.addEventListener('change', e => handleVFSFiles(e.target.files));
+}
+
+function handleVFSFiles(files) {
+  if (!pyReady) { toast('error', '✗', 'Kernel not ready.'); return; }
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const data = new Uint8Array(e.target.result);
+      pyodide.FS.writeFile(file.name, data);
+      toast('success', '📄', `${file.name} loaded to EMFS.`);
+      refreshVFSList();
+    };
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+function refreshVFSList() {
+  if (!pyReady) return;
+  const list = pyodide.FS.readdir('.');
+  const ui = document.getElementById('py-vfs-list');
+  ui.innerHTML = '';
+  list.filter(f => f !== '.' && f !== '..').forEach(f => {
+    const d = document.createElement('div'); d.className = 'vfs-item';
+    d.innerHTML = `<span>${esc(f)}</span> <button class="vfs-del" data-f="${esc(f)}">✕</button>`;
+    d.querySelector('button').addEventListener('click', () => {
+      pyodide.FS.unlink(f); refreshVFSList();
+    });
+    ui.appendChild(d);
+  });
+}
+
+function updateVariableInspector(varsArray) {
+  const tbody = document.getElementById('py-var-table');
+  if (!varsArray || varsArray.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:var(--txt3);">No custom variables</td></tr>';
+    return;
+  }
+  tbody.innerHTML = varsArray.map(v => 
+    `<tr>
+      <td style="color:var(--ac); font-weight:600;">${esc(v.name)}</td>
+      <td style="color:var(--pu);">${esc(v.type)}</td>
+      <td style="max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${esc(v.val)}</td>
+    </tr>`
+  ).join('');
+}
+
+// ─── 5. CELL MANAGEMENT ──────────────────────────────────────────────
+function createCell(code = '') {
+  cellCtr++; const id = cellCtr;
+  const cell = document.createElement('div');
+  cell.className = 'cell'; cell.dataset.id = id;
+  cell.innerHTML = `
+    <div class="cell-header">
+      <span class="cell-num" id="cn-${id}">In [ ]</span>
+      <div class="cell-tools">
+        <button class="cell-btn run-btn" data-id="${id}">▶ Run</button>
+        <button class="cell-btn" onclick="moveCellUp(${id})">↑</button>
+        <button class="cell-btn" onclick="moveCellDown(${id})">↓</button>
+        <button class="cell-btn del-btn" onclick="deleteCell(${id})">✕</button>
+      </div>
+    </div>
+    <div class="cell-editor" id="ce-${id}"><textarea id="ct-${id}" style="display:none">${esc(code)}</textarea></div>
+    <div class="cell-output" id="co-${id}"></div>`;
+  
+  const nb = document.getElementById('notebook');
+  const addBtn = document.getElementById('add-cell-bottom');
+  if (addBtn) nb.insertBefore(cell, addBtn); else nb.appendChild(cell);
+  
+  cell.querySelector('.run-btn').addEventListener('click', () => runCellPro(id));
+  
+  setTimeout(() => {
+    const ta = document.getElementById(`ct-${id}`);
+    if (!ta || typeof CodeMirror === 'undefined') return;
+    const cm = CodeMirror.fromTextArea(ta, {
+      mode: 'python',
+      theme: curTheme === 'light' ? 'default' : 'dracula',
+      lineNumbers: true, autoCloseBrackets: true, matchBrackets: true,
+      indentUnit: 4, tabSize: 4, lineWrapping: false,
+      extraKeys: {
+        'Ctrl-Enter': () => runCellPro(id),
+        'Shift-Enter': () => { runCellPro(id); createCell(); },
+        'Ctrl-/': 'toggleComment'
+      }
+    });
+    
+    cm.on('change', () => handleHoloTyping(cm, id));
+    cell.cmInstance = cm;
+  }, 60);
+  
+  return cell;
+}
+
+// ─── 6. INIT HOOK ────────────────────────────────────────────────────
+pageInits.lab = function() {
+  if (labInited) return; labInited = true;
+  
+  const nb = document.getElementById('notebook'); nb.innerHTML = '';
+  const addBtn = document.createElement('button');
+  addBtn.className = 'add-cell-btn'; addBtn.id = 'add-cell-bottom'; addBtn.innerHTML = '+ Add Cell';
+  addBtn.addEventListener('click', () => { const c = createCell(); c.cmInstance?.focus(); });
   nb.appendChild(addBtn);
-  createCell('# Welcome to DataVery Python Lab!\n# FIT9136 — Python for Data Science\nprint("Hello from DataVery Lab!")\nprint("Your Monash Python workspace is ready 🎓")');
-  createCell('# Quick example — try changing the values!\nfor i in range(1, 6):\n    stars = "⭐" * i\n    print(f"  Level {i}: {stars}")');
-  document.getElementById('run-all-btn')?.addEventListener('click',async()=>{for(const c of document.querySelectorAll('.cell'))await runCell(c.dataset.id);});
-  document.getElementById('clear-all-btn')?.addEventListener('click',()=>{document.querySelectorAll('.cell-output').forEach(o=>{o.className='cell-output';o.innerHTML='';});document.querySelectorAll('.cell').forEach(c=>c.classList.remove('running','has-err'));});
-  document.getElementById('reset-kernel-btn')?.addEventListener('click',()=>{pyodide=null;pyReady=false;pyLoading=false;execCount=0;document.getElementById('pydot').className='pydot';document.getElementById('py-status-txt').textContent='Kernel reset. Will reinitialize on next run.';document.getElementById('pkg-row').style.display='none';['numpy','pandas','matplotlib','scipy','sklearn'].forEach(p=>document.getElementById('pkg-'+p)?.classList.remove('loaded'));toast('warn','↺','Kernel reset.');});
-  document.getElementById('add-top-btn')?.addEventListener('click',()=>{const c=createCell();c.cmInstance?.focus();});
-  document.querySelectorAll('.ex-chip').forEach(chip=>{chip.addEventListener('click',()=>{const code=EXAMPLES[chip.dataset.ex]||'// Example not found';const c=createCell(code);setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'center'}),100);});});
-  getPyodide().catch(()=>{});
+  
+  createCell(`# DataVery AST Engine test
+# Notice how the last expression is automatically evaluated!
+import pandas as pd
+df = pd.DataFrame({'System': ['DataVery'], 'Version': [4.2]})
+df`);
+
+  createCell(`x = 10
+y = 20
+x + y`);
+
+  initVFS();
+
+  // Controls
+  document.getElementById('run-all-btn')?.addEventListener('click', async () => {
+    for (const c of document.querySelectorAll('.cell')) await runCellPro(c.dataset.id);
+  });
+  
+  document.getElementById('clear-all-btn')?.addEventListener('click', () => {
+    document.querySelectorAll('.cell-output').forEach(o => { o.className = 'cell-output'; o.innerHTML = ''; });
+    document.querySelectorAll('.cell').forEach(c => c.classList.remove('running', 'has-err'));
+  });
+
+  const holoBtn = document.getElementById('holo-mode-btn');
+  holoBtn?.addEventListener('click', () => {
+    holoMode = !holoMode;
+    holoBtn.textContent = '👻 Holo: ' + (holoMode ? 'ON' : 'OFF');
+    holoBtn.classList.toggle('on', holoMode);
+    toast('info', '👻', 'Holographic Execution ' + (holoMode ? 'Enabled' : 'Disabled'));
+  });
+
+  document.getElementById('reset-kernel-btn')?.addEventListener('click', () => {
+    pyodide = null; pyReady = false; pyIsRunning = false; execCount = 0;
+    document.getElementById('py-status-txt').textContent = 'Kernel Terminated. Press Run to reboot.';
+    document.getElementById('pydot').className = 'pydot';
+    updateVariableInspector([]);
+    document.getElementById('py-vfs-list').innerHTML = '';
+    toast('warn', '↺', 'Kernel Rebooted.');
+  });
+
+  getPyodidePro().catch(() => {});
 };
 
 /* ═══════════════════════════════════════════════
@@ -1982,10 +1894,10 @@ function tblH(t){return TH+t.fields.length*FH+TPAD;}
 
 // ── SQL ENGINE: AlaSQL (pure JS, zero WASM) ──────────────────────────────
 const _ALA_URLS=[
+  'https://cdnjs.cloudflare.com/ajax/libs/alasql/4.2.1/alasql.min.js',
   'https://cdn.jsdelivr.net/npm/alasql@4.2.1/dist/alasql.min.js',
   'https://unpkg.com/alasql@4.2.1/dist/alasql.min.js'
 ];
-let _alaLoaded=false,_alaPromise=null;
 
 function getSQL(){
   if(_alaLoaded&&window.alasql)return Promise.resolve(window.alasql);
