@@ -1928,16 +1928,32 @@ const erd={tables:[],relations:[],nextId:1,selected:null,panX:0,panY:0,scale:1,d
 const TH=32,FH=22,TW=195,TPAD=10;
 function tblH(t){return TH+t.fields.length*FH+TPAD;}
 
-function loadSqlJs(){
-  if(sqlDB)return Promise.resolve();
-  if(sqljsP)return sqljsP;
-  async function createErdDB(){const SQL=await window.initSqlJs({locateFile:f=>'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/'+f});sqlDB=new SQL.Database();sqlDB.run("PRAGMA foreign_keys=ON;");}
-  sqljsP=new Promise((res,rej)=>{
-    if(window.initSqlJs){createErdDB().then(res).catch(rej);return;}
-    const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js';
-    s.onload=()=>createErdDB().then(res).catch(rej);
-    s.onerror=()=>rej(new Error('sql.js failed'));document.head.appendChild(s);
+// Global SQL Engine Loader (Shared by ERD and Sandbox to prevent race conditions)
+let globalSqlPromise = null, globalSQL = null;
+function getSQL() {
+  if(globalSQL) return Promise.resolve(globalSQL);
+  if(globalSqlPromise) return globalSqlPromise;
+  globalSqlPromise = new Promise((resolve, reject) => {
+    const init = () => window.initSqlJs({locateFile: f => 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/' + f})
+      .then(SQL => { globalSQL = SQL; resolve(SQL); }).catch(reject);
+    if(window.initSqlJs) { init(); return; }
+    
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js';
+    s.onload = init;
+    s.onerror = () => reject(new Error('sql.js script blocked by browser'));
+    document.head.appendChild(s);
+    
+    // 8-second timeout to prevent infinite spinning in Private/Adblock mode
+    setTimeout(() => { if(!globalSQL) reject(new Error('WASM load timeout')); }, 8000);
   });
+  return globalSqlPromise;
+}
+
+function loadSqlJs(){
+  if(sqlDB) return Promise.resolve();
+  if(sqljsP) return sqljsP;
+  sqljsP = getSQL().then(SQL => { sqlDB = new SQL.Database(); sqlDB.run("PRAGMA foreign_keys=ON;"); });
   return sqljsP;
 }
 
@@ -2403,16 +2419,11 @@ library:[
 };
 
 function loadSqlJsForSB(){
-  if(sqlSBDB)return Promise.resolve();
-  if(sqlSBP)return sqlSBP;
-  sqlSBP=new Promise((res,rej)=>{
-    if(window.initSqlJs){createSBDB().then(res).catch(rej);return;}
-    const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js';
-    s.onload=()=>createSBDB().then(res).catch(rej);s.onerror=()=>rej(new Error('sql.js failed'));document.head.appendChild(s);
-  });
+  if(sqlSBDB) return Promise.resolve();
+  if(sqlSBP) return sqlSBP;
+  sqlSBP = getSQL().then(SQL => { sqlSBDB = new SQL.Database(); sqlSBDB.run("PRAGMA foreign_keys=ON;"); });
   return sqlSBP;
 }
-async function createSBDB(){const SQL=await window.initSqlJs({locateFile:f=>'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/'+f});sqlSBDB=new SQL.Database();sqlSBDB.run("PRAGMA foreign_keys=ON;");}
 
 function loadDataset(dsKey){
   if(!sqlSBDB)return;
