@@ -2567,7 +2567,7 @@ pageInits.database=function(){
   
   loadSqlJs().then(()=>{
     document.getElementById('db-dot').className='db-dot rdy';
-    document.getElementById('db-st').textContent='SQLite ready ✓';
+    document.getElementById('db-st').textContent='SQL engine ready ✓';
     toast('success','🗄','Database engine ready!');
   }).catch((err)=>{
     console.error(err);
