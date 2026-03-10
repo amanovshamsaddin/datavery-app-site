@@ -378,6 +378,25 @@ code,pre{font-family:var(--ff-m)}
 .db-status-bar{padding:.35rem .85rem;background:var(--bg);border-top:1px solid var(--bdr);display:flex;align-items:center;gap:.5rem;font-family:var(--ff-m);font-size:.6rem;color:var(--txt3);flex-shrink:0}
 .db-dot{width:7px;height:7px;border-radius:50%;background:var(--warn);animation:pdot 1.4s infinite}
 .db-dot.rdy{background:var(--success);animation:none}
+.db-resizer {
+  height: 6px;
+  background: var(--bdr);
+  cursor: row-resize;
+  flex-shrink: 0;
+  transition: background 0.2s;
+  position: relative;
+  z-index: 10;
+}
+.db-resizer:hover, .db-resizer.dragging {
+  background: var(--ac);
+}
+.db-bottom-panel {
+  display: flex;
+  flex-direction: column;
+  height: 35vh; /* Default height */
+  flex-shrink: 0;
+  min-height: 80px;
+}
 
 /* ===== SQL SANDBOX ===== */
 .sql-sandbox-layout{display:grid;grid-template-columns:220px 1fr;height:calc(100vh);overflow:hidden}
@@ -962,27 +981,31 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
         <div class="ec-hint">Scroll=zoom · Drag canvas=pan · Double-click table/field=rename · Right-click=delete</div>
         <div class="draw-hint" id="draw-hint">✏️ Draw Mode — click source table, then target table. Press Esc to cancel.</div>
       </div>
-      <div class="db-tabs">
-        <button class="db-tab active" data-dbt="sql">SQL Editor</button>
-        <button class="db-tab" data-dbt="schema">Schema</button>
-        <button class="db-tab" data-dbt="rels">Relations</button>
-      </div>
-      <div class="db-tc-content">
-        <div class="db-tp active" id="dbt-sql">
-          <div class="sql-editor-wrap">
-            <div class="sql-controls">
-              <button class="sql-ctrl run" id="sql-run">▶ Run (Ctrl+Enter)</button>
-              <button class="sql-ctrl" id="sql-clr">Clear Output</button>
-              <span style="font-family:var(--ff-m);font-size:.56rem;color:var(--txt3);margin-left:auto;">In-memory SQLite</span>
-            </div>
-            <div class="sql-area"><textarea id="sql-in" placeholder="Write SQLite queries here..."></textarea></div>
-            <div class="sql-hist" id="sql-hist"></div>
-          </div>
+<div class="db-resizer" id="db-resizer"></div>
+
+      <div class="db-bottom-panel" id="db-bottom-panel">
+        <div class="db-tabs">
+          <button class="db-tab active" data-dbt="sql">SQL Editor</button>
+          <button class="db-tab" data-dbt="schema">Schema</button>
+          <button class="db-tab" data-dbt="rels">Relations</button>
         </div>
-        <div class="db-tp" id="dbt-schema"><div class="schema-pre" id="schema-pre"></div></div>
-        <div class="db-tp" id="dbt-rels"><div class="rels-list" id="rels-list"></div></div>
+        <div class="db-tc-content">
+          <div class="db-tp active" id="dbt-sql">
+            <div class="sql-editor-wrap">
+              <div class="sql-controls">
+                <button class="sql-ctrl run" id="sql-run">▶ Run (Ctrl+Enter)</button>
+                <button class="sql-ctrl" id="sql-clr">Clear Output</button>
+                <span style="font-family:var(--ff-m);font-size:.56rem;color:var(--txt3);margin-left:auto;">In-memory SQLite</span>
+              </div>
+              <div class="sql-area"><textarea id="sql-in" placeholder="Write SQLite queries here..."></textarea></div>
+              <div class="sql-hist" id="sql-hist"></div>
+            </div>
+          </div>
+          <div class="db-tp" id="dbt-schema"><div class="schema-pre" id="schema-pre"></div></div>
+          <div class="db-tp" id="dbt-rels"><div class="rels-list" id="rels-list"></div></div>
+        </div>
+        <div class="db-status-bar"><div class="db-dot" id="db-dot"></div><span id="db-st">Loading SQLite...</span></div>
       </div>
-      <div class="db-status-bar"><div class="db-dot" id="db-dot"></div><span id="db-st">Loading SQLite...</span></div>
     </div>
   </div>
 </div>
@@ -1957,56 +1980,76 @@ const VIRTUAL_W=5000, VIRTUAL_H=5000; // Fixed canvas dimensions
 
 function tblH(t){return TH+t.fields.length*FH+TPAD;}
 
-// Global SQL Engine Loader — uses jsDelivr (reliable CORS + WASM serving)
-const _SQL_JS  = 'https://cdn.jsdelivr.net/npm/sql.js@1.11.0/dist/sql-wasm.js';
-const _SQL_WASM= 'https://cdn.jsdelivr.net/npm/sql.js@1.11.0/dist/sql-wasm.wasm';
+// ── SQL ENGINE: AlaSQL (pure JS, zero WASM) ──────────────────────────────
+const _ALA_URLS=[
+  'https://cdn.jsdelivr.net/npm/alasql@4.2.1/dist/alasql.min.js',
+  'https://unpkg.com/alasql@4.2.1/dist/alasql.min.js'
+];
+let _alaLoaded=false,_alaPromise=null;
 
-let globalSqlPromise = null, globalSQL = null;
-function getSQL() {
-  if(globalSQL) return Promise.resolve(globalSQL);
-  if(globalSqlPromise) return globalSqlPromise;
-
-  globalSqlPromise = new Promise((resolve, reject) => {
-    let settled = false;
-    function settle(err, val) {
-      if(settled) return;
-      settled = true;
-      if(err){ globalSqlPromise = null; reject(err); } // reset so caller can retry
-      else   { globalSQL = val; resolve(val); }
+function getSQL(){
+  if(_alaLoaded&&window.alasql)return Promise.resolve(window.alasql);
+  if(_alaPromise)return _alaPromise;
+  _alaPromise=new Promise((resolve,reject)=>{
+    if(window.alasql){_alaLoaded=true;resolve(window.alasql);return;}
+    let tried=0;
+    const timer=setTimeout(()=>{_alaPromise=null;reject(new Error('AlaSQL timeout'));},15000);
+    function tryNext(){
+      if(tried>=_ALA_URLS.length){clearTimeout(timer);_alaPromise=null;reject(new Error('All AlaSQL CDNs failed'));return;}
+      const s=document.createElement('script');s.src=_ALA_URLS[tried++];
+      s.onload=()=>{if(window.alasql){clearTimeout(timer);_alaLoaded=true;resolve(window.alasql);}else tryNext();};
+      s.onerror=tryNext;
+      document.head.appendChild(s);
     }
-
-    // Hard timeout — 15s is generous for WASM over slow connections
-    const timer = setTimeout(() =>
-      settle(new Error('SQL.js WASM load timed out (15s). Disable adblocker or check network.')), 15000);
-
-    function runInit() {
-      if(typeof window.initSqlJs !== 'function'){
-        clearTimeout(timer);
-        settle(new Error('initSqlJs not found after script load.'));
-        return;
-      }
-      // locateFile: ignore the filename arg — always return the exact WASM URL
-      window.initSqlJs({ locateFile: () => _SQL_WASM })
-        .then(SQL => { clearTimeout(timer); settle(null, SQL); })
-        .catch(e  => { clearTimeout(timer); settle(e); });
-    }
-
-    if(window.initSqlJs){ runInit(); return; }
-
-    const s = document.createElement('script');
-    s.src = _SQL_JS;
-    s.onload  = () => setTimeout(runInit, 30); // let script fully parse before calling
-    s.onerror = () => { clearTimeout(timer); settle(new Error('Failed to fetch sql.js from jsDelivr. Check internet connection.')); };
-    document.head.appendChild(s);
+    tryNext();
   });
+  return _alaPromise;
+}
 
-  return globalSqlPromise;
+// Fix SQLite-specific syntax that AlaSQL doesn't support
+function _fixSQL(sql){
+  if(!sql)return'';
+  return sql
+    .replace(/PRAGMA\s+[^\n;]*/gi,'SELECT 1')
+    .replace(/INSERT\s+OR\s+(?:IGNORE|REPLACE|ROLLBACK|ABORT|FAIL)\s+INTO/gi,'INSERT INTO')
+    .replace(/\bAUTOINCREMENT\b/gi,'AUTO_INCREMENT')
+    .replace(/"([^"]+)"/g,'`$1`');
+}
+
+// Creates an isolated named database with a sql.js-compatible API
+function makeDB(name){
+  const dbid=name.toLowerCase().replace(/[^a-z0-9]/g,'_');
+  try{alasql(`CREATE DATABASE IF NOT EXISTS ${dbid}`);}catch(e){}
+  function use(){try{alasql(`USE ${dbid}`);}catch(e){}}
+  return{
+    _dbid:dbid,
+    run(sql){
+      use();
+      (_fixSQL(sql)||'').split(';').map(s=>s.trim()).filter(Boolean)
+        .forEach(stmt=>{try{alasql(stmt);}catch(e){}});
+    },
+    exec(sql){
+      use();
+      const out=[];
+      (_fixSQL(sql)||'').split(';').map(s=>s.trim()).filter(Boolean)
+        .forEach(stmt=>{
+          try{
+            const res=alasql(stmt);
+            if(Array.isArray(res)&&res.length>0&&res[0]&&typeof res[0]==='object'){
+              const cols=Object.keys(res[0]);
+              out.push({columns:cols,values:res.map(r=>cols.map(c=>r[c]!=null?r[c]:null))});
+            }
+          }catch(e){throw e;}
+        });
+      return out;
+    }
+  };
 }
 
 function loadSqlJs(){
-  if(sqlDB) return Promise.resolve();
-  if(sqljsP) return sqljsP;
-  sqljsP = getSQL().then(SQL => { sqlDB = new SQL.Database(); sqlDB.run("PRAGMA foreign_keys=ON;"); });
+  if(sqlDB)return Promise.resolve();
+  if(sqljsP)return sqljsP;
+  sqljsP=getSQL().then(()=>{sqlDB=makeDB('erd_lab');});
   return sqljsP;
 }
 
@@ -2338,14 +2381,20 @@ function runSQL(){
 }
 
 function syncERDFromSQL(){
-  if(!sqlDB)return;
+  if(!sqlDB||!window.alasql)return;
   try{
-    const res=sqlDB.exec("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';");
-    const names=(res[0]?.values||[]).map(r=>r[0]);
-    names.forEach(name=>{if(!erd.tables.find(t=>t.name===name)){erd.tables.push({id:erd.nextId++,name,x:80+(erd.tables.length%4)*230,y:80+Math.floor(erd.tables.length/4)*190,w:TW,fields:[{name:'id',type:'INTEGER',pk:true,fk:false,fkRef:'',notNull:true,unique:true}]});}});
-    erd.tables=erd.tables.filter(t=>names.includes(t.name));
+    alasql(`USE ${sqlDB._dbid}`);
+    const db=alasql.databases[sqlDB._dbid];
+    if(!db)return;
+    const names=Object.keys(db.tables).filter(t=>!t.startsWith('_'));
+    names.forEach(name=>{
+      if(!erd.tables.find(t=>t.name.toLowerCase()===name.toLowerCase())){
+        erd.tables.push({id:erd.nextId++,name,x:80+(erd.tables.length%4)*230,y:80+Math.floor(erd.tables.length/4)*190,w:TW,fields:[{name:'id',type:'INTEGER',pk:true,fk:false,fkRef:'',notNull:true,unique:true}]});
+      }
+    });
+    erd.tables=erd.tables.filter(t=>names.some(n=>n.toLowerCase()===t.name.toLowerCase()));
     refreshUI();
-  }catch(e){}
+  }catch(e){console.warn('syncERDFromSQL:',e);}
 }
 
 function refreshUI(){drawERD();updateLeftPanel();refreshSchema();refreshRels();document.getElementById('db-tc').textContent=erd.tables.length;}
@@ -2421,12 +2470,62 @@ function loadSampleDB(){
   refreshUI();toast('success','📦','Sample Monash database loaded!');
 }
 
-function clearDB(){if(!confirm('Clear all tables and relations?'))return;erd.tables=[];erd.relations=[];erd.selected=null;if(sqlDB)try{const res=sqlDB.exec("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';");(res[0]?.values||[]).forEach(r=>sqlDB.run(`DROP TABLE IF EXISTS "${r[0]}";`));}catch(e){}refreshUI();toast('info','🗑','Database cleared.');}
+function clearDB(){
+  if(!confirm('Clear all tables and relations?'))return;
+  erd.tables=[];erd.relations=[];erd.selected=null;
+  if(sqlDB&&window.alasql){
+    try{
+      alasql(`USE ${sqlDB._dbid}`);
+      const db=alasql.databases[sqlDB._dbid];
+      if(db)Object.keys(db.tables).forEach(t=>{try{alasql(`DROP TABLE \`${t}\``);}catch(e){}});
+    }catch(e){}
+  }
+  refreshUI();toast('info','🗑','Database cleared.');
+}
 
 pageInits.database=function(){
-  if(dbInited)return;dbInited=true;
-  
-  // Inject Zoom Controls UI to the Canvas Wrapper
+  if(dbInited)return;dbInited=true;
+  
+  // --- NEW DRAG RESIZER LOGIC ---
+  const resizer = document.getElementById('db-resizer');
+  const bottomPanel = document.getElementById('db-bottom-panel');
+  let isDragging = false;
+  let startY, startHeight;
+
+  resizer.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startY = e.clientY;
+    startHeight = bottomPanel.getBoundingClientRect().height;
+    resizer.classList.add('dragging');
+    document.body.style.cursor = 'row-resize';
+    document.body.style.userSelect = 'none'; // Prevent text highlighting while dragging
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const dy = startY - e.clientY; // Moving up increases the bottom panel height
+    let newHeight = startHeight + dy;
+    
+    // Constraints: Don't let it cover the top toolbar or disappear entirely
+    const maxH = window.innerHeight - 120; 
+    if (newHeight < 60) newHeight = 60;
+    if (newHeight > maxH) newHeight = maxH;
+    
+    bottomPanel.style.height = newHeight + 'px';
+    resizeERD(); // Force the canvas to adjust to the new size
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      resizer.classList.remove('dragging');
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    }
+  });
+  // --- END DRAG RESIZER LOGIC ---
+
+  // Inject Zoom Controls UI to the Canvas Wrapper
   const cw = document.getElementById('db-cw');
   if(cw && !document.getElementById('db-zoom-ctrl')) {
     const zc = document.createElement('div');
@@ -2570,9 +2669,9 @@ library:[
 };
 
 function loadSqlJsForSB(){
-  if(sqlSBDB) return Promise.resolve();
-  if(sqlSBP) return sqlSBP;
-  sqlSBP = getSQL().then(SQL => { sqlSBDB = new SQL.Database(); sqlSBDB.run("PRAGMA foreign_keys=ON;"); });
+  if(sqlSBDB)return Promise.resolve();
+  if(sqlSBP)return sqlSBP;
+  sqlSBP=getSQL().then(()=>{sqlSBDB=makeDB('sql_sandbox');});
   return sqlSBP;
 }
 
