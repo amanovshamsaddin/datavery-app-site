@@ -1370,7 +1370,14 @@ let editingProjId=null;
 const COURSE_COLORS={FIT9136:'#22d3ee',FIT9132:'#a78bfa',FIT9137:'#fb923c',Personal:'#4ade80'};
 const STATUS_LABELS={active:'Active',pend:'In Progress',idea:'Idea',ship:'Completed'};
 
-function saveProjects(){try{localStorage.setItem('dv-projects',JSON.stringify(projects));}catch(e){}}
+function saveProjects(){
+  try {
+    localStorage.setItem('dv-projects',JSON.stringify(projects));
+  } catch(e) {
+    toast('error', '💾', 'Storage full! Cannot save project.');
+    console.error('LocalStorage quota exceeded', e);
+  }
+}
 function renderProjects(){
   const grid=document.getElementById('proj-grid');if(!grid)return;
   const empty=document.getElementById('proj-empty');
@@ -1812,7 +1819,16 @@ function createCell(code=''){
         'Ctrl-Space':function(cmI){if(assistOn&&window.CodeMirror?.showHint)CodeMirror.showHint(cmI,CodeMirror.hint.anyword,{completeSingle:false});}
       }
     });
-    if(assistOn)cm.on('inputRead',(cmI,e)=>{if(e.origin!=='+input'&&e.origin!=='paste')return;const c=e.text[0];if(!c||c==='\n'||c===' ')return;if(window.CodeMirror?.showHint)CodeMirror.showHint(cmI,CodeMirror.hint.anyword,{completeSingle:false});});
+    let typingTimer;
+    if(assistOn) cm.on('inputRead', (cmI, e) => {
+      if(e.origin !== '+input' && e.origin !== 'paste') return;
+      const c = e.text[0];
+      if(!c || c === '\n' || c === ' ') return;
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(() => {
+        if(window.CodeMirror?.showHint) CodeMirror.showHint(cmI, CodeMirror.hint.anyword, {completeSingle: false});
+      }, 300);
+    });
     cell.cmInstance=cm;
   },60);
   return cell;
@@ -1857,8 +1873,11 @@ async function getPyodide(){
   }catch(err){pyLoading=false;if(dot)dot.className='pydot err';if(stxt)stxt.textContent='Failed to load Python. Check internet connection.';throw err;}
 }
 
+let pyIsRunning = false;
 async function runCell(id){
-  const cell=document.querySelector(`[data-id="${id}"]`);if(!cell)return;
+  if (pyIsRunning) { toast('warn', '⏳', 'Kernel is busy. Please wait.'); return; }
+  const cell=document.querySelector(`[data-id="${id}"]`);if(!cell)return;
+  pyIsRunning = true;
   const cm=cell.cmInstance;
   const code=cm?cm.getValue():(document.getElementById(`ct-${id}`)?.value||'');
   if(!code.trim())return;
@@ -1896,7 +1915,9 @@ _dv_cap=_DVCap();sys.stdout=_dv_cap;sys.stderr=_dv_cap`);
     if(num){num.textContent=`In [${execCount}]`;num.className='cell-num';}
     cell.classList.remove('running');cell.classList.add('has-err');
     out.textContent=String(err);out.className='cell-output vis oerr';
-    try{if(pyodide)await pyodide.runPythonAsync('import sys;sys.stdout=sys.__stdout__;sys.stderr=sys.__stderr__');}catch(e){}
+    try{if(pyodide)await pyodide.runPythonAsync('import sys;sys.stdout=sys.__stdout__;sys.stderr=sys.__stderr__');}catch(e){}
+  } finally {
+    pyIsRunning = false;
   }
 }
 
@@ -2801,7 +2822,7 @@ pageInits.github=async function(){
   if(ghLoaded)return;ghLoaded=true;
   try{
     const [uRes,rRes]=await Promise.all([fetch(`https://api.github.com/users/${GH_USER}`),fetch(`https://api.github.com/users/${GH_USER}/repos?sort=updated&per_page=12`)]);
-    if(!uRes.ok)throw new Error('API error');
+    if(!uRes.ok)throw new Error(uRes.status === 403 ? 'Rate Limit' : 'API error');
     const [u,repos]=await Promise.all([uRes.json(),rRes.json()]);
     document.getElementById('gh-loading').style.display='none';document.getElementById('gh-content').style.display='block';
     if(u.avatar_url){const av=document.getElementById('gh-av');av.innerHTML=`<img src="${u.avatar_url}" alt="${u.name||GH_USER}">`;}
@@ -2817,7 +2838,12 @@ pageInits.github=async function(){
     });
     if(!grid.children.length)grid.innerHTML='<p style="font-family:var(--ff-m);font-size:.7rem;color:var(--txt3);">No public repositories yet.</p>';
     observeReveals(document.getElementById('page-github'));
-  }catch(e){document.getElementById('gh-loading').style.display='none';document.getElementById('gh-error').style.display='block';}
+  }catch(e){
+    document.getElementById('gh-loading').style.display='none';
+    const errEl = document.getElementById('gh-error');
+    errEl.style.display='block';
+    if(e.message === 'Rate Limit') errEl.innerHTML = 'GitHub API rate limit exceeded (60 req/hr). <a href="https://github.com/amanovshamsaddin" target="_blank" style="color:var(--ac);">View directly →</a>';
+  }
 };
 
 /* ═══════════════════════════════════════════════
