@@ -1489,7 +1489,10 @@ function openEditProj(id){
 document.getElementById('add-proj-btn')?.addEventListener('click',()=>openEditProj(null));
 document.getElementById('m-proj-ok')?.addEventListener('click',()=>{
   const title=document.getElementById('proj-title').value.trim();
-  if(!title){toast('error','✗','Title required.');return;}
+  if (!title) {
+    toast('error', '✗', 'Title required.');
+    return;
+}
   const data={id:editingProjId||Date.now().toString(),title,course:document.getElementById('proj-course').value,desc:document.getElementById('proj-desc').value.trim(),stack:document.getElementById('proj-stack').value.trim(),status:document.getElementById('proj-status').value,link:document.getElementById('proj-link').value.trim()};
   if(editingProjId){const i=projects.findIndex(x=>x.id===editingProjId);if(i>-1)projects[i]=data;}else{projects.unshift(data);}
   saveProjects();renderProjects();closeModal('m-proj');toast('success','✓',editingProjId?'Project updated.':'Project added.');
