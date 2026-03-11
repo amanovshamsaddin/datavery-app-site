@@ -972,7 +972,10 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
       </div>
 
       <div style="padding: 1rem; flex: 1; display: flex; flex-direction: column; overflow: hidden;">
-        <div class="sec-lbl" style="margin-bottom: 0.5rem;">Variable Inspector</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <div class="sec-lbl" style="margin-bottom: 0;">Variable Inspector</div>
+            <button id="clear-vars-btn" class="btn btn-ghost btn-sm" style="padding: 0.15rem 0.4rem; font-size: 0.55rem;">✕ Clear</button>
+          </div>
         <div style="overflow-y: auto; flex: 1;">
           <table class="dtbl" style="font-size: 0.6rem;">
             <thead><tr><th>Name</th><th>Type</th><th>Value</th></tr></thead>
@@ -1630,7 +1633,7 @@ def execute_dv_cell(code_str):
     # Variable Extraction
     vars_dict = []
     for k, v in globals().items():
-        if not k.startswith('_') and not str(type(v)).startswith("<class 'module"):
+        if not k.startswith('_') and k not in ['custom_show', 'execute_dv_cell'] and not str(type(v)).startswith("<class 'module"):
             v_type = type(v).__name__
             try:
                 v_repr = str(v)[:50] + ('...' if len(str(v)) > 50 else '')
@@ -1978,9 +1981,29 @@ x + y`);
     for (const c of document.querySelectorAll('.cell')) await runCellPro(c.dataset.id);
   });
   
-  document.getElementById('clear-all-btn')?.addEventListener('click', () => {
-    document.querySelectorAll('.cell-output').forEach(o => { o.className = 'cell-output'; o.innerHTML = ''; });
-    document.querySelectorAll('.cell').forEach(c => c.classList.remove('running', 'has-err'));
+  // NEW: Clear Variables Button Logic
+  document.getElementById('clear-vars-btn')?.addEventListener('click', async () => {
+    if (!pyReady || pyIsRunning) {
+      toast('warn', '⏳', 'Kernel busy or not ready.');
+      return;
+    }
+    pyIsRunning = true;
+    try {
+      // Tell Python to delete all user-defined global variables
+      await pyodide.runPythonAsync(`
+_keys_to_del = [k for k in globals().keys() if not k.startswith('_') and k not in ['custom_show', 'execute_dv_cell']]
+for _k in _keys_to_del:
+    del globals()[_k]
+del _keys_to_del
+      `);
+      updateVariableInspector([]); // Instantly clear the UI table
+      toast('success', '🧹', 'Variables cleared from memory.');
+    } catch (e) {
+      toast('error', '✗', 'Failed to clear variables.');
+      console.error(e);
+    } finally {
+      pyIsRunning = false;
+    }
   });
 
   const holoBtn = document.getElementById('holo-mode-btn');
