@@ -957,8 +957,6 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
   <button id="py-retry-btn" style="display:none;padding:.25rem .65rem;border:1px solid var(--gold);border-radius:4px;background:none;color:var(--gold);font-family:var(--ff-m);font-size:.62rem;cursor:pointer;">↺ Retry</button>
 </div>
 
-  <div class="lab-layout"
-  
   <div class="lab-layout" style="display:grid; grid-template-columns: 280px 1fr; height: calc(100vh - 52px);">
     
     <div class="lab-sidebar" style="background: var(--surf); border-right: 1px solid var(--bdr); display: flex; flex-direction: column; overflow: hidden;">
@@ -1047,7 +1045,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
 <div class="db-resizer" id="db-resizer"></div>
 
       <div class="db-bottom-panel" id="db-bottom-panel">
-        <div class="db-tabs">
+        <div class="db-tabs" id="db-tabs">
           <button class="db-tab active" data-dbt="sql">SQL Editor</button>
           <button class="db-tab" data-dbt="schema">Schema</button>
           <button class="db-tab" data-dbt="rels">Relations</button>
@@ -1071,6 +1069,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- ===== SQL SANDBOX ===== -->
@@ -1558,6 +1557,28 @@ pageInits.projects=function(){renderProjects();observeReveals(document.getElemen
 /* ═══════════════════════════════════════════════
    PYTHON LAB PRO — ADVANCED PYODIDE ENGINE
 ═══════════════════════════════════════════════ */
+
+/* ─── HTML ESCAPE UTILITY ─── */
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+/* ─── CELL MANAGEMENT HELPERS ─── */
+window.moveCellUp=function(id){
+  const cell=document.querySelector(`[data-id="${id}"]`);if(!cell)return;
+  const prev=cell.previousElementSibling;
+  if(prev&&prev.classList.contains('cell')){cell.parentNode.insertBefore(cell,prev);}
+};
+window.moveCellDown=function(id){
+  const cell=document.querySelector(`[data-id="${id}"]`);if(!cell)return;
+  const next=cell.nextElementSibling;
+  if(next&&next.classList.contains('cell')){cell.parentNode.insertBefore(next,cell);}
+};
+window.deleteCell=function(id){
+  const cell=document.querySelector(`[data-id="${id}"]`);
+  if(!cell)return;
+  if(document.querySelectorAll('.cell').length<=1){toast('warn','⚠','Cannot delete the last cell.');return;}
+  if(cell.cmInstance)cell.cmInstance.toTextArea();
+  cell.remove();
+};
 const PYODIDE_CDN = 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js';
 let pyodide = null, pyReady = false, pyIsRunning = false;
 let execCount = 0, cellCtr = 0, labInited = false;
@@ -2079,13 +2100,17 @@ function loadSqlJs(){
   }catch(e){return Promise.reject(e);}
 }
 
-function resizeERD(){const w=document.getElementById('db-cw'),c=document.getElementById('ec');if(!w||!c)return;c.width=w.clientWidth;c.height=w.clientHeight;clampPan();drawERD();}
-function w2s(wx,wy){return{x:wx*erd.scale+erd.panX,y:wy*erd.scale+erd.panY};}
-function s2w(sx,sy){return{x:(sx-erd.panX)/erd.scale,y:(sy-erd.panY)/erd.scale};}
-function hitTable(wx,wy){return erd.tables.find(t=>wx>=t.x&&wx<=t.x+TW&&wy>=t.y&&wy<=t.y+tblH(t))||null;}
-function hitFieldIdx(tbl,wx,wy){
-  for(let i=0;i<tbl.fields.length;i++){const fy=tbl.y+TH+i*FH;if(wy>=fy&&wy<fy+FH)return i;}
-  return -1;
+function resizeERD() {
+  const w = document.getElementById('db-cw');
+  const c = document.getElementById('ec');
+  if(!w || !c) return;
+  const dpr = window.devicePixelRatio || 1;
+  c.width = w.clientWidth * dpr;
+  c.height = w.clientHeight * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  clampPan(); 
+  drawERD();
 }
 
 // Keep the viewport locked to our fixed virtual boundaries
@@ -3237,4 +3262,12 @@ pageInits.learn=function(){buildLearnPage();};
 
 /* ═══════════════════════════════════════════════
    BOOT SEQUENCE INIT
-════════════════════════════
+═══════════════════════════════════════════════ */
+// All page inits and router are already wired above.
+// The hash-based navigation and boot dismissal are handled
+// earlier in this IIFE. Nothing else to init here.
+
+})();
+</script>
+</body>
+</html>
