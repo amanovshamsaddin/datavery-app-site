@@ -945,53 +945,20 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
 
 <!-- ===== PYTHON LAB ===== -->
 <div class="page" id="page-lab">
-  <!-- PYODIDE FIRST-RUN NOTICE BANNER -->
-<div id="py-banner" style="
-  display:none;
-  align-items:center;
-  gap:.75rem;
-  padding:.7rem 1.2rem;
-  background:rgba(251,191,36,.08);
-  border-bottom:1px solid rgba(251,191,36,.3);
-  font-family:var(--ff-m);
-  font-size:.68rem;
-  color:var(--gold);
-  flex-wrap:wrap;
-">
+
+<!-- PYODIDE DOWNLOAD BANNER -->
+<div id="py-banner" style="display:none;align-items:center;gap:.75rem;padding:.7rem 1.2rem;background:rgba(251,191,36,.08);border-bottom:1px solid rgba(251,191,36,.3);font-family:var(--ff-m);font-size:.68rem;color:var(--gold);flex-wrap:wrap;">
   <span style="font-size:1rem;">⬇️</span>
-  <span id="py-banner-txt">
-    <strong>First-time setup:</strong> Downloading Python engine (~10 MB from CDN). 
-    This only happens once — subsequent loads use your browser cache.
-  </span>
-  <div style="
-    flex:1;
-    min-width:180px;
-    height:4px;
-    background:rgba(251,191,36,.2);
-    border-radius:2px;
-    overflow:hidden;
-  ">
-    <div id="py-progress-bar" style="
-      height:100%;
-      width:0%;
-      background:var(--gold);
-      border-radius:2px;
-      transition:width .4s ease;
-    "></div>
+  <span id="py-banner-txt"><strong>First-time setup:</strong> Downloading Python engine (~10 MB). This only happens once — next time it loads from your browser cache.</span>
+  <div style="flex:1;min-width:180px;height:4px;background:rgba(251,191,36,.2);border-radius:2px;overflow:hidden;">
+    <div id="py-progress-bar" style="height:100%;width:0%;background:var(--gold);border-radius:2px;transition:width .4s ease;"></div>
   </div>
   <span id="py-progress-pct" style="flex-shrink:0;">0%</span>
-  <button id="py-retry-btn" style="
-    display:none;
-    padding:.25rem .65rem;
-    border:1px solid var(--gold);
-    border-radius:4px;
-    background:none;
-    color:var(--gold);
-    font-family:var(--ff-m);
-    font-size:.62rem;
-    cursor:pointer;
-  ">↺ Retry</button>
+  <button id="py-retry-btn" style="display:none;padding:.25rem .65rem;border:1px solid var(--gold);border-radius:4px;background:none;color:var(--gold);font-family:var(--ff-m);font-size:.62rem;cursor:pointer;">↺ Retry</button>
 </div>
+
+  <div class="lab-layout"
+  
   <div class="lab-layout" style="display:grid; grid-template-columns: 280px 1fr; height: calc(100vh - 52px);">
     
     <div class="lab-sidebar" style="background: var(--surf); border-right: 1px solid var(--bdr); display: flex; flex-direction: column; overflow: hidden;">
@@ -1680,13 +1647,10 @@ function getPyodidePro() {
   const retry = document.getElementById('py-retry-btn');
   const btxt  = document.getElementById('py-banner-txt');
 
-  // Show the download banner
   if (banner) banner.style.display = 'flex';
 
-  // Animate progress bar (fake ticks — Pyodide has no real progress API)
   let fakePct = 0;
   const fakeInterval = setInterval(() => {
-    // Slow down as it approaches 90% so it feels realistic
     const step = fakePct < 40 ? 3 : fakePct < 70 ? 1.5 : fakePct < 88 ? 0.4 : 0;
     fakePct = Math.min(90, fakePct + step);
     if (bar) bar.style.width = fakePct + '%';
@@ -1695,12 +1659,9 @@ function getPyodidePro() {
 
   function finishBar(success) {
     clearInterval(fakeInterval);
-    if (bar) bar.style.width = success ? '100%' : '100%';
-    if (bar) bar.style.background = success ? 'var(--success)' : 'var(--danger)';
+    if (bar) { bar.style.width = '100%'; bar.style.background = success ? 'var(--success)' : 'var(--danger)'; }
     if (pct) pct.textContent = success ? '100%' : 'Failed';
-    setTimeout(() => {
-      if (banner && success) banner.style.display = 'none';
-    }, 2000);
+    if (banner && success) setTimeout(() => { banner.style.display = 'none'; }, 2000);
   }
 
   pyodidePromise = (async () => {
@@ -1711,7 +1672,7 @@ function getPyodidePro() {
           const s = document.createElement('script');
           s.src = PYODIDE_CDN;
           s.onload = res;
-          s.onerror = () => rej(new Error('Failed to fetch Pyodide script. Check your internet connection.'));
+          s.onerror = () => rej(new Error('Failed to fetch Pyodide. Check your internet connection.'));
           document.head.appendChild(s);
         });
       }
@@ -1719,7 +1680,7 @@ function getPyodidePro() {
       if (stxt) stxt.textContent = 'Booting WASM Python environment...';
       pyodide = await window.loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/' });
 
-      if (stxt) stxt.textContent = 'Installing data science packages (numpy, pandas, matplotlib)...';
+      if (stxt) stxt.textContent = 'Installing packages (numpy, pandas, matplotlib)...';
       if (btxt) btxt.innerHTML = '<strong>Installing packages:</strong> numpy · pandas · matplotlib · scikit-learn';
       await pyodide.loadPackage(['micropip']);
       const micropip = pyodide.pyimport('micropip');
@@ -1742,15 +1703,17 @@ function getPyodidePro() {
       finishBar(false);
       if (dot)  dot.className  = 'pydot err';
       if (stxt) stxt.textContent = '⚠ Failed: ' + err.message;
-      if (btxt) btxt.innerHTML  = `<strong>Download failed:</strong> ${err.message} — Check your internet connection and try again.`;
-      if (retry) retry.style.display = 'inline-block';
-      retry?.addEventListener('click', () => {
-        retry.style.display = 'none';
-        bar.style.background = 'var(--gold)';
-        bar.style.width = '0%';
-        pyodidePromise = null;
-        getPyodidePro().catch(() => {});
-      }, { once: true });
+      if (btxt) btxt.innerHTML  = `<strong>Download failed:</strong> ${err.message} — Check your internet and try again.`;
+      if (retry) {
+        retry.style.display = 'inline-block';
+        retry.addEventListener('click', () => {
+          retry.style.display = 'none';
+          if (bar) { bar.style.background = 'var(--gold)'; bar.style.width = '0%'; }
+          if (pct) pct.textContent = '0%';
+          pyodidePromise = null;
+          getPyodidePro().catch(() => {});
+        }, { once: true });
+      }
       console.error('Pyodide load failed:', err);
       throw err;
     }
