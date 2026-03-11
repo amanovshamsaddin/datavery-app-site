@@ -2262,15 +2262,6 @@ function startInlineEdit(canvas,tbl,fieldIdx){
   inp.style.fontSize=(12*erd.scale)+'px';
   inp.value=fieldIdx<0?tbl.name:tbl.fields[fieldIdx].name;
   document.getElementById('db-cw').appendChild(inp);inp.focus();inp.select();
-  function startInlineEdit(canvas,tbl,fieldIdx){
-  const existing=document.getElementById('erd-edit-input');if(existing)existing.remove();
-  const inp=document.createElement('input');inp.id='erd-edit-input';inp.type='text';
-  const sc=fieldIdx<0?w2s(tbl.x+TW/2-40,tbl.y+TH/2-10):w2s(tbl.x+5,tbl.y+TH+fieldIdx*FH+3);
-  inp.style.left=sc.x+'px';inp.style.top=sc.y+'px';
-  inp.style.width=(fieldIdx<0?TW-20:TW-10)*erd.scale+'px';
-  inp.style.fontSize=(12*erd.scale)+'px';
-  inp.value=fieldIdx<0?tbl.name:tbl.fields[fieldIdx].name;
-  document.getElementById('db-cw').appendChild(inp);inp.focus();inp.select();
   
   let isCommitted = false; // Add guard flag
   
