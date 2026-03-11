@@ -945,6 +945,53 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
 
 <!-- ===== PYTHON LAB ===== -->
 <div class="page" id="page-lab">
+  <!-- PYODIDE FIRST-RUN NOTICE BANNER -->
+<div id="py-banner" style="
+  display:none;
+  align-items:center;
+  gap:.75rem;
+  padding:.7rem 1.2rem;
+  background:rgba(251,191,36,.08);
+  border-bottom:1px solid rgba(251,191,36,.3);
+  font-family:var(--ff-m);
+  font-size:.68rem;
+  color:var(--gold);
+  flex-wrap:wrap;
+">
+  <span style="font-size:1rem;">⬇️</span>
+  <span id="py-banner-txt">
+    <strong>First-time setup:</strong> Downloading Python engine (~10 MB from CDN). 
+    This only happens once — subsequent loads use your browser cache.
+  </span>
+  <div style="
+    flex:1;
+    min-width:180px;
+    height:4px;
+    background:rgba(251,191,36,.2);
+    border-radius:2px;
+    overflow:hidden;
+  ">
+    <div id="py-progress-bar" style="
+      height:100%;
+      width:0%;
+      background:var(--gold);
+      border-radius:2px;
+      transition:width .4s ease;
+    "></div>
+  </div>
+  <span id="py-progress-pct" style="flex-shrink:0;">0%</span>
+  <button id="py-retry-btn" style="
+    display:none;
+    padding:.25rem .65rem;
+    border:1px solid var(--gold);
+    border-radius:4px;
+    background:none;
+    color:var(--gold);
+    font-family:var(--ff-m);
+    font-size:.62rem;
+    cursor:pointer;
+  ">↺ Retry</button>
+</div>
   <div class="lab-layout" style="display:grid; grid-template-columns: 280px 1fr; height: calc(100vh - 52px);">
     
     <div class="lab-sidebar" style="background: var(--surf); border-right: 1px solid var(--bdr); display: flex; flex-direction: column; overflow: hidden;">
@@ -1624,46 +1671,91 @@ let pyodidePromise = null;
 function getPyodidePro() {
   if (pyodide) return Promise.resolve(pyodide);
   if (pyodidePromise) return pyodidePromise;
-  
-  const dot = document.getElementById('pydot');
-  const stxt = document.getElementById('py-status-txt');
+
+  const dot   = document.getElementById('pydot');
+  const stxt  = document.getElementById('py-status-txt');
+  const banner= document.getElementById('py-banner');
+  const bar   = document.getElementById('py-progress-bar');
+  const pct   = document.getElementById('py-progress-pct');
+  const retry = document.getElementById('py-retry-btn');
+  const btxt  = document.getElementById('py-banner-txt');
+
+  // Show the download banner
+  if (banner) banner.style.display = 'flex';
+
+  // Animate progress bar (fake ticks — Pyodide has no real progress API)
+  let fakePct = 0;
+  const fakeInterval = setInterval(() => {
+    // Slow down as it approaches 90% so it feels realistic
+    const step = fakePct < 40 ? 3 : fakePct < 70 ? 1.5 : fakePct < 88 ? 0.4 : 0;
+    fakePct = Math.min(90, fakePct + step);
+    if (bar) bar.style.width = fakePct + '%';
+    if (pct) pct.textContent = Math.round(fakePct) + '%';
+  }, 300);
+
+  function finishBar(success) {
+    clearInterval(fakeInterval);
+    if (bar) bar.style.width = success ? '100%' : '100%';
+    if (bar) bar.style.background = success ? 'var(--success)' : 'var(--danger)';
+    if (pct) pct.textContent = success ? '100%' : 'Failed';
+    setTimeout(() => {
+      if (banner && success) banner.style.display = 'none';
+    }, 2000);
+  }
 
   pyodidePromise = (async () => {
     try {
       if (!window.loadPyodide) {
+        if (stxt) stxt.textContent = 'Fetching Pyodide loader...';
         await new Promise((res, rej) => {
           const s = document.createElement('script');
-          s.src = PYODIDE_CDN; s.onload = res; s.onerror = rej;
+          s.src = PYODIDE_CDN;
+          s.onload = res;
+          s.onerror = () => rej(new Error('Failed to fetch Pyodide script. Check your internet connection.'));
           document.head.appendChild(s);
         });
       }
-      if (stxt) stxt.textContent = 'Booting WASM Python Environment...';
+
+      if (stxt) stxt.textContent = 'Booting WASM Python environment...';
       pyodide = await window.loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/' });
-      
-      if (stxt) stxt.textContent = 'Mounting MicroPip & Data Science Stack...';
+
+      if (stxt) stxt.textContent = 'Installing data science packages (numpy, pandas, matplotlib)...';
+      if (btxt) btxt.innerHTML = '<strong>Installing packages:</strong> numpy · pandas · matplotlib · scikit-learn';
       await pyodide.loadPackage(['micropip']);
-      const micropip = pyodide.pyimport("micropip");
+      const micropip = pyodide.pyimport('micropip');
       await micropip.install(['numpy', 'pandas', 'matplotlib', 'scikit-learn']);
-      
-      if (stxt) stxt.textContent = 'Injecting DataVery AST Engine...';
+
+      if (stxt) stxt.textContent = 'Injecting DataVery AST engine...';
       await pyodide.runPythonAsync(PY_WRAPPER);
-      
-      if (dot) dot.className = 'pydot rdy';
+
+      finishBar(true);
+      if (dot)  dot.className  = 'pydot rdy';
       if (stxt) stxt.textContent = 'Kernel Ready ✓';
       document.getElementById('pkg-row').style.display = 'flex';
-      ['numpy', 'pandas', 'sklearn'].forEach(p => document.getElementById('pkg-'+p)?.classList.add('loaded'));
-      
+      ['numpy','pandas','sklearn'].forEach(p => document.getElementById('pkg-'+p)?.classList.add('loaded'));
       pyReady = true;
       toast('success', '🐍', 'Python Lab Pro Ready!');
       return pyodide;
+
     } catch (err) {
       pyodidePromise = null;
-      if (dot) dot.className = 'pydot err';
-      if (stxt) stxt.textContent = 'Kernel Panic: Check console.';
-      console.error(err);
+      finishBar(false);
+      if (dot)  dot.className  = 'pydot err';
+      if (stxt) stxt.textContent = '⚠ Failed: ' + err.message;
+      if (btxt) btxt.innerHTML  = `<strong>Download failed:</strong> ${err.message} — Check your internet connection and try again.`;
+      if (retry) retry.style.display = 'inline-block';
+      retry?.addEventListener('click', () => {
+        retry.style.display = 'none';
+        bar.style.background = 'var(--gold)';
+        bar.style.width = '0%';
+        pyodidePromise = null;
+        getPyodidePro().catch(() => {});
+      }, { once: true });
+      console.error('Pyodide load failed:', err);
       throw err;
     }
   })();
+
   return pyodidePromise;
 }
 
