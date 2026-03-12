@@ -1084,6 +1084,11 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
       <button class="sql-ds-btn active" data-ds="monash">🎓 Monash University</button>
       <button class="sql-ds-btn" data-ds="sales">🛒 E-Commerce</button>
       <button class="sql-ds-btn" data-ds="library">📚 Library</button>
+      
+      <div style="height:1px;background:var(--bdr);margin:.5rem 0;"></div>
+      <button class="sql-ds-btn" id="sql-upload-btn" style="border-style:dashed;color:var(--ac);">+ Upload CSV to SQL</button>
+      <input type="file" id="sql-file-input" accept=".csv,.tsv" style="display:none">
+      
       <div class="sql-sb-lbl" style="margin-top:1.25rem;">Schema</div>
       <div class="sql-schema-tree" id="sql-schema-tree"></div>
       <div class="sql-sb-lbl">Quick Queries</div>
@@ -2878,9 +2883,14 @@ function runSBQuery(){
           const thead=document.createElement('thead'),tr=document.createElement('tr');
           columns.forEach(c=>{const th=document.createElement('th');th.textContent=c;tr.appendChild(th);});
           thead.appendChild(tr);tbl.appendChild(thead);
-          const tbody=document.createElement('tbody');
-          values.slice(0,500).forEach(row=>{const r=document.createElement('tr');row.forEach(v=>{const td=document.createElement('td');td.textContent=v===null?'NULL':String(v);r.appendChild(td);});tbody.appendChild(r);});
-          tbl.appendChild(tbody);tw.appendChild(tbl);wrap.appendChild(tw);
+          // NEW FAST STRING METHOD
+          let tbodyHTML = '<tbody>';
+          values.slice(0, 500).forEach(row => {
+            tbodyHTML += '<tr>' + row.map(v => `<td>${v === null ? 'NULL' : esc(v)}</td>`).join('') + '</tr>';
+          });
+          tbodyHTML += '</tbody>';
+          tbl.insertAdjacentHTML('beforeend', tbodyHTML);
+          tw.appendChild(tbl); wrap.appendChild(tw);
         });
       }
     }catch(e){const err=document.createElement('div');err.style.cssText='font-family:var(--ff-m);font-size:.7rem;color:var(--danger);padding:.5rem;background:rgba(239,68,68,.07);border-radius:5px;word-break:break-all;';err.textContent='✗ '+e.message;wrap.appendChild(err);}
@@ -2895,19 +2905,86 @@ function formatSQL(sql){
   return formatted.replace(/\n+/g,'\n').trim();
 }
 
+function loadCSVToSQL(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    // Note: This safely reuses your parseCSV from the Playground module!
+    const parsed = parseCSV(e.target.result); 
+    if(!parsed) return toast('error', '✗', 'Invalid CSV');
+    
+    // Clean up filename to make it a valid SQL table name
+    const tableName = file.name.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+    
+    // Generate CREATE TABLE
+    const colDefs = parsed.cols.map(c => `"${c}" TEXT`).join(',');
+    sqlSBDB.run(`CREATE TABLE IF NOT EXISTS "${tableName}" (${colDefs});`);
+    
+    // Generate INSERTS
+    parsed.rows.forEach(row => {
+      const vals = row.map(v => `'${String(v).replace(/'/g, "''")}'`).join(',');
+      sqlSBDB.run(`INSERT INTO "${tableName}" VALUES (${vals});`);
+    });
+    
+    toast('success', '✓', `Table "${tableName}" created!`);
+    
+    // Dynamically add the new table to the Schema UI tree
+    const tree = document.getElementById('sql-schema-tree');
+    if (tree) {
+      const tableHTML = `
+        <div class="schema-tbl">
+          <div class="schema-tbl-nm" onclick="sbInsertText('SELECT * FROM ${tableName} LIMIT 10;')">${tableName}</div>
+          ${parsed.cols.map(c => `<div class="schema-col">${c}<span>TEXT</span></div>`).join('')}
+        </div>`;
+      tree.insertAdjacentHTML('beforeend', tableHTML);
+    }
+  };
+  reader.readAsText(file);
+}
+
 pageInits.sql=function(){
   if(sqlSBInited)return;sqlSBInited=true;
   setTimeout(()=>{
     const ta=document.getElementById('sql-sb-editor');
     if(ta&&typeof CodeMirror!=='undefined'){
       sbCM=CodeMirror.fromTextArea(ta,{mode:'sql',theme:curTheme==='light'?'default':'dracula',lineNumbers:true,autoCloseBrackets:true,extraKeys:{'Ctrl-Enter':runSBQuery}});
-      sbCM.setValue('-- FIT9132 Database Practice\nSELECT s.name, c.code, e.grade\nFROM enrollment e\nJOIN students s ON e.student_id = s.student_id\nJOIN courses c ON e.course_id = c.course_id\nORDER BY s.name;');
+      
+      // Load saved query or default
+      const savedQuery = localStorage.getItem('dv-sql-draft');
+      if (savedQuery) {
+        sbCM.setValue(savedQuery);
+      } else {
+        sbCM.setValue('-- FIT9132 Database Practice\nSELECT s.name, c.code, e.grade\nFROM enrollment e\nJOIN students s ON e.student_id = s.student_id\nJOIN courses c ON e.course_id = c.course_id\nORDER BY s.name;');
+      }
+      
+      // Save on change
+      sbCM.on('change', () => {
+        localStorage.setItem('dv-sql-draft', sbCM.getValue());
+      });
     }
   },100);
   document.getElementById('sql-sb-run')?.addEventListener('click',runSBQuery);
   document.getElementById('sql-sb-clr')?.addEventListener('click',()=>{if(sbCM)sbCM.setValue('');document.getElementById('sql-sb-results').innerHTML='<div style="text-align:center;padding:2.5rem;color:var(--txt3);font-family:var(--ff-m);font-size:.72rem;">Run a query to see results here.</div>';});
   document.getElementById('sql-sb-format')?.addEventListener('click',()=>{if(sbCM)sbCM.setValue(formatSQL(sbCM.getValue()));});
-  document.querySelectorAll('.sql-ds-btn').forEach(b=>b.addEventListener('click',()=>{if(sqlSBDB)loadDataset(b.dataset.ds);else toast('warn','⚠','Loading database…');}));
+  
+  // Existing logic for static datasets
+  document.querySelectorAll('.sql-ds-btn[data-ds]').forEach(b=>b.addEventListener('click',()=>{if(sqlSBDB)loadDataset(b.dataset.ds);else toast('warn','⚠','Loading database…');}));
+  
+  // NEW LOGIC: Wiring up the CSV uploader
+  const upBtn = document.getElementById('sql-upload-btn');
+  const upInput = document.getElementById('sql-file-input');
+  if (upBtn && upInput) {
+    upBtn.addEventListener('click', () => {
+      if(!sqlSBDB) return toast('warn', '⚠', 'Database not ready yet.');
+      upInput.click();
+    });
+    upInput.addEventListener('change', e => {
+      if (e.target.files[0]) {
+        loadCSVToSQL(e.target.files[0]);
+        e.target.value = ''; // Reset so the same file can be uploaded again if needed
+      }
+    });
+  }
+
   loadSqlJsForSB().then(()=>{loadDataset('monash');toast('success','💻','SQL Sandbox ready!');}).catch(()=>toast('error','✗','SQL engine failed to load.'));
 };
 
