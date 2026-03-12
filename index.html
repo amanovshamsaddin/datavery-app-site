@@ -2229,21 +2229,45 @@ function drawERD(){
   }
 
   // Relations
+  // Relations
   erd.relations.forEach(rel=>{
     const fT=erd.tables.find(t=>t.id===rel.fromTable),tT=erd.tables.find(t=>t.id===rel.toTable);if(!fT||!tT)return;
     const ffi=fT.fields.findIndex(f=>f.name===rel.fromField),tfi=tT.fields.findIndex(f=>f.name===rel.toField);
-    const fsx=w2s(fT.x+TW,0).x,tsx=w2s(tT.x,0).x;
-    const fsy=w2s(0,fT.y+TH+(ffi>=0?ffi+.5:0.5)*FH).y,tsy=w2s(0,tT.y+TH+(tfi>=0?tfi+.5:0.5)*FH).y;
-    const cp=Math.abs(fsx-tsx)*0.5;
-    ctx.beginPath();ctx.moveTo(fsx,fsy);ctx.bezierCurveTo(fsx+cp,fsy,tsx-cp,tsy,tsx,tsy);
+    
+    // Auto-detect closest edges for routing
+    const fIsLeft = fT.x + TW/2 < tT.x + TW/2;
+    const fsx = w2s(fIsLeft ? fT.x + TW : fT.x, 0).x;
+    const tsx = w2s(fIsLeft ? tT.x : tT.x + TW, 0).x;
+    const fsy = w2s(0, fT.y + TH + (ffi>=0 ? ffi+.5 : 0.5)*FH).y;
+    const tsy = w2s(0, tT.y + TH + (tfi>=0 ? tfi+.5 : 0.5)*FH).y;
+    
+    ctx.beginPath(); ctx.moveTo(fsx, fsy);
+    
+    // Orthogonal step routing with rounded elbows
+    const midX = (fsx + tsx) / 2;
+    const r = Math.min(8 * erd.scale, Math.abs(tsy - fsy) / 2, Math.abs(tsx - fsx) / 2) || 0;
+    
+    if (Math.abs(fsy - tsy) < 1) {
+      ctx.lineTo(tsx, tsy); 
+    } else {
+      ctx.arcTo(midX, fsy, midX, tsy, r);
+      ctx.arcTo(midX, tsy, tsx, tsy, r);
+      ctx.lineTo(tsx, tsy);
+    }
+    
     ctx.strokeStyle=rel.style==='solid'?C.ac:C.pu;ctx.lineWidth=1.8*erd.scale;
     if(rel.style==='dashed')ctx.setLineDash([6*erd.scale,4*erd.scale]);else ctx.setLineDash([]);
     ctx.stroke();ctx.setLineDash([]);
-    const ang=Math.atan2(tsy-fsy,tsx-fsx),al=10*erd.scale;
-    ctx.beginPath();ctx.moveTo(tsx,tsy);ctx.lineTo(tsx-al*Math.cos(ang-.38),tsy-al*Math.sin(ang-.38));ctx.lineTo(tsx-al*Math.cos(ang+.38),tsy-al*Math.sin(ang+.38));ctx.closePath();
-    ctx.fillStyle=rel.style==='solid'?C.ac:C.pu;ctx.fill();
-    ctx.font=`${10*erd.scale}px "JetBrains Mono",monospace`;ctx.fillStyle=C.t2;ctx.textAlign='center';
-    ctx.fillText(rel.card,(fsx+tsx)/2,(fsy+tsy)/2-6*erd.scale);ctx.textAlign='left';
+    
+    // Dbdiagram.io style notations (1 and *)
+    ctx.font = `bold ${10*erd.scale}px "JetBrains Mono",monospace`;
+    ctx.fillStyle = rel.style==='solid'?C.ac:C.pu;
+    
+    const cards = rel.card.split(':');
+    const srcTxt = cards[0]||'1', tgtTxt = cards[1]==='N'?'*':(cards[1]||'1');
+    
+    ctx.fillText(srcTxt, fsx + (fIsLeft ? 4*erd.scale : -10*erd.scale), fsy - 5*erd.scale);
+    ctx.fillText(tgtTxt, tsx + (fIsLeft ? -10*erd.scale : 4*erd.scale), tsy - 5*erd.scale);
   });
 
   // Draw-mode preview line
@@ -2274,15 +2298,15 @@ function drawERD(){
     tbl.fields.forEach((f,i)=>{
       const fy=sc.y+(TH+i*FH)*erd.scale;
       if(i%2===0){ctx.fillStyle=C.bg2+'55';ctx.fillRect(sc.x+erd.scale,fy,sw-2*erd.scale,FH*erd.scale);}
-      const kl=f.pk&&f.fk?'PK+FK':f.pk?'PK':f.fk?'FK':'';
-      let bx=sc.x+5*erd.scale;
-      if(kl){
-        const bc=f.pk&&f.fk?C.or:f.pk?C.ac:C.pu;
-        ctx.font=`bold ${9*erd.scale}px "JetBrains Mono",monospace`;
-        const bw=ctx.measureText(kl).width+8*erd.scale;
-        ctx.fillStyle=bc+'33';ctx.strokeStyle=bc;ctx.lineWidth=.8*erd.scale;
-        rr(ctx,bx,fy+4*erd.scale,bw,14*erd.scale,3*erd.scale);ctx.fill();ctx.stroke();
-        ctx.fillStyle=bc;ctx.fillText(kl,bx+4*erd.scale,fy+14*erd.scale);bx+=bw+4*erd.scale;
+      let bx=sc.x+6*erd.scale;
+      ctx.font=`${11*erd.scale}px sans-serif`;
+      
+      // Clean Icon rendering
+      if(f.pk){ ctx.fillText('🔑', bx, fy+15*erd.scale); bx+=16*erd.scale; }
+      if(f.fk){ ctx.fillText('🔗', bx, fy+15*erd.scale); bx+=16*erd.scale; }
+      
+      ctx.font=`${11*erd.scale}px "JetBrains Mono",monospace`;ctx.fillStyle=C.t;
+      ctx.fillText(f.name,bx,fy+14*erd.scale);
       }
       ctx.font=`${11*erd.scale}px "JetBrains Mono",monospace`;ctx.fillStyle=C.t;
       ctx.fillText(f.name,bx,fy+14*erd.scale);
