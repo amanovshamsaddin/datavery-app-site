@@ -749,7 +749,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
     <div class="s-lm">DV</div>
     <div class="s-lt">
       <span class="s-lmain">DataVery</span>
-      <span class="s-lsub">.app V4.5</span>
+      <span class="s-lsub">.app V4.6</span>
     </div>
   </a>
   <div class="s-online"><div class="ondot"></div><span>System Operational</span></div>
@@ -1327,7 +1327,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
       <div><div class="f-col-t">External</div><ul class="f-links"><li><a href="https://github.com/amanovshamsaddin" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/theamanov/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="/cdn-cgi/l/email-protection#b1d0dcd0dfdec7c2d9d0dcc2f1d6dcd0d8dd9fd2dedc">Email</a></li><li><a href="#" onclick="navigate('learn');return false;">Learn</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app V4.5</p>
+      <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app V4.6</p>
       <div class="f-socials">
         <a href="https://www.linkedin.com/in/theamanov/" class="f-soc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         <a href="https://github.com/amanovshamsaddin" class="f-soc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
@@ -3013,6 +3013,7 @@ const MARIE_MEMORY_SIZE=4096;
 
 const marieVM={
   AC:0,PC:0x100,IR:0,MAR:0,MBR:0,
+  phase: 0, // NEW: Tracks the micro-step (0=Fetch, 1=Decode, 2=Execute)
   memory:new Int16Array(MARIE_MEMORY_SIZE),
   running:false,halted:false,cycles:0,
   inputBuffer:[],waitingInput:false,
@@ -3087,32 +3088,54 @@ function marieAssemble(src){
 function marieStep(){
   if(marieVM.halted||marieVM.waitingInput)return false;
   marieVM.changedRegs.clear();marieVM.changedMem.clear();
-  // Fetch
-  marieVM.MAR=marieVM.PC;marieVM.IR=marieVM.memory[marieVM.MAR]&0xFFFF;marieVM.PC++;marieVM.cycles++;
-  marieVM.changedRegs.add('IR');marieVM.changedRegs.add('MAR');marieVM.changedRegs.add('PC');
-  const op=(marieVM.IR>>12)&0xF,operand=marieVM.IR&0xFFF;
-  // Execute
-  switch(op){
-    case 0x1:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=marieVM.MBR;marieVM.changedRegs.add('AC');break;
-    case 0x2:marieVM.MAR=operand;marieVM.MBR=marieVM.AC;marieVM.memory[marieVM.MAR]=marieVM.MBR;marieVM.changedMem.add(operand);break;
-    case 0x3:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=(marieVM.AC+marieVM.MBR)&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;marieVM.changedRegs.add('AC');break;
-    case 0x4:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=(marieVM.AC-marieVM.MBR)&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;marieVM.changedRegs.add('AC');break;
-    case 0x5:{
-      const iv=parseInt(document.getElementById('marie-input-val').value);
-      if(!isNaN(iv)){marieVM.AC=iv&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;document.getElementById('marie-input-val').value='';marieVM.changedRegs.add('AC');}
-      else{marieVM.waitingInput=true;marieVM.PC--;document.getElementById('marie-status').textContent='⏸ Waiting for INPUT…';toast('warn','⌨️','Enter a value and click Send.');return false;}
-      break;}
-    case 0x6:marieVM.outputLog.push(String(marieVM.AC));updateMarieOutput();break;
-    case 0x7:marieVM.halted=true;marieVM.running=false;document.getElementById('marie-status').textContent='■ Halted';updateMarieControls(false,true);break;
-    case 0x8:{const cond=(operand>>10)&0x3;if((cond===0&&marieVM.AC<0)||(cond===1&&marieVM.AC===0)||(cond===2&&marieVM.AC>0))marieVM.PC++;marieVM.changedRegs.add('PC');break;}
-    case 0x9:marieVM.PC=operand;marieVM.changedRegs.add('PC');break;
-    case 0xA:marieVM.AC=0;marieVM.changedRegs.add('AC');break;
-    case 0xB:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=(marieVM.AC+marieVM.MBR)&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;marieVM.changedRegs.add('AC');break;
-    case 0xC:marieVM.PC=marieVM.memory[operand]&0xFFF;marieVM.changedRegs.add('PC');break;
-    case 0xD:marieVM.MAR=marieVM.memory[operand]&0xFFF;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=marieVM.MBR;marieVM.changedRegs.add('AC');break;
-    case 0xE:marieVM.MAR=marieVM.memory[operand]&0xFFF;marieVM.MBR=marieVM.AC;marieVM.memory[marieVM.MAR]=marieVM.MBR;marieVM.changedMem.add(marieVM.MAR);break;
-    case 0xF:marieVM.memory[operand]=marieVM.PC;marieVM.PC=operand+1;marieVM.changedRegs.add('PC');marieVM.changedMem.add(operand);break;
-    default:marieVM.halted=true;break;
+
+  if (marieVM.phase === 0) {
+    // Phase 1: Fetch Part 1 (MAR <- PC)
+    marieVM.MAR = marieVM.PC;
+    marieVM.changedRegs.add('MAR');
+    document.getElementById('marie-status').textContent = `Step 1/3: FETCH (MAR ← PC) | Cycle ${marieVM.cycles}`;
+    marieVM.phase = 1;
+  } 
+  else if (marieVM.phase === 1) {
+    // Phase 2: Fetch Part 2 (IR <- M[MAR], PC++)
+    marieVM.IR = marieVM.memory[marieVM.MAR] & 0xFFFF;
+    marieVM.PC++;
+    marieVM.cycles++;
+    marieVM.changedRegs.add('IR');
+    marieVM.changedRegs.add('PC');
+    document.getElementById('marie-status').textContent = `Step 2/3: DECODE (IR ← M[MAR], PC++) | Cycle ${marieVM.cycles}`;
+    marieVM.phase = 2;
+  } 
+  else if (marieVM.phase === 2) {
+    // Phase 3: Execute
+    const op = (marieVM.IR >> 12) & 0xF;
+    const operand = marieVM.IR & 0xFFF;
+    const opName = MARIE_OPNAMES[op] || 'UNKNOWN';
+    document.getElementById('marie-status').textContent = `Step 3/3: EXECUTE (${opName}) | Cycle ${marieVM.cycles}`;
+
+    switch(op){
+      case 0x1:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=marieVM.MBR;marieVM.changedRegs.add('AC');break;
+      case 0x2:marieVM.MAR=operand;marieVM.MBR=marieVM.AC;marieVM.memory[marieVM.MAR]=marieVM.MBR;marieVM.changedMem.add(operand);break;
+      case 0x3:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=(marieVM.AC+marieVM.MBR)&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;marieVM.changedRegs.add('AC');break;
+      case 0x4:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=(marieVM.AC-marieVM.MBR)&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;marieVM.changedRegs.add('AC');break;
+      case 0x5:{
+        const iv=parseInt(document.getElementById('marie-input-val').value);
+        if(!isNaN(iv)){marieVM.AC=iv&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;document.getElementById('marie-input-val').value='';marieVM.changedRegs.add('AC');}
+        else{marieVM.waitingInput=true;marieVM.PC--;marieVM.phase=0;document.getElementById('marie-status').textContent='⏸ Waiting for INPUT…';toast('warn','⌨️','Enter a value and click Send.');return false;}
+        break;}
+      case 0x6:marieVM.outputLog.push(String(marieVM.AC));updateMarieOutput();break;
+      case 0x7:marieVM.halted=true;marieVM.running=false;document.getElementById('marie-status').textContent='■ Halted';updateMarieControls(false,true);break;
+      case 0x8:{const cond=(operand>>10)&0x3;if((cond===0&&marieVM.AC<0)||(cond===1&&marieVM.AC===0)||(cond===2&&marieVM.AC>0))marieVM.PC++;marieVM.changedRegs.add('PC');break;}
+      case 0x9:marieVM.PC=operand;marieVM.changedRegs.add('PC');break;
+      case 0xA:marieVM.AC=0;marieVM.changedRegs.add('AC');break;
+      case 0xB:marieVM.MAR=operand;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=(marieVM.AC+marieVM.MBR)&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;marieVM.changedRegs.add('AC');break;
+      case 0xC:marieVM.PC=marieVM.memory[operand]&0xFFF;marieVM.changedRegs.add('PC');break;
+      case 0xD:marieVM.MAR=marieVM.memory[operand]&0xFFF;marieVM.MBR=marieVM.memory[marieVM.MAR];marieVM.AC=marieVM.MBR;marieVM.changedRegs.add('AC');break;
+      case 0xE:marieVM.MAR=marieVM.memory[operand]&0xFFF;marieVM.MBR=marieVM.AC;marieVM.memory[marieVM.MAR]=marieVM.MBR;marieVM.changedMem.add(marieVM.MAR);break;
+      case 0xF:marieVM.memory[operand]=marieVM.PC;marieVM.PC=operand+1;marieVM.changedRegs.add('PC');marieVM.changedMem.add(operand);break;
+      default:marieVM.halted=true;break;
+    }
+    marieVM.phase = 0; // Reset for the next instruction
   }
   updateMarieRegisters();updateMarieMemTable();
   return !marieVM.halted;
@@ -3170,16 +3193,16 @@ pageInits.marie=function(){
   },100);
   document.getElementById('marie-assemble')?.addEventListener('click',()=>{
     const src=marieCM?marieCM.getValue():(document.getElementById('marie-code')?.value||'');
-    marieVM.memory.fill(0);marieVM.AC=0;marieVM.PC=0x100;marieVM.IR=0;marieVM.MAR=0;marieVM.MBR=0;marieVM.halted=false;marieVM.cycles=0;marieVM.running=false;marieVM.outputLog=[];marieVM.waitingInput=false;marieVM.changedRegs.clear();marieVM.changedMem.clear();
+    marieVM.phase=0;marieVM.memory.fill(0);marieVM.AC=0;marieVM.PC=0x100;marieVM.IR=0;marieVM.MAR=0;marieVM.MBR=0;marieVM.halted=false;marieVM.cycles=0;marieVM.running=false;marieVM.outputLog=[];marieVM.waitingInput=false;marieVM.changedRegs.clear();marieVM.changedMem.clear();
     const errors=marieAssemble(src);
     const errEl=document.getElementById('marie-errors');
     if(errors.length){errEl.textContent=errors.join('\n');errEl.classList.add('vis');document.getElementById('marie-status').textContent='✗ Errors — see below';updateMarieControls(false,false);}
     else{errEl.classList.remove('vis');errEl.textContent='';document.getElementById('marie-status').textContent='✓ Assembled — ready to run';updateMarieControls(true,false);updateMarieRegisters();updateMarieMemTable();updateMarieOutput();toast('success','✓','Program assembled successfully!');}
   });
-  document.getElementById('marie-step')?.addEventListener('click',()=>{if(!marieVM.halted){const cont=marieStep();document.getElementById('marie-status').textContent=marieVM.halted?'■ Halted':`Cycle ${marieVM.cycles} — PC: ${marieVM.PC.toString(16).toUpperCase()}`;updateMarieControls(true,marieVM.halted);}});
+  document.getElementById('marie-step')?.addEventListener('click',()=>{if(!marieVM.halted){marieStep();if(marieVM.halted)document.getElementById('marie-status').textContent='■ Halted';updateMarieControls(true,marieVM.halted);}});
   document.getElementById('marie-run')?.addEventListener('click',()=>{if(marieVM.halted)return;marieVM.running=true;document.getElementById('marie-status').textContent='▶▶ Running…';updateMarieControls(true,false);marieRunInterval=setInterval(marieRunLoop,100);});
   document.getElementById('marie-stop')?.addEventListener('click',()=>{clearInterval(marieRunInterval);marieRunInterval=null;marieVM.running=false;document.getElementById('marie-status').textContent='⏹ Stopped';updateMarieControls(true,marieVM.halted);});
-  document.getElementById('marie-reset')?.addEventListener('click',()=>{clearInterval(marieRunInterval);marieRunInterval=null;marieVM.AC=0;marieVM.PC=0x100;marieVM.IR=0;marieVM.MAR=0;marieVM.MBR=0;marieVM.cycles=0;marieVM.halted=false;marieVM.running=false;marieVM.outputLog=[];marieVM.waitingInput=false;marieVM.memory.fill(0);updateMarieRegisters();updateMarieMemTable();updateMarieOutput();document.getElementById('marie-status').textContent='↺ Reset — re-assemble to run';updateMarieControls(false,false);});
+  document.getElementById('marie-reset')?.addEventListener('click',()=>{clearInterval(marieRunInterval);marieRunInterval=null;marieVM.phase=0;marieVM.AC=0;marieVM.PC=0x100;marieVM.IR=0;marieVM.MAR=0;marieVM.MBR=0;marieVM.cycles=0;marieVM.halted=false;marieVM.running=false;marieVM.outputLog=[];marieVM.waitingInput=false;marieVM.memory.fill(0);updateMarieRegisters();updateMarieMemTable();updateMarieOutput();document.getElementById('marie-status').textContent='↺ Reset — re-assemble to run';updateMarieControls(false,false);});
   document.getElementById('marie-mem-refresh')?.addEventListener('click',updateMarieMemTable);
   document.getElementById('marie-input-submit')?.addEventListener('click',()=>{if(!marieVM.waitingInput)return;const iv=parseInt(document.getElementById('marie-input-val').value);if(isNaN(iv)){toast('error','✗','Enter a valid integer.');return;}marieVM.AC=iv&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;document.getElementById('marie-input-val').value='';marieVM.waitingInput=false;marieVM.PC++;marieVM.changedRegs.add('AC');document.getElementById('marie-status').textContent='▶ Resumed';updateMarieRegisters();updateMarieMemTable();if(marieVM.running){marieRunInterval=setInterval(marieRunLoop,100);updateMarieControls(true,false);}});
 };
