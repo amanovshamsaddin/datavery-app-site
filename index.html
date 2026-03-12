@@ -749,7 +749,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
     <div class="s-lm">DV</div>
     <div class="s-lt">
       <span class="s-lmain">DataVery</span>
-      <span class="s-lsub">.app V4.4</span>
+      <span class="s-lsub">.app V4.5</span>
     </div>
   </a>
   <div class="s-online"><div class="ondot"></div><span>System Operational</span></div>
@@ -1327,7 +1327,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
       <div><div class="f-col-t">External</div><ul class="f-links"><li><a href="https://github.com/amanovshamsaddin" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/theamanov/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="mailto:amanovshams@gmail.com">Email</a></li><li><a href="#" onclick="navigate('learn');return false;">Learn</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app V4.4</p>
+      <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app V4.5</p>
       <div class="f-socials">
         <a href="https://www.linkedin.com/in/theamanov/" class="f-soc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         <a href="https://github.com/amanovshamsaddin" class="f-soc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
@@ -3219,131 +3219,733 @@ pageInits.github=async function(){
 };
 
 /* ═══════════════════════════════════════════════
-   LEARN — 3 COURSES
+   LEARN — 3 COURSES (THE ULTIMATE EDUCATION HUB)
 ═══════════════════════════════════════════════ */
-const COURSES={
-python:{
-  code:'FIT9136',
-  name:'Introduction to Python',
-  weeks:[
-    {num:1,title:'Introduction to Python, Variables & Statements',dates:'Mon 2 Mar – Sun 8 Mar 2026',overview:'Introduction to the Python programming environment, fundamental data types, variables, assignment statements, and expressions. Learn how Python interprets and executes code.',outcomes:['Identify Python data types: int, float, str, bool','Write and execute Python statements and expressions','Use variables and assignment effectively','Understand how Python evaluates expressions'],concepts:[{name:'Variables',desc:'Named storage for values.',code:"name = 'Shamsaddin'\nage = 26\ngpa = 3.9"},{name:'Data Types',desc:'int, float, str, bool — the four primitive types.',code:"type(42)    # int\ntype(3.14)  # float\ntype('hi')  # str\ntype(True)  # bool"},{name:'String Operations',desc:'Concatenation, formatting, and slicing.',code:"s = 'DataVery'\nprint(s[0])     # D\nprint(s[-1])    # y\nprint(s[0:4])   # Data\nprint(s.upper())# DATAVERY"}],practice:'lab'},
-    {num:2,title:'Conditionals and Iteration (while loops)',dates:'Mon 9 Mar – Sun 15 Mar 2026',overview:'Understanding boolean expressions and logical operators. Learning how to properly read and understand code with conditional execution. Investigating how conditionals can be used to automate repetitive tasks using while loops.',outcomes:['Describe logical statements as Boolean expressions','Explain conditional execution and loopy control flows','Write and use boolean functions','Understand while loop mechanics and exit conditions','Debug simple programs'],concepts:[{name:'Boolean Expressions',desc:'Expressions that evaluate to True or False.',code:"x = 10\nprint(x > 5)    # True\nprint(x == 10)  # True\nprint(x != 3)   # True"},{name:'Conditional (if/elif/else)',desc:'Execute code only when a condition is met.',code:"score = 85\nif score >= 90:\n    grade = 'A'\nelif score >= 75:\n    grade = 'B'\nelse:\n    grade = 'C'\nprint(grade)  # B"},{name:'while Loop',desc:'Repeat as long as a condition is true.',code:"count = 0\nwhile count < 5:\n    print(count)\n    count += 1\n# Prints 0 1 2 3 4"}],practice:'lab'},
-    {num:3,title:'Iteration (for loops) and Sequences',dates:'Mon 16 Mar – Sun 22 Mar 2026',overview:'Exploring for loops for iterating over sequences (lists, strings, ranges). Understanding list operations, indexing, and common sequence patterns.',outcomes:['Use for loops to iterate over sequences','Work with Python lists and their methods','Understand range() and enumerate()','Apply list comprehensions for concise code'],concepts:[{name:'for Loop',desc:'Iterate over a sequence directly.',code:"for fruit in ['apple','banana','cherry']:\n    print(fruit)"},{name:'List Methods',desc:'append, remove, sort, reverse, etc.',code:"nums = [3,1,4,1,5]\nnums.append(9)\nnums.sort()\nprint(nums)  # [1,1,3,4,5,9]"},{name:'List Comprehension',desc:'Create lists in one elegant line.',code:"squares = [x**2 for x in range(1,6)]\n# [1, 4, 9, 16, 25]"}],practice:'lab'},
-    {num:4,title:'Functions, Scoping, Namespaces and Dictionaries',dates:'Mon 23 Mar – Sun 29 Mar 2026',overview:'Defining and calling functions, understanding scope and namespaces. Introduction to dictionaries as key-value data structures.',outcomes:['Define and call functions with parameters','Understand local vs global scope','Use *args and **kwargs','Work with Python dictionaries'],concepts:[{name:'Functions',desc:'Reusable blocks of code with parameters.',code:"def greet(name, greeting='Hello'):\n    return f'{greeting}, {name}!'\nprint(greet('Shamsaddin'))"},{name:'Scope',desc:'LEGB rule — Local, Enclosing, Global, Built-in.',code:"x = 'global'\ndef fn():\n    x = 'local'\n    print(x)  # local\nfn()\nprint(x)  # global"},{name:'Dictionaries',desc:'Key-value pairs for structured data.',code:"student = {'name':'Shamsaddin','gpa':3.9}\nprint(student['name'])\nstudent['year'] = 2026"}],practice:'lab'},
-    {num:5,title:'Transforming Sequences (Mutability & Memory)',dates:'Mon 30 Mar – Sun 5 Apr 2026',overview:'Deep dive into Python\'s memory model. Understanding mutable vs immutable objects, shallow vs deep copies, and how assignment works under the hood.',outcomes:['Distinguish mutable from immutable types','Understand how Python references objects in memory','Use copy and deepcopy correctly','Avoid aliasing bugs'],concepts:[{name:'Mutability',desc:'Lists are mutable; strings/tuples are not.',code:"a = [1,2,3]\nb = a          # b is an alias!\nb.append(4)\nprint(a)       # [1,2,3,4] — changed!"},{name:'Copying',desc:'Use copy() for shallow, deepcopy for nested.',code:"import copy\na = [[1,2],[3,4]]\nb = copy.deepcopy(a)\nb[0].append(9)\nprint(a)  # [[1,2],[3,4]] — safe!"}],practice:'lab'},
-    {num:6,title:'File I/O',dates:'Mon 6 Apr – Sun 12 Apr 2026',overview:'Reading from and writing to files in Python. Working with text files, CSV data, and understanding file modes and context managers.',outcomes:['Open, read, and write files in Python','Use the with statement as a context manager','Handle file exceptions gracefully','Parse CSV data from files'],concepts:[{name:'File Reading',desc:'Open and read a text file safely.',code:"with open('data.txt', 'r') as f:\n    for line in f:\n        print(line.strip())"},{name:'File Writing',desc:'Write data to a file.',code:"with open('output.txt', 'w') as f:\n    f.write('Hello, File!')\n    f.write('\\nLine 2')"}],practice:'lab'},
-    {num:7,title:'Modules and Libraries',dates:'Mon 13 Apr – Sun 19 Apr 2026',overview:'Importing and using Python\'s standard library and third-party modules. Creating your own modules.',outcomes:['Import modules using import and from-import','Use key standard library modules (math, random, datetime)','Install and use third-party libraries (numpy, pandas)','Create your own module'],concepts:[{name:'Importing',desc:'import, from...import, aliasing.',code:"import math\nfrom random import randint\nimport numpy as np\nprint(math.pi, randint(1,10))"},{name:'Creating Modules',desc:'Save functions in .py files and import them.',code:"# mymodule.py\ndef add(a, b): return a + b\n\n# main.py\nimport mymodule\nprint(mymodule.add(3, 4))"}],practice:'lab'},
-    {num:8,title:'Object-Oriented Programming 1',dates:'Mon 20 Apr – Sun 26 Apr 2026',overview:'Introduction to OOP: classes, objects, attributes, and methods. Understanding encapsulation and the self parameter.',outcomes:['Define classes and instantiate objects','Use __init__ and instance methods','Understand self and instance vs class variables','Apply encapsulation with private attributes'],concepts:[{name:'Class Definition',desc:'Blueprint for creating objects.',code:"class Student:\n    def __init__(self, name, gpa):\n        self.name = name\n        self.gpa = gpa\n    def is_honours(self):\n        return self.gpa >= 3.5\ns = Student('Shamsaddin', 3.9)\nprint(s.is_honours())  # True"},{name:'Properties',desc:'Use @property for controlled access.',code:"class Temperature:\n    def __init__(self, c):\n        self._c = c\n    @property\n    def fahrenheit(self):\n        return self._c * 9/5 + 32"}],practice:'lab'},
-    {num:9,title:'Object-Oriented Programming 2',dates:'Mon 27 Apr – Sun 3 May 2026',overview:'Advanced OOP: inheritance, polymorphism, abstract classes, and operator overloading.',outcomes:['Implement class inheritance','Use super() to call parent methods','Understand polymorphism and method overriding','Overload operators with dunder methods'],concepts:[{name:'Inheritance',desc:'Child class inherits from parent.',code:"class Animal:\n    def speak(self): return '...'\n\nclass Dog(Animal):\n    def speak(self): return 'Woof!'\n\ndog = Dog()\nprint(dog.speak())  # Woof!"},{name:'super()',desc:'Call the parent class method.',code:"class GradStudent(Student):\n    def __init__(self, name, gpa, thesis):\n        super().__init__(name, gpa)\n        self.thesis = thesis"}],practice:'lab'},
-    {num:10,title:'Assertions, Exceptions and Unit Testing',dates:'Mon 4 May – Sun 10 May 2026',overview:'Writing robust code with proper error handling. Using assert statements, try/except blocks, and writing unit tests.',outcomes:['Write try/except blocks for error handling','Use assert for debugging','Write unit tests using doctest and unittest','Distinguish different exception types'],concepts:[{name:'try/except',desc:'Handle errors gracefully.',code:"try:\n    result = int('abc')\nexcept ValueError as e:\n    print(f'Error: {e}')\nfinally:\n    print('Always runs')"},{name:'Assertions',desc:'Verify assumptions in code.',code:"def divide(a, b):\n    assert b != 0, 'Division by zero!'\n    return a / b"}],practice:'lab'},
-    {num:11,title:'Recursion',dates:'Mon 11 May – Sun 17 May 2026',overview:'Understanding recursive problem-solving. Implementing classic recursive algorithms and understanding the call stack.',outcomes:['Write recursive functions with base and recursive cases','Trace recursive calls using a call stack diagram','Implement factorial, fibonacci, binary search recursively','Understand memoization for efficiency'],concepts:[{name:'Recursion Pattern',desc:'Every recursive function needs a base case and recursive case.',code:"def factorial(n):\n    if n <= 1: return 1      # base case\n    return n * factorial(n-1)  # recursive\nprint(factorial(5))  # 120"},{name:'Memoization',desc:'Cache results to avoid recomputation.',code:"def fib(n, memo={}):\n    if n in memo: return memo[n]\n    if n <= 1: return n\n    memo[n] = fib(n-1)+fib(n-2)\n    return memo[n]"}],practice:'lab'},
-    {num:12,title:'Advanced Python',dates:'Mon 18 May – Sun 24 May 2026',overview:'Generators, decorators, context managers, and concurrency. Writing idiomatic, Pythonic code.',outcomes:['Use generators and yield for memory efficiency','Write and apply decorators','Use functools and itertools','Understand async/await basics'],concepts:[{name:'Generators',desc:'Lazy sequences using yield.',code:"def squares(n):\n    for i in range(n):\n        yield i**2\nfor s in squares(5):\n    print(s)"},{name:'Decorators',desc:'Modify function behaviour with @.',code:"def timer(fn):\n    import time\n    def wrapper(*a,**k):\n        t=time.time()\n        r=fn(*a,**k)\n        print(f'Took {time.time()-t:.3f}s')\n        return r\n    return wrapper"}],practice:'lab'}
-  ]
-},
-databases:{
-  code:'FIT9132',
-  name:'Introduction to Databases',
-  weeks:[
-    {num:1,title:'Introduction To Databases',dates:'Mon 2 Mar – Sun 8 Mar 2026',overview:'What is a database? Why databases over spreadsheets? Introduction to the Database Life Cycle, different types of databases, and the role of the Database Administrator (DBA).',outcomes:['Define what a database is and explain its advantages','Identify different types of databases (relational, NoSQL)','Describe the Database Life Cycle','Explain the role of a DBMS and DBA'],concepts:[{name:'Database',desc:'Organised collection of structured data managed by a DBMS.',code:"-- A simple relational table\nCREATE TABLE students (\n  id   INTEGER PRIMARY KEY,\n  name TEXT NOT NULL,\n  gpa  REAL\n);"},{name:'DBMS',desc:'Database Management System — software that manages data (MySQL, PostgreSQL, SQLite, Oracle).',code:"-- Query example\nSELECT name, gpa FROM students\nWHERE gpa > 3.5\nORDER BY gpa DESC;"},{name:'DB Life Cycle',desc:'Planning → Requirements → Design → Implementation → Testing → Maintenance.',code:"-- Three design phases:\n-- 1. Conceptual (ERD)\n-- 2. Logical (Relational Schema)\n-- 3. Physical (SQL DDL)"}],practice:'sql'},
-    {num:2,title:'Database Design I — Conceptual Modelling',dates:'Mon 9 Mar – Sun 15 Mar 2026',overview:'Conceptual Modelling: In this topic you will examine the basics of database modelling, a three-step process. Your focus will be on the first step — Conceptual Modelling using Entity-Relationship Diagrams.',outcomes:['Analyse the different stages of the database life cycle','Distinguish ER diagram components: entity, relationship, attribute, cardinality, participation','Differentiate strong and weak entities','Draw a conceptual diagram'],concepts:[{name:'Entity',desc:'A thing or object about which we store data. Represented as a rectangle in an ERD.',code:"-- Strong Entity\nCREATE TABLE student (...);\n\n-- Weak Entity (depends on owner)\nCREATE TABLE dependant (\n  owner_id INTEGER REFERENCES student,\n  dep_name TEXT\n);"},{name:'Attribute',desc:'Property of an entity. Can be simple, composite, multi-valued, or derived.',code:"-- Simple: student_id\n-- Composite: address (street, city)\n-- Multi-valued: phone_numbers\n-- Derived: age FROM birth_date"},{name:'Cardinality',desc:'How many instances relate: 1:1, 1:N, M:N',code:"-- 1:N (one student, many enrollments)\nstudent.id → enrollment.student_id\n\n-- M:N (many students, many courses)\n-- Requires junction table: enrollment"}],practice:'database'},
-    {num:3,title:'The Relational Model',dates:'Mon 16 Mar – Sun 22 Mar 2026',overview:'Translating conceptual ERDs to relational schema. Understanding relations, tuples, attributes, keys, and integrity constraints.',outcomes:['Map an ER diagram to a relational schema','Identify primary, foreign, and candidate keys','Apply entity and referential integrity rules','Write basic relational algebra expressions'],concepts:[{name:'Relational Schema',desc:'Table with rows (tuples) and columns (attributes).',code:"STUDENT(student_id PK, name, email, gpa)\nCOURSE(course_id PK, code, title)\nENROLLMENT(id PK, student_id FK, course_id FK, grade)"},{name:'Keys',desc:'Primary Key = unique identifier. Foreign Key = reference to another table.',code:"-- Primary Key\nCREATE TABLE student(\n  id INTEGER PRIMARY KEY, ...);\n\n-- Foreign Key\nCREATE TABLE enrollment(\n  student_id INTEGER REFERENCES student(id));"},{name:'Integrity',desc:'Entity: no null PKs. Referential: FK must match PK.',code:"-- Referential Integrity violation:\nINSERT INTO enrollment VALUES\n(1, 999, 1, 'A'); -- student 999 doesn't exist!"}],practice:'sql'},
-    {num:4,title:'Normalisation',dates:'Mon 23 Mar – Sun 29 Mar 2026',overview:'Understanding functional dependencies and the theory of normalisation. Applying 1NF, 2NF, and 3NF to eliminate redundancy and anomalies.',outcomes:['Identify functional dependencies in a relation','Apply 1NF, 2NF, and 3NF normalisation','Recognise insertion, update, and deletion anomalies','Decompose relations to remove redundancy'],concepts:[{name:'1NF',desc:'No repeating groups. All attributes atomic.',code:"-- VIOLATION (repeating groups):\nSTUDENT(id, name, phone1, phone2)\n\n-- 1NF FIX:\nSTUDENT(id, name)\nPHONE(student_id, phone)"},{name:'2NF',desc:'1NF + no partial dependencies (all non-key attributes depend on full PK).',code:"-- VIOLATION: grade depends on both\n-- student_id AND course_id (composite PK)\n-- course_title depends only on course_id!\nENROLL(student_id, course_id, course_title, grade)"},{name:'3NF',desc:'2NF + no transitive dependencies.',code:"-- VIOLATION: postcode → suburb (transitive)\nSTUDENT(id, name, postcode, suburb)\n\n-- 3NF FIX:\nSTUDENT(id, name, postcode FK)\nLOCATION(postcode PK, suburb)"}],practice:'sql'},
-    {num:5,title:'Database Design II',dates:'Mon 30 Mar – Sun 5 Apr 2026',overview:'Advanced ER modelling: supertype/subtype entities, specialisation, generalisation, and multi-valued attributes.',outcomes:['Model supertype/subtype hierarchies','Apply specialisation and generalisation','Implement multi-valued attributes','Handle complex relationships in ERDs'],concepts:[{name:'Supertype/Subtype',desc:'Generalisation hierarchy: PERSON → STUDENT, LECTURER.',code:"-- Supertype\nCREATE TABLE person(id PK, name, email);\n-- Subtype inherits\nCREATE TABLE student(id REFERENCES person, gpa);\nCREATE TABLE lecturer(id REFERENCES person, dept);"}],practice:'database'},
-    {num:6,title:'Creating and Altering the Database',dates:'Mon 6 Apr – Sun 12 Apr 2026',overview:'SQL Data Definition Language (DDL): creating, modifying, and dropping database objects.',outcomes:['Write CREATE TABLE statements with constraints','Use ALTER TABLE to modify existing tables','Drop tables and understand cascade effects','Define CHECK, UNIQUE, DEFAULT constraints'],concepts:[{name:'CREATE TABLE',desc:'Full DDL with all constraints.',code:"CREATE TABLE student (\n  id      INTEGER PRIMARY KEY AUTOINCREMENT,\n  name    TEXT    NOT NULL,\n  email   TEXT    UNIQUE,\n  gpa     REAL    DEFAULT 0.0,\n  age     INTEGER CHECK (age >= 16)\n);"},{name:'ALTER TABLE',desc:'Add, drop, or modify columns.',code:"ALTER TABLE student\nADD COLUMN phone TEXT;\n\nALTER TABLE student\nRENAME TO students;"}],practice:'sql'},
-    {num:7,title:'DML and Transaction Management',dates:'Mon 13 Apr – Sun 19 Apr 2026',overview:'SQL Data Manipulation Language (DML): INSERT, UPDATE, DELETE. Understanding transactions, ACID properties, and COMMIT/ROLLBACK.',outcomes:['Write INSERT, UPDATE, DELETE statements','Understand ACID properties (Atomicity, Consistency, Isolation, Durability)','Use BEGIN, COMMIT, ROLLBACK','Handle transaction isolation levels'],concepts:[{name:'DML',desc:'INSERT, UPDATE, DELETE data.',code:"INSERT INTO students(name,gpa) VALUES('Alice',3.7);\n\nUPDATE students SET gpa=4.0 WHERE name='Alice';\n\nDELETE FROM students WHERE gpa < 2.0;"},{name:'Transactions',desc:'Ensure data integrity with ACID.',code:"BEGIN;\n  INSERT INTO enrollment VALUES(...);\n  UPDATE student SET units = units+1\n  WHERE id = 1;\nCOMMIT;  -- or ROLLBACK if error"}],practice:'sql'},
-    {num:8,title:'SQL Part I — Basic SQL',dates:'Mon 20 Apr – Sun 26 Apr 2026',overview:'Writing SELECT statements: filtering with WHERE, sorting with ORDER BY, and using aggregate functions.',outcomes:['Write SELECT statements with WHERE clause','Use comparison and logical operators in SQL','Apply ORDER BY and LIMIT','Use COUNT, SUM, AVG, MIN, MAX'],concepts:[{name:'SELECT … WHERE',desc:'Filter rows based on conditions.',code:"SELECT name, gpa FROM students\nWHERE gpa >= 3.5\n  AND year = 2026\nORDER BY gpa DESC\nLIMIT 5;"},{name:'Aggregate Functions',desc:'Summarise data with COUNT, SUM, AVG, etc.',code:"SELECT\n  COUNT(*)      AS total,\n  AVG(gpa)      AS avg_gpa,\n  MAX(gpa)      AS top_gpa\nFROM students;"}],practice:'sql'},
-    {num:9,title:'SQL Part II — Intermediate SQL',dates:'Mon 27 Apr – Sun 3 May 2026',overview:'Joining tables, GROUP BY with HAVING, and subqueries.',outcomes:['Write INNER, LEFT, RIGHT JOIN queries','Use GROUP BY and HAVING for aggregated filtering','Write simple subqueries','Combine results with UNION'],concepts:[{name:'JOIN',desc:'Combine rows from multiple tables.',code:"SELECT s.name, c.code, e.grade\nFROM enrollment e\nJOIN students s ON e.student_id = s.id\nJOIN courses c ON e.course_id = c.id\nWHERE e.grade IN ('A','A+');"},{name:'GROUP BY / HAVING',desc:'Aggregate by group, filter groups with HAVING.',code:"SELECT course_id, AVG(gpa) as avg\nFROM enrollment e JOIN students s\n  ON e.student_id = s.id\nGROUP BY course_id\nHAVING AVG(gpa) > 3.5;"}],practice:'sql'},
-    {num:10,title:'SQL Part III — Advanced SQL',dates:'Mon 4 May – Sun 10 May 2026',overview:'Window functions, CTEs, recursive queries, and performance optimisation with indexes.',outcomes:['Use window functions (ROW_NUMBER, RANK, LAG, LEAD)','Write Common Table Expressions (CTEs)','Create indexes for performance optimisation'],concepts:[{name:'Window Functions',desc:'Perform calculations across related rows.',code:"SELECT name, gpa,\n  RANK() OVER (ORDER BY gpa DESC) AS rank,\n  AVG(gpa) OVER () AS overall_avg\nFROM students;"},{name:'CTE',desc:'Named temporary result set for readable queries.',code:"WITH top_students AS (\n  SELECT * FROM students\n  WHERE gpa >= 3.8\n)\nSELECT ts.name, e.grade\nFROM top_students ts\nJOIN enrollment e ON ts.id=e.student_id;"},{name:'Indexes',desc:'Speed up queries on large tables.',code:"CREATE INDEX idx_students_gpa\nON students(gpa);\n\n-- Check query plan\nEXPLAIN QUERY PLAN\nSELECT * FROM students WHERE gpa>3.5;"}],practice:'sql'},
-    {num:11,title:'Non-Relational Databases — Big Data and NoSQL',dates:'Mon 11 May – Sun 17 May 2026',overview:'Beyond relational databases: NoSQL types (document, key-value, column, graph), CAP theorem, and when to choose NoSQL over SQL.',outcomes:['Identify the four types of NoSQL databases','Explain the CAP theorem and BASE properties','Compare ACID vs BASE consistency models','Choose appropriate database for a given scenario'],concepts:[{name:'NoSQL Types',desc:'Document (MongoDB), Key-Value (Redis), Column (Cassandra), Graph (Neo4j).',code:'// MongoDB document (JSON-like)\n{\n  "_id": "student_001",\n  "name": "Shamsaddin",\n  "courses": ["FIT9136","FIT9132"],\n  "gpa": 3.9\n}'},{name:'CAP Theorem',desc:'Consistency, Availability, Partition Tolerance — pick two.',code:"-- Relational: CA (Consistency + Availability)\n-- MongoDB: CP (Consistency + Partition)\n-- Cassandra: AP (Availability + Partition)"}],practice:'sql'},
-    {num:12,title:'Business Intelligence, Data Warehousing and Legal/Ethical',dates:'Mon 18 May – Sun 24 May 2026',overview:'Introduction to data warehousing concepts, OLAP vs OLTP, star and snowflake schemas, and ethical/legal considerations in data management.',outcomes:['Distinguish OLAP from OLTP workloads','Design a star schema for a data warehouse','Explain ETL (Extract, Transform, Load) processes','Identify ethical and legal obligations around data (GDPR, Privacy Act)'],concepts:[{name:'Star Schema',desc:'Fact table surrounded by dimension tables.',code:"-- Fact Table\nCREATE TABLE fact_sales(\n  sale_id, date_id FK, product_id FK,\n  customer_id FK, amount, units\n);\n-- Dimension Table\nCREATE TABLE dim_date(date_id PK, year, month, quarter);"},{name:'ETL',desc:'Extract → Transform → Load into warehouse.',code:"-- Extract from source\nSELECT * FROM prod.orders;\n-- Transform: clean, aggregate\n-- Load into warehouse\nINSERT INTO dw.fact_sales ..."}],practice:'sql'}
-  ]
-},
-arch:{
-  code:'FIT9137',
-  name:'Computer Architecture & Networks',
-  weeks:[
-    {num:1,title:'Number Systems, Boolean Logic & Digital Circuits',dates:'Mon 2 Mar – Sun 8 Mar 2026',overview:'Foundations of digital computing: binary, octal, hexadecimal number systems, Boolean algebra, logic gates, and simple combinational circuits.',outcomes:['Convert between binary, octal, decimal, and hexadecimal','Apply Boolean algebra laws and De Morgan\'s theorem','Draw truth tables for AND, OR, NOT, XOR gates','Simplify logic expressions using Karnaugh maps'],concepts:[{name:'Number Systems',desc:'Binary (base 2), Octal (base 8), Hex (base 16).',code:"Decimal 42:\n  Binary:  101010₂\n  Octal:   52₈\n  Hex:     2A₁₆\n\nConversion: 42 ÷ 2 = 21 r0\n            21 ÷ 2 = 10 r1  → 101010"},{name:'Boolean Algebra',desc:'AND (·), OR (+), NOT (¬). De Morgan: ¬(A·B) = ¬A+¬B',code:"Truth table for A AND B:\n A | B | A·B\n-----------\n 0 | 0 |  0\n 0 | 1 |  0\n 1 | 0 |  0\n 1 | 1 |  1"},{name:'Logic Gates',desc:'Physical implementation of Boolean operations.',code:"AND gate:  output=1 only when ALL inputs=1\nOR gate:   output=1 when ANY input=1\nNOT gate:  inverts the input\nXOR gate:  output=1 when inputs DIFFER\nNAND/NOR:  universal gates (can build any circuit)"}],practice:'marie'},
-    {num:2,title:'Computer Architecture & CPU',dates:'Mon 9 Mar – Sun 15 Mar 2026',overview:'This week covers the Von Neumann architecture, combinational and sequential circuits, and CPU design including ALUs, registers, and control units. The MARIE simplified CPU model is introduced.',outcomes:['Understand the Von Neumann Architecture and its significance','Analyze combinational circuits and digital logic design','Explain ALU function and operations','Differentiate combinational and sequential circuits','Describe registers and their purpose','Identify major CPU components and interactions','Explain program execution within a CPU','Understand MARIE architecture as a simplified CPU model','Use the MARIE simulator to explore instruction execution'],concepts:[{name:'Von Neumann Architecture',desc:'Single shared memory for data and instructions. CPU fetches, decodes, executes instructions sequentially.',code:"Components:\n  Memory Unit    → stores programs + data\n  ALU            → arithmetic & logic ops\n  Control Unit   → fetches & decodes instructions\n  Registers      → fast on-chip storage\n  I/O Unit       → input/output\n\nBus: Data Bus, Address Bus, Control Bus"},{name:'Fetch-Decode-Execute',desc:'The fundamental CPU cycle repeated billions of times per second.',code:"1. FETCH:   MAR ← PC\n            MBR ← Memory[MAR]\n            IR  ← MBR\n            PC  ← PC + 1\n\n2. DECODE:  Control Unit interprets IR\n            (top 4 bits = opcode)\n\n3. EXECUTE: Perform the operation\n            (LOAD, ADD, STORE, etc.)"},{name:'MARIE Architecture',desc:'Machine Architecture that is Really Intuitive and Easy — a simplified teaching CPU.',code:"Registers:\n  AC  (16-bit) → Accumulator (main working reg)\n  PC  (12-bit) → Program Counter\n  IR  (16-bit) → Instruction Register\n  MAR (12-bit) → Memory Address Register\n  MBR (16-bit) → Memory Buffer Register\n  InREG/OutREG → I/O registers\n\nMemory: 4096 × 16-bit words\nInstruction: [4-bit opcode][12-bit address]"},{name:'MARIE Instruction Set',desc:'9 core instructions: LOAD, STORE, ADD, SUBT, INPUT, OUTPUT, HALT, SKIPCOND, JUMP.',code:"LOAD  X  → AC = Memory[X]\nSTORE X  → Memory[X] = AC\nADD   X  → AC = AC + Memory[X]\nSUBT  X  → AC = AC - Memory[X]\nINPUT    → AC = user input\nOUTPUT   → print AC\nHALT     → stop program\nSKIPCOND → conditional skip\nJUMP  X  → PC = X"}],practice:'marie'},
-    {num:3,title:'Operating System Functions: Memory Management',dates:'Mon 16 Mar – Sun 22 Mar 2026',overview:'How operating systems manage memory: virtual memory, paging, segmentation, and the role of the Memory Management Unit (MMU).',outcomes:['Explain the role of the OS in memory management','Describe paging and page tables','Understand virtual vs physical addresses','Explain page replacement algorithms (LRU, FIFO)'],concepts:[{name:'Virtual Memory',desc:'OS abstraction giving each process its own address space.',code:"Physical Memory: 4GB RAM\nVirtual Memory:  Each process sees full 64-bit space\n\nTranslation: Virtual Address → Page Table → Physical Address\nMMU handles the translation automatically"},{name:'Paging',desc:'Divide memory into fixed-size pages to avoid fragmentation.',code:"Page Size: 4KB (typical)\nPage Table Entry: [frame number | flags]\n\nVirtual Address: [page number | offset]\n  page number → look up page table\n  frame number + offset = physical address"}],practice:'marie'},
-    {num:4,title:'Operating System Functions: Programs & Processes',dates:'Mon 23 Mar – Sun 29 Mar 2026',overview:'Process states, scheduling algorithms, context switching, and inter-process communication.',outcomes:['Distinguish between programs, processes, and threads','Describe process states and transitions','Explain CPU scheduling algorithms (FCFS, SJF, Round Robin)','Understand context switching overhead'],concepts:[{name:'Process States',desc:'New → Ready → Running → Waiting → Terminated',code:"State transitions:\n  New     → Ready   (admitted)\n  Ready   → Running (scheduler dispatches)\n  Running → Waiting (I/O request)\n  Waiting → Ready   (I/O complete)\n  Running → Terminated (exit)"},{name:'Scheduling',desc:'FCFS (First Come First Served), SJF (Shortest Job First), Round Robin.',code:"Round Robin (quantum=4ms):\n  Process A: 10ms\n  Process B: 6ms\n  Process C: 4ms\n\n  T=0:  A runs (4ms)\n  T=4:  B runs (4ms)\n  T=8:  C runs (4ms) → done\n  T=12: A runs (4ms)\n  T=16: B runs (2ms) → done\n  T=18: A runs (2ms) → done"}],practice:'marie'},
-    {num:5,title:'Operating System Functions: File Management',dates:'Mon 30 Mar – Sun 5 Apr 2026',overview:'File systems, directory structures, file allocation methods, and disk management.',outcomes:['Explain file system hierarchy and directory structures','Describe file allocation methods (contiguous, linked, indexed)','Understand disk scheduling (SSTF, SCAN)','Compare file system types (FAT32, NTFS, ext4)'],concepts:[{name:'File Allocation',desc:'How files are stored on disk.',code:"Contiguous: FILE occupies consecutive blocks\n  + Fast sequential access\n  - External fragmentation\n\nLinked: Each block points to next\n  + No fragmentation\n  - Slow random access\n\nIndexed: Index block holds all block pointers\n  + Supports random access\n  - Index block overhead"}],practice:'marie'},
-    {num:6,title:'Introduction to Computer Networks',dates:'Mon 6 Apr – Sun 12 Apr 2026',overview:'Network fundamentals: what is a network, types, topologies, protocols, and the OSI model.',outcomes:['Define computer network and its purpose','Identify network topologies (star, bus, ring, mesh)','Describe the 7 layers of the OSI model','Explain the difference between OSI and TCP/IP models'],concepts:[{name:'OSI Model',desc:'7-layer model: Physical, Data Link, Network, Transport, Session, Presentation, Application.',code:"Layer 7: Application  → HTTP, FTP, SMTP, DNS\nLayer 6: Presentation → Encryption, Compression\nLayer 5: Session      → Connection management\nLayer 4: Transport    → TCP, UDP (ports)\nLayer 3: Network      → IP addresses, routing\nLayer 2: Data Link    → MAC addresses, frames\nLayer 1: Physical     → Bits, cables, signals"},{name:'TCP/IP Model',desc:'4-layer practical model used on the internet.',code:"Application  → Layers 5-7 (HTTP, DNS, FTP)\nTransport    → Layer 4 (TCP, UDP)\nInternet     → Layer 3 (IP, ICMP)\nNetwork Access→ Layers 1-2 (Ethernet, WiFi)"}],practice:'marie'},
-    {num:7,title:'LANs, MANs, WANs & WLANs',dates:'Mon 13 Apr – Sun 19 Apr 2026',overview:'Network types by geography, Ethernet standards, IEEE 802 family, and wireless networking.',outcomes:['Distinguish LAN, MAN, WAN, WLAN','Describe Ethernet operation and CSMA/CD','Explain IEEE 802.11 (WiFi) standards','Compare wired and wireless transmission media'],concepts:[{name:'Network Types',desc:'Classified by geographic scope.',code:"LAN: Local Area Network (building/campus)\n  → Ethernet, WiFi, 1Gbps–100Gbps\n\nMAN: Metropolitan Area Network (city)\n  → Fiber optic rings\n\nWAN: Wide Area Network (global)\n  → Internet, leased lines, MPLS\n\nWLAN: Wireless LAN (IEEE 802.11 a/b/g/n/ac/ax)"}],practice:'marie'},
-    {num:8,title:'Physical Layer and Data Link Layer',dates:'Mon 20 Apr – Sun 26 Apr 2026',overview:'Signal types, modulation, transmission media, framing, error detection/correction, and MAC protocols.',outcomes:['Explain analog vs digital signals and modulation','Describe common transmission media','Implement error detection (parity, CRC)','Explain CSMA/CD and CSMA/CA protocols'],concepts:[{name:'Error Detection',desc:'Techniques to detect corrupted data.',code:"Parity Bit:\n  Data: 1010001  (4 ones → even parity)\n  Sent: 10100010  (append 0)\n\nCRC (Cyclic Redundancy Check):\n  Treat data as polynomial\n  Divide by generator polynomial\n  Remainder is the CRC checksum"},{name:'Framing',desc:'Data Link Layer wraps data in frames.',code:"Ethernet Frame:\n[Preamble|Dest MAC|Src MAC|Type|Data|FCS]\n   8B       6B      6B    2B  46-1500B 4B\n\nMAC Address: 48-bit hardware address\n  e.g., AA:BB:CC:DD:EE:FF"}],practice:'marie'},
-    {num:9,title:'Network & Transport Layer',dates:'Mon 27 Apr – Sun 3 May 2026',overview:'IP addressing (IPv4/IPv6), subnetting, routing protocols, TCP vs UDP, and port numbers.',outcomes:['Write and interpret IPv4 addresses and subnet masks','Perform subnetting calculations','Explain TCP 3-way handshake','Compare TCP vs UDP and their use cases'],concepts:[{name:'IP Addressing',desc:'IPv4: 32-bit dotted decimal. IPv6: 128-bit hex.',code:"IPv4: 192.168.1.100/24\n  Network:  192.168.1.0\n  Mask:     255.255.255.0\n  Hosts:    192.168.1.1 – .254\n  Broadcast:192.168.1.255\n\n/24 → 256 addresses, 254 usable hosts"},{name:'TCP vs UDP',desc:'TCP: reliable, ordered. UDP: fast, connectionless.',code:"TCP (Transmission Control Protocol):\n  ✓ 3-way handshake (SYN, SYN-ACK, ACK)\n  ✓ Guaranteed delivery & ordering\n  ✓ Flow control & congestion control\n  Use: HTTP, FTP, Email\n\nUDP (User Datagram Protocol):\n  ✗ No connection, no guarantee\n  ✓ Very fast, low overhead\n  Use: DNS, Video streaming, Gaming"}],practice:'marie'},
-    {num:10,title:'Application Layer',dates:'Mon 4 May – Sun 10 May 2026',overview:'Application layer protocols: HTTP, DNS, SMTP, FTP, DHCP. How web browsers and email clients work.',outcomes:['Explain how DNS resolves domain names','Describe HTTP request/response cycle','Understand SMTP for email delivery','Explain DHCP for automatic IP assignment'],concepts:[{name:'DNS',desc:'Domain Name System — translates names to IPs.',code:"Resolution steps:\n1. Browser checks local cache\n2. OS checks /etc/hosts\n3. Query Recursive DNS server (ISP)\n4. Root nameserver → .com nameserver\n5. Authoritative nameserver returns IP\n6. Response cached for TTL duration"},{name:'HTTP',desc:'HyperText Transfer Protocol — stateless request/response.',code:"GET /index.html HTTP/1.1\nHost: datavery.app\nUser-Agent: Chrome/120\n\n--- Response ---\nHTTP/1.1 200 OK\nContent-Type: text/html\n\n<html>...</html>"}],practice:'marie'},
-    {num:11,title:'Network Security',dates:'Mon 11 May – Sun 17 May 2026',overview:'Common threats, cryptography fundamentals, firewalls, VPNs, and security protocols (TLS, SSL).',outcomes:['Identify common network attacks (DoS, MITM, phishing)','Explain symmetric vs asymmetric encryption','Describe how TLS/SSL secures HTTPS','Understand firewall rules and VPN operation'],concepts:[{name:'Encryption',desc:'Symmetric (same key) vs Asymmetric (public/private key pair).',code:"Symmetric (AES-256):\n  Encrypt: data + secret_key → ciphertext\n  Decrypt: ciphertext + secret_key → data\n  Fast, but key distribution problem\n\nAsymmetric (RSA):\n  Public key → encrypt\n  Private key → decrypt\n  Slow, but solves key distribution"},{name:'TLS Handshake',desc:'How HTTPS establishes a secure connection.',code:"1. Client Hello (supported cipher suites)\n2. Server Hello + Certificate\n3. Client verifies certificate (CA)\n4. Key exchange (Diffie-Hellman)\n5. Session keys derived\n6. Encrypted communication begins"}],practice:'marie'},
-    {num:12,title:'The Internet',dates:'Mon 18 May – Sun 24 May 2026',overview:'How the internet works end-to-end: BGP routing, CDNs, cloud computing, and future trends.',outcomes:['Explain how BGP enables inter-domain routing','Describe CDN architecture and benefits','Understand cloud service models (IaaS, PaaS, SaaS)','Discuss emerging trends: SDN, IoT, 5G'],concepts:[{name:'BGP',desc:'Border Gateway Protocol — the routing protocol of the internet.',code:"AS (Autonomous System): network under one org\n  e.g., AS13335 = Cloudflare\n        AS15169 = Google\n        AS7545  = TPG (Australia)\n\nBGP path selection:\n  1. Highest LOCAL_PREF\n  2. Shortest AS_PATH\n  3. Lowest MED"},{name:'Cloud Models',desc:'IaaS, PaaS, SaaS — different abstraction levels.',code:"IaaS (Infrastructure): VMs, storage, networking\n  → AWS EC2, Azure VMs\n\nPaaS (Platform): Runtime + DB + middleware\n  → Google App Engine, Heroku\n\nSaaS (Software): Full app, no management\n  → Gmail, Salesforce, Monash LMS"}],practice:'marie'}
-  ]
-}
+const COURSES = {
+  python: {
+    code: 'FIT9136',
+    name: 'Introduction to Python',
+    weeks: [
+      {
+        num: 1, title: 'Introduction to Python, Variables, Statements and Expressions', dates: 'Mon 2 Mar – Sun 8 Mar 2026', 
+        overview: 'Unit overview and introduction to programming and the Python language. Bridging the gap between human logic and machine execution.',
+        outcomes: ['Explain Python’s storage model', 'Describe operator precedence', 'Distinguish between expressions, values and printed representations', 'Define and use basic data types', 'Use built-in function calls'],
+        concepts: [
+          {
+            name: 'Variables & Storage Model',
+            academic: 'Python is a dynamically, strongly typed language. Variables are references (pointers) to objects in memory, not statically allocated memory blocks.',
+            plain_english: 'Think of variables as sticky notes with names written on them. You stick the note onto a piece of data. If you change the variable, you are just moving the sticky note to a new piece of data.',
+            code: "x = 10\nprint(id(x))  # Prints the memory address\nx = 'Hello'\nprint(id(x))  # Address changes because 'x' points to a new object",
+            reference: 'Python Docs: Data model'
+          },
+          {
+            name: 'Expressions vs Statements',
+            academic: 'An expression evaluates to a single value. A statement executes an action but does not necessarily evaluate to a value.',
+            plain_english: 'An expression is a math problem (5 + 5). It naturally becomes 10. A statement is a command (print(10)). It tells the computer to DO something, not just calculate something.',
+            code: "# Expression\n(5 * 2) + 3  # Evaluates to 13\n\n# Statement\nuser_age = 25  # Assigns a value, doesn't 'evaluate' to anything outputtable",
+            reference: 'Python Docs: Expressions'
+          },
+          {
+            name: 'Operator Precedence',
+            academic: 'The rules governing the order in which operations are evaluated in compound expressions (e.g., PEMDAS/BODMAS).',
+            plain_english: 'Just like in primary school math, multiplication happens before addition. Python follows these strict mathematical rules so calculations are predictable.',
+            code: "result = 10 + 5 * 2  # Result is 20, not 30\nfixed = (10 + 5) * 2 # Result is 30",
+            reference: 'Python Docs: Operator precedence'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 2, title: 'Conditionals and Iteration (while loops)', dates: 'Mon 9 Mar – Sun 15 Mar 2026',
+        overview: 'Understanding boolean expressions and logical operators. Controlling the flow of execution.',
+        outcomes: ['Describe logical statements as Boolean expressions', 'Explain conditional execution', 'Write boolean functions', 'Debug simple programs'],
+        concepts: [
+          {
+            name: 'Boolean Logic (and, or, not)',
+            academic: 'Logical operations evaluate propositions to a truth value (True or False). Python uses short-circuit evaluation for efficiency.',
+            plain_english: 'The bouncer logic. "AND" means you need BOTH an ID and a ticket. "OR" means you need EITHER cash or a card. "NOT" simply flips the truth (Not True = False).',
+            code: "has_id = True\nis_banned = False\ncan_enter = has_id and not is_banned\nprint(can_enter) # True",
+            reference: 'Python Docs: Boolean Operations'
+          },
+          {
+            name: 'Conditionals (if/elif/else)',
+            academic: 'Control flow structures that execute specific code blocks based on the evaluation of boolean expressions.',
+            plain_english: 'A fork in the road. "If it is raining, take an umbrella. Else if (elif) it is cloudy, take a jacket. Else, wear t-shirt." Python takes the first path that is True and ignores the rest.',
+            code: "score = 85\nif score >= 90:\n    print('HD')\nelif score >= 80:\n    print('D')\nelse:\n    print('Pass')",
+            reference: 'Python Docs: The if statement'
+          },
+          {
+            name: 'While Loops',
+            academic: 'Indefinite iteration. The loop body executes repeatedly as long as the conditional expression evaluates to True.',
+            plain_english: 'A while loop is like a child asking "Are we there yet?" It keeps repeating until the condition (arriving) is finally True. If the condition never changes, you get an infinite loop and crash your program.',
+            code: "count = 3\nwhile count > 0:\n    print(count)\n    count -= 1  # Crucial to avoid infinite loop\nprint('Go!')",
+            reference: 'Python Docs: The while statement'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 3, title: 'Iteration (for loops) and Sequences', dates: 'Mon 16 Mar – Sun 22 Mar 2026',
+        overview: 'Utilising the in-built range() function and exploring collections and sequences like strings, lists, and tuples.',
+        outcomes: ['Use collections and iterable objects', 'Use for-loops to solve problems', 'Use range()', 'Differentiate string, list, tuple operations'],
+        concepts: [
+          {
+            name: 'For Loops & Iterables',
+            academic: 'Definite iteration over an iterable object (like a list or string). The loop variable sequentially takes on the value of each element.',
+            plain_english: 'Instead of doing things forever like a while loop, a for loop says: "For every item in this specific box, take it out, do something with it, and move to the next." It has a clear end.',
+            code: "fruits = ['apple', 'banana', 'cherry']\nfor fruit in fruits:\n    print(f'I ate a {fruit}')",
+            reference: 'Python Docs: The for statement'
+          },
+          {
+            name: 'The range() Function',
+            academic: 'An immutable sequence type that generates numbers lazily, highly optimized for looping over a specific number of iterations.',
+            plain_english: 'A digital ticket dispenser. If you say `range(5)`, it spits out tickets 0, 1, 2, 3, 4. It’s perfect when you know exactly how many times you want a loop to run.',
+            code: "for i in range(1, 4):  # Start at 1, stop BEFORE 4\n    print(i) # Prints 1, 2, 3",
+            reference: 'Python Docs: Built-in Functions - range'
+          },
+          {
+            name: 'Indexing and Slicing',
+            academic: 'Accessing specific elements or sub-sequences using zero-based integer indices. Slicing uses the [start:stop:step] syntax.',
+            plain_english: 'Think of a word or a list as a row of mailboxes starting at address 0. Indexing is opening one specific mailbox. Slicing is opening a row of them at once.',
+            code: "word = 'Python'\nprint(word[0])    # 'P'\nprint(word[-1])   # 'n' (last character)\nprint(word[0:3])  # 'Pyt' (from 0 up to 2)",
+            reference: 'Python Docs: Sequence Types'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 4, title: 'Functions, Scoping, Namespaces and Dictionaries', dates: 'Mon 23 Mar – Sun 29 Mar 2026',
+        overview: 'Explore user-defined functions, how scoping and namespaces are handled, and introduction to Dictionaries.',
+        outcomes: ['Define function vs method', 'Use local/global scope', 'Understand side effects of global scope', 'Use print vs return'],
+        concepts: [
+          {
+            name: 'Defining Functions (def & return)',
+            academic: 'A named block of reusable code. Parameters define expected inputs, and the return statement passes the evaluated output back to the caller.',
+            plain_english: 'A function is a recipe. You give it ingredients (parameters), it follows the steps, and it gives you a baked cake (`return`). `print` just shows you the cake; `return` actually hands it back to you to use elsewhere.',
+            code: "def add_tax(price):\n    total = price * 1.10\n    return total  # Gives value back\n\nfinal_price = add_tax(100)\nprint(final_price) # 110.0",
+            reference: 'Python Docs: Defining Functions'
+          },
+          {
+            name: 'Scope (LEGB Rule)',
+            academic: 'The region of code where a namespace is directly accessible. Python resolves names via Local, Enclosing, Global, then Built-in scopes.',
+            plain_english: 'Scope is who can see what. A variable made inside a function (Local) is a secret; the rest of the program can’t see it. A variable made outside (Global) is on a billboard everyone can read.',
+            code: "x = 'Global'\ndef my_func():\n    y = 'Local'\n    print(x) # Can see global\n    print(y)\n\nmy_func()\n# print(y) would cause an Error! 'y' is a secret to my_func.",
+            reference: 'Python Docs: Classes and Scopes'
+          },
+          {
+            name: 'Dictionaries',
+            academic: 'A mutable, unordered collection of key-value pairs, providing O(1) average time complexity for lookups using a hash table.',
+            plain_english: 'A dictionary is exactly what it sounds like. You don\'t look up "Word #5"; you look up a specific "Key" (like "Apple") to find its "Value" (the definition).',
+            code: "student = {'name': 'Alice', 'grade': 95}\nprint(student['name'])  # Alice\nstudent['subject'] = 'Math' # Adding new key-value pair",
+            reference: 'Python Docs: Mapping Types - dict'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 5, title: 'Transforming Sequences (Mutability & Memory)', dates: 'Mon 30 Mar – Sun 5 Apr 2026',
+        overview: 'Deep dive into how methods transform lists (in-place mutation) versus strings (copy-with-change).',
+        outcomes: ['Understand mutable vs immutable', 'String methods return new strings', 'List methods mutate and return None', 'Use append, join, split, slice'],
+        concepts: [
+          {
+            name: 'Mutability vs Immutability',
+            academic: 'Immutable objects (strings, tuples, ints) cannot be altered after creation in memory. Mutable objects (lists, dicts) can be changed in-place.',
+            plain_english: 'Immutability is like carving your name in stone; if you want to change it, you have to carve a brand new stone. Mutability is like writing on a whiteboard; you can just wipe a bit off and change it without needing a new board.',
+            code: "# String (Immutable)\ns = 'cat'\n# s[0] = 'b'  <-- ERROR!\ns = 'bat'     # Creates a whole new string\n\n# List (Mutable)\nlst = [1, 2, 3]\nlst[0] = 99   # Completely fine. Memory stays the same.\nprint(lst)    # [99, 2, 3]",
+            reference: 'Python Docs: Data model - Mutability'
+          },
+          {
+            name: 'String Methods vs List Methods',
+            academic: 'String methods return new string objects. List mutator methods (like .append or .sort) modify the object directly and return None.',
+            plain_english: 'Because strings are stone, `.upper()` makes a copy of the stone in all caps. Because lists are whiteboards, `.append()` just writes more on the board, but doesn\'t hand you a new board (returns None).',
+            code: "# String\nname = 'shamsaddin'\nname = name.capitalize() # Must reassign!\n\n# List\nnums = [3, 1, 2]\nnums.sort()  # Sorts in place. Returns None.\nprint(nums)  # [1, 2, 3]",
+            reference: 'Python Docs: Common Sequence Operations'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 6, title: 'File IO', dates: 'Mon 13 Apr – Sun 19 Apr 2026',
+        overview: 'Interacting with data outside the program through reading and writing files in the file system.',
+        outcomes: ['Understand file systems', 'Read text files', 'Iterate over lines', 'Write text files', 'Use with context managers'],
+        concepts: [
+          {
+            name: 'Context Managers (the "with" statement)',
+            academic: 'Handles resource acquisition and release automatically. Ensures files are properly closed even if exceptions occur during I/O operations.',
+            plain_english: 'Opening a file without `with` is like opening the fridge and walking away; the door stays open and wastes power. The `with` statement automatically shuts the fridge door the moment you are done getting your data.',
+            code: "# The 'w' mode overwrites. 'a' mode appends.\nwith open('data.txt', 'w') as file:\n    file.write('Hello World\\n')\n# File is automatically closed here.",
+            reference: 'Python Docs: Reading and Writing Files'
+          },
+          {
+            name: 'Iterating through Files',
+            academic: 'File objects are iterables. Iterating over them directly yields one line at a time, which is highly memory-efficient for large files.',
+            plain_english: 'Instead of loading a 10-Gigabyte text file into your computer\'s memory all at once (which would crash it), Python reads it line-by-line, processing one sentence and throwing it away before grabbing the next.',
+            code: "with open('data.txt', 'r') as file:\n    for line in file:\n        print(line.strip()) # .strip() removes the hidden newline character",
+            reference: 'Python Docs: Methods of File Objects'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 7, title: 'Modules and Libraries', dates: 'Mon 20 Apr – Sun 26 Apr 2026',
+        overview: 'The extensibility of Python through the ability to utilise and create modules, importing functions to solve real-world problems.',
+        outcomes: ['Understand Python extensibility', 'Import from standard library', 'Create custom modules'],
+        concepts: [
+          {
+            name: 'Importing Modules',
+            academic: 'A module is a file containing Python definitions and statements. Importing binds the module name in the local scope, granting access to its namespace.',
+            plain_english: 'A module is like a toolbox. You don\'t want to carry every single tool with you at all times. When you need to do math, you just `import math` to bring that specific toolbox into your workspace.',
+            code: "import math\nprint(math.pi)       # 3.14159...\n\nfrom random import randint\nprint(randint(1, 10)) # Random number 1-10",
+            reference: 'Python Docs: Modules'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 8, title: 'Object-Oriented Programming 1', dates: 'Mon 27 Apr – Sun 3 May 2026',
+        overview: 'A new paradigm: Object-Oriented Programming. Introducing Classes and Objects to bring a real-world perspective to programs.',
+        outcomes: ['Use OOP to organise programs', 'Define classes', 'Instantiate objects', 'Understand the self parameter'],
+        concepts: [
+          {
+            name: 'Classes and Objects',
+            academic: 'A Class is a blueprint defining the structure and behavior (attributes and methods). An Object is an instantiated instance of that class allocated in memory.',
+            plain_english: 'A Class is the architectural blueprint for a house. You can\'t live in a blueprint. An Object is the actual, physical house built from that blueprint. You can build 100 houses (objects) from one blueprint (class).',
+            code: "class Dog:\n    # The constructor method initializes the object\n    def __init__(self, name, age):\n        self.name = name  # Attribute\n        self.age = age\n\n    def bark(self):       # Method\n        return f'{self.name} says woof!'\n\n# Creating an object (instantiation)\nmy_dog = Dog('Buddy', 3)\nprint(my_dog.bark())",
+            reference: 'Python Docs: Classes'
+          },
+          {
+            name: 'The "self" Parameter',
+            academic: 'Explicit reference to the current instance of the class. It binds the attributes with the given arguments.',
+            plain_english: 'When a dog barks, it needs to know its OWN name, not the name of the dog next door. `self` is Python\'s way of saying "Use MY data, not someone else\'s."',
+            code: "# Inside the class, 'self' refers to the specific object calling the method.\n# my_dog.bark() is essentially translated to Dog.bark(my_dog)",
+            reference: 'Python Docs: A First Look at Classes'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 9, title: 'Object-Oriented Programming 2', dates: 'Mon 4 May – Sun 10 May 2026',
+        overview: 'Advanced OOP focusing on Inheritance and Polymorphism—mechanisms enabling code reuse and contract-based programming.',
+        outcomes: ['Use class inheritance', 'Implement polymorphism', 'Use abstract classes'],
+        concepts: [
+          {
+            name: 'Inheritance',
+            academic: 'A mechanism where a subclass derives attributes and methods from a superclass, establishing an "is-a" relationship and promoting code reuse.',
+            plain_english: 'If you have a generic "Vehicle" class that knows how to drive and stop, a "Car" class can INHERIT those abilities. You don\'t have to rewrite the driving code for the Car, you just add specific things like "open trunk".',
+            code: "class Animal:\n    def sleep(self): print('Zzz')\n\nclass Cat(Animal): # Cat inherits from Animal\n    def meow(self): print('Meow')\n\nkitty = Cat()\nkitty.sleep() # Inherited method\nkitty.meow()  # Specific method",
+            reference: 'Python Docs: Inheritance'
+          },
+          {
+            name: 'Polymorphism & Overriding',
+            academic: 'The provision of a single interface to entities of different types. Subclasses can override superclass methods to provide specialized behavior.',
+            plain_english: 'Polymorphism means "many forms". If you tell an animal to "Speak", a dog will bark and a bird will tweet. Same command, different result based on what object receives it.',
+            code: "class Bird(Animal):\n    def speak(self): return 'Chirp'\nclass Duck(Animal):\n    def speak(self): return 'Quack'\n\nanimals = [Bird(), Duck()]\nfor a in animals:\n    print(a.speak()) # Works for both, but gives different output",
+            reference: 'Python Docs: Private Variables and Class-local References'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 10, title: 'Assertions, Exceptions and Unit Testing', dates: 'Mon 11 May – Sun 17 May 2026',
+        overview: 'A methodical approach to testing and error handling, moving beyond just running code and fixing visible errors.',
+        outcomes: ['Use assertions', 'Handle exceptions using try/except', 'Verify correctness of programs'],
+        concepts: [
+          {
+            name: 'Exception Handling (try/except)',
+            academic: 'A control flow construct that intercepts runtime errors (exceptions), preventing program termination by executing an alternative handler block.',
+            plain_english: 'It\'s a safety net. If you ask a user for their age and they type "Twenty" instead of "20", Python will crash. `try/except` says: "Try to do this math. If it blows up, don\'t crash, just print a polite error message instead."',
+            code: "try:\n    age = int(input('Age: '))\n    print(100 / age)\nexcept ValueError:\n    print('Please enter numbers, not text.')\nexcept ZeroDivisionError:\n    print('Age cannot be zero.')",
+            reference: 'Python Docs: Errors and Exceptions'
+          },
+          {
+            name: 'Assertions',
+            academic: 'Debugging aids that test a condition as an internal self-check. If the condition is false, an AssertionError is raised.',
+            plain_english: 'An assertion is a sanity check for developers. It says: "At this exact line of code, this variable absolutely MUST be positive. If it isn\'t, something is horribly wrong, crash immediately so I can fix it."',
+            code: "def calculate_discount(price):\n    assert price >= 0, 'Price cannot be negative!'\n    return price * 0.9",
+            reference: 'Python Docs: The assert statement'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 11, title: 'Recursion', dates: 'Mon 18 May – Sun 24 May 2026',
+        overview: 'Defining a problem in terms of itself. Formulating recursive solutions and understanding the runtime call stack.',
+        outcomes: ['Differentiate iteration and recursion', 'Formulate recursive solutions', 'Implement recursive functions', 'Describe the runtime stack'],
+        concepts: [
+          {
+            name: 'Recursive Logic & Base Cases',
+            academic: 'A function that calls itself during its execution. It requires a base case to terminate and a recursive step that progresses towards the base case.',
+            plain_english: 'Imagine looking into a mirror that is facing another mirror. It goes on forever. Recursion is like that, but you give the mirror a rule: "Stop reflecting after 10 times." The stopping rule is the Base Case.',
+            code: "def factorial(n):\n    # Base Case: Stop at 1\n    if n == 1:\n        return 1\n    # Recursive Case: Call itself with n-1\n    return n * factorial(n - 1)\n\nprint(factorial(5)) # 120",
+            reference: 'Python Docs: Recursion limit'
+          },
+          {
+            name: 'The Call Stack',
+            academic: 'A LIFO (Last In, First Out) stack data structure that stores information about the active subroutines of a computer program. Excessive recursion causes a Stack Overflow.',
+            plain_english: 'Think of a stack of plates. Every time a function calls itself, you put a new plate on the stack. When a function finishes, you take the top plate off. If you don\'t have a base case, you stack too many plates and they crash (Stack Overflow).',
+            code: "# The stack for factorial(3):\n# -> factorial(3)\n#   -> factorial(2)\n#     -> factorial(1) [Returns 1]\n#   <- 2 * 1 [Returns 2]\n# <- 3 * 2 [Returns 6]",
+            reference: 'Computer Science: Call Stack'
+          }
+        ], practice: 'lab'
+      },
+      {
+        num: 12, title: 'Advanced Python', dates: 'Mon 25 May – Sun 31 May 2026',
+        overview: 'Advanced concepts that Python has to offer to solve problems more elegantly and idiomatically.',
+        outcomes: ['Use optional parameters', 'Use lambda, filter, map', 'Write list comprehensions'],
+        concepts: [
+          {
+            name: 'List Comprehensions',
+            academic: 'A syntactic construct providing a concise way to create lists based on existing iterables, essentially combining map and filter into one readable line.',
+            plain_english: 'Instead of writing a 4-line for-loop to double all the numbers in a list, you write one neat, elegant line of code. It reads like English: "Give me X squared for every X in this list."',
+            code: "# Old way\nsquares = []\nfor x in range(5):\n    squares.append(x**2)\n\n# Pythonic way (Comprehension)\nsquares = [x**2 for x in range(5)]\nprint(squares) # [0, 1, 4, 9, 16]",
+            reference: 'Python Docs: List Comprehensions'
+          },
+          {
+            name: 'Lambda Functions',
+            academic: 'Small, anonymous, inline functions defined using the lambda keyword. Usually restricted to a single expression.',
+            plain_english: 'Throwaway functions. If you need a function to just do one tiny math trick one time, you don\'t bother giving it a name and a `def` block. You just use a lambda.',
+            code: "# Normal function\ndef add(a, b): return a + b\n\n# Lambda equivalent\nadd_lambda = lambda a, b: a + b\nprint(add_lambda(5, 3)) # 8",
+            reference: 'Python Docs: Lambda Expressions'
+          }
+        ], practice: 'lab'
+      }
+    ]
+  },
+  databases: {
+    code: 'FIT9132',
+    name: 'Introduction to Databases',
+    weeks: [
+      {
+        num: 1, title: 'Introduction To Databases', dates: 'Mon 2 Mar – Sun 8 Mar 2026',
+        overview: 'An introduction to databases, different types available, EDI principles in design, and practical Oracle DB configuration.',
+        outcomes: ['Explain the role of databases', 'Motivations over spreadsheets', 'Differentiate DB types', 'Use Git', 'Login to Oracle'],
+        concepts: [
+          {
+            name: 'Databases vs Spreadsheets',
+            academic: 'A Database Management System (DBMS) ensures data integrity, concurrency, and security, overcoming the limitations of flat-file spreadsheets which suffer from redundancy and update anomalies.',
+            plain_english: 'A spreadsheet is a piece of paper; anyone can erase anything. A database is a bank vault. Multiple tellers can deposit money simultaneously without messing up the total, and it actively stops you from putting letters into a number column.',
+            code: "-- Enforcing rules automatically\nCREATE TABLE employee (\n  id INT PRIMARY KEY,\n  salary DECIMAL CHECK (salary > 0)\n);",
+            reference: 'Elmasri & Navathe: DB Systems'
+          }
+        ], practice: 'sql'
+      },
+      {
+        num: 2, title: 'Database Design I — Conceptual Modelling', dates: 'Mon 9 Mar – Sun 15 Mar 2026',
+        overview: 'Examine the basics of database modelling. Your focus is on the first step: Conceptual Modelling using Entity-Relationship Diagrams.',
+        outcomes: ['Analyse database life cycle stages', 'Distinguish ER diagram components', 'Differentiate strong/weak entities', 'Draw conceptual diagrams'],
+        concepts: [
+          
+
+[Image of an Entity Relationship Diagram]
+
+          {
+            name: 'Entity-Relationship Diagrams (ERD)',
+            academic: 'A conceptual data model representing the logical structure of a database, detailing entities, their attributes, and the specific relationships (cardinalities) between them.',
+            plain_english: 'An ERD is a blueprint for your data. Before building a house, you draw rooms and doors. Before building a database, you draw boxes (Entities like "Student") and diamonds (Relationships like "Enrolls in") to see how everything connects.',
+            code: "-- ERD Concepts translated:\n-- Entity = Table\n-- Attribute = Column\n-- Relationship = Primary/Foreign Keys",
+            reference: 'Chen, P. (1976). ER Model'
+          },
+          {
+            name: 'Strong vs Weak Entities',
+            academic: 'A strong entity possesses a primary key and exists independently. A weak entity lacks a distinct primary key and is existence-dependent on an identifying strong entity.',
+            plain_english: 'A Strong Entity is a "Customer". A Weak Entity is a "Customer Order". If the Customer is deleted from the system, their Orders must also disappear because an order cannot exist without a person who placed it.',
+            code: "-- Strong Entity\nCREATE TABLE Customer (Cust_ID INT PK);\n-- Weak Entity (Depends on Customer)\nCREATE TABLE Order (Order_ID INT, Cust_ID FK);",
+            reference: 'Connolly & Begg: Database Systems'
+          }
+        ], practice: 'database'
+      },
+      {
+        num: 3, title: 'The Relational Model', dates: 'Mon 16 Mar – Sun 22 Mar 2026',
+        overview: 'The theoretical basis for RDBMS. Examining insert, update and delete anomalies and providing the foundation for Oracle work.',
+        outcomes: ['Explain the relational model components', 'Evaluate anomalies', 'Define entity/referential integrity', 'Differentiate keys', 'Formulate relational algebra'],
+        concepts: [
+          {
+            name: 'Primary and Foreign Keys',
+            academic: 'A Primary Key uniquely identifies a tuple within a relation. A Foreign Key is an attribute in one relation that refers to the Primary Key of another, establishing a linkage.',
+            plain_english: 'A Primary Key is your exact Student ID number; nobody else has it. A Foreign Key is writing your Student ID on an exam paper. The paper (table 2) links back to YOU (table 1) via that number.',
+            code: "CREATE TABLE Student (\n  StudentID INT PRIMARY KEY, -- Unique Identifier\n  Name VARCHAR(50)\n);\nCREATE TABLE Enrollment (\n  ClassID INT,\n  StudentID INT, -- Links back to the Student table\n  FOREIGN KEY (StudentID) REFERENCES Student(StudentID)\n);",
+            reference: 'Codd, E.F. (1970). Relational Model'
+          },
+          {
+            name: 'Entity & Referential Integrity',
+            academic: 'Entity integrity requires that no component of a primary key be NULL. Referential integrity demands that every non-NULL foreign key value must match an existing primary key value in the referenced relation.',
+            plain_english: 'Entity Integrity: You cannot exist in the system without an ID. Referential Integrity: You cannot sign up for a class that does not exist. The database strictly enforces these rules.',
+            code: "-- Will fail if Class 999 doesn't exist (Referential Integrity)\nINSERT INTO Enrollment (ClassID, StudentID) VALUES (999, 1);",
+            reference: 'Oracle Docs: Data Integrity'
+          }
+        ], practice: 'sql'
+      },
+      {
+        num: 4, title: 'Normalisation', dates: 'Mon 23 Mar – Sun 29 Mar 2026',
+        overview: 'A formal process to ensure an optimal database structure, addressing insert, update and delete anomalies.',
+        outcomes: ['Explain reasons for normalisation', 'Differentiate dependencies', 'Normalise UNF to 3NF', 'Draw dependency diagrams', 'Check logical diagrams'],
+        concepts: [
+          {
+            name: 'The Anomalies (Insert, Update, Delete)',
+            academic: 'Flaws in unnormalized schema causing data inconsistencies. Update anomaly: changing a redundant value in one place but not others. Delete anomaly: deleting one fact unintentionally removes an unrelated fact.',
+            plain_english: 'If you store a Student\'s name AND their Teacher\'s name in the same row, what happens if the student graduates and is deleted? You accidentally delete the Teacher\'s name from the system too! Normalization fixes this by separating them into different tables.',
+            code: "-- BAD DESIGN (Prone to Anomalies)\n-- Table: Student_Courses (StudentID, StudentName, CourseID, CourseName)\n\n-- GOOD DESIGN (Normalized)\n-- Student (StudentID, Name)\n-- Course (CourseID, Name)\n-- Enrollment (StudentID, CourseID)",
+            reference: 'Codd, E.F. (1971). Further Normalization'
+          },
+          {
+            name: 'First to Third Normal Form (1NF -> 3NF)',
+            academic: '1NF: Atomic values only. 2NF: 1NF + no partial dependencies on composite keys. 3NF: 2NF + no transitive dependencies (non-key attributes depend ONLY on the primary key).',
+            plain_english: '1NF: No lists in a single cell. 2NF: If a table has a combined ID, everything else must relate to the WHOLE combination. 3NF: No sneaky third-party links (e.g., zip code -> city should be its own table, not stored on the user table).',
+            code: "-- Moving to 3NF eliminates transitive dependencies.\n-- Instead of User(ID, Name, ZipCode, City)\n-- We use:\n-- User(ID, Name, ZipCode FK)\n-- Location(ZipCode PK, City)",
+            reference: 'Date, C.J. Intro to Database Systems'
+          }
+        ], practice: 'sql'
+      },
+      {
+        num: 5, title: 'Database Design II', dates: 'Mon 30 Mar – Sun 5 Apr 2026',
+        overview: 'Logical level modelling: converting conceptual ERDs into a form suitable for RDBMS implementation.',
+        outcomes: ['Define mapping steps', 'Map ER diagram to relational model', 'Use Data Modeler'],
+        concepts: [
+          {
+            name: 'Mapping ERD to Relational Schema',
+            academic: 'The algorithmic transformation of conceptual entities, attributes, and M:N relationships into relations (tables), utilizing junction/associative tables to resolve many-to-many cardinality.',
+            plain_english: 'Turning your blueprint into actual SQL tables. The hardest rule: databases cannot handle a "Many-to-Many" relationship directly (like many students taking many classes). You MUST create a third "bridge" table in the middle to handle it.',
+            code: "-- Resolving Many-to-Many\nCREATE TABLE Student_Course_Bridge (\n  student_id INT,\n  course_id INT,\n  PRIMARY KEY (student_id, course_id) -- Composite Key\n);",
+            reference: 'Oracle Data Modeler Guide'
+          }
+        ], practice: 'database'
+      },
+      {
+        num: 6, title: 'Creating and Altering the Database', dates: 'Mon 13 Apr – Sun 19 Apr 2026',
+        overview: 'SQL Data Definition Language (DDL) to create, alter and drop tables, and common Oracle data types.',
+        outcomes: ['Relate CREATE TABLE to relational theory', 'Familiarize with Oracle types', 'Create/Alter/Drop tables', 'Create FK constraints'],
+        concepts: [
+          {
+            name: 'Data Definition Language (DDL)',
+            academic: 'A syntax subset of SQL used to define or modify the structure of database objects (schema). Key commands are CREATE, ALTER, and DROP. DDL statements are typically auto-committed.',
+            plain_english: 'DDL is the bulldozer and scaffolding. It does NOT deal with the data itself (the people inside the building). It only builds the walls, adds new rooms, or demolishes the entire building.',
+            code: "-- CREATE: Builds the table structure\nCREATE TABLE Employees (ID INT, Name VARCHAR2(50));\n\n-- ALTER: Adds a new column to an existing table\nALTER TABLE Employees ADD (HireDate DATE);\n\n-- DROP: Destroys the table completely\nDROP TABLE Employees;",
+            reference: 'Oracle SQL Reference: DDL'
+          }
+        ], practice: 'sql'
+      },
+      {
+        num: 7, title: 'DML and Transaction Management', dates: 'Mon 20 Apr – Sun 26 Apr 2026',
+        overview: 'SQL Data Manipulation Language (DML) for INSERT/UPDATE/DELETE, and managing transactions in a multiuser environment.',
+        outcomes: ['Code insert, update, delete', 'Use Oracle sequences', 'Recognise transaction properties', 'Explain locking', 'Implement transactions'],
+        concepts: [
+          {
+            name: 'Data Manipulation Language (DML)',
+            academic: 'SQL instructions used for managing data within schema objects. Unlike DDL, DML operations can be rolled back before a transaction is committed.',
+            plain_english: 'If DDL built the house, DML is moving the furniture in and out. You use `INSERT` to bring a couch in, `UPDATE` to paint it red, and `DELETE` to throw it out.',
+            code: "INSERT INTO Employees (ID, Name) VALUES (1, 'Alice');\nUPDATE Employees SET Name = 'Alice Smith' WHERE ID = 1;\nDELETE FROM Employees WHERE ID = 1;",
+            reference: 'Oracle SQL Reference: DML'
+          },
+          {
+            name: 'ACID Transactions',
+            academic: 'Atomicity, Consistency, Isolation, Durability. A set of properties guaranteeing that database transactions are processed reliably, even in the event of hardware failure.',
+            plain_english: 'Imagine transferring $100. The bank deducts it from your account, but then the power goes out before it reaches your friend. `Atomicity` means it’s all-or-nothing: if the whole transfer doesn\'t finish, the database magically rewinds so you don\'t lose your money.',
+            code: "BEGIN TRANSACTION;\n  UPDATE Accounts SET balance = balance - 100 WHERE user = 'Me';\n  UPDATE Accounts SET balance = balance + 100 WHERE user = 'Friend';\nCOMMIT; -- Saves permanently\n-- If error occurs: ROLLBACK;",
+            reference: 'Gray, J. (1981). Transaction Concept'
+          }
+        ], practice: 'sql'
+      },
+      {
+        num: 8, title: 'SQL Part I - Basic SQL', dates: 'Mon 27 Apr – Sun 3 May 2026',
+        overview: 'Manipulating data using the SELECT command, joining tables, and basic filtering.',
+        outcomes: ['Interpret graphical DBs', 'Code simple SELECTs', 'Code ANSI JOINs', 'Select based on conditions', 'Use Oracle dates', 'Use aliases', 'Order data'],
+        concepts: [
+          {
+            name: 'SELECT and Filtering (WHERE)',
+            academic: 'The declarative query language used to project specific attributes and restrict tuples based on predicate logic evaluated by the query optimizer.',
+            plain_english: 'SELECT is asking the database a question. "Show me the names of employees WHERE their salary is over $50k." The database searches and hands you the results.',
+            code: "SELECT first_name, salary \nFROM employees \nWHERE salary > 50000 \nORDER BY salary DESC; -- Sorts highest to lowest",
+            reference: 'Oracle SQL: SELECT'
+          },
+          {
+            name: 'Inner JOINs',
+            academic: 'An operation that combines columns from one or more tables into a new result set based on a specified join predicate (usually matching PK and FK).',
+            plain_english: 'Because Normalization split our data into multiple tables, JOIN is the glue that puts it back together for reports. It matches the Student ID on the exam paper with the Student ID in the registry to print their actual Name.',
+            code: "SELECT Student.Name, Class.ClassName\nFROM Student\nINNER JOIN Enrollment ON Student.ID = Enrollment.StudentID\nINNER JOIN Class ON Enrollment.ClassID = Class.ID;",
+            reference: 'ANSI SQL Standard JOINs'
+          }
+        ], practice: 'sql'
+      },
+      {
+        num: 9, title: 'SQL Part II - Intermediate SQL', dates: 'Mon 4 May – Sun 10 May 2026',
+        overview: 'Extending SQL study with aggregate functions (MAX, MIN, AVG, SUM) and subqueries.',
+        outcomes: ['Use aggregate functions', 'Code using GROUP BY', 'Use HAVING clause', 'Use subqueries'],
+        concepts: [
+          {
+            name: 'Aggregation and GROUP BY',
+            academic: 'Functions that operate on a multiset of values to produce a single scalar value. GROUP BY segments the relation into partitions before applying the aggregate function.',
+            plain_english: 'Instead of listing every single employee, Aggregation gives you the summary. "What is the TOTAL (SUM) salary paid per department?" GROUP BY clusters all the IT people together, and all the HR people together, before doing the math.',
+            code: "SELECT department_id, COUNT(employee_id) as Headcount, AVG(salary) as AvgPay\nFROM employees\nGROUP BY department_id\nHAVING AVG(salary) > 60000; -- Filters AFTER grouping",
+            reference: 'Oracle SQL: Aggregate Functions'
+          },
+          {
+            name: 'Subqueries',
+            academic: 'A nested query embedded within the WHERE, FROM, or SELECT clause of another SQL statement, evaluated first to provide parameters to the outer query.',
+            plain_english: 'A query inside a query. "Find me all employees who make more money than the company average." First, the database calculates the average (the subquery). Then, it compares everyone against that number.',
+            code: "SELECT first_name, salary \nFROM employees \nWHERE salary > (SELECT AVG(salary) FROM employees);",
+            reference: 'Oracle SQL: Subqueries'
+          }
+        ], practice: 'sql'
+      },
+      {
+        num: 10, title: 'SQL Part III - Advanced SQL', dates: 'Mon 11 May – Sun 17 May 2026',
+        overview: 'Advanced features, set operators, views, outer joins, and query optimisation concepts.',
+        outcomes: ['Consolidate subqueries', 'Use set operators (UNION, INTERSECT)', 'Outline VIEWs', 'Code OUTER joins', 'Describe query optimisation'],
+        concepts: [
+          {
+            name: 'Outer Joins (LEFT/RIGHT)',
+            academic: 'Unlike Inner Joins which require a match in both relations, Outer Joins preserve non-matching tuples from the designated table, padding missing corresponding attributes with NULL.',
+            plain_english: 'An Inner Join only shows Students who are enrolled in a class. A LEFT Outer Join shows ALL Students, and if they aren\'t in a class, it just puts a blank (NULL) next to their name instead of hiding them completely.',
+            code: "SELECT Student.Name, Class.ClassName\nFROM Student\nLEFT OUTER JOIN Enrollment ON Student.ID = Enrollment.StudentID;",
+            reference: 'Oracle SQL: Outer Joins'
+          },
+          {
+            name: 'Set Operators (UNION)',
+            academic: 'Combines the results of two or more independent queries into a single result set. Both queries must have compatible degree and domains (columns and data types).',
+            plain_english: 'If you have a table of "Current Employees" and a table of "Retired Employees", and you want one massive list of EVERYONE, you use UNION to stack the results on top of each other.',
+            code: "SELECT name, email FROM Current_Employees\nUNION\nSELECT name, email FROM Retired_Employees;",
+            reference: 'Oracle SQL: Set Operators'
+          }
+        ], practice: 'sql'
+      },
+      {
+        num: 11, title: 'Non Relational Databases - Big Data and NoSQL', dates: 'Mon 18 May – Sun 24 May 2026',
+        overview: 'Exploring data forms not easily handled by RDBMS. Primary characteristics of Big Data and MongoDB.',
+        outcomes: ['Explain Big Data', 'List Big Data characteristics', 'Describe 4 NoSQL models', 'Use MongoDB'],
+        concepts: [
+          {
+            name: 'NoSQL & Document Databases',
+            academic: 'Non-tabular databases optimized for unstructured or semi-structured data, prioritizing scalability (horizontal scaling) and the CAP theorem over strict ACID compliance. MongoDB uses JSON-like BSON documents.',
+            plain_english: 'SQL is like an excel sheet: every row must have the exact same columns. NoSQL is like a folder of word documents. One document might have a name and an age. The next document might have a name, three hobbies, and a map coordinate. It’s flexible and fast.',
+            code: "// MongoDB insertion (JSON structure)\ndb.students.insertOne({\n  name: 'John Doe',\n  age: 22,\n  courses: ['FIT9132', 'FIT9136'],\n  address: { city: 'Melbourne', zip: 3000 }\n});",
+            reference: 'MongoDB Architecture Guide'
+          }
+        ], practice: 'sql'
+      },
+      {
+        num: 12, title: 'Business Intelligence & Data Warehousing', dates: 'Mon 25 May – Sun 31 May 2026',
+        overview: 'Using data to support decision making, differentiating OLAP vs OLTP, and examining legal/ethical issues.',
+        outcomes: ['Describe app development', 'Differentiate operational/decision data', 'Describe data warehouse role', 'Illustrate BI role', 'Appraise privacy/ethics'],
+        concepts: [
+          {
+            name: 'OLTP vs OLAP',
+            academic: 'OLTP (Online Transaction Processing) optimizes for fast, high-volume CRUD operations in normalized schema. OLAP (Online Analytical Processing) optimizes for complex, read-heavy aggregations across historical, denormalized schema (Data Warehouses).',
+            plain_english: 'OLTP is the cashier ringing up your groceries quickly. OLAP is the CEO looking at a massive dashboard analyzing grocery sales trends over the last 5 years across 100 stores.',
+            code: "-- OLTP: Quick insert of one sale\nINSERT INTO Sales (Item, Price) VALUES ('Apple', 2.00);\n\n-- OLAP: Massive aggregation of historical data\nSELECT StoreRegion, SUM(TotalSales), Year FROM Warehouse_Sales_Data GROUP BY StoreRegion, Year;",
+            reference: 'Kimball, R. Data Warehouse Toolkit'
+          }
+        ], practice: 'sql'
+      }
+    ]
+  },
+  arch: {
+    code: 'FIT9137',
+    name: 'Computer Architecture & Networks',
+    weeks: [
+      {
+        num: 1, title: 'Number Systems, Boolean Logic & Digital Circuits', dates: 'Mon 2 Mar – Sun 8 Mar 2026',
+        overview: 'Foundations of digital computing. How computers represent and process numerical data, encode text, and apply Boolean algebra to circuit design.',
+        outcomes: ['Convert binary/decimal/hex', 'Perform binary calculations', 'Explain text encoding', 'Describe Boolean logic', 'Apply Boolean algebra', 'Understand digital circuits'],
+        concepts: [
+          {
+            name: 'Binary and Hexadecimal',
+            academic: 'Base-2 numerical system encoding information as sequences of high/low voltage (bits). Hexadecimal (Base-16) serves as a concise, human-readable abstraction where 1 hex digit maps perfectly to 4 bits.',
+            plain_english: 'Computers only understand "Electricity ON" (1) and "Electricity OFF" (0). Because typing 101101011100 is exhausting, programmers use Hexadecimal (like B5C) as a shorthand code.',
+            code: "Decimal 10 = Binary 1010\nDecimal 15 = Binary 1111 = Hex F\nDecimal 255 = Binary 11111111 = Hex FF\n\n# Quick conversion tip: Hex 'A' is 10, 'F' is 15.",
+            reference: 'Stallings: Computer Org. & Architecture'
+          },
+          {
+            name: 'Logic Gates',
+            academic: 'Physical hardware components implementing Boolean functions (AND, OR, XOR, NAND) utilizing transistors to control the flow of electrical current.',
+            plain_english: 'Gates are the microscopic puzzle pieces that do math. An AND gate requires two signals to enter before it lets one signal out. Put billions of these together, and you have a CPU.',
+            code: "A B | AND | OR | XOR\n0 0 |  0  |  0 |  0\n0 1 |  0  |  1 |  1\n1 0 |  0  |  1 |  1\n1 1 |  1  |  1 |  0  (XOR is 'one or the other, but not both')",
+            reference: 'Mano: Digital Design'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 2, title: 'Computer Architecture & CPU', dates: 'Mon 9 Mar – Sun 15 Mar 2026',
+        overview: 'Von Neumann architecture, combinational/sequential circuits, CPU design (ALUs, registers, control units), and the MARIE simplified CPU model.',
+        outcomes: ['Understand Von Neumann', 'Analyze circuits', 'Explain ALU', 'Differentiate combinational/sequential', 'Describe registers', 'Identify CPU components', 'Explain program execution', 'Use MARIE simulator'],
+        concepts: [
+          
+
+[Image of Von Neumann Architecture]
+
+          {
+            name: 'Von Neumann Architecture',
+            academic: 'The architectural design utilizing a single shared memory space for both instruction opcodes and data payloads, processed sequentially via the Fetch-Decode-Execute cycle.',
+            plain_english: 'Before this, computers had to be physically rewired to run a new program. Von Neumann said: "Let\'s just save the program\'s instructions in the memory right next to the data." Now, the CPU just reads memory like a recipe book.',
+            code: "[ Central Processing Unit ] <==== Bus ====> [ Memory Unit ]\nInside CPU:\n- ALU (Math Engine)\n- Control Unit (Traffic Cop)\n- Registers (Tiny pockets for immediate data)",
+            reference: 'Patterson & Hennessy: Computer Org.'
+          },
+          {
+            name: 'Fetch-Decode-Execute Cycle',
+            academic: 'The fundamental operational mechanism of the CPU. Fetch retrieves instructions via the Program Counter (PC). Decode interprets opcodes in the Instruction Register (IR). Execute triggers the ALU or memory I/O.',
+            plain_english: 'This happens billions of times a second (Gigahertz). 1. Fetch: Get the next instruction from memory. 2. Decode: Figure out what it means (Add? Move? Jump?). 3. Execute: Actually do the math.',
+            code: "1. FETCH: \n   PC points to address 100. Grab instruction from 100.\n2. DECODE:\n   Instruction is 'Add X to Accumulator'\n3. EXECUTE:\n   ALU adds value at X. \n   PC = PC + 1 (Ready for next instruction)",
+            reference: 'Null & Lobur: Essentials of Computer Org.'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 3, title: 'Operating System Functions: Memory Management', dates: 'Mon 16 Mar – Sun 22 Mar 2026',
+        overview: 'Computer memory architecture, addressing, organization, and management techniques including paging and virtual memory.',
+        outcomes: ['Understand Memory Addressing', 'Explore Memory Hierarchy', 'Understand Partitioning, Segmentation, Paging'],
+        concepts: [
+          {
+            name: 'Memory Hierarchy',
+            academic: 'A structured architecture trading latency for capacity. Registers (fastest, smallest) -> Cache (L1/L2/L3) -> Main Memory (RAM) -> Secondary Storage (SSD/HDD - slowest, largest).',
+            plain_english: 'Registers are the notes in your hand. Cache is the book on your desk. RAM is the bookshelf in your room. SSD is the library down the street. The further away data is, the longer the CPU has to wait.',
+            code: "Access Times:\nRegisters: <1 nanosecond\nCache: 1-10 ns\nRAM: 50-100 ns\nSSD: 50,000 ns",
+            reference: 'Silberschatz: Operating System Concepts'
+          },
+          {
+            name: 'Virtual Memory & Paging',
+            academic: 'An OS abstraction that maps non-contiguous physical RAM frames to contiguous virtual logical pages, allowing processes to address more memory than physically exists via disk swapping.',
+            plain_english: 'If you have 8GB of RAM but open 16GB of Chrome tabs, Virtual Memory saves you. The OS breaks memory into "Pages". It silently moves unused tabs to your hard drive (slower), and only keeps active tabs in actual RAM.',
+            code: "Logical Address Space -> Page Table -> Physical RAM\nIf Page not in RAM -> Page Fault -> Fetch from Disk Swap File",
+            reference: 'Tanenbaum: Modern Operating Systems'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 4, title: 'Operating System Functions: Programs & Processes', dates: 'Mon 23 Mar – Sun 29 Mar 2026',
+        overview: 'Computer I/O operations, interaction with the CPU, and the role of the OS in managing multi-processing and scheduling.',
+        outcomes: ['Explain I/O concepts', 'Analyze CPU interaction', 'Compare polling/interrupts/DMA', 'Describe OS role', 'Understand multi-processing', 'Evaluate scheduling'],
+        concepts: [
+          {
+            name: 'Interrupts vs Polling',
+            academic: 'Polling requires the CPU to synchronously cycle to check hardware status. Interrupts use asynchronous hardware signals to halt the CPU execution context, triggering an Interrupt Service Routine (ISR).',
+            plain_english: 'Polling is you sitting in a car asking "Are we there yet?" every 5 seconds (wastes CPU time). Interrupts are you going to sleep, and the driver poking you awake ONLY when you arrive (highly efficient).',
+            code: "while True:\n  if keyboard.pressed(): # Polling (Bad)\n      process_key()\n\n# vs\n\ndef on_interrupt_signal(): # Interrupt (Good)\n    process_key()",
+            reference: 'Stallings: Operating Systems'
+          },
+          {
+            name: 'Process Scheduling',
+            academic: 'Algorithms (Round Robin, SJF, Priority) used by the OS kernel to multiplex CPU time among thread states (Ready, Running, Blocked) to optimize throughput and latency.',
+            plain_english: 'A CPU has 4 cores but 200 programs are running. The OS Scheduler is a frantic traffic cop, giving every program 10 milliseconds of time before pausing it and moving to the next one, so fast it looks like they are all running simultaneously.',
+            code: "States: \nNEW -> READY <-> RUNNING -> TERMINATED\n                   |\n                   v\n                BLOCKED (Waiting for hard drive)",
+            reference: 'Silberschatz: OS Concepts'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 5, title: 'Operating System Functions: File Management', dates: 'Mon 30 Mar – Sun 5 Apr 2026',
+        overview: 'File systems architecture, handling partitions, volumes, permissions, and directory trees across platforms.',
+        outcomes: ['Understand File System Functions', 'Evaluate journaling/encryption', 'Illustrate layered structure', 'Differentiate ext4/NTFS/FAT32', 'Manage partitions', 'Execute file operations'],
+        concepts: [
+          {
+            name: 'File Systems (NTFS vs ext4)',
+            academic: 'The logical structure applied to block storage devices to index files, manage metadata (inodes/MFT), and maintain structural integrity (journaling).',
+            plain_english: 'A hard drive is just a massive blank whiteboard. A File System draws lines on it to make a filing cabinet. Windows uses NTFS, Linux uses ext4. They are just different ways of organizing the folders.',
+            code: "Metadata stores:\n- File Name\n- Permissions (Read/Write/Execute)\n- Creation Date\n- Pointers to actual disk blocks",
+            reference: 'Linux Documentation: File Systems'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 6, title: 'Introduction to Computer Networks', dates: 'Mon 13 Apr – Sun 19 Apr 2026',
+        overview: 'The basics of networking: how we split up this complex problem into different layers (OSI Model).',
+        outcomes: ['Choose network components', 'Identify protocol layers', 'Familiarize with network standards'],
+        concepts: [
+          
+
+[Image of OSI Model layers]
+
+          {
+            name: 'The OSI Model',
+            academic: 'A 7-layer conceptual framework standardizing telecommunication functions. Application, Presentation, Session, Transport, Network, Data Link, Physical.',
+            plain_english: 'To send an email: Layer 7 is your email app. Layer 4 chops the email into numbered boxes. Layer 3 writes the destination IP address on the boxes. Layer 1 turns it all into electricity flashing across an ocean cable.',
+            code: "L7 Application  (HTTP) - What you see\nL4 Transport    (TCP)  - Delivery guarantees\nL3 Network      (IP)   - Global routing\nL2 Data Link    (MAC)  - Local hopping\nL1 Physical     (Cable)- 1s and 0s",
+            reference: 'Kurose & Ross: Computer Networking'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 7, title: 'LANs, MANs, WANs & WLANs', dates: 'Mon 20 Apr – Sun 26 Apr 2026',
+        overview: 'Exploring network technologies, Ethernet, WiFi, and how smaller networks interconnect to form the Internet.',
+        outcomes: ['Understand Network Types', 'Design LANs', 'Implement WLANs', 'Work with Backbones/VLANs', 'Compare Switching'],
+        concepts: [
+          {
+            name: 'LAN vs WAN',
+            academic: 'Local Area Networks operate within a localized geography under single administrative control (IEEE 802.3/802.11). Wide Area Networks span large distances interconnecting LANs, often leasing infrastructure from ISPs.',
+            plain_english: 'A LAN is your home WiFi router connecting your phone to your TV. A WAN is the massive fiber optic cables under the street connecting your house to the Google servers in America.',
+            code: "LAN Tech: Ethernet, WiFi switches\nWAN Tech: Fiber optics, BGP Routers, MPLS",
+            reference: 'Cisco Networking Academy'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 8, title: 'Physical Layer and Data Link Layer', dates: 'Mon 27 Apr – Sun 3 May 2026',
+        overview: 'How data is transmitted digitally/analogue, framing, and error detection/correction.',
+        outcomes: ['Apply transmission approaches', 'Understand Data Link role', 'Identify error sources', 'Understand error detection'],
+        concepts: [
+          {
+            name: 'MAC Addresses & Ethernet Framing',
+            academic: 'Layer 2 encapsulates Network Layer packets into Frames, appending physical source/destination MAC addresses and a Frame Check Sequence (FCS) for cyclic redundancy checks (error detection).',
+            plain_english: 'An IP address tells you what house to deliver the mail to. A MAC address is the physical fingerprint of the computer itself. Layer 2 wraps your data in an envelope with these fingerprints so switches know exactly which cable to send it down.',
+            code: "MAC Format: 00:1A:2B:3C:4D:5E (48-bit burned into the hardware)",
+            reference: 'IEEE 802.3 Ethernet Standard'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 9, title: 'Network & Transport Layer', dates: 'Mon 4 May – Sun 10 May 2026',
+        overview: 'The TCP/IP stack. IP routing packets across complex networks, and TCP/UDP ensuring reliable/fast delivery.',
+        outcomes: ['Apply TCP/IP', 'Use routing/addressing', 'Test distance vector', 'Investigate app communication', 'Apply transport functions'],
+        concepts: [
+          {
+            name: 'IP Routing (Layer 3)',
+            academic: 'The Network layer assigns hierarchical IP addresses and utilizes routing tables (Link State/Distance Vector algorithms) to determine the optimal hop-by-hop path across autonomous systems.',
+            plain_english: 'IP routing is a global GPS system. Your router looks at the IP address, checks its map, and says "I don\'t know exactly where this is, but it\'s definitely in Europe, so I\'ll pass it to the next biggest router pointing that way."',
+            code: "IPv4 Address: 192.168.1.100\nSubnet Mask: 255.255.255.0 (Determines which part is the 'Street' and which is the 'House')",
+            reference: 'RFC 791: Internet Protocol'
+          },
+          {
+            name: 'TCP vs UDP (Layer 4)',
+            academic: 'TCP is connection-oriented, utilizing a 3-way handshake and sequence numbers for guaranteed, ordered delivery. UDP is connectionless, prioritizing low latency over reliability.',
+            plain_english: 'TCP is a registered courier. You sign for the package, and if it gets lost, they resend it (used for Webpages). UDP is throwing a newspaper at your porch while driving by; if it lands in the bushes, oh well (used for Live Video).',
+            code: "TCP Handshake:\n1. SYN (Hello, want to talk?)\n2. SYN-ACK (Yes, I hear you, do you hear me?)\n3. ACK (Yes, let's talk data.)",
+            reference: 'RFC 793: Transmission Control Protocol'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 10, title: 'Application Layer', dates: 'Mon 11 May – Sun 17 May 2026',
+        overview: 'Application layer protocols like HTTP and DNS, and actual messages sent over the network.',
+        outcomes: ['Analyse architectures', 'Parse Web pages', 'Analyse Email protocols'],
+        concepts: [
+          {
+            name: 'DNS (Domain Name System)',
+            academic: 'A hierarchical, decentralized naming system mapping human-readable hostnames to numeric IP addresses required for Layer 3 routing.',
+            plain_english: 'DNS is the contacts app in your phone. You don\'t memorize your friend\'s 10-digit phone number (IP address: 142.250.190.46). You just tap "Google.com", and DNS instantly looks up the number for you.',
+            code: "DNS Request: 'What is the IP for google.com?'\nDNS Response: '142.250.190.46'\nBrowser then connects via L4 TCP to that IP.",
+            reference: 'RFC 1034: Domain Names'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 11, title: 'Network Security', dates: 'Mon 18 May – Sun 24 May 2026',
+        overview: 'Security threats, privacy issues, cryptography concepts, and VPN implementations.',
+        outcomes: ['Identify threats', 'Understand security techniques', 'Implement VPNs'],
+        concepts: [
+          {
+            name: 'Asymmetric Cryptography (TLS/SSL)',
+            academic: 'Utilizes a mathematically linked Public and Private key pair. Data encrypted with the public key can exclusively be decrypted by the corresponding private key, establishing secure session keys.',
+            plain_english: 'Imagine an open padlock. The server gives you the open padlock (Public Key). You put your credit card data in a box, snap the padlock shut, and send it back. Now, ONLY the server has the physical key (Private Key) to unlock it. Hackers intercepting it just see a locked box.',
+            code: "HTTPS uses TLS:\n1. Client verifies Server's Public Certificate\n2. Key Exchange establishes symmetric session key\n3. All HTTP traffic is now encrypted cipher-text",
+            reference: 'Kurose & Ross: Network Security'
+          }
+        ], practice: 'marie'
+      },
+      {
+        num: 12, title: 'The Internet', dates: 'Mon 25 May – Sun 31 May 2026',
+        overview: 'The technology behind the internet, ISPs, peering, and the future of IoT.',
+        outcomes: ['Understand ISPs and peering', 'Explain IoT challenges'],
+        concepts: [
+          {
+            name: 'BGP (Border Gateway Protocol)',
+            academic: 'The path-vector routing protocol that manages how packets are routed across the internet through the exchange of routing and reachability information between edge routers (Autonomous Systems).',
+            plain_english: 'BGP is the internet\'s postal service routing system. It doesn\'t look at individual computers; it looks at massive networks (ISPs, Google, Netflix) and calculates the fastest global highway to get data from Australia to New York.',
+            code: "Autonomous System (AS) routing path:\nPath to Server X: AS13335 (Cloudflare) -> AS15169 (Google)",
+            reference: 'RFC 4271: BGP-4'
+          }
+        ], practice: 'marie'
+      }
+    ]
+  }
 };
-
-let learnInited=false;
-function buildLearnPage(){
-  if(learnInited)return;learnInited=true;
-  const cc=document.getElementById('course-content');if(!cc)return;
-  Object.entries(COURSES).forEach(([key,course])=>{
-    const panel=document.createElement('div');panel.className='course-panel';panel.id='cp-'+key;
-    // Weeks sidebar
-    const wl=document.createElement('div');wl.className='weeks-list';
-    course.weeks.forEach((wk,i)=>{
-      const btn=document.createElement('button');btn.className='week-btn'+(i===0?' active':'');
-      btn.innerHTML=`<span class="wk-n">Week ${wk.num}</span>${wk.title}`;
-      btn.addEventListener('click',()=>{wl.querySelectorAll('.week-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderWeek(wc,course,wk);});
-      wl.appendChild(btn);
-    });
-    const wc=document.createElement('div');wc.className='week-content';
-    panel.appendChild(wl);panel.appendChild(wc);
-    cc.appendChild(panel);
-    if(course.weeks.length)renderWeek(wc,course,course.weeks[0]);
-  });
-  // Activate first
-  document.getElementById('cp-python')?.classList.add('active');
-  document.getElementById('course-tabs').addEventListener('click',e=>{
-    const tab=e.target.closest('[data-course]');if(!tab)return;
-    document.querySelectorAll('.course-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');
-    document.querySelectorAll('.course-panel').forEach(p=>p.classList.remove('active'));
-    document.getElementById('cp-'+tab.dataset.course)?.classList.add('active');
-  });
-}
-
-function renderWeek(container,course,wk){
-  const practiceLabel={lab:'Open in Python Lab →',sql:'Open in SQL Sandbox →',database:'Open in DB ERD Lab →',marie:'Open in MARIE Simulator →'}[wk.practice]||'Practice →';
-  container.innerHTML=`
-    <div class="wk-hdr">
-      <div class="wk-course-tag">
-        <span style="background:var(--adim);border:1px solid var(--abdr);padding:.1rem .5rem;border-radius:3px;">${course.code}</span>
-        Week ${wk.num}
-      </div>
-      <h2 class="wk-title">${wk.title}</h2>
-      <div class="wk-dates">📅 ${wk.dates}</div>
-    </div>
-    <p class="wk-overview">${wk.overview}</p>
-    <div class="lo-list">
-      <div class="lo-title">Learning Outcomes</div>
-      <ul>${wk.outcomes.map(o=>`<li>${o}</li>`).join('')}</ul>
-    </div>
-    <div class="concept-grid">
-      ${(wk.concepts||[]).map(c=>`
-        <div class="concept-card">
-          <div class="concept-name">${c.name}</div>
-          <p class="concept-desc">${c.desc}</p>
-          ${c.code?`<code class="concept-code">${esc(c.code)}</code>`:''}
-        </div>`).join('')}
-    </div>
-    <div class="wk-practice">
-      <button class="btn btn-pri" onclick="navigate('${wk.practice}')">${practiceLabel}</button>
-      <button class="btn btn-ghost" onclick="copyWeekNotes('${wk.title.replace(/'/g,"\\'")}')">📋 Copy Notes</button>
-    </div>`;
-  container.scrollTop=0;
-}
-window.copyWeekNotes=function(title){
-  const el=document.querySelector('.week-content');
-  const text=[title,...el.querySelectorAll('.lo-list li')].map(n=>typeof n==='string'?n:n.textContent).join('\n');
-  navigator.clipboard.writeText(text).then(()=>toast('success','📋','Notes copied!'));
-};
-
-pageInits.learn=function(){buildLearnPage();};
 
 /* ═══════════════════════════════════════════════
    BOOT SEQUENCE INIT
