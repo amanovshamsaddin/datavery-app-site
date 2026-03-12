@@ -4023,9 +4023,20 @@ pageInits.learn = function() {
       weeksList.appendChild(btn);
     });
 
-    // Show first week by default
     if (course.weeks.length) renderWeek(weekContent, course, course.weeks[0]);
   }
+
+  document.querySelectorAll('.course-tab').forEach(tab => {
+    tab.addEventListener('click', () => switchCourse(tab.dataset.course));
+  });
+
+  switchCourse('python');
+};
+
+observeReveals();
+</script>
+</body>
+</html>
 
   // Wire up tab buttons
   document.querySelectorAll('.course-tab').forEach(tab => {
