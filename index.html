@@ -3221,7 +3221,42 @@ pageInits.github=async function(){
 /* ═══════════════════════════════════════════════
    LEARN — 3 COURSES (THE ULTIMATE EDUCATION HUB)
 ═══════════════════════════════════════════════ */
-const COURSES = {
+
+  function renderWeek(container,course,wk){
+  const practiceLabel={lab:'Open in Python Lab →',sql:'Open in SQL Sandbox →',database:'Open in DB ERD Lab →',marie:'Open in MARIE Simulator →'}[wk.practice]||'Practice →';
+  container.innerHTML=`
+    <div class="wk-hdr">
+      <div class="wk-course-tag">
+        <span style="background:var(--adim);border:1px solid var(--abdr);padding:.1rem .5rem;border-radius:3px;">${course.code}</span>
+        Week ${wk.num}
+      </div>
+      <h2 class="wk-title">${wk.title}</h2>
+      <div class="wk-dates">📅 ${wk.dates}</div>
+    </div>
+    <p class="wk-overview">${wk.overview}</p>
+    <div class="lo-list">
+      <div class="lo-title">Learning Outcomes</div>
+      <ul>${wk.outcomes.map(o=>`<li>${o}</li>`).join('')}</ul>
+    </div>
+    <div class="concept-grid">
+      ${(wk.concepts||[]).map(c=>`
+        <div class="concept-card">
+          <div class="concept-name">${c.name}</div>
+          ${c.academic ? `<div style="margin-bottom:0.5rem;"><strong style="color:var(--txt);font-size:0.75rem;">Academic:</strong><br><span class="concept-desc">${c.academic}</span></div>` : ''}
+          ${c.plain_english ? `<div style="margin-bottom:0.5rem;"><strong style="color:var(--ac);font-size:0.75rem;">Plain English:</strong><br><span class="concept-desc" style="color:var(--txt);">${c.plain_english}</span></div>` : ''}
+          ${c.desc ? `<p class="concept-desc">${c.desc}</p>` : ''}
+          ${c.code?`<code class="concept-code">${esc(c.code)}</code>`:''}
+          ${c.reference ? `<div style="margin-top:0.75rem;font-size:0.65rem;color:var(--txt3);font-family:var(--ff-m);">📚 Reference: ${c.reference}</div>` : ''}
+        </div>`).join('')}
+    </div>
+    <div class="wk-practice">
+      <button class="btn btn-pri" onclick="navigate('${wk.practice}')">${practiceLabel}</button>
+      <button class="btn btn-ghost" onclick="copyWeekNotes('${wk.title.replace(/'/g,"\\'")}')">📋 Copy Notes</button>
+    </div>`;
+  container.scrollTop=0;
+}
+  
+  const COURSES = {
   python: {
     code: 'FIT9136',
     name: 'Introduction to Python',
@@ -3527,7 +3562,6 @@ const COURSES = {
           
 
 [Image of an Entity Relationship Diagram]
-
           {
             name: 'Entity-Relationship Diagrams (ERD)',
             academic: 'A conceptual data model representing the logical structure of a database, detailing entities, their attributes, and the specific relationships (cardinalities) between them.',
@@ -3761,7 +3795,6 @@ const COURSES = {
           
 
 [Image of Von Neumann Architecture]
-
           {
             name: 'Von Neumann Architecture',
             academic: 'The architectural design utilizing a single shared memory space for both instruction opcodes and data payloads, processed sequentially via the Fetch-Decode-Execute cycle.',
@@ -3842,7 +3875,6 @@ const COURSES = {
           
 
 [Image of OSI Model layers]
-
           {
             name: 'The OSI Model',
             academic: 'A 7-layer conceptual framework standardizing telecommunication functions. Application, Presentation, Session, Transport, Network, Data Link, Physical.',
