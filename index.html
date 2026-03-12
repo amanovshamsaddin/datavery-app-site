@@ -1206,7 +1206,13 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
           <input type="text" id="marie-mem-to" value="120" maxlength="4">
           <button class="marie-btn" id="marie-mem-refresh" style="margin-left:auto;padding:.18rem .5rem;font-size:.58rem;">Refresh</button>
         </div>
-        <div class="marie-mem-table" id="marie-mem-table"></div>
+        <div style="display:flex; flex:1; overflow:hidden;">
+          <div class="marie-mem-table" id="marie-mem-table" style="flex:2;"></div>
+          <div style="flex:1; border-left:1px solid var(--bdr); padding:.4rem .6rem; background:var(--bg2); overflow-y:auto;">
+            <div style="font-family:var(--ff-m); font-size:.55rem; color:var(--txt3); letter-spacing:.1em; text-transform:uppercase; margin-bottom:.4rem;">Symbol Table</div>
+            <div id="marie-sym-list" style="font-family:var(--ff-m); font-size:.66rem; color:var(--ac);"></div>
+          </div>
+        </div>
       </div>
       <div class="marie-io">
         <div class="marie-io-title">Output Console / Input</div>
@@ -3168,9 +3174,21 @@ function updateMarieMemTable(){
   html+='</tbody></table>';table.innerHTML=html;
 }
 
-function updateMarieOutput(){
-  const out=document.getElementById('marie-output');
-  if(out)out.textContent=marieVM.outputLog.length?marieVM.outputLog.join('\n'):'(no output)';
+function updateMarieSymbols(){
+  const list = document.getElementById('marie-sym-list');
+  if(!list) return;
+  const entries = Object.entries(marieVM.labels);
+  if(!entries.length) {
+    list.innerHTML = '<div style="color:var(--txt3);font-size:.6rem;">(No labels used)</div>';
+    return;
+  }
+  list.innerHTML = entries.map(([label, addr]) => {
+    const hexAddr = addr.toString(16).padStart(3, '0').toUpperCase();
+    return `<div style="display:flex; justify-content:space-between; padding:.15rem 0; border-bottom:1px solid var(--bdr);">
+              <span>${label}</span>
+              <span style="color:var(--txt);">${hexAddr}</span>
+            </div>`;
+  }).join('');
 }
 
 function updateMarieControls(assembled,halted){
@@ -3197,12 +3215,12 @@ pageInits.marie=function(){
     const errors=marieAssemble(src);
     const errEl=document.getElementById('marie-errors');
     if(errors.length){errEl.textContent=errors.join('\n');errEl.classList.add('vis');document.getElementById('marie-status').textContent='✗ Errors — see below';updateMarieControls(false,false);}
-    else{errEl.classList.remove('vis');errEl.textContent='';document.getElementById('marie-status').textContent='✓ Assembled — ready to run';updateMarieControls(true,false);updateMarieRegisters();updateMarieMemTable();updateMarieOutput();toast('success','✓','Program assembled successfully!');}
+    else{errEl.classList.remove('vis');errEl.textContent='';document.getElementById('marie-status').textContent='✓ Assembled — ready to run';updateMarieControls(true,false);updateMarieRegisters();updateMarieMemTable();updateMarieOutput();updateMarieSymbols();toast('success','✓','Program assembled successfully!');}
   });
   document.getElementById('marie-step')?.addEventListener('click',()=>{if(!marieVM.halted){marieStep();if(marieVM.halted)document.getElementById('marie-status').textContent='■ Halted';updateMarieControls(true,marieVM.halted);}});
   document.getElementById('marie-run')?.addEventListener('click',()=>{if(marieVM.halted)return;marieVM.running=true;document.getElementById('marie-status').textContent='▶▶ Running…';updateMarieControls(true,false);marieRunInterval=setInterval(marieRunLoop,100);});
   document.getElementById('marie-stop')?.addEventListener('click',()=>{clearInterval(marieRunInterval);marieRunInterval=null;marieVM.running=false;document.getElementById('marie-status').textContent='⏹ Stopped';updateMarieControls(true,marieVM.halted);});
-  document.getElementById('marie-reset')?.addEventListener('click',()=>{clearInterval(marieRunInterval);marieRunInterval=null;marieVM.phase=0;marieVM.AC=0;marieVM.PC=0x100;marieVM.IR=0;marieVM.MAR=0;marieVM.MBR=0;marieVM.cycles=0;marieVM.halted=false;marieVM.running=false;marieVM.outputLog=[];marieVM.waitingInput=false;marieVM.memory.fill(0);updateMarieRegisters();updateMarieMemTable();updateMarieOutput();document.getElementById('marie-status').textContent='↺ Reset — re-assemble to run';updateMarieControls(false,false);});
+  document.getElementById('marie-reset')?.addEventListener('click',()=>{clearInterval(marieRunInterval);marieRunInterval=null;marieVM.phase=0;marieVM.AC=0;marieVM.PC=0x100;marieVM.IR=0;marieVM.MAR=0;marieVM.MBR=0;marieVM.cycles=0;marieVM.halted=false;marieVM.running=false;marieVM.outputLog=[];marieVM.waitingInput=false;marieVM.memory.fill(0);updateMarieRegisters();updateMarieMemTable();updateMarieOutput();updateMarieSymbols();document.getElementById('marie-status').textContent='↺ Reset — re-assemble to run';updateMarieControls(false,false);});
   document.getElementById('marie-mem-refresh')?.addEventListener('click',updateMarieMemTable);
   document.getElementById('marie-input-submit')?.addEventListener('click',()=>{if(!marieVM.waitingInput)return;const iv=parseInt(document.getElementById('marie-input-val').value);if(isNaN(iv)){toast('error','✗','Enter a valid integer.');return;}marieVM.AC=iv&0xFFFF;if(marieVM.AC>32767)marieVM.AC-=65536;document.getElementById('marie-input-val').value='';marieVM.waitingInput=false;marieVM.PC++;marieVM.changedRegs.add('AC');document.getElementById('marie-status').textContent='▶ Resumed';updateMarieRegisters();updateMarieMemTable();if(marieVM.running){marieRunInterval=setInterval(marieRunLoop,100);updateMarieControls(true,false);}});
 };
