@@ -2312,9 +2312,6 @@ function drawERD(){
       
       ctx.font=`${11*erd.scale}px "JetBrains Mono",monospace`;ctx.fillStyle=C.t;
       ctx.fillText(f.name,bx,fy+14*erd.scale);
-      }
-      ctx.font=`${11*erd.scale}px "JetBrains Mono",monospace`;ctx.fillStyle=C.t;
-      ctx.fillText(f.name,bx,fy+14*erd.scale);
       ctx.fillStyle=C.t3;ctx.textAlign='right';
       const constraints=(f.notNull?'NN ':'')+f.type;
       ctx.fillText(constraints,sc.x+sw-5*erd.scale,fy+14*erd.scale);ctx.textAlign='left';
