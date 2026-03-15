@@ -749,7 +749,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
     <div class="s-lm">DV</div>
     <div class="s-lt">
       <span class="s-lmain">DataVery</span>
-      <span class="s-lsub">.app V4.7</span>
+      <span class="s-lsub">.app V5.1</span>
     </div>
   </a>
   <div class="s-online"><div class="ondot"></div><span>System Operational</span></div>
@@ -1338,7 +1338,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
       <div><div class="f-col-t">External</div><ul class="f-links"><li><a href="https://github.com/amanovshamsaddin" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/theamanov/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="/cdn-cgi/l/email-protection#b1d0dcd0dfdec7c2d9d0dcc2f1d6dcd0d8dd9fd2dedc">Email</a></li><li><a href="#" onclick="navigate('learn');return false;">Learn</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app V4.7</p>
+      <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app V5.1</p>
       <div class="f-socials">
         <a href="https://www.linkedin.com/in/theamanov/" class="f-soc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         <a href="https://github.com/amanovshamsaddin" class="f-soc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
@@ -4601,8 +4601,2869 @@ pageInits.learn = function() {
   switchCourse('python');
 };
 
+
+/* ═══════════════════════════════════════════════
+   DATAVERY QUALITY PATCH — MARCH 2026
+═══════════════════════════════════════════════ */
+(function(){
+  const style = document.createElement('style');
+  style.textContent = `
+    .dv-toolbar{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;padding:.9rem 1rem;margin:.85rem 0 1rem;background:var(--surf);border:1px solid var(--bdr);border-radius:10px}
+    .dv-toolbar .dv-grow{flex:1 1 180px}
+    .dv-input,.dv-select,.dv-textarea{padding:.55rem .7rem;border-radius:7px;border:1px solid var(--bdr2);background:var(--bg2);color:var(--txt);font-family:var(--ff-m);font-size:.68rem}
+    .dv-input::placeholder,.dv-textarea::placeholder{color:var(--txt3)}
+    .dv-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.32rem .58rem;border-radius:999px;border:1px solid var(--bdr2);background:var(--surf2);font-family:var(--ff-m);font-size:.58rem;color:var(--txt2)}
+    .dv-note{font-family:var(--ff-m);font-size:.62rem;color:var(--txt3)}
+    .dv-section-card{background:var(--surf);border:1px solid var(--bdr);border-radius:11px;padding:1rem 1.05rem;margin-top:1rem}
+    .dv-grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+    .dv-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
+    .dv-grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem}
+    .dv-stat-card{padding:.85rem;background:var(--surf2);border:1px solid var(--bdr);border-radius:10px}
+    .dv-stat-k{font-family:var(--ff-m);font-size:.58rem;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.28rem}
+    .dv-stat-v{font-family:var(--ff-d);font-size:1.15rem;font-weight:700;color:var(--txt)}
+    .dv-mini-btn{padding:.35rem .6rem;border-radius:7px;border:1px solid var(--bdr2);background:transparent;color:var(--txt2);font-family:var(--ff-m);font-size:.6rem;cursor:pointer}
+    .dv-mini-btn:hover{border-color:var(--ac);color:var(--ac);background:var(--adim)}
+    .dv-link-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;margin-top:1rem}
+    .dv-link-card{display:flex;align-items:center;justify-content:space-between;gap:.7rem;padding:.8rem .9rem;border-radius:10px;border:1px solid var(--bdr);background:var(--surf);color:var(--txt);text-decoration:none;transition:.2s}
+    .dv-link-card:hover{transform:translateY(-2px);border-color:var(--ac);background:var(--adim)}
+    .dv-muted{color:var(--txt2)}
+    .proj-toolbar-count{margin-left:auto;font-family:var(--ff-m);font-size:.62rem;color:var(--txt3)}
+    .proj-card .proj-foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-top:.8rem;padding-top:.65rem;border-top:1px solid var(--bdr)}
+    .proj-edit.alt{color:var(--ac)}
+    .lab-actions .dv-select{max-width:170px;padding:.36rem .5rem}
+    .dv-hidden{display:none !important}
+    .dv-help{font-family:var(--ff-m);font-size:.6rem;color:var(--txt3)}
+    .sql-result-summary{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.7rem}
+    .sql-result-summary .dv-chip{background:var(--adim);color:var(--ac)}
+    .pg-toolbar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:0 0 .9rem}
+    .pg-profile{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;margin:0 0 .9rem}
+    .marie-toolbar .dv-select{min-width:160px;padding:.3rem .45rem}
+    .marie-insight{margin-top:.8rem;padding:.75rem .85rem;border:1px solid var(--bdr);border-radius:9px;background:var(--surf2);font-family:var(--ff-m);font-size:.63rem;color:var(--txt2)}
+    .gh-controls{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:1rem 0 1.1rem}
+    .gh-lang-cloud{display:flex;flex-wrap:wrap;gap:.45rem;margin:.6rem 0 1rem}
+    .learn-toolbar{display:flex;gap:.6rem;align-items:center;padding:.75rem 1rem;border-bottom:1px solid var(--bdr);background:var(--surf);flex-wrap:wrap}
+    .learn-toolbar .dv-grow{min-width:220px}
+    .learn-notes{margin-top:1rem}
+    .learn-notes textarea{width:100%;min-height:140px;resize:vertical}
+    .wk-meta-row{display:flex;gap:.5rem;flex-wrap:wrap;margin:.75rem 0 1rem}
+    .wk-complete{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .7rem;border-radius:999px;border:1px solid var(--bdr2);background:var(--surf2);font-family:var(--ff-m);font-size:.62rem;color:var(--txt2);cursor:pointer}
+    .wk-complete.done{border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.08);color:var(--success)}
+    .contact-extra{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.7rem}
+    .home-quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;margin-top:1rem}
+    .home-quick-item{padding:.85rem .9rem;border-radius:10px;border:1px solid var(--bdr);background:var(--surf);cursor:pointer;transition:.2s}
+    .home-quick-item:hover{border-color:var(--ac);transform:translateY(-2px);background:var(--adim)}
+    .home-quick-item strong{display:block;font-family:var(--ff-d);font-size:.95rem;color:var(--txt);margin-bottom:.2rem}
+    .home-quick-item span{font-family:var(--ff-m);font-size:.6rem;color:var(--txt3)}
+    @media (max-width: 960px){
+      .dv-grid-4,.pg-profile,.home-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .dv-grid-3{grid-template-columns:1fr}
+      .dv-grid-2,.dv-link-grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      .pg-profile,.home-quick-grid{grid-template-columns:1fr}
+      .dv-toolbar,.learn-toolbar,.gh-controls,.pg-toolbar{padding:.75rem}
+    }
+  `;
+  document.head.appendChild(style);
+
+  function dvJSON(key, fallback){ try{ return JSON.parse(localStorage.getItem(key) || 'null') ?? fallback; } catch(e){ return fallback; } }
+  function dvSave(key, value){ try{ localStorage.setItem(key, JSON.stringify(value)); } catch(e){} }
+  function dvDebounce(fn, wait){ let t; return function(...args){ clearTimeout(t); t = setTimeout(() => fn.apply(this,args), wait || 250); }; }
+  function dvDownload(filename, text, type){
+    const blob = new Blob([text], { type: type || 'text/plain;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 600);
+  }
+  function dvSafeName(s){ return String(s || 'export').replace(/[^a-z0-9_\-.]+/gi,'_'); }
+  function dvCsv(columns, rows){
+    const escCell = v => {
+      const s = String(v ?? '');
+      return /[",\n]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
+    };
+    return [columns.map(escCell).join(','), ...rows.map(r => r.map(escCell).join(','))].join('\n');
+  }
+  function splitSqlStatements(sql){
+    const out=[]; let curStmt='';
+    let sq=false,dq=false,bq=false,lineComment=false,blockComment=false;
+    for(let i=0;i<sql.length;i++){
+      const ch=sql[i], nx=sql[i+1];
+      if(lineComment){ curStmt += ch; if(ch==='\n') lineComment=false; continue; }
+      if(blockComment){ curStmt += ch; if(ch==='*' && nx === '/') { curStmt += '/'; i++; blockComment=false; } continue; }
+      if(!sq && !dq && !bq){
+        if(ch==='-' && nx==='-'){ curStmt += ch + nx; i++; lineComment=true; continue; }
+        if(ch==='/' && nx==='*'){ curStmt += ch + nx; i++; blockComment=true; continue; }
+      }
+      if(ch==="'" && !dq && !bq){
+        curStmt += ch;
+        if(sql[i+1] === "'" && sq){ curStmt += sql[++i]; continue; }
+        sq=!sq; continue;
+      }
+      if(ch==='"' && !sq && !bq){
+        curStmt += ch;
+        if(sql[i+1] === '"' && dq){ curStmt += sql[++i]; continue; }
+        dq=!dq; continue;
+      }
+      if(ch==='`' && !sq && !dq){ bq=!bq; curStmt += ch; continue; }
+      if(ch===';' && !sq && !dq && !bq){ if(curStmt.trim()) out.push(curStmt.trim()); curStmt=''; continue; }
+      curStmt += ch;
+    }
+    if(curStmt.trim()) out.push(curStmt.trim());
+    return out;
+  }
+
+  // Router memory
+  const _origNavigate = navigate;
+  navigate = function(p){ _origNavigate(p); try{ localStorage.setItem('dv-last-page', cur); }catch(e){} };
+  window.navigate = navigate;
+  if(!location.hash){
+    try{
+      const last = localStorage.getItem('dv-last-page');
+      if(last && PAGES.includes(last) && last !== cur){ setTimeout(() => navigate(last), 0); }
+    }catch(e){}
+  }
+
+  // Better SQL splitting for every in-memory DB
+  makeDB = function(name){
+    const dbid=name.toLowerCase().replace(/[^a-z0-9]/g,'_');
+    try{ alasql(`CREATE DATABASE IF NOT EXISTS ${dbid}`); }catch(e){}
+    function use(){ try{ alasql(`USE ${dbid}`); }catch(e){} }
+    return {
+      _dbid: dbid,
+      run(sql){
+        use();
+        splitSqlStatements(_fixSQL(sql) || '').forEach(stmt => { try{ alasql(stmt); } catch(e){} });
+      },
+      exec(sql){
+        use();
+        const out=[];
+        splitSqlStatements(_fixSQL(sql) || '').forEach(stmt => {
+          const res = alasql(stmt);
+          if(Array.isArray(res) && res.length > 0 && res[0] && typeof res[0] === 'object'){
+            const cols = Object.keys(res[0]);
+            out.push({ columns: cols, values: res.map(r => cols.map(c => r[c] != null ? r[c] : null)) });
+          }
+        });
+        return out;
+      }
+    };
+  };
+
+  // Home / About polish
+  (function(){
+    const heroBtns = document.querySelector('.hero-btns');
+    if(heroBtns && !document.getElementById('dv-home-quick')){
+      const wrap = document.createElement('div');
+      wrap.id = 'dv-home-quick';
+      wrap.className = 'home-quick-grid reveal rd3';
+      [
+        ['Python Lab','Live notebook + save/restore','lab'],
+        ['DB / ERD','Design schemas visually','database'],
+        ['SQL Sandbox','Practice joins and queries','sql'],
+        ['MARIE','Step through CPU cycles','marie']
+      ].forEach(([title,desc,page]) => {
+        const item = document.createElement('button');
+        item.className = 'home-quick-item';
+        item.type = 'button';
+        item.innerHTML = `<strong>${title}</strong><span>${desc}</span>`;
+        item.addEventListener('click', () => navigate(page));
+        wrap.appendChild(item);
+      });
+      heroBtns.parentNode.appendChild(wrap);
+      observeReveals(document.getElementById('page-home'));
+    }
+    const aboutGrid = document.querySelector('#page-about .about-grid');
+    if(aboutGrid && !document.getElementById('dv-about-card')){
+      const side = aboutGrid.lastElementChild;
+      const card = document.createElement('div');
+      card.id = 'dv-about-card';
+      card.className = 'dv-section-card reveal';
+      card.innerHTML = `
+        <div class="sec-lbl" style="margin-bottom:.55rem;">Profile Snapshot</div>
+        <div class="dv-grid-2">
+          <div class="dv-stat-card"><div class="dv-stat-k">Core Strength</div><div class="dv-stat-v">Analytical Communication</div></div>
+          <div class="dv-stat-card"><div class="dv-stat-k">Working Style</div><div class="dv-stat-v">Systems-first, detail-driven</div></div>
+        </div>
+        <div class="contact-extra">
+          <button class="dv-mini-btn" type="button" id="dv-copy-bio">Copy short bio</button>
+          <button class="dv-mini-btn" type="button" id="dv-copy-summary">Copy professional summary</button>
+        </div>`;
+      side.appendChild(card);
+      card.querySelector('#dv-copy-bio')?.addEventListener('click', async () => {
+        const txt = 'Shamsaddin Amanov is a Monash Master of Data Science student, former ExxonMobil analyst, and builder of interactive educational tools at DataVery.app.';
+        try{ await navigator.clipboard.writeText(txt); toast('success','📋','Short bio copied.'); }catch(e){ toast('error','✗','Clipboard unavailable.'); }
+      });
+      card.querySelector('#dv-copy-summary')?.addEventListener('click', async () => {
+        const txt = 'Data scientist in training with corporate analytical experience, strong SQL/Python foundations, and a focus on educational product design, database systems, and computer architecture.';
+        try{ await navigator.clipboard.writeText(txt); toast('success','📋','Summary copied.'); }catch(e){ toast('error','✗','Clipboard unavailable.'); }
+      });
+    }
+  })();
+
+  // Projects upgrades
+  const dvProjectUI = dvJSON('dv-project-ui-v2', { q:'', course:'all', status:'all', sort:'updated' });
+  function normalizeProject(p){
+    if(!p.createdAt) p.createdAt = Date.now();
+    if(!p.updatedAt) p.updatedAt = p.createdAt;
+    return p;
+  }
+  projects = projects.map(normalizeProject);
+  function saveProjectUI(){ dvSave('dv-project-ui-v2', dvProjectUI); }
+  function ensureProjectsToolbar(){
+    const wrap = document.querySelector('#page-projects .proj-wrap');
+    if(!wrap || document.getElementById('proj-toolbar')) return;
+    const bar = document.createElement('div');
+    bar.id = 'proj-toolbar';
+    bar.className = 'dv-toolbar';
+    bar.innerHTML = `
+      <input class="dv-input dv-grow" id="proj-search" placeholder="Search title, stack, description...">
+      <select class="dv-select" id="proj-course-filter"><option value="all">All courses</option><option>FIT9136</option><option>FIT9132</option><option>FIT9137</option><option>Personal</option></select>
+      <select class="dv-select" id="proj-status-filter"><option value="all">All statuses</option><option value="active">Active</option><option value="pend">In progress</option><option value="idea">Idea</option><option value="ship">Completed</option></select>
+      <select class="dv-select" id="proj-sort"><option value="updated">Sort: updated</option><option value="created">Sort: newest</option><option value="title">Sort: title</option><option value="status">Sort: status</option></select>
+      <button class="dv-mini-btn" type="button" id="proj-export-json">Export JSON</button>
+      <button class="dv-mini-btn" type="button" id="proj-import-json">Import JSON</button>
+      <input type="file" id="proj-import-file" accept="application/json" class="dv-hidden">
+      <span class="proj-toolbar-count" id="proj-toolbar-count"></span>`;
+    wrap.insertBefore(bar, document.getElementById('proj-grid'));
+    document.getElementById('proj-search').value = dvProjectUI.q;
+    document.getElementById('proj-course-filter').value = dvProjectUI.course;
+    document.getElementById('proj-status-filter').value = dvProjectUI.status;
+    document.getElementById('proj-sort').value = dvProjectUI.sort;
+    ['proj-search','proj-course-filter','proj-status-filter','proj-sort'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        dvProjectUI.q = document.getElementById('proj-search').value.trim().toLowerCase();
+        dvProjectUI.course = document.getElementById('proj-course-filter').value;
+        dvProjectUI.status = document.getElementById('proj-status-filter').value;
+        dvProjectUI.sort = document.getElementById('proj-sort').value;
+        saveProjectUI();
+        renderProjects();
+      });
+      document.getElementById(id).addEventListener('change', () => document.getElementById(id).dispatchEvent(new Event('input')));
+    });
+    document.getElementById('proj-export-json').addEventListener('click', () => dvDownload('datavery_projects.json', JSON.stringify(projects, null, 2), 'application/json'));
+    document.getElementById('proj-import-json').addEventListener('click', () => document.getElementById('proj-import-file').click());
+    document.getElementById('proj-import-file').addEventListener('change', async e => {
+      const file = e.target.files?.[0];
+      if(!file) return;
+      try{
+        const imported = JSON.parse(await file.text());
+        if(!Array.isArray(imported)) throw new Error('JSON must be an array of projects.');
+        projects = imported.map(p => normalizeProject({
+          id: p.id || Date.now().toString() + Math.random().toString(16).slice(2),
+          title: String(p.title || '').trim(),
+          course: p.course || 'Personal',
+          desc: p.desc || '',
+          stack: p.stack || '',
+          status: p.status || 'idea',
+          link: p.link || '',
+          createdAt: p.createdAt || Date.now(),
+          updatedAt: Date.now()
+        })).filter(p => p.title);
+        saveProjects(); renderProjects(); toast('success','📥','Projects imported.');
+      }catch(err){ toast('error','✗', err.message || 'Invalid JSON file.'); }
+      e.target.value='';
+    });
+  }
+  renderProjects = function(){
+    ensureProjectsToolbar();
+    const grid=document.getElementById('proj-grid'); if(!grid) return;
+    const empty=document.getElementById('proj-empty');
+    grid.querySelectorAll('.proj-card').forEach(c => c.remove());
+    projects = projects.map(normalizeProject);
+    let rows = [...projects];
+    if(dvProjectUI.q){
+      rows = rows.filter(p => [p.title,p.desc,p.stack,p.course].join(' ').toLowerCase().includes(dvProjectUI.q));
+    }
+    if(dvProjectUI.course !== 'all') rows = rows.filter(p => p.course === dvProjectUI.course);
+    if(dvProjectUI.status !== 'all') rows = rows.filter(p => p.status === dvProjectUI.status);
+    rows.sort((a,b) => {
+      if(dvProjectUI.sort === 'title') return a.title.localeCompare(b.title);
+      if(dvProjectUI.sort === 'created') return (b.createdAt||0) - (a.createdAt||0);
+      if(dvProjectUI.sort === 'status') return (STATUS_LABELS[a.status]||a.status).localeCompare(STATUS_LABELS[b.status]||b.status);
+      return (b.updatedAt||0) - (a.updatedAt||0);
+    });
+    const countEl = document.getElementById('proj-toolbar-count');
+    if(countEl) countEl.textContent = `${rows.length} shown · ${projects.length} total`;
+    if(!rows.length){ if(empty){ empty.style.display='block'; empty.querySelector('p').textContent = projects.length ? 'No projects match the current filters.' : 'No projects yet. Click "New Project" to add one.'; } return; }
+    if(empty) empty.style.display='none';
+    rows.forEach(p => {
+      const cc = COURSE_COLORS[p.course] || '#22d3ee';
+      const stacks = (p.stack||'').split(',').map(s => s.trim()).filter(Boolean);
+      const card = document.createElement('div');
+      card.className = 'proj-card';
+      card.innerHTML = `
+        <div class="proj-course" style="color:${cc}">${p.course}</div>
+        <div class="proj-title">${esc(p.title)}</div>
+        <p class="proj-desc">${esc(p.desc || '')}</p>
+        <div class="proj-stack">${stacks.map(s => `<span class="tech-tag">${esc(s)}</span>`).join('')}</div>
+        <div class="proj-foot">
+          <span class="spill s-${p.status}">${STATUS_LABELS[p.status] || p.status}</span>
+          <span class="dv-note">Updated ${new Date(p.updatedAt || Date.now()).toLocaleDateString()}</span>
+        </div>
+        <div class="proj-meta">
+          <div style="display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;">
+            ${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener" class="proj-edit alt">↗ Open</a>` : ''}
+            <button class="proj-edit" data-edit="${p.id}">✎ Edit</button>
+            <button class="proj-edit" data-dup="${p.id}">⧉ Duplicate</button>
+            <button class="proj-edit" data-del="${p.id}" style="color:var(--danger);">✕ Delete</button>
+          </div>
+        </div>`;
+      card.querySelector('[data-edit]')?.addEventListener('click', e => { e.stopPropagation(); openEditProj(p.id); });
+      card.querySelector('[data-del]')?.addEventListener('click', e => {
+        e.stopPropagation();
+        if(confirm('Delete "' + p.title + '"?')){ projects = projects.filter(x => x.id !== p.id); saveProjects(); renderProjects(); toast('info','🗑','Project deleted.'); }
+      });
+      card.querySelector('[data-dup]')?.addEventListener('click', e => {
+        e.stopPropagation();
+        const copy = normalizeProject({ ...p, id: Date.now().toString() + Math.random().toString(16).slice(2), title: `${p.title} (Copy)`, createdAt: Date.now(), updatedAt: Date.now() });
+        projects.unshift(copy); saveProjects(); renderProjects(); toast('success','⧉','Project duplicated.');
+      });
+      grid.appendChild(card);
+    });
+  };
+  saveProjects = function(){
+    projects = projects.map(normalizeProject);
+    try{ localStorage.setItem('dv-projects', JSON.stringify(projects)); }catch(e){ toast('error','💾','Storage full! Cannot save project.'); }
+  };
+  const projSaveBtn = document.getElementById('m-proj-ok');
+  if(projSaveBtn){
+    const clone = projSaveBtn.cloneNode(true);
+    projSaveBtn.parentNode.replaceChild(clone, projSaveBtn);
+    clone.addEventListener('click', () => {
+      const title = document.getElementById('proj-title').value.trim();
+      const link = document.getElementById('proj-link').value.trim();
+      if(!title) return toast('error','✗','Title required.');
+      if(link){ try{ new URL(link); }catch(e){ return toast('error','✗','Project link must be a valid URL.'); } }
+      const now = Date.now();
+      const data = normalizeProject({
+        id: editingProjId || Date.now().toString(),
+        title,
+        course: document.getElementById('proj-course').value,
+        desc: document.getElementById('proj-desc').value.trim(),
+        stack: document.getElementById('proj-stack').value.trim(),
+        status: document.getElementById('proj-status').value,
+        link,
+        createdAt: editingProjId ? (projects.find(x => x.id === editingProjId)?.createdAt || now) : now,
+        updatedAt: now
+      });
+      if(editingProjId){ const i = projects.findIndex(x => x.id === editingProjId); if(i > -1) projects[i] = data; }
+      else { projects.unshift(data); }
+      saveProjects(); renderProjects(); closeModal('m-proj'); toast('success','✓', editingProjId ? 'Project updated.' : 'Project added.');
+    });
+  }
+  pageInits.projects = function(){ ensureProjectsToolbar(); renderProjects(); observeReveals(document.getElementById('page-projects')); };
+
+  // Python Lab upgrades
+  const pyNotebookKey = 'dv-python-notebook-v2';
+  let pyPatchedOnce = false;
+  let pyRestored = false;
+  function serializeNotebook(){
+    return [...document.querySelectorAll('#notebook .cell')].map(cell => ({ code: cell.cmInstance ? cell.cmInstance.getValue() : (cell.querySelector('textarea')?.value || '') }));
+  }
+  const persistNotebook = dvDebounce(() => {
+    if(!labInited) return;
+    const cells = serializeNotebook().filter(c => c.code.trim() !== '');
+    if(cells.length) dvSave(pyNotebookKey, { savedAt: Date.now(), cells });
+  }, 300);
+  const _moveCellUp = window.moveCellUp, _moveCellDown = window.moveCellDown, _deleteCell = window.deleteCell;
+  window.moveCellUp = function(id){ _moveCellUp(id); persistNotebook(); };
+  window.moveCellDown = function(id){ _moveCellDown(id); persistNotebook(); };
+  window.deleteCell = function(id){ _deleteCell(id); persistNotebook(); };
+  window.duplicateCell = function(id){
+    const src = document.querySelector(`#notebook .cell[data-id="${id}"]`);
+    if(!src) return;
+    const code = src.cmInstance ? src.cmInstance.getValue() : (src.querySelector('textarea')?.value || '');
+    const clone = createCell(code);
+    src.after(clone);
+    setTimeout(() => clone.cmInstance?.focus(), 120);
+    persistNotebook();
+  };
+  const _createCell = createCell;
+  createCell = function(code){
+    const cell = _createCell(code || '');
+    setTimeout(() => {
+      const tools = cell.querySelector('.cell-tools');
+      if(tools && !tools.querySelector('[data-dup-cell]')){
+        const btn = document.createElement('button');
+        btn.className = 'cell-btn';
+        btn.dataset.dupCell = '1';
+        btn.textContent = '⧉';
+        btn.title = 'Duplicate cell';
+        btn.addEventListener('click', () => window.duplicateCell(cell.dataset.id));
+        tools.insertBefore(btn, tools.querySelector('.del-btn'));
+      }
+      if(cell.cmInstance && !cell.cmInstance.__dvSaved){
+        cell.cmInstance.on('change', persistNotebook);
+        cell.cmInstance.__dvSaved = true;
+      }
+    }, 140);
+    return cell;
+  };
+  function restoreNotebook(){
+    const saved = dvJSON(pyNotebookKey, null);
+    if(!saved?.cells?.length) return false;
+    const nb = document.getElementById('notebook');
+    if(!nb) return false;
+    nb.querySelectorAll('.cell').forEach(c => { try{ c.cmInstance?.toTextArea(); }catch(e){} c.remove(); });
+    saved.cells.forEach(c => createCell(c.code));
+    toast('success','🧠','Notebook session restored.');
+    return true;
+  }
+  function ensureLabControls(){
+    const actions = document.querySelector('#page-lab .lab-actions');
+    if(!actions || document.getElementById('py-save-session')) return;
+    const sample = document.createElement('select');
+    sample.className = 'dv-select';
+    sample.id = 'py-sample-snippet';
+    sample.innerHTML = `
+      <option value="">Insert sample…</option>
+      <option value="stats">Quick stats</option>
+      <option value="plot">Line plot</option>
+      <option value="ml">Tiny sklearn demo</option>`;
+    actions.appendChild(sample);
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'btn btn-ghost btn-sm';
+    saveBtn.id = 'py-save-session';
+    saveBtn.textContent = '💾 Save Session';
+    const restoreBtn = document.createElement('button');
+    restoreBtn.className = 'btn btn-ghost btn-sm';
+    restoreBtn.id = 'py-restore-session';
+    restoreBtn.textContent = '🧠 Restore';
+    const exportBtn = document.createElement('button');
+    exportBtn.className = 'btn btn-ghost btn-sm';
+    exportBtn.id = 'py-export-script';
+    exportBtn.textContent = '↓ Export .py';
+    actions.append(saveBtn, restoreBtn, exportBtn);
+    saveBtn.addEventListener('click', () => { persistNotebook(); toast('success','💾','Notebook session saved.'); });
+    restoreBtn.addEventListener('click', () => restoreNotebook());
+    exportBtn.addEventListener('click', () => {
+      const text = serializeNotebook().map((c,i) => `# Cell ${i+1}\n${c.code}`).join('\n\n');
+      dvDownload('datavery_notebook.py', text, 'text/x-python;charset=utf-8');
+    });
+    sample.addEventListener('change', () => {
+      if(!sample.value) return;
+      const snippets = {
+        stats: `import pandas as pd\n\ndf = pd.DataFrame({'score':[72,81,95,66,88]})\ndf.describe()`,
+        plot: `import matplotlib.pyplot as plt\nxs = [1,2,3,4,5]\nys = [2,3,5,4,7]\nplt.plot(xs, ys, marker='o')\nplt.title('DataVery Demo Plot')\nplt.show()`,
+        ml: `from sklearn.linear_model import LinearRegression\nX = [[1],[2],[3],[4]]\ny = [2,4,6,8]\nmodel = LinearRegression().fit(X, y)\nmodel.coef_, model.intercept_`
+      };
+      const c = createCell(snippets[sample.value] || '');
+      setTimeout(() => c.cmInstance?.focus(), 120);
+      sample.value = '';
+    });
+  }
+  const _pageInitLab = pageInits.lab;
+  pageInits.lab = function(){
+    const firstLoad = !labInited;
+    _pageInitLab();
+    ensureLabControls();
+    if(!pyPatchedOnce){ pyPatchedOnce = true; }
+    if(firstLoad && !pyRestored){
+      const saved = dvJSON(pyNotebookKey, null);
+      if(saved?.cells?.length){ setTimeout(() => { pyRestored = restoreNotebook(); }, 260); }
+    }
+  };
+
+  // ERD / DB upgrades
+  const erdStoreKey = 'dv-erd-state-v2';
+  const erdHistory = [];
+  let erdHistoryIndex = -1;
+  let erdApplying = false;
+  function erdSnapshot(){
+    return JSON.stringify({
+      tables: erd.tables,
+      relations: erd.relations,
+      nextId: erd.nextId,
+      selected: erd.selected,
+      panX: erd.panX,
+      panY: erd.panY,
+      scale: erd.scale
+    });
+  }
+  function clearErdSqlSilently(){
+    if(sqlDB && window.alasql){
+      try{
+        alasql(`USE ${sqlDB._dbid}`);
+        const db = alasql.databases[sqlDB._dbid];
+        if(db) Object.keys(db.tables).forEach(t => { try{ alasql(`DROP TABLE \`${t}\``); }catch(e){} });
+      }catch(e){}
+    }
+  }
+  function erdStateToSQL(){
+    return erd.tables.map(t => {
+      const cols = (t.fields || []).map(f => {
+        const qName = `"${String(f.name || 'field').replace(/"/g,'""')}"`;
+        let col = `${qName} ${f.type || 'TEXT'}`;
+        if(f.pk){
+          if(/INTEGER/i.test(f.type || '') && f.ai) col = `${qName} INTEGER PRIMARY KEY AUTOINCREMENT`;
+          else col += ' PRIMARY KEY';
+        }
+        if(f.notNull) col += ' NOT NULL';
+        if(f.unique) col += ' UNIQUE';
+        if(f.fk && f.fkRef && /\./.test(f.fkRef)){
+          const [rt, rf] = f.fkRef.split('.');
+          if(rt && rf) col += ` REFERENCES "${rt}"("${rf}")`;
+        }
+        return col;
+      }).join(',\n  ');
+      return `CREATE TABLE IF NOT EXISTS "${t.name}"(\n  ${cols}\n);`;
+    }).join('\n');
+  }
+  function applyErdState(state){
+    if(!state) return;
+    erdApplying = true;
+    erd.tables = Array.isArray(state.tables) ? state.tables : [];
+    erd.relations = Array.isArray(state.relations) ? state.relations : [];
+    erd.nextId = state.nextId || 1;
+    erd.selected = null;
+    erd.panX = typeof state.panX === 'number' ? state.panX : 0;
+    erd.panY = typeof state.panY === 'number' ? state.panY : 0;
+    erd.scale = typeof state.scale === 'number' ? state.scale : 1;
+    clearErdSqlSilently();
+    const sql = erdStateToSQL();
+    if(sql.trim()) execSilent(sql);
+    refreshUI();
+    erdApplying = false;
+  }
+  function pushErdHistory(){
+    if(erdApplying) return;
+    const snap = erdSnapshot();
+    if(erdHistory[erdHistoryIndex] === snap) return;
+    erdHistory.splice(erdHistoryIndex + 1);
+    erdHistory.push(snap);
+    if(erdHistory.length > 60) erdHistory.shift();
+    erdHistoryIndex = erdHistory.length - 1;
+  }
+  const persistErd = dvDebounce(() => {
+    if(erdApplying) return;
+    try{ localStorage.setItem(erdStoreKey, erdSnapshot()); }catch(e){}
+    pushErdHistory();
+  }, 240);
+  const _refreshUI = refreshUI;
+  refreshUI = function(){ _refreshUI(); persistErd(); };
+  function ensureDbToolbar(){
+    const toolbar = document.querySelector('#page-database .db-toolbar');
+    if(!toolbar || document.getElementById('db-undo')) return;
+    const sep = document.createElement('div'); sep.className = 'dbt-sep';
+    const undo = document.createElement('button'); undo.className='dbt-btn'; undo.id='db-undo'; undo.textContent='↶ Undo';
+    const redo = document.createElement('button'); redo.className='dbt-btn'; redo.id='db-redo'; redo.textContent='↷ Redo';
+    const save = document.createElement('button'); save.className='dbt-btn'; save.id='db-save-json'; save.textContent='💾 JSON';
+    const load = document.createElement('button'); load.className='dbt-btn'; load.id='db-load-json'; load.textContent='📂 Import';
+    const input = document.createElement('input'); input.type='file'; input.accept='application/json'; input.id='db-load-json-file'; input.className='dv-hidden';
+    toolbar.append(sep, undo, redo, save, load, input);
+    undo.addEventListener('click', () => {
+      if(erdHistoryIndex <= 0) return toast('warn','↶','Nothing to undo.');
+      erdHistoryIndex -= 1; applyErdState(JSON.parse(erdHistory[erdHistoryIndex])); toast('info','↶','Undid last ERD change.');
+    });
+    redo.addEventListener('click', () => {
+      if(erdHistoryIndex >= erdHistory.length - 1) return toast('warn','↷','Nothing to redo.');
+      erdHistoryIndex += 1; applyErdState(JSON.parse(erdHistory[erdHistoryIndex])); toast('info','↷','Redid ERD change.');
+    });
+    save.addEventListener('click', () => dvDownload('datavery_erd.json', JSON.stringify(JSON.parse(erdSnapshot()), null, 2), 'application/json'));
+    load.addEventListener('click', () => input.click());
+    input.addEventListener('change', async e => {
+      const file = e.target.files?.[0];
+      if(!file) return;
+      try{ applyErdState(JSON.parse(await file.text())); toast('success','📂','ERD imported.'); }catch(err){ toast('error','✗','Invalid ERD JSON.'); }
+      e.target.value='';
+    });
+    document.addEventListener('keydown', e => {
+      if(cur !== 'database') return;
+      if((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'z'){ e.preventDefault(); undo.click(); }
+      if(((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y') || ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'z')){ e.preventDefault(); redo.click(); }
+    });
+  }
+  const _pageInitDatabase = pageInits.database;
+  let dbRestored = false;
+  pageInits.database = function(){
+    _pageInitDatabase();
+    ensureDbToolbar();
+    loadSqlJs().then(() => {
+      if(!dbRestored){
+        const saved = dvJSON(erdStoreKey, null);
+        if(saved?.tables?.length){ applyErdState(saved); toast('success','💾','Restored saved ERD workspace.'); }
+        pushErdHistory();
+        dbRestored = true;
+      }
+    }).catch(()=>{});
+  };
+
+  // SQL Sandbox upgrades
+  const sqlHistoryKey = 'dv-sql-history-v2';
+  let lastSqlSandboxResult = null;
+  function addSqlHistory(sql){
+    const hist = dvJSON(sqlHistoryKey, []);
+    const next = [sql, ...hist.filter(x => x !== sql)].slice(0, 12);
+    dvSave(sqlHistoryKey, next);
+    renderSqlHistorySelect();
+  }
+  function renderSqlHistorySelect(){
+    const sel = document.getElementById('sql-sb-history');
+    if(!sel) return;
+    const hist = dvJSON(sqlHistoryKey, []);
+    sel.innerHTML = '<option value="">Recent queries…</option>' + hist.map((q,i) => `<option value="${i}">${esc(q.replace(/\s+/g,' ').slice(0,90))}</option>`).join('');
+  }
+  function ensureSqlSandboxToolbar(){
+    const ctrl = document.querySelector('#page-sql .sql-sb-ctrl');
+    if(!ctrl || document.getElementById('sql-sb-export')) return;
+    const hist = document.createElement('select');
+    hist.className = 'dv-select';
+    hist.id = 'sql-sb-history';
+    const exportBtn = document.createElement('button');
+    exportBtn.className = 'sql-ctrl';
+    exportBtn.id = 'sql-sb-export';
+    exportBtn.textContent = '↓ Export Results';
+    ctrl.append(hist, exportBtn);
+    renderSqlHistorySelect();
+    hist.addEventListener('change', () => {
+      const idx = parseInt(hist.value, 10);
+      const items = dvJSON(sqlHistoryKey, []);
+      if(!Number.isNaN(idx) && items[idx]) sbCM ? sbCM.setValue(items[idx]) : (document.getElementById('sql-sb-editor').value = items[idx]);
+      hist.value = '';
+    });
+    exportBtn.addEventListener('click', () => {
+      if(!lastSqlSandboxResult?.columns?.length) return toast('warn','↓','Run a SELECT query first.');
+      dvDownload('sql_results.csv', dvCsv(lastSqlSandboxResult.columns, lastSqlSandboxResult.rows), 'text/csv;charset=utf-8');
+    });
+  }
+  runSBQuery = function(){
+    if(!sqlSBDB){ toast('warn','⚠','Database not ready.'); return; }
+    const code = sbCM ? sbCM.getValue() : (document.getElementById('sql-sb-editor')?.value || '');
+    const results = document.getElementById('sql-sb-results'); if(!results) return;
+    const stmts = splitSqlStatements(code).filter(Boolean);
+    results.innerHTML = '';
+    lastSqlSandboxResult = null;
+    if(!stmts.length){ results.innerHTML = '<div style="text-align:center;padding:2.5rem;color:var(--txt3);font-family:var(--ff-m);font-size:.72rem;">Write a query first.</div>'; return; }
+    addSqlHistory(code.trim());
+    stmts.forEach(stmt => {
+      const wrap = document.createElement('div'); wrap.style.cssText='margin-bottom:1.1rem;';
+      const lbl = document.createElement('div'); lbl.style.cssText='font-family:var(--ff-m);font-size:.6rem;color:var(--txt3);margin-bottom:.4rem;'; lbl.textContent = stmt.slice(0,120) + (stmt.length > 120 ? '…' : '');
+      wrap.appendChild(lbl);
+      try{
+        const res = sqlSBDB.exec(stmt);
+        if(!res.length){
+          const ok = document.createElement('div'); ok.style.cssText='font-family:var(--ff-m);font-size:.7rem;color:var(--success);padding:.55rem;background:rgba(74,222,128,.07);border-radius:5px;'; ok.textContent='✓ Query executed successfully.'; wrap.appendChild(ok);
+        }else{
+          res.forEach(({columns,values}, idx) => {
+            if(!lastSqlSandboxResult && values.length){ lastSqlSandboxResult = { columns, rows: values }; }
+            const summary = document.createElement('div'); summary.className='sql-result-summary';
+            summary.innerHTML = `<span class="dv-chip">${values.length} row${values.length !== 1 ? 's' : ''}</span><span class="dv-chip">${columns.length} columns</span><span class="dv-chip">Result set ${idx+1}</span>`;
+            wrap.appendChild(summary);
+            const tw = document.createElement('div'); tw.className='sql-tw';
+            const tbl = document.createElement('table'); tbl.className='sql-t';
+            tbl.innerHTML = `<thead><tr>${columns.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${values.slice(0,500).map(row => `<tr>${row.map(v => `<td>${v === null ? 'NULL' : esc(v)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+            tw.appendChild(tbl); wrap.appendChild(tw);
+          });
+        }
+      }catch(e){
+        const err = document.createElement('div'); err.style.cssText='font-family:var(--ff-m);font-size:.7rem;color:var(--danger);padding:.55rem;background:rgba(239,68,68,.07);border-radius:5px;word-break:break-all;'; err.textContent='✗ ' + e.message; wrap.appendChild(err);
+      }
+      results.appendChild(wrap);
+    });
+  };
+  const _pageInitSql = pageInits.sql;
+  pageInits.sql = function(){ _pageInitSql(); ensureSqlSandboxToolbar(); };
+
+  // Playground upgrades
+  const pgUiState = dvJSON('dv-playground-ui-v2', { search:'', limit:50 });
+  function ensurePgToolbar(){
+    const host = document.querySelector('#page-playground #pg-content > div');
+    if(!host || document.getElementById('pg-toolbar')) return;
+    const bar = document.createElement('div');
+    bar.id = 'pg-toolbar';
+    bar.className = 'pg-toolbar';
+    bar.innerHTML = `
+      <input class="dv-input dv-grow" id="pg-global-search" placeholder="Search all visible columns...">
+      <select class="dv-select" id="pg-row-limit"><option value="25">25 rows</option><option value="50">50 rows</option><option value="100">100 rows</option><option value="250">250 rows</option></select>
+      <span class="dv-note" id="pg-search-note"></span>`;
+    host.appendChild(bar);
+    const profile = document.createElement('div');
+    profile.id = 'pg-profile';
+    profile.className = 'pg-profile';
+    host.insertAdjacentElement('afterend', profile);
+    document.getElementById('pg-global-search').value = pgUiState.search;
+    document.getElementById('pg-row-limit').value = String(pgUiState.limit);
+    document.getElementById('pg-global-search').addEventListener('input', () => { pgUiState.search = document.getElementById('pg-global-search').value.trim().toLowerCase(); dvSave('dv-playground-ui-v2', pgUiState); rerenderPgView(); });
+    document.getElementById('pg-row-limit').addEventListener('change', () => { pgUiState.limit = parseInt(document.getElementById('pg-row-limit').value, 10); dvSave('dv-playground-ui-v2', pgUiState); rerenderPgView(); });
+  }
+  function currentPgView(){
+    const base = pgFiltered || pgData;
+    if(!base) return null;
+    if(!pgUiState.search) return base;
+    return { cols: base.cols, rows: base.rows.filter(r => r.some(v => String(v).toLowerCase().includes(pgUiState.search))) };
+  }
+  function updatePgProfile(data){
+    const box = document.getElementById('pg-profile');
+    if(!box || !data) return;
+    const types = autoDetect(data.rows, data.cols);
+    const numeric = Object.values(types).filter(t => t === 'numeric').length;
+    const categorical = data.cols.length - numeric;
+    const nonEmpty = data.rows.flat().filter(v => v !== '' && v != null && String(v).toLowerCase() !== 'null').length;
+    const total = data.rows.length * Math.max(data.cols.length, 1);
+    const completeness = total ? Math.round((nonEmpty / total) * 100) : 0;
+    box.innerHTML = `
+      <div class="dv-stat-card"><div class="dv-stat-k">Rows in view</div><div class="dv-stat-v">${data.rows.length}</div></div>
+      <div class="dv-stat-card"><div class="dv-stat-k">Columns</div><div class="dv-stat-v">${data.cols.length}</div></div>
+      <div class="dv-stat-card"><div class="dv-stat-k">Numeric / categorical</div><div class="dv-stat-v">${numeric} / ${categorical}</div></div>
+      <div class="dv-stat-card"><div class="dv-stat-k">Completeness</div><div class="dv-stat-v">${completeness}%</div></div>`;
+  }
+  function rerenderPgView(){
+    const data = currentPgView();
+    if(!data) return;
+    const tb = document.getElementById('tbl-body');
+    const th = document.getElementById('tbl-head');
+    const meta = document.getElementById('ds-meta');
+    if(meta) meta.textContent = `${data.rows.length} rows${pgUiState.search ? ' (search filtered)' : pgFiltered ? ' (filtered)' : ''} × ${data.cols.length} columns`;
+    if(th) th.innerHTML = '<tr>' + data.cols.map(c => `<th>${esc(c)}</th>`).join('') + '</tr>';
+    if(tb) tb.innerHTML = data.rows.slice(0, pgUiState.limit).map(r => '<tr>' + r.map(v => `<td>${esc(v)}</td>`).join('') + '</tr>').join('');
+    const note = document.getElementById('pg-search-note');
+    if(note) note.textContent = `Showing up to ${pgUiState.limit} rows`;
+    updatePgProfile(data);
+    if(document.getElementById('main-chart')?.style.display === 'block'){ const tmp = pgFiltered; pgFiltered = data; try{ renderChart(); }catch(e){} finally { pgFiltered = tmp; } }
+  }
+  const _renderPG = renderPG;
+  renderPG = function(name, data){ _renderPG(name, data); ensurePgToolbar(); rerenderPgView(); };
+  const applyFilterBtn = document.getElementById('apply-filter-btn');
+  if(applyFilterBtn){
+    const clone = applyFilterBtn.cloneNode(true); applyFilterBtn.parentNode.replaceChild(clone, applyFilterBtn);
+    clone.addEventListener('click', () => {
+      if(!pgData) return;
+      const col = document.getElementById('filter-col').value.trim();
+      const val = document.getElementById('filter-val').value.trim();
+      if(!col || !val){ pgFiltered = null; rerenderPgView(); return; }
+      const ci = pgData.cols.indexOf(col);
+      if(ci < 0) return toast('error','✗','Column not found.');
+      pgFiltered = { cols: pgData.cols, rows: pgData.rows.filter(r => String(r[ci]).toLowerCase().includes(val.toLowerCase())) };
+      rerenderPgView();
+    });
+  }
+  const resetFilterBtn = document.getElementById('reset-filter-btn');
+  if(resetFilterBtn){
+    const clone = resetFilterBtn.cloneNode(true); resetFilterBtn.parentNode.replaceChild(clone, resetFilterBtn);
+    clone.addEventListener('click', () => {
+      pgFiltered = null;
+      document.getElementById('filter-col').value = '';
+      document.getElementById('filter-val').value = '';
+      rerenderPgView();
+      toast('info','↺','Filters reset.');
+    });
+  }
+  const describeBtn = document.getElementById('describe-btn');
+  if(describeBtn){
+    const clone = describeBtn.cloneNode(true); describeBtn.parentNode.replaceChild(clone, describeBtn);
+    clone.addEventListener('click', () => {
+      const data = currentPgView();
+      if(!data) return;
+      const types = autoDetect(data.rows, data.cols);
+      let out = '=== DataVery Playground Summary ===\n';
+      out += `Rows: ${data.rows.length} | Columns: ${data.cols.length}\n\n`;
+      data.cols.forEach(c => {
+        const ci = data.cols.indexOf(c);
+        const vals = data.rows.map(r => r[ci]).filter(v => v !== '' && v != null);
+        out += `${c} (${types[c]}) -> non-empty: ${vals.length}`;
+        if(types[c] === 'numeric'){
+          const nums = vals.map(parseFloat).filter(v => !isNaN(v));
+          if(nums.length){
+            const mean = nums.reduce((a,b) => a+b, 0) / nums.length;
+            out += ` | mean=${mean.toFixed(2)} | min=${Math.min(...nums)} | max=${Math.max(...nums)}`;
+          }
+        }
+        out += '\n';
+      });
+      dvDownload('playground_summary.txt', out, 'text/plain;charset=utf-8');
+      toast('success','📝','Dataset summary downloaded.');
+    });
+  }
+
+  // MARIE upgrades
+  let marieSpeed = parseInt(localStorage.getItem('dv-marie-speed') || '100', 10);
+  function marieSigned(v){ v &= 0xFFFF; return v > 32767 ? v - 65536 : v; }
+  function updateMarieInsight(){
+    const host = document.getElementById('marie-insight');
+    if(!host) return;
+    const op = (marieVM.IR >> 12) & 0xF;
+    const operand = marieVM.IR & 0xFFF;
+    const label = Object.entries(marieVM.labels || {}).find(([,addr]) => addr === operand)?.[0] || '—';
+    host.innerHTML = `
+      <div style="margin-bottom:.35rem;color:var(--txt);">Current instruction: <strong>${MARIE_OPNAMES[op] || 'UNKNOWN'}</strong></div>
+      <div>Operand: ${operand.toString(16).padStart(3,'0').toUpperCase()} ${label !== '—' ? `(${label})` : ''}</div>
+      <div>Phase: ${marieVM.phase === 0 ? 'Fetch' : marieVM.phase === 1 ? 'Decode' : 'Execute'}</div>
+      <div>AC (signed): ${marieVM.AC}</div>`;
+  }
+  marieStep = function(){
+    if(marieVM.halted || marieVM.waitingInput) return false;
+    marieVM.changedRegs.clear(); marieVM.changedMem.clear();
+    if(marieVM.phase === 0){
+      marieVM.MAR = marieVM.PC; marieVM.changedRegs.add('MAR');
+      document.getElementById('marie-status').textContent = `Step 1/3: FETCH (MAR ← PC) | Cycle ${marieVM.cycles}`;
+      marieVM.phase = 1;
+    } else if(marieVM.phase === 1){
+      marieVM.IR = marieVM.memory[marieVM.MAR] & 0xFFFF;
+      marieVM.PC++; marieVM.cycles++;
+      marieVM.changedRegs.add('IR'); marieVM.changedRegs.add('PC');
+      document.getElementById('marie-status').textContent = `Step 2/3: DECODE (IR ← M[MAR], PC++) | Cycle ${marieVM.cycles}`;
+      marieVM.phase = 2;
+    } else {
+      const op = (marieVM.IR >> 12) & 0xF;
+      const operand = marieVM.IR & 0xFFF;
+      const opName = MARIE_OPNAMES[op] || 'UNKNOWN';
+      document.getElementById('marie-status').textContent = `Step 3/3: EXECUTE (${opName}) | Cycle ${marieVM.cycles}`;
+      switch(op){
+        case 0x1: marieVM.MAR = operand; marieVM.MBR = marieVM.memory[marieVM.MAR]; marieVM.AC = marieSigned(marieVM.MBR); marieVM.changedRegs.add('AC'); break;
+        case 0x2: marieVM.MAR = operand; marieVM.MBR = marieVM.AC; marieVM.memory[marieVM.MAR] = marieVM.MBR; marieVM.changedMem.add(operand); break;
+        case 0x3: marieVM.MAR = operand; marieVM.MBR = marieVM.memory[marieVM.MAR]; marieVM.AC = marieSigned(marieVM.AC + marieVM.MBR); marieVM.changedRegs.add('AC'); break;
+        case 0x4: marieVM.MAR = operand; marieVM.MBR = marieVM.memory[marieVM.MAR]; marieVM.AC = marieSigned(marieVM.AC - marieVM.MBR); marieVM.changedRegs.add('AC'); break;
+        case 0x5: {
+          const iv = parseInt(document.getElementById('marie-input-val').value, 10);
+          if(!isNaN(iv)){ marieVM.AC = marieSigned(iv); document.getElementById('marie-input-val').value=''; marieVM.changedRegs.add('AC'); }
+          else { marieVM.waitingInput = true; marieVM.PC--; marieVM.phase = 0; document.getElementById('marie-status').textContent='⏸ Waiting for INPUT…'; toast('warn','⌨️','Enter a value and click Send.'); updateMarieInsight(); return false; }
+          break;
+        }
+        case 0x6: marieVM.outputLog.push(String(marieVM.AC)); updateMarieOutput(); break;
+        case 0x7: marieVM.halted = true; marieVM.running = false; document.getElementById('marie-status').textContent='■ Halted'; updateMarieControls(false,true); break;
+        case 0x8: { const cond = (operand >> 10) & 0x3; if((cond===0 && marieVM.AC < 0) || (cond===1 && marieVM.AC === 0) || (cond===2 && marieVM.AC > 0)) marieVM.PC++; marieVM.changedRegs.add('PC'); break; }
+        case 0x9: marieVM.PC = operand; marieVM.changedRegs.add('PC'); break;
+        case 0xA: marieVM.AC = 0; marieVM.changedRegs.add('AC'); break;
+        case 0xB: {
+          const indirectAddr = marieVM.memory[operand] & 0x0FFF;
+          marieVM.MAR = indirectAddr;
+          marieVM.MBR = marieVM.memory[indirectAddr];
+          marieVM.AC = marieSigned(marieVM.AC + marieVM.MBR);
+          marieVM.changedRegs.add('AC');
+          break;
+        }
+        case 0xC: marieVM.PC = marieVM.memory[operand] & 0x0FFF; marieVM.changedRegs.add('PC'); break;
+        case 0xD: marieVM.MAR = marieVM.memory[operand] & 0x0FFF; marieVM.MBR = marieVM.memory[marieVM.MAR]; marieVM.AC = marieSigned(marieVM.MBR); marieVM.changedRegs.add('AC'); break;
+        case 0xE: marieVM.MAR = marieVM.memory[operand] & 0x0FFF; marieVM.MBR = marieVM.AC; marieVM.memory[marieVM.MAR] = marieVM.MBR; marieVM.changedMem.add(marieVM.MAR); break;
+        case 0xF: marieVM.memory[operand] = marieVM.PC; marieVM.PC = operand + 1; marieVM.changedRegs.add('PC'); marieVM.changedMem.add(operand); break;
+        default: marieVM.halted = true; break;
+      }
+      marieVM.phase = 0;
+    }
+    updateMarieRegisters(); updateMarieMemTable(); updateMarieInsight();
+    return !marieVM.halted;
+  };
+  const _updateMarieRegisters = updateMarieRegisters;
+  updateMarieRegisters = function(){ _updateMarieRegisters(); updateMarieInsight(); };
+  function ensureMarieToolbar(){
+    const toolbar = document.querySelector('#page-marie .marie-toolbar');
+    if(!toolbar || document.getElementById('marie-sample-select')) return;
+    const sample = document.createElement('select'); sample.className='dv-select'; sample.id='marie-sample-select';
+    sample.innerHTML = `
+      <option value="">Load sample…</option>
+      <option value="sum">Add two numbers</option>
+      <option value="input">Input + output</option>
+      <option value="loop">Countdown loop</option>`;
+    const speed = document.createElement('select'); speed.className='dv-select'; speed.id='marie-speed';
+    speed.innerHTML = `<option value="50">Fast</option><option value="100">Normal</option><option value="250">Slow</option><option value="500">Very slow</option>`;
+    speed.value = String(marieSpeed);
+    toolbar.insertBefore(sample, document.getElementById('marie-status'));
+    toolbar.insertBefore(speed, document.getElementById('marie-status'));
+    const insight = document.createElement('div'); insight.id='marie-insight'; insight.className='marie-insight';
+    document.querySelector('#page-marie .marie-right')?.prepend(insight);
+    sample.addEventListener('change', () => {
+      if(!sample.value || !marieCM) return;
+      const samples = {
+        sum: `ORG 100\nLOAD X\nADD Y\nOUTPUT\nHALT\nX, DEC 10\nY, DEC 15\nEND`,
+        input: `ORG 100\nINPUT\nSTORE VALUE\nLOAD VALUE\nOUTPUT\nHALT\nVALUE, HEX 0\nEND`,
+        loop: `ORG 100\nLOAD COUNT\nLOOP, OUTPUT\nSUBT ONE\nSTORE COUNT\nSKIPCOND 000\nJUMP LOOP\nHALT\nCOUNT, DEC 5\nONE, DEC 1\nEND`
+      };
+      marieCM.setValue(samples[sample.value]); sample.value='';
+    });
+    speed.addEventListener('change', () => { marieSpeed = parseInt(speed.value, 10); localStorage.setItem('dv-marie-speed', String(marieSpeed)); if(marieVM.running){ clearInterval(marieRunInterval); marieRunInterval = setInterval(marieRunLoop, marieSpeed); } });
+    const runBtn = document.getElementById('marie-run');
+    const clone = runBtn.cloneNode(true); runBtn.parentNode.replaceChild(clone, runBtn);
+    clone.addEventListener('click', () => { if(marieVM.halted) return; marieVM.running = true; document.getElementById('marie-status').textContent='▶▶ Running…'; updateMarieControls(true,false); clearInterval(marieRunInterval); marieRunInterval = setInterval(marieRunLoop, marieSpeed); });
+  }
+  const _pageInitMarie = pageInits.marie;
+  pageInits.marie = function(){ _pageInitMarie(); ensureMarieToolbar(); updateMarieInsight(); };
+
+  // GitHub upgrades
+  const ghCacheKey = 'dv-gh-cache-v2';
+  let ghRepoCache = [];
+  function renderGithubRepos(repos){
+    ghRepoCache = Array.isArray(repos) ? repos.slice() : [];
+    const q = (document.getElementById('gh-search')?.value || '').trim().toLowerCase();
+    const sort = document.getElementById('gh-sort')?.value || 'updated';
+    let rows = [...ghRepoCache].filter(r => !q || [r.name, r.description, r.language].join(' ').toLowerCase().includes(q));
+    rows.sort((a,b) => {
+      if(sort === 'stars') return (b.stargazers_count||0) - (a.stargazers_count||0);
+      if(sort === 'name') return String(a.name||'').localeCompare(String(b.name||''));
+      return new Date(b.updated_at || 0) - new Date(a.updated_at || 0);
+    });
+    const grid = document.getElementById('repos-grid'); if(!grid) return;
+    grid.innerHTML = '';
+    rows.forEach(r => {
+      const lc = LANG_COLORS[r.language] || '#8b949e';
+      const card = document.createElement('a');
+      card.className='repo-card'; card.href=r.html_url; card.target='_blank'; card.rel='noopener noreferrer';
+      card.innerHTML = `<div class="repo-name">📁 ${esc(r.name)}</div><p class="repo-desc">${esc(r.description || 'No description.')}</p><div class="repo-meta">${r.language ? `<span class="rm-i"><span class="lang-dot" style="background:${lc}"></span>${esc(r.language)}</span>` : ''}<span class="rm-i">⭐ ${r.stargazers_count||0}</span><span class="rm-i">🍴 ${r.forks_count||0}</span><span class="rm-i">Updated ${new Date(r.updated_at || Date.now()).toLocaleDateString()}</span></div>`;
+      grid.appendChild(card);
+    });
+    if(!rows.length) grid.innerHTML = '<p style="font-family:var(--ff-m);font-size:.7rem;color:var(--txt3);">No repositories match this search.</p>';
+    const cloud = document.getElementById('gh-lang-cloud');
+    if(cloud){
+      const langs = {};
+      ghRepoCache.forEach(r => { if(r.language) langs[r.language] = (langs[r.language] || 0) + 1; });
+      cloud.innerHTML = Object.entries(langs).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([lang,count]) => `<span class="dv-chip">${esc(lang)} · ${count}</span>`).join('');
+    }
+  }
+  function ensureGithubControls(){
+    const content = document.getElementById('gh-content');
+    if(!content || document.getElementById('gh-controls')) return;
+    const controls = document.createElement('div');
+    controls.id='gh-controls'; controls.className='gh-controls';
+    controls.innerHTML = `
+      <input class="dv-input dv-grow" id="gh-search" placeholder="Search repositories...">
+      <select class="dv-select" id="gh-sort"><option value="updated">Sort: updated</option><option value="stars">Sort: stars</option><option value="name">Sort: name</option></select>
+      <span class="dv-note">Cached for offline/rate-limit fallback</span>`;
+    const cloud = document.createElement('div'); cloud.id='gh-lang-cloud'; cloud.className='gh-lang-cloud';
+    content.insertBefore(controls, content.querySelector('.gh-stats'));
+    content.insertBefore(cloud, content.querySelector('.gh-stats').nextSibling);
+    controls.querySelector('#gh-search').addEventListener('input', () => renderGithubRepos(ghRepoCache));
+    controls.querySelector('#gh-sort').addEventListener('change', () => renderGithubRepos(ghRepoCache));
+  }
+  pageInits.github = async function(){
+    ensureGithubControls();
+    const loading = document.getElementById('gh-loading');
+    const content = document.getElementById('gh-content');
+    const error = document.getElementById('gh-error');
+    loading.style.display='block'; content.style.display='none'; error.style.display='none';
+    try{
+      const [uRes, rRes] = await Promise.all([
+        fetch(`https://api.github.com/users/${GH_USER}`),
+        fetch(`https://api.github.com/users/${GH_USER}/repos?sort=updated&per_page=24`)
+      ]);
+      if(!uRes.ok || !rRes.ok) throw new Error(uRes.status === 403 || rRes.status === 403 ? 'Rate Limit' : 'API error');
+      const [u, repos] = await Promise.all([uRes.json(), rRes.json()]);
+      dvSave(ghCacheKey, { savedAt: Date.now(), user: u, repos });
+      loading.style.display='none'; content.style.display='block';
+      if(u.avatar_url){ document.getElementById('gh-av').innerHTML = `<img src="${u.avatar_url}" alt="${u.name || GH_USER}">`; }
+      document.getElementById('gh-n').textContent = u.name || GH_USER;
+      document.getElementById('gh-handle').textContent = '@' + u.login;
+      document.getElementById('gh-bio').textContent = u.bio || 'Live repository data from GitHub.';
+      document.getElementById('gh-loc').textContent = u.location || 'Melbourne';
+      document.getElementById('gh-repos-n').textContent = u.public_repos || 0;
+      document.getElementById('gh-followers-n').textContent = u.followers || 0;
+      document.getElementById('gh-following-n').textContent = u.following || 0;
+      document.getElementById('gh-gists-n').textContent = u.public_gists || 0;
+      renderGithubRepos(Array.isArray(repos) ? repos : []);
+      observeReveals(document.getElementById('page-github'));
+    }catch(e){
+      const cached = dvJSON(ghCacheKey, null);
+      loading.style.display='none';
+      if(cached?.user && cached?.repos){
+        content.style.display='block';
+        document.getElementById('gh-n').textContent = cached.user.name || GH_USER;
+        document.getElementById('gh-handle').textContent = '@' + (cached.user.login || GH_USER);
+        document.getElementById('gh-bio').textContent = (cached.user.bio || 'Using cached GitHub data.') + ' (cached)';
+        document.getElementById('gh-loc').textContent = cached.user.location || 'Melbourne';
+        document.getElementById('gh-repos-n').textContent = cached.user.public_repos || cached.repos.length;
+        document.getElementById('gh-followers-n').textContent = cached.user.followers || 0;
+        document.getElementById('gh-following-n').textContent = cached.user.following || 0;
+        document.getElementById('gh-gists-n').textContent = cached.user.public_gists || 0;
+        if(cached.user.avatar_url){ document.getElementById('gh-av').innerHTML = `<img src="${cached.user.avatar_url}" alt="${cached.user.name || GH_USER}">`; }
+        renderGithubRepos(cached.repos);
+        toast('warn','♻️','GitHub live fetch failed — showing cached data.');
+      }else{
+        error.style.display='block';
+        error.innerHTML = 'GitHub API unavailable right now. <a href="https://github.com/amanovshamsaddin" target="_blank" style="color:var(--ac);">View directly →</a>';
+      }
+    }
+  };
+
+  // Learn upgrades
+  const learnKey = 'dv-learn-progress-v2';
+  const learnState = dvJSON(learnKey, { course:'python', done:{}, notes:{} });
+  let learnWired = false;
+  function saveLearn(){ dvSave(learnKey, learnState); }
+  function lessonKey(courseKey, wk){ return `${courseKey}:${wk.num}`; }
+  function renderWeekPatched(container, courseKey, course, wk){
+    const k = lessonKey(courseKey, wk);
+    const practiceLabel = {lab:'Open in Python Lab →',sql:'Open in SQL Sandbox →',database:'Open in DB ERD Lab →',marie:'Open in MARIE Simulator →'}[wk.practice] || 'Practice →';
+    container.innerHTML = `
+      <div class="wk-hdr">
+        <div class="wk-course-tag"><span style="background:var(--adim);border:1px solid var(--abdr);padding:.1rem .5rem;border-radius:3px;">${course.code}</span>Week ${wk.num}</div>
+        <h2 class="wk-title">${wk.title}</h2>
+        <div class="wk-dates">📅 ${wk.dates}</div>
+      </div>
+      <div class="wk-meta-row">
+        <button type="button" class="wk-complete ${learnState.done[k] ? 'done' : ''}" id="wk-toggle-done">${learnState.done[k] ? '✓ Completed' : '○ Mark as completed'}</button>
+        <span class="dv-chip">${(wk.concepts || []).length} concept${(wk.concepts || []).length !== 1 ? 's' : ''}</span>
+        <span class="dv-chip">${wk.outcomes.length} learning outcomes</span>
+      </div>
+      <p class="wk-overview">${wk.overview}</p>
+      <div class="lo-list"><div class="lo-title">Learning Outcomes</div><ul>${wk.outcomes.map(o => `<li>${o}</li>`).join('')}</ul></div>
+      <div class="concept-grid">${(wk.concepts || []).map(c => `
+        <div class="concept-card">
+          <div class="concept-name">${c.name}</div>
+          ${c.academic ? `<div style="margin-bottom:.5rem;"><strong style="color:var(--txt);font-size:.75rem;">Academic:</strong><br><span class="concept-desc">${c.academic}</span></div>` : ''}
+          ${c.plain_english ? `<div style="margin-bottom:.5rem;"><strong style="color:var(--ac);font-size:.75rem;">Plain English:</strong><br><span class="concept-desc" style="color:var(--txt);">${c.plain_english}</span></div>` : ''}
+          ${c.desc ? `<p class="concept-desc">${c.desc}</p>` : ''}
+          ${c.code ? `<code class="concept-code">${esc(c.code)}</code>` : ''}
+          ${c.reference ? `<div style="margin-top:.75rem;font-size:.65rem;color:var(--txt3);font-family:var(--ff-m);">📚 Reference: ${c.reference}</div>` : ''}
+        </div>`).join('')}</div>
+      <div class="wk-practice">
+        <button class="btn btn-pri" id="wk-practice-btn">${practiceLabel}</button>
+        <button class="btn btn-ghost" id="wk-copy-notes">📋 Copy Notes</button>
+      </div>
+      <div class="learn-notes">
+        <div class="lo-title" style="margin-bottom:.5rem;">My Notes</div>
+        <textarea class="dv-textarea" id="learn-notes-box" placeholder="Write your summary, questions, examples, or revision notes here...">${esc(learnState.notes[k] || '')}</textarea>
+        <div class="dv-help">Autosaved locally in your browser.</div>
+      </div>`;
+    container.scrollTop = 0;
+    container.querySelector('#wk-toggle-done')?.addEventListener('click', () => {
+      learnState.done[k] = !learnState.done[k]; saveLearn(); renderWeekPatched(container, courseKey, course, wk); updateLearnSummary(courseKey);
+    });
+    container.querySelector('#wk-practice-btn')?.addEventListener('click', () => navigate(wk.practice));
+    container.querySelector('#wk-copy-notes')?.addEventListener('click', () => copyWeekNotes(wk.title));
+    container.querySelector('#learn-notes-box')?.addEventListener('input', dvDebounce(e => { learnState.notes[k] = e.target.value; saveLearn(); }, 180));
+
+  }
+  function updateLearnSummary(courseKey){
+    const el = document.getElementById('learn-progress-summary');
+    const course = COURSES[courseKey];
+    if(!el || !course) return;
+    const doneCount = course.weeks.filter(wk => learnState.done[lessonKey(courseKey, wk)]).length;
+    el.textContent = `${doneCount}/${course.weeks.length} weeks completed`;
+  }
+  pageInits.learn = function(){
+    const content = document.getElementById('course-content'); if(!content) return;
+    if(!document.getElementById('learn-toolbar')){
+      const toolbar = document.createElement('div');
+      toolbar.id = 'learn-toolbar'; toolbar.className = 'learn-toolbar';
+      toolbar.innerHTML = `
+        <input class="dv-input dv-grow" id="learn-search" placeholder="Search this course by week title or concept...">
+        <span class="dv-chip" id="learn-progress-summary"></span>
+        <span class="dv-note">Your notes and completed weeks are saved locally</span>`;
+      document.getElementById('course-tabs').insertAdjacentElement('afterend', toolbar);
+    }
+    function switchCoursePatched(courseKey){
+      const course = COURSES[courseKey]; if(!course) return;
+      learnState.course = courseKey; saveLearn();
+      document.querySelectorAll('.course-tab').forEach(t => t.classList.toggle('active', t.dataset.course === courseKey));
+      content.innerHTML = `<div class="course-panel active"><div class="weeks-list" id="weeks-list-${courseKey}"></div><div class="week-content" id="week-content-${courseKey}"></div></div>`;
+      const weeksList = document.getElementById(`weeks-list-${courseKey}`);
+      const weekContent = document.getElementById(`week-content-${courseKey}`);
+      const query = (document.getElementById('learn-search')?.value || '').trim().toLowerCase();
+      const filteredWeeks = course.weeks.filter(wk => !query || [wk.title, wk.overview, ...(wk.concepts || []).map(c => `${c.name} ${c.desc || ''} ${c.plain_english || ''} ${c.academic || ''}`)].join(' ').toLowerCase().includes(query));
+      filteredWeeks.forEach((wk, i) => {
+        const done = !!learnState.done[lessonKey(courseKey, wk)];
+        const btn = document.createElement('button');
+        btn.className = 'week-btn' + (i === 0 ? ' active' : '');
+        btn.innerHTML = `<span class="wk-n">Week ${wk.num}</span>${wk.title}${done ? '<span style="margin-left:auto;color:var(--success);font-family:var(--ff-m);font-size:.58rem;">✓</span>' : ''}`;
+        btn.addEventListener('click', () => {
+          weeksList.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderWeekPatched(weekContent, courseKey, course, wk);
+        });
+        weeksList.appendChild(btn);
+      });
+      if(filteredWeeks.length) renderWeekPatched(weekContent, courseKey, course, filteredWeeks[0]);
+      else weekContent.innerHTML = '<div class="dv-section-card" style="margin:1rem;">No weeks match this search.</div>';
+      updateLearnSummary(courseKey);
+    }
+    if(!learnWired){
+      document.getElementById('course-tabs').addEventListener('click', e => {
+        const tab = e.target.closest('.course-tab');
+        if(tab) switchCoursePatched(tab.dataset.course);
+      });
+      document.getElementById('learn-search').addEventListener('input', dvDebounce(() => switchCoursePatched(learnState.course || 'python'), 120));
+      learnWired = true;
+    }
+    switchCoursePatched(learnState.course || 'python');
+  };
+
+  // Contact upgrades
+  (function(){
+    const oldForm = document.getElementById('contact-form');
+    if(!oldForm) return;
+    const form = oldForm.cloneNode(true);
+    oldForm.parentNode.replaceChild(form, oldForm);
+    const email = 'amanovshams@gmail.com';
+    if(!document.getElementById('contact-extra-actions')){
+      const extra = document.createElement('div');
+      extra.id = 'contact-extra-actions';
+      extra.className = 'contact-extra';
+      extra.innerHTML = `<button type="button" class="dv-mini-btn" id="contact-copy-email">Copy email</button><button type="button" class="dv-mini-btn" id="contact-download-draft">Download draft</button>`;
+      form.appendChild(extra);
+      extra.querySelector('#contact-copy-email').addEventListener('click', async () => {
+        try{ await navigator.clipboard.writeText(email); toast('success','📋','Email copied.'); }catch(e){ toast('error','✗','Clipboard unavailable.'); }
+      });
+      extra.querySelector('#contact-download-draft').addEventListener('click', () => {
+        const draft = `To: ${email}\nFrom: ${document.getElementById('cf-email').value || '(your email)'}\nSubject: ${document.getElementById('cf-subject').value || 'Message from DataVery'}\n\n${document.getElementById('cf-message').value || ''}`;
+        dvDownload('contact_draft.txt', draft, 'text/plain;charset=utf-8');
+      });
+    }
+    const validate = () => {
+      const name = document.getElementById('cf-name').value.trim();
+      const userEmail = document.getElementById('cf-email').value.trim();
+      const msg = document.getElementById('cf-message').value.trim();
+      const nameOk = name.length >= 2;
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail);
+      const msgOk = msg.length >= 10;
+      document.getElementById('err-name').classList.toggle('show', !nameOk);
+      document.getElementById('err-email').classList.toggle('show', !emailOk);
+      document.getElementById('err-msg').classList.toggle('show', !msgOk);
+      document.getElementById('cf-name').classList.toggle('err', !nameOk);
+      document.getElementById('cf-email').classList.toggle('err', !emailOk);
+      document.getElementById('cf-message').classList.toggle('err', !msgOk);
+      return nameOk && emailOk && msgOk;
+    };
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if(!validate()) return;
+      const name = document.getElementById('cf-name').value.trim();
+      const userEmail = document.getElementById('cf-email').value.trim();
+      const subject = (document.getElementById('cf-subject').value.trim() || 'Message from DataVery visitor');
+      const msg = document.getElementById('cf-message').value.trim();
+      const body = `Name: ${name}\nEmail: ${userEmail}\n\n${msg}`;
+      try{ navigator.clipboard.writeText(body).catch(()=>{}); }catch(e){}
+      location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      form.style.display='none';
+      const ok = document.getElementById('form-success');
+      ok.classList.add('show');
+      ok.innerHTML = '<h4>✓ Draft prepared</h4><p>Your email client should open with a prefilled message. A plain-text copy was also prepared for easy pasting.</p>';
+    });
+    ['cf-name','cf-email','cf-message'].forEach(id => {
+      form.querySelector('#' + id)?.addEventListener('input', () => {
+        document.getElementById(id).classList.remove('err');
+        form.querySelector('#' + id).closest('.f-group')?.querySelector('.f-err')?.classList.remove('show');
+      });
+    });
+  })();
+})();
+
+
+/* ===== ULTRA UPGRADE ENGINE ===== */
+const dvUltraState = {
+  playgroundTab: localStorage.getItem('dv-pg-ultra-tab') || 'insights',
+  marieVerbose: dvJSON('dv-marie-verbose', true),
+  marieTrace: [],
+  pySnapshots: dvJSON('dv-py-snapshots-v1', [])
+};
+
+function dvPersistUltra(){
+  dvSave('dv-marie-verbose', dvUltraState.marieVerbose);
+  dvSave('dv-py-snapshots-v1', dvUltraState.pySnapshots);
+}
+function dvShuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function dvTake(arr, n){ return dvShuffle(arr).slice(0, n); }
+function dvNum(v){
+  if(v === null || v === undefined || v === '') return null;
+  const x = Number(v);
+  return Number.isFinite(x) ? x : null;
+}
+function dvMean(arr){ return arr.length ? arr.reduce((a,b)=>a+b,0) / arr.length : 0; }
+function dvMedian(arr){
+  if(!arr.length) return 0;
+  const s = arr.slice().sort((a,b)=>a-b);
+  const m = Math.floor(s.length / 2);
+  return s.length % 2 ? s[m] : (s[m-1] + s[m]) / 2;
+}
+function dvStd(arr){
+  if(arr.length < 2) return 0;
+  const mean = dvMean(arr);
+  const variance = dvMean(arr.map(v => (v - mean) ** 2));
+  return Math.sqrt(variance);
+}
+function dvUniqueCount(arr){ return new Set(arr.map(v => String(v))).size; }
+function dvCorr(a, b){
+  if(a.length !== b.length || a.length < 2) return 0;
+  const ma = dvMean(a), mb = dvMean(b);
+  let num = 0, da = 0, db = 0;
+  for(let i=0;i<a.length;i++){
+    const xa = a[i] - ma;
+    const xb = b[i] - mb;
+    num += xa * xb;
+    da += xa * xa;
+    db += xb * xb;
+  }
+  const denom = Math.sqrt(da * db);
+  return denom ? num / denom : 0;
+}
+function dvFmt(n, digits=2){
+  if(!Number.isFinite(n)) return '—';
+  return Math.abs(n) >= 1000 ? Number(n).toLocaleString() : Number(n).toFixed(digits).replace(/\.00$/, '');
+}
+function dvCourseWeekKey(courseKey, weekNum){ return `${courseKey}:${weekNum}`; }
+
+/* -------- Python Lab: snapshots + story mode -------- */
+function dvCollectPyCells(){
+  const cells = [...document.querySelectorAll('#page-lab .cell .CodeMirror')];
+  return cells.map((cmEl, idx) => {
+    try{
+      const cm = cmEl.CodeMirror;
+      return { index: idx + 1, code: cm ? cm.getValue() : '' };
+    }catch(e){
+      return { index: idx + 1, code: '' };
+    }
+  }).filter(c => c.code.trim());
+}
+function dvRenderPySnapshots(){
+  const select = document.getElementById('py-snapshot-select');
+  if(!select) return;
+  select.innerHTML = '<option value="">Load snapshot…</option>' + dvUltraState.pySnapshots.map((s, idx) => `<option value="${idx}">${esc(s.name)} · ${new Date(s.savedAt).toLocaleString()}</option>`).join('');
+}
+function ensurePyUltraTools(){
+  const labHeader = document.querySelector('#page-lab .lab-actions');
+  if(!labHeader || document.getElementById('py-snapshot-save')) return;
+  const saveBtn = document.createElement('button');
+  saveBtn.className = 'assist-btn';
+  saveBtn.id = 'py-snapshot-save';
+  saveBtn.textContent = '💾 Save Snapshot';
+
+  const loadSel = document.createElement('select');
+  loadSel.className = 'dv-select';
+  loadSel.id = 'py-snapshot-select';
+
+  const storyBtn = document.createElement('button');
+  storyBtn.className = 'assist-btn';
+  storyBtn.id = 'py-story-btn';
+  storyBtn.textContent = '🧠 Story Mode';
+
+  labHeader.append(saveBtn, loadSel, storyBtn);
+  dvRenderPySnapshots();
+
+  if(!document.getElementById('py-story-box')){
+    const box = document.createElement('div');
+    box.id = 'py-story-box';
+    box.className = 'dv-section-card py-ultra-tools';
+    box.style.display = 'none';
+    box.innerHTML = '<div class="lo-title" style="margin-bottom:.45rem;">Notebook Story Mode</div><div id="py-story-list" class="py-story-list"></div><div class="dv-mini-note">Surprise feature: this turns your notebook into a readable sequence of learning steps.</div>';
+    document.querySelector('#page-lab .notebook')?.insertAdjacentElement('afterend', box);
+  }
+
+  saveBtn.addEventListener('click', () => {
+    const cells = dvCollectPyCells();
+    if(!cells.length) return toast('warn','⚠','Write something in the notebook first.');
+    const name = prompt('Snapshot name?', `Session ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`);
+    if(!name) return;
+    dvUltraState.pySnapshots.unshift({ name, savedAt: Date.now(), cells });
+    dvUltraState.pySnapshots = dvUltraState.pySnapshots.slice(0, 12);
+    dvPersistUltra();
+    dvRenderPySnapshots();
+    toast('success','💾','Notebook snapshot saved.');
+  });
+  loadSel.addEventListener('change', () => {
+    const idx = parseInt(loadSel.value, 10);
+    const snap = dvUltraState.pySnapshots[idx];
+    if(!snap) return;
+    if(!confirm(`Load snapshot "${snap.name}"? Current notebook cells may be replaced.`)) { loadSel.value=''; return; }
+    const existingEditors = [...document.querySelectorAll('#page-lab .cell .CodeMirror')];
+    if(!existingEditors.length){ loadSel.value=''; return; }
+    const addBtn = document.querySelector('#page-lab .add-cell-btn');
+    while(existingEditors.length < snap.cells.length){
+      addBtn?.click();
+      const latest = document.querySelectorAll('#page-lab .cell .CodeMirror');
+      existingEditors.push(latest[latest.length - 1]);
+    }
+    [...document.querySelectorAll('#page-lab .cell .CodeMirror')].forEach((cmEl, i) => {
+      const cm = cmEl.CodeMirror;
+      cm?.setValue(snap.cells[i]?.code || '');
+    });
+    loadSel.value = '';
+    toast('success','↺','Snapshot loaded into notebook.');
+  });
+  storyBtn.addEventListener('click', () => {
+    const items = dvCollectPyCells();
+    const box = document.getElementById('py-story-box');
+    const list = document.getElementById('py-story-list');
+    if(!items.length){ box.style.display='none'; return toast('warn','⚠','No notebook cells to explain yet.'); }
+    list.innerHTML = items.map((cell, i) => {
+      const first = cell.code.split('\n').map(s => s.trim()).find(Boolean) || '(empty)';
+      let label = 'Experiment step';
+      if(/import /i.test(cell.code)) label = 'Environment setup';
+      else if(/def |class /i.test(cell.code)) label = 'Reusable logic';
+      else if(/print\(|display\(/i.test(cell.code)) label = 'Result inspection';
+      else if(/plot|chart|hist|scatter|bar/i.test(cell.code)) label = 'Visual exploration';
+      else if(/for |while /i.test(cell.code)) label = 'Iteration logic';
+      else if(/read_|csv|DataFrame|df/i.test(cell.code)) label = 'Data loading / wrangling';
+      return `<div class="py-story-item"><strong style="color:var(--txt);">${i + 1}. ${label}</strong><div style="margin-top:.25rem;">${esc(first.slice(0, 160))}</div></div>`;
+    }).join('');
+    box.style.display = 'block';
+  });
+}
+const _pageInitLabUltra = pageInits.lab;
+pageInits.lab = function(){
+  _pageInitLabUltra && _pageInitLabUltra();
+  ensurePyUltraTools();
+};
+
+/* -------- ERD Lab: schema health report -------- */
+function dvAnalyzeSchemaHealth(){
+  if(!erd?.tables) return null;
+  const tables = erd.tables || [];
+  const relations = erd.relations || [];
+  const tableNames = new Set(tables.map(t => String(t.name || '').toLowerCase()));
+  let issues = [];
+  let pkTables = 0;
+  let fkCount = 0;
+  let nullableCount = 0;
+  tables.forEach(tbl => {
+    const pks = (tbl.fields || []).filter(f => f.pk);
+    const fks = (tbl.fields || []).filter(f => f.fk);
+    const names = (tbl.fields || []).map(f => String(f.name || '').toLowerCase());
+    if(pks.length) pkTables++;
+    else issues.push(`Table "${tbl.name}" has no primary key.`);
+    if(names.length !== new Set(names).size) issues.push(`Table "${tbl.name}" has duplicate field names.`);
+    if(names.some(n => n.includes(' '))) issues.push(`Table "${tbl.name}" has field names with spaces.`);
+    if(names.filter(n => /name|title|description/.test(n)).length > 3) issues.push(`Table "${tbl.name}" may benefit from normalization; many descriptive text attributes are grouped together.`);
+    fks.forEach(f => {
+      fkCount++;
+      if(!String(f.fkRef || '').includes('.')) issues.push(`Field "${tbl.name}.${f.name}" is marked as FK but lacks a clean reference.`);
+    });
+    nullableCount += (tbl.fields || []).filter(f => !f.notNull).length;
+  });
+  relations.forEach(rel => {
+    const from = tables.find(t => t.id === rel.fromTable);
+    const to = tables.find(t => t.id === rel.toTable);
+    if(!from || !to) issues.push('A relation points to a missing table.');
+  });
+  const score = Math.max(58, Math.min(100, 100 - issues.length * 6 + pkTables * 1.5 + fkCount * 0.5));
+  return {
+    score: Math.round(score),
+    tableCount: tables.length,
+    relationCount: relations.length,
+    pkCoverage: `${pkTables}/${tables.length || 1}`,
+    fkCount,
+    nullableCount,
+    issues
+  };
+}
+function ensureErdHealth(){
+  const toolbar = document.querySelector('#page-database .db-toolbar');
+  if(!toolbar || document.getElementById('erd-health-btn')) return;
+  const btn = document.createElement('button');
+  btn.className = 'dbt-btn';
+  btn.id = 'erd-health-btn';
+  btn.textContent = '🩺 Health Check';
+  toolbar.appendChild(btn);
+
+  const left = document.querySelector('#page-database .db-left');
+  if(left && !document.getElementById('erd-health-card')){
+    const card = document.createElement('div');
+    card.id = 'erd-health-card';
+    card.className = 'dv-section-card erd-health-card';
+    card.style.margin = '.65rem';
+    card.innerHTML = '<div class="lo-title" style="margin-bottom:.45rem;">Schema Health</div><div class="dv-mini-note">Run health check for modeling suggestions, naming hints, and relationship sanity checks.</div><div id="erd-health-body" class="erd-health-grid" style="margin-top:.55rem;"></div>';
+    left.appendChild(card);
+  }
+
+  btn.addEventListener('click', () => {
+    const report = dvAnalyzeSchemaHealth();
+    const body = document.getElementById('erd-health-body');
+    if(!report || !body) return;
+    body.innerHTML = `
+      <span class="dv-chip">Score · ${report.score}/100</span>
+      <span class="dv-chip">Tables · ${report.tableCount}</span>
+      <span class="dv-chip">Relations · ${report.relationCount}</span>
+      <span class="dv-chip">PK coverage · ${report.pkCoverage}</span>
+      <span class="dv-chip">FK count · ${report.fkCount}</span>
+      <span class="dv-chip">Nullable fields · ${report.nullableCount}</span>
+      <div class="dv-inline-card" style="grid-column:1/-1;">
+        <h5>Suggestions</h5>
+        <div class="dv-stack">${(report.issues.length ? report.issues : ['No major structural problems detected.']).slice(0,8).map(x => `<div>${esc(x)}</div>`).join('')}</div>
+      </div>`;
+    toast('info','🩺',`Schema health score: ${report.score}/100`);
+  });
+}
+const _pageInitDbUltra = pageInits.database;
+pageInits.database = function(){
+  _pageInitDbUltra && _pageInitDbUltra();
+  ensureErdHealth();
+};
+
+/* -------- SQL Sandbox: query coach -------- */
+function dvSqlCoachSuggestions(sql){
+  const q = String(sql || '').trim();
+  if(!q) return ['Write or load a query to get coaching tips.'];
+  const tips = [];
+  if(/select\s+\*/i.test(q)) tips.push('You are using SELECT *. In larger or production datasets, selecting only the columns you need is safer and faster.');
+  if(/where/i.test(q) === false && /select/i.test(q)) tips.push('This query has no WHERE clause. That is fine for exploration, but on large tables it may return more rows than you need.');
+  if(/group\s+by/i.test(q) && /having/i.test(q) === false) tips.push('You are grouping rows. Consider whether a HAVING clause would help filter grouped results.');
+  if(/join/i.test(q) && /on/i.test(q) === false) tips.push('A JOIN without a clear ON condition is risky and can create an accidental Cartesian product.');
+  if(/order\s+by/i.test(q) === false && /select/i.test(q)) tips.push('There is no ORDER BY clause. Result order may not be stable unless you ask for one explicitly.');
+  if(/delete|update/i.test(q) && /where/i.test(q) === false) tips.push('Warning: UPDATE/DELETE without WHERE can affect every row in the table.');
+  if(/count\(/i.test(q) && /group\s+by/i.test(q) === false) tips.push('Aggregate functions are present. Ask yourself whether you want one overall result or grouped summaries.');
+  if(/subquery|select[\s\S]+\(\s*select/i.test(q)) tips.push('Subqueries are powerful. Check whether a JOIN or CTE would make the logic easier to read.');
+  if(!tips.length) tips.push('This query looks reasonable. Use result size, readability, and indexing assumptions to judge whether it is the best version.');
+  return tips;
+}
+function ensureSqlCoach(){
+  const ctrl = document.querySelector('#page-sql .sql-sb-ctrl');
+  if(!ctrl || document.getElementById('sql-coach-btn')) return;
+  const btn = document.createElement('button');
+  btn.className = 'sql-ctrl';
+  btn.id = 'sql-coach-btn';
+  btn.textContent = '🧭 Coach';
+  ctrl.appendChild(btn);
+
+  const results = document.getElementById('sql-sb-results');
+  const card = document.createElement('div');
+  card.id = 'sql-coach-card';
+  card.className = 'dv-section-card sql-coach-card';
+  card.style.display = 'none';
+  card.innerHTML = '<div class="lo-title" style="margin-bottom:.45rem;">SQL Coach</div><div class="sql-coach-list" id="sql-coach-list"></div><div class="dv-mini-note">Surprise feature: the coach explains risks and readability issues in plain English.</div>';
+  results.parentNode.insertBefore(card, results);
+
+  btn.addEventListener('click', () => {
+    const sql = sbCM ? sbCM.getValue() : (document.getElementById('sql-sb-editor')?.value || '');
+    const tips = dvSqlCoachSuggestions(sql);
+    document.getElementById('sql-coach-list').innerHTML = tips.map(t => `<div class="sql-coach-tip">${esc(t)}</div>`).join('');
+    card.style.display = 'block';
+  });
+}
+const _pageInitSqlUltra = pageInits.sql;
+pageInits.sql = function(){
+  _pageInitSqlUltra && _pageInitSqlUltra();
+  ensureSqlCoach();
+};
+
+/* -------- Data Playground: pro insights studio -------- */
+let pgUltraChart = null;
+const pgUltraState = dvJSON('dv-playground-ultra-v1', {
+  tab: 'insights',
+  x: '',
+  y: '',
+  group: '',
+  metric: 'count',
+  chart: 'bar',
+  profileCol: '',
+  limitOutliers: 8
+});
+function savePgUltra(){ dvSave('dv-playground-ultra-v1', pgUltraState); }
+function pgView(){ return typeof currentPgView === 'function' ? currentPgView() : (pgFiltered || pgData || null); }
+function pgInferColumns(data){
+  if(!data) return { numeric: [], categorical: [] };
+  const types = autoDetect(data.rows, data.cols);
+  return {
+    numeric: data.cols.filter(c => types[c] === 'numeric'),
+    categorical: data.cols.filter(c => types[c] !== 'numeric')
+  };
+}
+function pgMissingRate(data, ci){
+  const total = data.rows.length || 1;
+  const miss = data.rows.filter(r => r[ci] === '' || r[ci] == null || String(r[ci]).toLowerCase() === 'null').length;
+  return miss / total;
+}
+function pgColumnStats(data, col){
+  const ci = data.cols.indexOf(col);
+  if(ci < 0) return null;
+  const raw = data.rows.map(r => r[ci]);
+  const nums = raw.map(dvNum).filter(v => v !== null);
+  const missRate = pgMissingRate(data, ci);
+  const unique = dvUniqueCount(raw.filter(v => v !== '' && v != null));
+  const isNumeric = nums.length >= Math.max(3, Math.floor(raw.length * 0.6));
+  if(isNumeric){
+    const std = dvStd(nums);
+    return {
+      type: 'numeric',
+      mean: dvMean(nums),
+      median: dvMedian(nums),
+      min: Math.min(...nums),
+      max: Math.max(...nums),
+      std,
+      unique,
+      missing: missRate,
+      values: nums
+    };
+  }
+  const freq = {};
+  raw.forEach(v => {
+    const key = (v === '' || v == null) ? '(missing)' : String(v);
+    freq[key] = (freq[key] || 0) + 1;
+  });
+  const top = Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  return { type: 'categorical', unique, missing: missRate, top };
+}
+function pgBuildNarrative(data){
+  if(!data) return 'Load a dataset to generate a narrative.';
+  const { numeric, categorical } = pgInferColumns(data);
+  const pieces = [];
+  pieces.push(`This view contains ${data.rows.length} rows and ${data.cols.length} columns.`);
+  pieces.push(`I can see ${numeric.length} mostly numeric columns and ${categorical.length} mostly categorical columns.`);
+  if(numeric.length){
+    const scored = numeric.map(col => {
+      const s = pgColumnStats(data, col);
+      return { col, spread: (s?.max || 0) - (s?.min || 0), missing: s?.missing || 0 };
+    }).sort((a,b)=>b.spread-a.spread);
+    if(scored[0]) pieces.push(`The widest numeric spread appears in ${scored[0].col}, which often makes it a good starting point for charts or anomaly checks.`);
+  }
+  if(categorical.length){
+    const dense = categorical.map(col => {
+      const s = pgColumnStats(data, col);
+      return { col, unique: s?.unique || 0 };
+    }).sort((a,b)=>a.unique-b.unique);
+    if(dense[0]) pieces.push(`Among categorical fields, ${dense[0].col} looks easiest to group by because it has comparatively fewer unique values.`);
+  }
+  if(numeric.length >= 2){
+    let best = null;
+    for(let i=0;i<numeric.length;i++){
+      for(let j=i+1;j<numeric.length;j++){
+        const aIdx = data.cols.indexOf(numeric[i]);
+        const bIdx = data.cols.indexOf(numeric[j]);
+        const pairs = data.rows.map(r => [dvNum(r[aIdx]), dvNum(r[bIdx])]).filter(([a,b]) => a !== null && b !== null);
+        if(pairs.length < 3) continue;
+        const corr = dvCorr(pairs.map(p => p[0]), pairs.map(p => p[1]));
+        if(!best || Math.abs(corr) > Math.abs(best.corr)) best = { a: numeric[i], b: numeric[j], corr };
+      }
+    }
+    if(best) pieces.push(`The strongest numeric relationship in this view looks like ${best.a} ↔ ${best.b} with correlation ${dvFmt(best.corr, 3)}.`);
+  }
+  pieces.push('Surprise feature: use the Insight Studio below to profile columns, build grouped charts, compute pivots, and surface anomaly candidates.');
+  return pieces.join(' ');
+}
+function ensurePgUltraPanel(){
+  const content = document.getElementById('pg-content');
+  if(!content || document.getElementById('pg-ultra-shell')) return;
+  const shell = document.createElement('div');
+  shell.id = 'pg-ultra-shell';
+  shell.className = 'pg-ultra-shell';
+  shell.innerHTML = `
+    <div class="pg-ultra-card">
+      <div class="pg-ultra-tabs" id="pg-ultra-tabs">
+        <button class="pg-ultra-tab" data-tab="insights">Insights</button>
+        <button class="pg-ultra-tab" data-tab="profile">Column Profiler</button>
+        <button class="pg-ultra-tab" data-tab="viz">Viz Builder</button>
+        <button class="pg-ultra-tab" data-tab="pivot">Pivot Lab</button>
+        <button class="pg-ultra-tab" data-tab="anomaly">Anomaly Radar</button>
+      </div>
+      <div class="pg-ultra-panel" data-panel="insights">
+        <div id="pg-insight-grid" class="pg-insight-grid"></div>
+        <div id="pg-story" class="pg-story"></div>
+        <div id="pg-correlation-grid" class="pg-heat-grid" style="margin-top:.85rem;"></div>
+      </div>
+      <div class="pg-ultra-panel" data-panel="profile">
+        <div class="pg-mini-controls">
+          <select class="dv-select" id="pg-profile-col"></select>
+          <button class="btn btn-ghost btn-sm" id="pg-profile-refresh" style="justify-content:center;">Refresh Profile</button>
+        </div>
+        <div id="pg-profile-output"></div>
+      </div>
+      <div class="pg-ultra-panel" data-panel="viz">
+        <div class="pg-mini-controls">
+          <select class="dv-select" id="pg-viz-type">
+            <option value="bar">Bar</option>
+            <option value="line">Line</option>
+            <option value="scatter">Scatter</option>
+            <option value="pie">Pie</option>
+          </select>
+          <select class="dv-select" id="pg-viz-x"></select>
+          <select class="dv-select" id="pg-viz-y"></select>
+          <select class="dv-select" id="pg-viz-group"></select>
+        </div>
+        <div class="pg-mini-note">For bar/line/pie, categorical X + numeric Y works best. Scatter expects two numeric columns.</div>
+        <div class="pg-mini-chart"><canvas id="pg-ultra-chart"></canvas></div>
+      </div>
+      <div class="pg-ultra-panel" data-panel="pivot">
+        <div class="pg-mini-controls">
+          <select class="dv-select" id="pg-pivot-group"></select>
+          <select class="dv-select" id="pg-pivot-value"></select>
+          <select class="dv-select" id="pg-pivot-metric">
+            <option value="count">Count</option>
+            <option value="sum">Sum</option>
+            <option value="avg">Average</option>
+            <option value="min">Minimum</option>
+            <option value="max">Maximum</option>
+          </select>
+          <button class="btn btn-ghost btn-sm" id="pg-pivot-run" style="justify-content:center;">Build Pivot</button>
+        </div>
+        <div id="pg-pivot-output"></div>
+      </div>
+      <div class="pg-ultra-panel" data-panel="anomaly">
+        <div class="pg-mini-note">Looks for rows with unusually high absolute z-scores in numeric columns. This is not perfect anomaly detection, but it is a strong first learner-friendly pass.</div>
+        <div class="pg-anomaly-list" id="pg-anomaly-list" style="margin-top:.8rem;"></div>
+      </div>
+    </div>
+    <div class="pg-ultra-card">
+      <h4>Insight Studio Guide</h4>
+      <div class="dv-stack">
+        <div class="dv-inline-card"><h5>Profile first</h5><div>Use <span class="dv-kbd">Column Profiler</span> to see missingness, uniqueness, top values, and numeric spread before charting anything.</div></div>
+        <div class="dv-inline-card"><h5>Then compare</h5><div>Use <span class="dv-kbd">Viz Builder</span> to test a hypothesis, then jump to <span class="dv-kbd">Pivot Lab</span> for grouped summaries.</div></div>
+        <div class="dv-inline-card"><h5>Finally sanity-check</h5><div>Use <span class="dv-kbd">Anomaly Radar</span> to spot rows that deserve a second look.</div></div>
+        <div class="dv-inline-card"><h5>Original surprise feature</h5><div>The automatically generated narrative below explains what the dataset seems to be saying in plain English.</div></div>
+      </div>
+    </div>`;
+  content.appendChild(shell);
+
+  document.getElementById('pg-ultra-tabs').addEventListener('click', e => {
+    const btn = e.target.closest('.pg-ultra-tab');
+    if(!btn) return;
+    pgUltraState.tab = btn.dataset.tab;
+    savePgUltra();
+    renderPgUltra();
+  });
+  document.getElementById('pg-profile-refresh').addEventListener('click', () => renderPgUltraProfile());
+  document.getElementById('pg-viz-type').addEventListener('change', () => { pgUltraState.chart = document.getElementById('pg-viz-type').value; savePgUltra(); renderPgUltraViz(); });
+  document.getElementById('pg-viz-x').addEventListener('change', () => { pgUltraState.x = document.getElementById('pg-viz-x').value; savePgUltra(); renderPgUltraViz(); });
+  document.getElementById('pg-viz-y').addEventListener('change', () => { pgUltraState.y = document.getElementById('pg-viz-y').value; savePgUltra(); renderPgUltraViz(); });
+  document.getElementById('pg-viz-group').addEventListener('change', () => { pgUltraState.group = document.getElementById('pg-viz-group').value; savePgUltra(); renderPgUltraViz(); });
+  document.getElementById('pg-pivot-group').addEventListener('change', () => { pgUltraState.group = document.getElementById('pg-pivot-group').value; savePgUltra(); });
+  document.getElementById('pg-pivot-value').addEventListener('change', () => { pgUltraState.y = document.getElementById('pg-pivot-value').value; savePgUltra(); });
+  document.getElementById('pg-pivot-metric').addEventListener('change', () => { pgUltraState.metric = document.getElementById('pg-pivot-metric').value; savePgUltra(); });
+  document.getElementById('pg-pivot-run').addEventListener('click', () => renderPgUltraPivot());
+}
+function renderPgUltraOptions(){
+  const data = pgView();
+  if(!data || !document.getElementById('pg-profile-col')) return;
+  const { numeric, categorical } = pgInferColumns(data);
+  const all = data.cols;
+  const setOptions = (id, cols, placeholder='Choose…', allowBlank=true) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const current = el.value;
+    el.innerHTML = `${allowBlank ? `<option value="">${placeholder}</option>` : ''}` + cols.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    if(cols.includes(current)) el.value = current;
+  };
+  setOptions('pg-profile-col', all, 'Choose column…', false);
+  setOptions('pg-viz-x', all, 'X axis…', false);
+  setOptions('pg-viz-y', numeric, 'Y / numeric…', false);
+  setOptions('pg-viz-group', [''].concat(categorical), 'Group / color…', true);
+  setOptions('pg-pivot-group', categorical.length ? categorical : all, 'Group by…', false);
+  setOptions('pg-pivot-value', numeric.length ? numeric : all, 'Value column…', false);
+
+  if(!pgUltraState.x) pgUltraState.x = all[0] || '';
+  if(!pgUltraState.y) pgUltraState.y = numeric[0] || all[0] || '';
+  if(!pgUltraState.group) pgUltraState.group = categorical[0] || '';
+  if(!pgUltraState.profileCol) pgUltraState.profileCol = all[0] || '';
+  document.getElementById('pg-profile-col').value = pgUltraState.profileCol;
+  document.getElementById('pg-viz-type').value = pgUltraState.chart || 'bar';
+  document.getElementById('pg-viz-x').value = pgUltraState.x || '';
+  document.getElementById('pg-viz-y').value = pgUltraState.y || '';
+  document.getElementById('pg-viz-group').value = pgUltraState.group || '';
+  document.getElementById('pg-pivot-group').value = pgUltraState.group || '';
+  document.getElementById('pg-pivot-value').value = pgUltraState.y || '';
+  document.getElementById('pg-pivot-metric').value = pgUltraState.metric || 'count';
+}
+function renderPgUltraInsights(){
+  const data = pgView();
+  if(!data) return;
+  const { numeric, categorical } = pgInferColumns(data);
+  const missingRates = data.cols.map(c => ({ c, r: pgMissingRate(data, data.cols.indexOf(c)) })).sort((a,b)=>b.r-a.r);
+  const grid = document.getElementById('pg-insight-grid');
+  const strongestMissing = missingRates[0] || { c:'—', r:0 };
+  grid.innerHTML = `
+    <div class="pg-insight-box"><div class="k">Rows</div><div class="v">${data.rows.length}</div></div>
+    <div class="pg-insight-box"><div class="k">Columns</div><div class="v">${data.cols.length}</div></div>
+    <div class="pg-insight-box"><div class="k">Numeric fields</div><div class="v">${numeric.length}</div></div>
+    <div class="pg-insight-box"><div class="k">Categorical fields</div><div class="v">${categorical.length}</div></div>
+    <div class="pg-insight-box"><div class="k">Highest missingness</div><div class="v">${esc(strongestMissing.c)} · ${Math.round(strongestMissing.r * 100)}%</div></div>
+    <div class="pg-insight-box"><div class="k">Suggested first chart</div><div class="v">${numeric.length && categorical.length ? `${categorical[0]} vs ${numeric[0]}` : (numeric[0] || categorical[0] || 'Load data')}</div></div>`;
+  document.getElementById('pg-story').textContent = pgBuildNarrative(data);
+
+  const corrGrid = document.getElementById('pg-correlation-grid');
+  if(!numeric.length || numeric.length < 2){ corrGrid.innerHTML = '<div class="pg-heat-cell">Need at least two numeric columns for relationship checks.</div>'; return; }
+  const pairs = [];
+  for(let i=0;i<numeric.length;i++){
+    for(let j=i+1;j<numeric.length;j++){
+      const ai = data.cols.indexOf(numeric[i]), bi = data.cols.indexOf(numeric[j]);
+      const vals = data.rows.map(r => [dvNum(r[ai]), dvNum(r[bi])]).filter(([a,b]) => a !== null && b !== null);
+      if(vals.length < 3) continue;
+      const corr = dvCorr(vals.map(v => v[0]), vals.map(v => v[1]));
+      pairs.push({ a:numeric[i], b:numeric[j], corr });
+    }
+  }
+  pairs.sort((a,b)=>Math.abs(b.corr)-Math.abs(a.corr));
+  corrGrid.innerHTML = pairs.slice(0, 6).map(p => `
+    <div class="pg-heat-cell">
+      <strong>${esc(p.a)} ↔ ${esc(p.b)}</strong>
+      <div>Correlation: ${dvFmt(p.corr, 3)}</div>
+      <div class="pg-heat-bar"><div class="pg-heat-fill" style="width:${Math.min(100, Math.abs(p.corr) * 100)}%"></div></div>
+    </div>`).join('') || '<div class="pg-heat-cell">Not enough overlapping numeric data for correlations yet.</div>';
+}
+function renderPgUltraProfile(){
+  const data = pgView();
+  if(!data) return;
+  pgUltraState.profileCol = document.getElementById('pg-profile-col').value;
+  savePgUltra();
+  const s = pgColumnStats(data, pgUltraState.profileCol);
+  const out = document.getElementById('pg-profile-output');
+  if(!s || !out){ return; }
+  if(s.type === 'numeric'){
+    out.innerHTML = `
+      <table class="pg-profile-table">
+        <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Column</td><td>${esc(pgUltraState.profileCol)}</td></tr>
+          <tr><td>Type</td><td>Numeric</td></tr>
+          <tr><td>Missing</td><td>${Math.round(s.missing * 100)}%</td></tr>
+          <tr><td>Unique values</td><td>${s.unique}</td></tr>
+          <tr><td>Mean</td><td>${dvFmt(s.mean)}</td></tr>
+          <tr><td>Median</td><td>${dvFmt(s.median)}</td></tr>
+          <tr><td>Min</td><td>${dvFmt(s.min)}</td></tr>
+          <tr><td>Max</td><td>${dvFmt(s.max)}</td></tr>
+          <tr><td>Std dev</td><td>${dvFmt(s.std)}</td></tr>
+        </tbody>
+      </table>
+      <div class="dv-inline-card" style="margin-top:.75rem;">
+        <h5>Interpretation</h5>
+        <div>${esc(pgUltraState.profileCol)} behaves like a numeric measure. Compare mean vs median to judge skew, and use the spread from ${dvFmt(s.min)} to ${dvFmt(s.max)} to decide whether normalisation or outlier checks are needed.</div>
+      </div>`;
+  }else{
+    out.innerHTML = `
+      <table class="pg-profile-table">
+        <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Column</td><td>${esc(pgUltraState.profileCol)}</td></tr>
+          <tr><td>Type</td><td>Categorical / text</td></tr>
+          <tr><td>Missing</td><td>${Math.round(s.missing * 100)}%</td></tr>
+          <tr><td>Unique values</td><td>${s.unique}</td></tr>
+          <tr><td>Top values</td><td>${s.top.map(([k,v]) => `${esc(k)} (${v})`).join(', ')}</td></tr>
+        </tbody>
+      </table>
+      <div class="dv-inline-card" style="margin-top:.75rem;">
+        <h5>Interpretation</h5>
+        <div>${esc(pgUltraState.profileCol)} looks categorical. Strong repeated labels are useful for grouping, slicing, or pivot summaries.</div>
+      </div>`;
+  }
+}
+function renderPgUltraViz(){
+  const data = pgView();
+  const canvas = document.getElementById('pg-ultra-chart');
+  if(!data || !canvas || !window.Chart) return;
+  const xCol = document.getElementById('pg-viz-x').value;
+  const yCol = document.getElementById('pg-viz-y').value;
+  const chartType = document.getElementById('pg-viz-type').value;
+  const groupCol = document.getElementById('pg-viz-group').value;
+  if(!xCol || !yCol) return;
+  const xi = data.cols.indexOf(xCol), yi = data.cols.indexOf(yCol), gi = groupCol ? data.cols.indexOf(groupCol) : -1;
+  const destroy = () => { if(pgUltraChart){ pgUltraChart.destroy(); pgUltraChart = null; } };
+  destroy();
+
+  if(chartType === 'scatter'){
+    const points = data.rows.map(r => ({ x: dvNum(r[xi]), y: dvNum(r[yi]) })).filter(p => p.x !== null && p.y !== null);
+    pgUltraChart = new Chart(canvas, { type: 'scatter', data: { datasets: [{ label: `${xCol} vs ${yCol}`, data: points }] }, options: { responsive:true, plugins:{legend:{display:true}} } });
+    return;
+  }
+
+  const map = {};
+  data.rows.forEach(r => {
+    const x = String(r[xi]);
+    const y = dvNum(r[yi]);
+    const g = gi >= 0 ? String(r[gi]) : 'All';
+    if(y === null) return;
+    map[g] ||= {};
+    map[g][x] ||= [];
+    map[g][x].push(y);
+  });
+  const groups = Object.keys(map);
+  const labels = [...new Set(groups.flatMap(g => Object.keys(map[g])))];
+  const datasets = groups.map(g => ({
+    label: g,
+    data: labels.map(lbl => {
+      const vals = map[g][lbl] || [];
+      return vals.length ? dvMean(vals) : null;
+    }),
+    fill: chartType === 'line'
+  }));
+  pgUltraChart = new Chart(canvas, {
+    type: chartType === 'pie' ? 'pie' : chartType,
+    data: chartType === 'pie'
+      ? { labels, datasets:[{ label:yCol, data: labels.map(lbl => dvMean((map[groups[0]]?.[lbl] || []).filter(v => v !== null))) }] }
+      : { labels, datasets },
+    options: { responsive:true, plugins:{legend:{display:true}} }
+  });
+}
+function renderPgUltraPivot(){
+  const data = pgView();
+  const out = document.getElementById('pg-pivot-output');
+  if(!data || !out) return;
+  const groupCol = document.getElementById('pg-pivot-group').value;
+  const valueCol = document.getElementById('pg-pivot-value').value;
+  const metric = document.getElementById('pg-pivot-metric').value;
+  const gi = data.cols.indexOf(groupCol);
+  const vi = data.cols.indexOf(valueCol);
+  const buckets = {};
+  data.rows.forEach(r => {
+    const g = String(r[gi]);
+    const v = dvNum(r[vi]);
+    buckets[g] ||= [];
+    if(metric === 'count'){ buckets[g].push(1); }
+    else if(v !== null){ buckets[g].push(v); }
+  });
+  const rows = Object.entries(buckets).map(([group, vals]) => {
+    let result = 0;
+    if(metric === 'count') result = vals.length;
+    else if(metric === 'sum') result = vals.reduce((a,b)=>a+b, 0);
+    else if(metric === 'avg') result = vals.length ? dvMean(vals) : 0;
+    else if(metric === 'min') result = vals.length ? Math.min(...vals) : 0;
+    else if(metric === 'max') result = vals.length ? Math.max(...vals) : 0;
+    return { group, result };
+  }).sort((a,b) => b.result - a.result);
+  out.innerHTML = `
+    <table class="pg-pivot-table">
+      <thead><tr><th>${esc(groupCol)}</th><th>${esc(metric)}</th></tr></thead>
+      <tbody>${rows.map(r => `<tr><td>${esc(r.group)}</td><td>${dvFmt(r.result)}</td></tr>`).join('')}</tbody>
+    </table>
+    <div class="dv-mini-note" style="margin-top:.45rem;">Grouped by ${esc(groupCol)} and summarised on ${esc(valueCol)} using ${esc(metric)}.</div>`;
+}
+function renderPgUltraAnomalies(){
+  const data = pgView();
+  const box = document.getElementById('pg-anomaly-list');
+  if(!data || !box) return;
+  const { numeric } = pgInferColumns(data);
+  if(!numeric.length){ box.innerHTML = '<div class="marie-trace-empty">Need at least one numeric column for anomaly scanning.</div>'; return; }
+  const stats = Object.fromEntries(numeric.map(col => {
+    const ci = data.cols.indexOf(col);
+    const vals = data.rows.map(r => dvNum(r[ci])).filter(v => v !== null);
+    return [col, { mean: dvMean(vals), std: dvStd(vals), idx: ci }];
+  }));
+  const scored = data.rows.map((row, ri) => {
+    let total = 0;
+    const hits = [];
+    numeric.forEach(col => {
+      const v = dvNum(row[stats[col].idx]);
+      const std = stats[col].std || 0;
+      if(v === null || !std) return;
+      const z = Math.abs((v - stats[col].mean) / std);
+      if(z > 1.8){ total += z; hits.push(`${col} z≈${dvFmt(z, 2)}`); }
+    });
+    return { ri, total, hits, row };
+  }).filter(x => x.total > 0).sort((a,b)=>b.total-a.total).slice(0, pgUltraState.limitOutliers);
+  box.innerHTML = scored.length ? scored.map(item => `
+    <div class="pg-anomaly-item">
+      <strong>Row ${item.ri + 1}</strong>
+      <div style="margin-top:.25rem;">Signals: ${item.hits.join(', ')}</div>
+      <div style="margin-top:.25rem;color:var(--txt2);font-family:var(--ff-m);font-size:.62rem;">${data.cols.slice(0, 6).map((c,i) => `${esc(c)}=${esc(item.row[i])}`).join(' · ')}</div>
+    </div>`).join('') : '<div class="marie-trace-empty">No strong anomaly candidates detected with the current simple z-score rule.</div>';
+}
+function renderPgUltra(){
+  const shell = document.getElementById('pg-ultra-shell');
+  const data = pgView();
+  if(!shell || !data) return;
+  renderPgUltraOptions();
+  document.querySelectorAll('.pg-ultra-tab').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === pgUltraState.tab));
+  document.querySelectorAll('.pg-ultra-panel').forEach(panel => panel.classList.toggle('active', panel.dataset.panel === pgUltraState.tab));
+  renderPgUltraInsights();
+  renderPgUltraProfile();
+  renderPgUltraViz();
+  renderPgUltraPivot();
+  renderPgUltraAnomalies();
+}
+const _renderPGUltra = renderPG;
+renderPG = function(name, data){
+  _renderPGUltra(name, data);
+  ensurePgUltraPanel();
+  renderPgUltra();
+};
+const _rerenderPgViewUltra = rerenderPgView;
+rerenderPgView = function(){
+  _rerenderPgViewUltra();
+  ensurePgUltraPanel();
+  renderPgUltra();
+};
+
+/* -------- MARIE: explanatory commentary trace -------- */
+const marieExplainMode = { maxEntries: 160 };
+function ensureMarieCommentary(){
+  const right = document.querySelector('#page-marie .marie-right');
+  if(!right || document.getElementById('marie-commentary')) return;
+  const box = document.createElement('div');
+  box.id = 'marie-commentary';
+  box.className = 'marie-commentary';
+  box.innerHTML = `
+    <div class="marie-comment-head">
+      <h4>Commentary Trace</h4>
+      <div class="marie-comment-tools">
+        <button class="assist-btn" id="marie-comment-toggle">${dvUltraState.marieVerbose ? 'Verbose' : 'Compact'}</button>
+        <button class="assist-btn" id="marie-comment-clear">Clear</button>
+      </div>
+    </div>
+    <div id="marie-trace-list" class="marie-trace-list">
+      <div class="marie-trace-empty">Assemble a MARIE program, then step or run it. Every fetch, decode, execute, input, output, and halt event will be explained here in plain English.</div>
+    </div>`;
+  const regs = document.querySelector('#page-marie .marie-regs');
+  regs?.insertAdjacentElement('afterend', box);
+
+  document.getElementById('marie-comment-toggle').addEventListener('click', () => {
+    dvUltraState.marieVerbose = !dvUltraState.marieVerbose;
+    dvPersistUltra();
+    document.getElementById('marie-comment-toggle').textContent = dvUltraState.marieVerbose ? 'Verbose' : 'Compact';
+    renderMarieTrace();
+  });
+  document.getElementById('marie-comment-clear').addEventListener('click', () => {
+    dvUltraState.marieTrace = [];
+    renderMarieTrace();
+  });
+}
+function marieOpLabel(operand){
+  const hex = operand.toString(16).padStart(3, '0').toUpperCase();
+  const label = Object.entries(marieVM.labels || {}).find(([,addr]) => addr === operand)?.[0];
+  return label ? `${hex} (${label})` : hex;
+}
+function renderMarieTrace(){
+  const host = document.getElementById('marie-trace-list');
+  if(!host) return;
+  if(!dvUltraState.marieTrace.length){
+    host.innerHTML = '<div class="marie-trace-empty">No commentary yet. Click Assemble, Step, or Run to build a trace.</div>';
+    return;
+  }
+  host.innerHTML = dvUltraState.marieTrace.map(item => `
+    <div class="marie-trace-item">
+      <div class="marie-trace-top">
+        <div class="marie-trace-title">${esc(item.title)}</div>
+        <span class="marie-trace-badge">Cycle ${item.cycle}</span>
+      </div>
+      <div class="marie-trace-body">${esc(item.body)}</div>
+      ${dvUltraState.marieVerbose && item.changes?.length ? `<div class="marie-trace-changes">${item.changes.map(c => `<span class="dv-chip">${esc(c)}</span>`).join('')}</div>` : ''}
+    </div>`).join('');
+}
+function pushMarieTrace(title, body, changes=[]){
+  dvUltraState.marieTrace.unshift({ title, body, changes, cycle: marieVM.cycles });
+  dvUltraState.marieTrace = dvUltraState.marieTrace.slice(0, marieExplainMode.maxEntries);
+  renderMarieTrace();
+}
+function marieSnapshot(){
+  return {
+    AC: marieVM.AC,
+    PC: marieVM.PC,
+    IR: marieVM.IR,
+    MAR: marieVM.MAR,
+    MBR: marieVM.MBR,
+    phase: marieVM.phase,
+    halted: marieVM.halted,
+    waitingInput: marieVM.waitingInput
+  };
+}
+function marieDescribeChanges(before, after){
+  const changes = [];
+  ['AC','PC','IR','MAR','MBR'].forEach(k => {
+    if(before[k] !== after[k]){
+      changes.push(`${k}: ${before[k]} → ${after[k]}`);
+    }
+  });
+  if(before.halted !== after.halted && after.halted) changes.push('Program halted');
+  if(before.waitingInput !== after.waitingInput && after.waitingInput) changes.push('Execution paused for INPUT');
+  marieVM.changedMem.forEach(addr => {
+    changes.push(`M[${marieOpLabel(addr)}] written`);
+  });
+  return changes;
+}
+function marieExplainPhase(before, after){
+  if(before.phase === 0 && after.phase === 1){
+    return {
+      title: 'Fetch: copy the program counter into MAR',
+      body: `The simulator began a new instruction cycle. It copied the current PC address ${before.PC.toString(16).padStart(3,'0').toUpperCase()} into MAR so memory knows which instruction slot to access next.`
+    };
+  }
+  if(before.phase === 1 && after.phase === 2){
+    return {
+      title: 'Decode: load the instruction and advance PC',
+      body: `The instruction at memory address ${before.MAR.toString(16).padStart(3,'0').toUpperCase()} was moved into IR. The PC then advanced so the machine is ready for the next instruction after the current one finishes.`
+    };
+  }
+  if(before.phase === 2){
+    const op = (before.IR >> 12) & 0xF;
+    const operand = before.IR & 0xFFF;
+    const name = MARIE_OPNAMES[op] || 'UNKNOWN';
+    let body = `The CPU executed ${name}`;
+    if(name === 'LOAD') body += ` by copying the value from memory address ${marieOpLabel(operand)} into the accumulator.`;
+    else if(name === 'STORE') body += ` by writing the accumulator into memory address ${marieOpLabel(operand)}.`;
+    else if(name === 'ADD') body += ` by adding the value at ${marieOpLabel(operand)} to the accumulator.`;
+    else if(name === 'SUBT') body += ` by subtracting the value at ${marieOpLabel(operand)} from the accumulator.`;
+    else if(name === 'INPUT') body += ` by waiting for a user-supplied value and placing that value into AC.`;
+    else if(name === 'OUTPUT') body += ` by copying the current accumulator value into the output area.`;
+    else if(name === 'HALT') body += `, which stopped the program completely.`;
+    else if(name === 'SKIPCOND') body += `, which conditionally skipped the next instruction depending on the sign/zero state of AC.`;
+    else if(name === 'JUMP') body += ` by forcing the next PC value to become ${marieOpLabel(operand)}.`;
+    else if(name === 'CLEAR') body += ` by resetting AC to zero.`;
+    else if(name === 'ADDI') body += ` using indirect addressing: it first looked up an address at ${marieOpLabel(operand)}, then added the value stored at that looked-up address.`;
+    else if(name === 'JUMPI') body += ` using indirect addressing, so the jump target came from memory rather than the operand field directly.`;
+    else if(name === 'LOADI') body += ` using indirect addressing, so AC was loaded from the address found in memory at ${marieOpLabel(operand)}.`;
+    else if(name === 'STOREI') body += ` using indirect addressing, so AC was stored into the address referenced by memory at ${marieOpLabel(operand)}.`;
+    else if(name === 'JNS') body += ` by storing a return address and then jumping to a subroutine body.`;
+    body += ` After execution, the machine resets to the fetch phase for the next instruction.`;
+    return { title: `Execute: ${name}`, body };
+  }
+  return { title: 'Machine step', body: 'A machine state transition occurred.' };
+}
+function buildMarieListing(src){
+  const lines = String(src || '').split('\n');
+  const list = [];
+  let addr = 0x100;
+  lines.forEach((raw, idx) => {
+    const clean = raw.replace(/\/.*$/, '').trim();
+    if(!clean) return;
+    const commaIdx = clean.indexOf(',');
+    let rest = clean;
+    if(commaIdx > -1) rest = clean.slice(commaIdx + 1).trim();
+    const parts = rest.split(/\s+/);
+    const mnem = (parts[0] || '').toUpperCase();
+    if(mnem === 'ORG'){ addr = parseInt(parts[1], 16) || parseInt(parts[1], 10) || addr; return; }
+    if(mnem === 'END') return;
+    list.push({ address: addr, lineNo: idx + 1, raw: raw.trim(), mnemonic: mnem });
+    addr++;
+  });
+  return list;
+}
+let marieLastListing = [];
+const _marieAssembleUltra = marieAssemble;
+marieAssemble = function(src){
+  marieLastListing = buildMarieListing(src);
+  const errors = _marieAssembleUltra(src);
+  dvUltraState.marieTrace = [];
+  renderMarieTrace();
+  if(errors?.length){
+    pushMarieTrace('Assemble failed', `The assembler found ${errors.length} issue(s). Fix the error list below before stepping the program.`, errors.slice(0,5));
+  }else{
+    pushMarieTrace('Assembly complete', `The source program was translated into machine words. ${marieLastListing.length} executable/data lines were mapped into memory, labels were resolved, and the PC is ready to start at address ${marieVM.PC.toString(16).padStart(3,'0').toUpperCase()}.`);
+    marieLastListing.slice(0, 8).forEach(item => {
+      pushMarieTrace(`Source line ${item.lineNo}: ${item.mnemonic}`, `Line ${item.lineNo} was mapped to memory address ${item.address.toString(16).padStart(3,'0').toUpperCase()}. Source: ${item.raw}`);
+    });
+  }
+  return errors;
+};
+const _marieStepUltra = marieStep;
+marieStep = function(){
+  ensureMarieCommentary();
+  const before = marieSnapshot();
+  const outcome = _marieStepUltra();
+  const after = marieSnapshot();
+  const desc = marieExplainPhase(before, after);
+  const changes = marieDescribeChanges(before, after);
+  pushMarieTrace(desc.title, desc.body, changes);
+  if(after.waitingInput) pushMarieTrace('Input requested', 'The program hit an INPUT instruction. Execution is paused because the machine needs a number from you before it can continue.');
+  if(after.halted) pushMarieTrace('Execution stopped', 'The program is halted. No further fetch/decode/execute cycles will occur until you reset or re-assemble.');
+  return outcome;
+};
+const _pageInitMarieUltra2 = pageInits.marie;
+pageInits.marie = function(){
+  _pageInitMarieUltra2 && _pageInitMarieUltra2();
+  ensureMarieCommentary();
+  const send = document.getElementById('marie-input-submit');
+  if(send && !send.dataset.ultraBound){
+    send.dataset.ultraBound = '1';
+    send.addEventListener('click', () => {
+      if(!marieVM.waitingInput) return;
+      const iv = parseInt(document.getElementById('marie-input-val').value, 10);
+      if(Number.isFinite(iv)) pushMarieTrace('Input provided', `You entered ${iv}. That value is placed into AC so the program can resume from the INPUT instruction.`);
+    });
+  }
+};
+
+/* -------- page activation helpers -------- */
+const _navigateUltra = navigate;
+navigate = function(page){
+  _navigateUltra(page);
+  setTimeout(() => {
+    if(page === 'lab') ensurePyUltraTools();
+    if(page === 'database') ensureErdHealth();
+    if(page === 'sql') ensureSqlCoach();
+    if(page === 'marie') ensureMarieCommentary();
+    if(page === 'playground'){ ensurePgUltraPanel(); renderPgUltra(); }
+  }, 40);
+};
+
+
 observeReveals();
 })();
 </script>
+
+<style id="dv-ultra-style">
+/* ===== ULTRA UPGRADE LAYER ===== */
+.pg-ultra-shell{display:grid;grid-template-columns:1.25fr .95fr;gap:1rem;margin-top:1rem}
+.pg-ultra-card{background:var(--surf);border:1px solid var(--bdr);border-radius:12px;padding:1rem}
+.pg-ultra-card h4{font-size:.92rem;font-family:var(--ff-d);margin-bottom:.7rem;color:var(--txt)}
+.pg-ultra-tools{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.7rem}
+.pg-ultra-tabs{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.85rem}
+.pg-ultra-tab{padding:.35rem .7rem;border-radius:999px;border:1px solid var(--bdr2);background:var(--bg2);color:var(--txt2);font-family:var(--ff-m);font-size:.6rem;cursor:pointer;transition:all .15s}
+.pg-ultra-tab:hover{border-color:var(--ac);color:var(--ac)}
+.pg-ultra-tab.active{background:var(--adim);border-color:var(--ac);color:var(--ac)}
+.pg-ultra-panel{display:none}
+.pg-ultra-panel.active{display:block}
+.pg-insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.65rem}
+.pg-insight-box{padding:.8rem;border-radius:10px;background:var(--bg2);border:1px solid var(--bdr)}
+.pg-insight-box .k{font-family:var(--ff-m);font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:.28rem}
+.pg-insight-box .v{font-family:var(--ff-d);font-size:1.08rem;color:var(--txt);font-weight:700}
+.pg-story{margin-top:.85rem;padding:.9rem;border:1px solid var(--abdr);background:var(--adim);border-radius:10px;line-height:1.75;color:var(--txt)}
+.pg-profile-table{width:100%;border-collapse:collapse;font-family:var(--ff-m);font-size:.64rem}
+.pg-profile-table th,.pg-profile-table td{padding:.45rem .55rem;border-bottom:1px solid var(--bdr);text-align:left}
+.pg-profile-table th{color:var(--ac);background:var(--bg2)}
+.pg-mini-controls{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin-bottom:.65rem}
+.pg-mini-controls .dv-select,.pg-mini-controls .dv-input{width:100%}
+.pg-mini-chart{margin-top:.85rem;padding:.7rem;border:1px solid var(--bdr);border-radius:10px;background:var(--bg2)}
+.pg-mini-chart canvas{max-height:260px}
+.pg-pivot-table{width:100%;border-collapse:collapse;font-family:var(--ff-m);font-size:.64rem}
+.pg-pivot-table th,.pg-pivot-table td{padding:.4rem .5rem;border-bottom:1px solid var(--bdr);text-align:left}
+.pg-pivot-table th{color:var(--ac)}
+.pg-anomaly-list{display:flex;flex-direction:column;gap:.5rem}
+.pg-anomaly-item{padding:.7rem;border-radius:10px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25)}
+.pg-anomaly-item strong{color:var(--gold)}
+.pg-heat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.55rem}
+.pg-heat-cell{padding:.65rem;border-radius:10px;background:var(--bg2);border:1px solid var(--bdr)}
+.pg-heat-cell strong{display:block;color:var(--txt);margin-bottom:.2rem}
+.pg-heat-bar{height:7px;border-radius:999px;background:var(--bdr);overflow:hidden;margin-top:.35rem}
+.pg-heat-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--ac),var(--gold))}
+.marie-commentary{padding:.85rem .9rem;border-bottom:1px solid var(--bdr);background:var(--bg2);max-height:260px;overflow:auto}
+.marie-commentary::-webkit-scrollbar{width:4px}
+.marie-commentary::-webkit-scrollbar-thumb{background:var(--bdr2)}
+.marie-comment-head{display:flex;align-items:center;justify-content:space-between;gap:.4rem;margin-bottom:.6rem}
+.marie-comment-head h4{font-family:var(--ff-m);font-size:.64rem;color:var(--ac);letter-spacing:.08em;text-transform:uppercase}
+.marie-comment-tools{display:flex;gap:.35rem;flex-wrap:wrap}
+.marie-trace-list{display:flex;flex-direction:column;gap:.55rem}
+.marie-trace-item{padding:.7rem .75rem;border-radius:10px;border:1px solid var(--bdr);background:var(--surf)}
+.marie-trace-top{display:flex;align-items:center;justify-content:space-between;gap:.4rem;margin-bottom:.35rem}
+.marie-trace-badge{display:inline-flex;align-items:center;gap:.3rem;padding:.18rem .45rem;border-radius:999px;background:var(--adim);border:1px solid var(--abdr);font-family:var(--ff-m);font-size:.55rem;color:var(--ac)}
+.marie-trace-title{font-family:var(--ff-d);font-size:.82rem;color:var(--txt);font-weight:700}
+.marie-trace-body{font-size:.77rem;line-height:1.68;color:var(--txt2)}
+.marie-trace-changes{margin-top:.45rem;display:flex;flex-wrap:wrap;gap:.35rem}
+.marie-trace-empty{padding:.85rem;border:1px dashed var(--bdr2);border-radius:10px;text-align:center;font-family:var(--ff-m);font-size:.65rem;color:var(--txt3)}
+.dv-stack{display:flex;flex-direction:column;gap:.5rem}
+.dv-mini-note{font-family:var(--ff-m);font-size:.58rem;color:var(--txt3)}
+.dv-inline-card{padding:.75rem;border-radius:10px;border:1px solid var(--bdr);background:var(--surf)}
+.dv-inline-card h5{font-family:var(--ff-d);font-size:.82rem;margin-bottom:.35rem}
+.dv-kbd{display:inline-flex;align-items:center;justify-content:center;min-width:1.5rem;padding:.12rem .35rem;border-radius:6px;border:1px solid var(--bdr2);background:var(--bg2);font-family:var(--ff-m);font-size:.58rem;color:var(--txt2)}
+.py-ultra-tools,.sql-coach-card,.erd-health-card{margin-top:.7rem}
+.py-story-list{display:grid;grid-template-columns:1fr;gap:.45rem;margin-top:.65rem}
+.py-story-item{padding:.55rem .7rem;background:var(--bg2);border:1px solid var(--bdr);border-radius:8px;font-family:var(--ff-m);font-size:.63rem;color:var(--txt2)}
+.erd-health-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin-top:.55rem}
+.erd-health-grid .dv-chip{justify-content:center}
+.sql-coach-list{display:grid;grid-template-columns:1fr;gap:.45rem;margin-top:.55rem}
+.sql-coach-tip{padding:.65rem;border-radius:9px;background:var(--bg2);border:1px solid var(--bdr);font-size:.76rem;color:var(--txt2)}
+@media (max-width:1100px){
+  .pg-ultra-shell{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .erd-health-grid{grid-template-columns:1fr}
+}
+</style>
+
+
+
+<style id="dv-view-modes-style">
+/* ===== VIEW MODES LAYER ===== */
+#dv-view-modes{
+  position:fixed;
+  left:16px;
+  top:16px;
+  z-index:1200;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:.55rem;
+  width:auto;
+  pointer-events:none;
+  user-select:none;
+}
+#dv-view-modes > *{
+  pointer-events:auto;
+}
+.dv-vm-launch{
+  display:inline-flex;
+  cursor:grab;
+  align-items:center;
+  gap:.55rem;
+  min-height:48px;
+  padding:.6rem .9rem;
+  border-radius:999px;
+  border:1px solid var(--bdr2);
+  background:color-mix(in srgb, var(--nav) 90%, transparent);
+  backdrop-filter:blur(18px);
+  box-shadow:var(--shd);
+  color:var(--txt);
+  font-family:var(--ff-d);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.01em;
+  transition:transform .16s ease, border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+.dv-vm-launch:hover{
+  transform:translateY(-1px);
+  border-color:var(--abdr);
+  box-shadow:0 12px 32px rgba(0,0,0,.24);
+}
+.dv-vm-launch-badge{
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  border-radius:999px;
+  background:var(--adim);
+  border:1px solid var(--abdr);
+  color:var(--ac);
+  font-size:.9rem;
+  flex:0 0 auto;
+}
+.dv-vm-launch-text{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  line-height:1.1;
+}
+.dv-vm-launch-label{
+  font-size:.8rem;
+  color:var(--txt);
+}
+.dv-vm-launch-sub{
+  font-family:var(--ff-m);
+  font-size:.54rem;
+  color:var(--txt3);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-top:.16rem;
+}
+.dv-vm-launch-chevron{
+  color:var(--txt3);
+  font-size:.72rem;
+  transition:transform .18s ease, color .18s ease;
+}
+#dv-view-modes.open .dv-vm-launch{
+  border-color:var(--abdr);
+  background:color-mix(in srgb, var(--nav) 95%, transparent);
+}
+#dv-view-modes.open .dv-vm-launch-chevron{
+  transform:rotate(180deg);
+  color:var(--ac);
+}
+.dv-vm-panel{
+  width:min(360px, calc(100vw - 28px));
+  max-height:min(72vh, 560px);
+  overflow:auto;
+  background:color-mix(in srgb, var(--nav) 92%, transparent);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--bdr2);
+  border-radius:18px;
+  box-shadow:0 24px 70px rgba(0,0,0,.35);
+  padding:.9rem;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(10px) scale(.985);
+  transition:opacity .18s ease, transform .18s ease, visibility .18s ease;
+  pointer-events:none;
+}
+#dv-view-modes.open .dv-vm-panel{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1);
+  pointer-events:auto;
+}
+.dv-vm-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:.75rem;
+  margin-bottom:.75rem;
+}
+.dv-vm-title{
+  font-family:var(--ff-d);
+  font-size:.9rem;
+  font-weight:700;
+  color:var(--txt);
+}
+.dv-vm-sub{
+  font-family:var(--ff-m);
+  font-size:.56rem;
+  color:var(--txt3);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-top:.2rem;
+}
+.dv-vm-close{
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  border:1px solid var(--bdr);
+  background:var(--surf);
+  color:var(--txt3);
+  font-size:.85rem;
+  flex:0 0 auto;
+  transition:all .16s ease;
+}
+.dv-vm-close:hover{
+  color:var(--txt);
+  border-color:var(--abdr);
+  background:var(--adim);
+}
+.dv-vm-head{
+  cursor:grab;
+}
+#dv-view-modes.dragging .dv-vm-launch,
+#dv-view-modes.dragging .dv-vm-head{
+  cursor:grabbing;
+}
+#dv-view-modes.dragging .dv-vm-panel,
+#dv-view-modes.dragging .dv-vm-launch{
+  transition:none !important;
+}
+.dv-vm-actions{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.5rem;
+}
+.dv-vm-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.4rem;
+  min-height:42px;
+  padding:.6rem .7rem;
+  border-radius:12px;
+  border:1px solid var(--bdr);
+  background:var(--surf);
+  color:var(--txt2);
+  font-family:var(--ff-m);
+  font-size:.62rem;
+  letter-spacing:.04em;
+  transition:all .16s ease;
+}
+.dv-vm-btn:hover{border-color:var(--ac);color:var(--ac);background:var(--adim)}
+.dv-vm-btn.active{border-color:var(--ac);color:var(--ac);background:var(--adim);box-shadow:0 0 0 1px var(--abdr) inset}
+.dv-vm-btn[disabled]{opacity:.45;cursor:not-allowed}
+.dv-vm-meta{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.5rem;
+  margin-top:.65rem;
+}
+.dv-vm-chip{
+  border:1px solid var(--bdr);
+  background:var(--surf);
+  border-radius:12px;
+  padding:.55rem .65rem;
+}
+.dv-vm-chip-label{
+  font-family:var(--ff-m);
+  font-size:.54rem;
+  color:var(--txt3);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.dv-vm-chip-value{
+  margin-top:.18rem;
+  font-family:var(--ff-d);
+  font-size:.75rem;
+  color:var(--txt);
+}
+.dv-vm-hint{
+  margin-top:.65rem;
+  font-family:var(--ff-m);
+  font-size:.58rem;
+  color:var(--txt3);
+  line-height:1.7;
+}
+.dv-vm-kbd{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:1.45rem;
+  padding:.08rem .35rem;
+  border-radius:6px;
+  border:1px solid var(--bdr2);
+  background:var(--bg2);
+  color:var(--txt2);
+  margin:0 .14rem;
+}
+.dv-mini-toast{
+  align-self:flex-end;
+  max-width:280px;
+  padding:.6rem .8rem;
+  border-radius:12px;
+  border:1px solid var(--bdr2);
+  background:var(--surf);
+  color:var(--txt2);
+  font-family:var(--ff-m);
+  font-size:.62rem;
+  box-shadow:var(--shd);
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .18s ease, transform .18s ease;
+}
+.dv-mini-toast.show{opacity:1;transform:translateY(0)}
+
+body.dv-fullpage .sidebar,
+body.dv-fullpage #sidebar-resizer,
+body.dv-fullpage .topbar,
+body.dv-fullpage .drawer,
+body.dv-fullpage #s-overlay,
+body.dv-fullpage .footer,
+body.dv-fullpage #btt{
+  display:none !important;
+}
+body.dv-fullpage .shell{display:block !important; min-height:100vh}
+body.dv-fullpage .main{
+  margin-left:0 !important;
+  width:100vw !important;
+  max-width:none !important;
+  min-height:100vh !important;
+}
+body.dv-fullpage .page.active{
+  min-height:100vh;
+  animation:none;
+}
+body.dv-fullpage .container{
+  max-width:none;
+  width:min(1600px, calc(100vw - 48px));
+}
+body.dv-fullpage #page-home .hero,
+body.dv-fullpage #page-about .about-wrap,
+body.dv-fullpage #page-projects .proj-wrap,
+body.dv-fullpage #page-github .gh-wrap,
+body.dv-fullpage #page-learn .learn-wrap,
+body.dv-fullpage #page-contact .contact-wrap{
+  padding-top:1.4rem;
+}
+body.dv-fullpage #page-lab .lab-layout{height:100vh !important}
+body.dv-fullpage #page-database .db-layout{height:100vh !important}
+body.dv-fullpage #page-sql .sql-sandbox-layout{min-height:100vh}
+body.dv-fullpage #page-playground .pg-layout{min-height:100vh}
+body.dv-fullpage #page-marie .marie-layout{height:100vh}
+
+body.dv-zen-lab #page-lab #py-banner,
+body.dv-zen-lab #page-lab .lab-sidebar,
+body.dv-zen-lab #page-lab .lab-header .py-status,
+body.dv-zen-lab #page-lab .lab-header .pkg-row{
+  display:none !important;
+}
+body.dv-zen-lab #page-lab .lab-layout{
+  grid-template-columns:1fr !important;
+  height:100vh !important;
+}
+body.dv-zen-lab #page-lab .lab-main{
+  min-width:0;
+  height:100vh;
+}
+body.dv-zen-lab #page-lab .lab-header{
+  padding:.9rem 1rem .7rem;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 8px 30px rgba(0,0,0,.18);
+}
+body.dv-zen-lab #page-lab .lab-title-row{margin-bottom:0}
+body.dv-zen-lab #page-lab .lab-title{
+  font-size:1rem;
+  letter-spacing:-.02em;
+}
+body.dv-zen-lab #page-lab .lab-actions{
+  gap:.35rem;
+}
+body.dv-zen-lab #page-lab .notebook{
+  padding:1rem 1rem 4rem !important;
+}
+body.dv-zen-lab #page-lab .cell,
+body.dv-zen-lab #page-lab .nb-cell,
+body.dv-zen-lab #page-lab .notebook-cell{
+  box-shadow:none !important;
+}
+body.dv-zen-lab #page-lab .dv-zen-pill,
+body.dv-zen-database #page-database .dv-zen-pill{
+  display:inline-flex;
+}
+
+body.dv-zen-database #page-database .db-left,
+body.dv-zen-database #page-database #db-bottom-panel,
+body.dv-zen-database #page-database #db-resizer{
+  display:none !important;
+}
+body.dv-zen-database #page-database .db-layout{
+  grid-template-columns:1fr !important;
+  height:100vh !important;
+}
+body.dv-zen-database #page-database .db-right{
+  min-width:0;
+  width:100%;
+}
+body.dv-zen-database #page-database .db-toolbar{
+  position:sticky;
+  top:0;
+  z-index:8;
+  box-shadow:0 8px 30px rgba(0,0,0,.18);
+}
+body.dv-zen-database #page-database .db-canvas-wrap{
+  height:calc(100vh - 68px) !important;
+  min-height:calc(100vh - 68px) !important;
+}
+.dv-zen-pill{
+  display:none;
+  align-items:center;
+  gap:.35rem;
+  margin-left:.5rem;
+  padding:.22rem .55rem;
+  border-radius:999px;
+  background:var(--adim);
+  border:1px solid var(--abdr);
+  color:var(--ac);
+  font-family:var(--ff-m);
+  font-size:.56rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+@media (max-width:820px){
+  .dv-vm-panel{width:min(320px, calc(100vw - 20px))}
+  .dv-vm-actions{grid-template-columns:1fr}
+  .dv-vm-meta{grid-template-columns:1fr}
+}
+</style>
+
+<script id="dv-view-modes-script">
+(function(){
+  const KEY = 'dv-view-modes-v1';
+  const state = (() => {
+    try{
+      return Object.assign({fullpage:false, zenLab:false, zenDatabase:false}, JSON.parse(localStorage.getItem(KEY) || '{}'));
+    }catch(e){
+      return {fullpage:false, zenLab:false, zenDatabase:false};
+    }
+  })();
+  let uiOpen = false;
+
+  function save(){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function activePage(){
+    const el = document.querySelector('.page.active');
+    return el ? el.id.replace(/^page-/, '') : 'home';
+  }
+  function pageLabel(p){
+    const pretty = {
+      home:'Home', about:'About', projects:'Projects', lab:'Python Lab', database:'DB ERD Lab',
+      sql:'SQL Sandbox', playground:'Data Playground', marie:'MARIE Simulator',
+      github:'GitHub', learn:'Learn', contact:'Contact'
+    };
+    return pretty[p] || p;
+  }
+  function anyModeActive(){
+    return !!(state.fullpage || state.zenLab || state.zenDatabase);
+  }
+  function toast(msg){
+    const host = document.getElementById('dv-view-modes');
+    if(!host) return;
+    const el = document.createElement('div');
+    el.className = 'dv-mini-toast';
+    el.textContent = msg;
+    host.appendChild(el);
+    requestAnimationFrame(() => el.classList.add('show'));
+    setTimeout(() => {
+      el.classList.remove('show');
+      setTimeout(() => el.remove(), 220);
+    }, 2200);
+  }
+  function ensureZenPills(){
+    const pyTitle = document.querySelector('#page-lab .lab-title');
+    if(pyTitle && !pyTitle.querySelector('.dv-zen-pill')){
+      pyTitle.insertAdjacentHTML('beforeend', '<span class="dv-zen-pill">Zen Mode</span>');
+    }
+    const dbToolbar = document.querySelector('#page-database .db-toolbar');
+    if(dbToolbar && !dbToolbar.querySelector('.dv-zen-pill')){
+      const pill = document.createElement('span');
+      pill.className = 'dv-zen-pill';
+      pill.textContent = 'Zen Mode';
+      dbToolbar.appendChild(pill);
+    }
+  }
+  function clampPos(x, y){
+    const host = document.getElementById('dv-view-modes');
+    if(!host) return {x:16, y:16};
+    const margin = 10;
+    const rect = host.getBoundingClientRect();
+    const width = rect.width || host.offsetWidth || 78;
+    const height = rect.height || host.offsetHeight || 56;
+    const maxX = Math.max(margin, window.innerWidth - width - margin);
+    const maxY = Math.max(margin, window.innerHeight - height - margin);
+    return {
+      x: Math.min(Math.max(margin, Number.isFinite(x) ? x : margin), maxX),
+      y: Math.min(Math.max(margin, Number.isFinite(y) ? y : margin), maxY)
+    };
+  }
+  function applyPosition(forceDefault = false){
+    const host = document.getElementById('dv-view-modes');
+    if(!host) return;
+    let x = Number(state.x);
+    let y = Number(state.y);
+    const launch = document.getElementById('dv-vm-launch');
+    if(forceDefault || !Number.isFinite(x) || !Number.isFinite(y)){
+      const launchW = launch?.offsetWidth || 116;
+      const launchH = launch?.offsetHeight || 48;
+      x = window.innerWidth - launchW - 16;
+      y = window.innerHeight - launchH - 16;
+    }
+    const clamped = clampPos(x, y);
+    host.style.left = clamped.x + 'px';
+    host.style.top = clamped.y + 'px';
+    state.x = clamped.x;
+    state.y = clamped.y;
+  }
+  function savePositionFromUi(){
+    const host = document.getElementById('dv-view-modes');
+    if(!host) return;
+    state.x = parseFloat(host.style.left) || 16;
+    state.y = parseFloat(host.style.top) || 16;
+    save();
+  }
+  function enableDragging(host){
+    const launch = host.querySelector('#dv-vm-launch');
+    const head = host.querySelector('.dv-vm-head');
+    let dragging = false;
+    let moved = false;
+    let startX = 0;
+    let startY = 0;
+    let originX = 0;
+    let originY = 0;
+
+    function onMove(e){
+      if(!dragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      if(Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
+      const clamped = clampPos(originX + dx, originY + dy);
+      host.style.left = clamped.x + 'px';
+      host.style.top = clamped.y + 'px';
+    }
+    function onUp(){
+      if(!dragging) return;
+      dragging = false;
+      document.removeEventListener('mousemove', onMove, true);
+      document.removeEventListener('mouseup', onUp, true);
+      host.classList.remove('dragging');
+      if(moved){
+        suppressLaunchClickUntil = Date.now() + 240;
+        savePositionFromUi();
+      }
+    }
+    function startDrag(e, allowFromClose = false){
+      if(e.button !== 0) return;
+      if(!allowFromClose && e.target.closest('#dv-vm-close')) return;
+      dragging = true;
+      moved = false;
+      startX = e.clientX;
+      startY = e.clientY;
+      originX = parseFloat(host.style.left) || host.getBoundingClientRect().left;
+      originY = parseFloat(host.style.top) || host.getBoundingClientRect().top;
+      host.classList.add('dragging');
+      document.addEventListener('mousemove', onMove, true);
+      document.addEventListener('mouseup', onUp, true);
+      e.preventDefault();
+    }
+
+    launch.addEventListener('mousedown', (e) => startDrag(e, true));
+    head.addEventListener('mousedown', (e) => startDrag(e, false));
+    window.addEventListener('resize', () => {
+      applyPosition(false);
+      savePositionFromUi();
+    });
+  }
+  function setOpen(next){
+    uiOpen = !!next;
+    const host = document.getElementById('dv-view-modes');
+    if(host) host.classList.toggle('open', uiOpen);
+    requestAnimationFrame(() => applyPosition(false));
+  }
+  function buildUi(){
+    if(document.getElementById('dv-view-modes')) return;
+    const host = document.createElement('div');
+    host.id = 'dv-view-modes';
+    host.innerHTML = `
+      <button class="dv-vm-launch" id="dv-vm-launch" type="button" aria-expanded="false" aria-controls="dv-vm-panel">
+        <span class="dv-vm-launch-badge">⛶</span>
+        <span class="dv-vm-launch-text">
+          <span class="dv-vm-launch-label">View</span>
+          <span class="dv-vm-launch-sub" id="dv-vm-launch-sub">Modes</span>
+        </span>
+        <span class="dv-vm-launch-chevron">▾</span>
+      </button>
+
+      <div class="dv-vm-panel" id="dv-vm-panel" role="dialog" aria-label="View Modes">
+        <div class="dv-vm-head">
+          <div>
+            <div class="dv-vm-title">View Modes</div>
+            <div class="dv-vm-sub" id="dv-vm-sub">Current page · Home</div>
+          </div>
+          <button class="dv-vm-close" id="dv-vm-close" type="button" aria-label="Close view modes">✕</button>
+        </div>
+
+        <div class="dv-vm-actions">
+          <button class="dv-vm-btn" id="dv-toggle-fullpage" type="button">⛶ Full Page</button>
+          <button class="dv-vm-btn" id="dv-toggle-zen" type="button">☯ Zen</button>
+          <button class="dv-vm-btn" id="dv-exit-modes" type="button">✕ Exit</button>
+        </div>
+
+        <div class="dv-vm-meta">
+          <div class="dv-vm-chip">
+            <div class="dv-vm-chip-label">Current Page</div>
+            <div class="dv-vm-chip-value" id="dv-vm-chip-page">Home</div>
+          </div>
+          <div class="dv-vm-chip">
+            <div class="dv-vm-chip-label">Active Modes</div>
+            <div class="dv-vm-chip-value" id="dv-vm-chip-state">None</div>
+          </div>
+        </div>
+
+        <div class="dv-vm-hint">
+          <span class="dv-vm-kbd">F</span> toggles Full Page ·
+          <span class="dv-vm-kbd">Z</span> toggles Zen on Python/ERD ·
+          <span class="dv-vm-kbd">Esc</span> closes the panel or exits the current mode
+        </div>
+      </div>
+    `;
+    document.body.appendChild(host);
+    enableDragging(host);
+    applyPosition(false);
+
+    host.querySelector('#dv-vm-launch').addEventListener('click', (e) => {
+      if(Date.now() < suppressLaunchClickUntil){
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      e.stopPropagation();
+      setOpen(!uiOpen);
+      host.querySelector('#dv-vm-launch').setAttribute('aria-expanded', String(uiOpen));
+    });
+    host.querySelector('#dv-vm-close').addEventListener('click', () => {
+      setOpen(false);
+      host.querySelector('#dv-vm-launch').setAttribute('aria-expanded', 'false');
+    });
+
+    host.querySelector('#dv-toggle-fullpage').addEventListener('click', () => {
+      state.fullpage = !state.fullpage;
+      save();
+      apply();
+      toast(state.fullpage ? 'Full Page enabled.' : 'Full Page disabled.');
+    });
+    host.querySelector('#dv-toggle-zen').addEventListener('click', () => {
+      const p = activePage();
+      if(p === 'lab'){
+        state.zenLab = !state.zenLab;
+        save(); apply();
+        toast(state.zenLab ? 'Python Zen enabled.' : 'Python Zen disabled.');
+      }else if(p === 'database'){
+        state.zenDatabase = !state.zenDatabase;
+        save(); apply();
+        toast(state.zenDatabase ? 'ERD Zen enabled.' : 'ERD Zen disabled.');
+      }else{
+        toast('Zen Mode is available on Python Lab and DB ERD Lab.');
+      }
+    });
+    host.querySelector('#dv-exit-modes').addEventListener('click', () => {
+      const hadAny = anyModeActive();
+      state.fullpage = false;
+      state.zenLab = false;
+      state.zenDatabase = false;
+      save(); apply();
+      if(hadAny) toast('View modes cleared.');
+    });
+
+    document.addEventListener('click', (e) => {
+      const wrap = document.getElementById('dv-view-modes');
+      if(!wrap) return;
+      if(wrap.contains(e.target)) return;
+      if(uiOpen){
+        setOpen(false);
+        const launch = document.getElementById('dv-vm-launch');
+        if(launch) launch.setAttribute('aria-expanded', 'false');
+      }
+    }, true);
+  }
+
+  function apply(){
+    buildUi();
+    ensureZenPills();
+
+    const p = activePage();
+    const host = document.getElementById('dv-view-modes');
+    const fullBtn = document.getElementById('dv-toggle-fullpage');
+    const zenBtn = document.getElementById('dv-toggle-zen');
+    const sub = document.getElementById('dv-vm-sub');
+    const chipPage = document.getElementById('dv-vm-chip-page');
+    const chipState = document.getElementById('dv-vm-chip-state');
+    const launchSub = document.getElementById('dv-vm-launch-sub');
+
+    document.body.classList.toggle('dv-fullpage', !!state.fullpage);
+    document.body.classList.toggle('dv-zen-lab', p === 'lab' && !!state.zenLab);
+    document.body.classList.toggle('dv-zen-database', p === 'database' && !!state.zenDatabase);
+
+    if(sub) sub.textContent = `Current page · ${pageLabel(p)}`;
+    if(chipPage) chipPage.textContent = pageLabel(p);
+    if(launchSub) launchSub.textContent = anyModeActive() ? 'Modes Active' : 'Modes';
+
+    if(fullBtn) fullBtn.classList.toggle('active', !!state.fullpage);
+    requestAnimationFrame(() => applyPosition(false));
+
+    const zenActive = (p === 'lab' && !!state.zenLab) || (p === 'database' && !!state.zenDatabase);
+    if(zenBtn){
+      zenBtn.classList.toggle('active', zenActive);
+      zenBtn.disabled = !(p === 'lab' || p === 'database');
+      zenBtn.textContent = p === 'lab' ? '☯ Python Zen' : (p === 'database' ? '☯ ERD Zen' : '☯ Zen');
+    }
+
+    if(chipState){
+      const parts = [];
+      if(state.fullpage) parts.push('Full Page');
+      if(p === 'lab' && state.zenLab) parts.push('Python Zen');
+      if(p === 'database' && state.zenDatabase) parts.push('ERD Zen');
+      chipState.textContent = parts.length ? parts.join(' + ') : 'None';
+    }
+    if(host) host.classList.toggle('open', uiOpen);
+  }
+
+  const navClicks = (e) => {
+    if(e.target.closest('[data-page]')){
+      setTimeout(apply, 25);
+      setTimeout(apply, 120);
+      setOpen(false);
+    }
+  };
+  document.addEventListener('click', navClicks, true);
+
+  const pageObserver = new MutationObserver(() => apply());
+  document.querySelectorAll('.page').forEach(page => {
+    pageObserver.observe(page, {attributes:true, attributeFilter:['class']});
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(/input|textarea|select/i.test(document.activeElement?.tagName || '')) return;
+    if((e.key === 'f' || e.key === 'F') && !e.metaKey && !e.ctrlKey && !e.altKey){
+      e.preventDefault();
+      state.fullpage = !state.fullpage;
+      save(); apply();
+    }
+    if((e.key === 'z' || e.key === 'Z') && !e.metaKey && !e.ctrlKey && !e.altKey){
+      const p = activePage();
+      if(p === 'lab' || p === 'database'){
+        e.preventDefault();
+        if(p === 'lab') state.zenLab = !state.zenLab;
+        if(p === 'database') state.zenDatabase = !state.zenDatabase;
+        save(); apply();
+      }
+    }
+    if(e.key === 'Escape'){
+      const launch = document.getElementById('dv-vm-launch');
+      if(uiOpen){
+        setOpen(false);
+        if(launch) launch.setAttribute('aria-expanded', 'false');
+        return;
+      }
+      const p = activePage();
+      let changed = false;
+      if(p === 'lab' && state.zenLab){ state.zenLab = false; changed = true; }
+      if(p === 'database' && state.zenDatabase){ state.zenDatabase = false; changed = true; }
+      else if(state.fullpage){ state.fullpage = false; changed = true; }
+      if(changed){ save(); apply(); }
+    }
+  });
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', apply);
+  }else{
+    apply();
+  }
+  setTimeout(apply, 180);
+  setTimeout(apply, 650);
+})();
+</script>
+
 </body>
 </html>
