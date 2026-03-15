@@ -2332,49 +2332,59 @@ function startInlineEdit(canvas,tbl,fieldIdx){
   let isCommitted = false;
 
   function commit(){
-  if (isCommitted) return;
-  isCommitted = true;
+    if (isCommitted) return;
+    isCommitted = true;
 
-  const val = inp.value.trim();
-  if(!val){
+    const val = inp.value.trim();
+    if(!val){
+      inp.remove();
+      return;
+    }
+
+    if(fieldIdx < 0){
+      const duplicateTable = erd.tables.some(t =>
+        t.id !== tbl.id && t.name.toLowerCase() === val.toLowerCase()
+      );
+      if(duplicateTable){
+        toast('error','✗','Another table already has this name.');
+        isCommitted = false;
+        inp.focus();
+        return;
+      }
+
+      const old = tbl.name;
+      tbl.name = val;
+      syncRelationRefsAfterTableRename(old, val);
+      execSilent(`ALTER TABLE "${old}" RENAME TO "${val}";`);
+    }else{
+      const duplicateField = tbl.fields.some((f, idx) =>
+        idx !== fieldIdx && f.name.toLowerCase() === val.toLowerCase()
+      );
+      if(duplicateField){
+        toast('error','✗','Another field already has this name.');
+        isCommitted = false;
+        inp.focus();
+        return;
+      }
+
+      const oldFieldName = tbl.fields[fieldIdx].name;
+      tbl.fields[fieldIdx].name = val;
+      syncRelationRefsAfterFieldRename(tbl.id, oldFieldName, val);
+    }
+
+    refreshUI();
+    toast('success','✎','Renamed successfully.');
     inp.remove();
-    return;
   }
 
-  if(fieldIdx < 0){
-    const duplicateTable = erd.tables.some(t =>
-      t.id !== tbl.id && t.name.toLowerCase() === val.toLowerCase()
-    );
-    if(duplicateTable){
-      toast('error','✗','Another table already has this name.');
-      isCommitted = false;
-      inp.focus();
-      return;
+  inp.addEventListener('blur',commit);
+  inp.addEventListener('keydown',e=>{
+    if(e.key==='Enter') commit();
+    if(e.key==='Escape'){
+      isCommitted = true;
+      inp.remove();
     }
-
-    const old = tbl.name;
-    tbl.name = val;
-    syncRelationRefsAfterTableRename(old, val);
-    execSilent(`ALTER TABLE "${old}" RENAME TO "${val}";`);
-  }else{
-    const duplicateField = tbl.fields.some((f, idx) =>
-      idx !== fieldIdx && f.name.toLowerCase() === val.toLowerCase()
-    );
-    if(duplicateField){
-      toast('error','✗','Another field already has this name.');
-      isCommitted = false;
-      inp.focus();
-      return;
-    }
-
-    const oldFieldName = tbl.fields[fieldIdx].name;
-    tbl.fields[fieldIdx].name = val;
-    syncRelationRefsAfterFieldRename(tbl.id, oldFieldName, val);
-  }
-
-  refreshUI();
-  toast('success','✎','Renamed successfully.');
-  inp.remove();
+  });
 }
 
 function addERDListeners(canvas){
