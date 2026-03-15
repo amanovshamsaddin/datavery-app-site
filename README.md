@@ -55,15 +55,6 @@ Because DataVery is entirely client-side, running it locally requires zero insta
 
 ---
 
-## 📸 Interface Previews
-
-*(Replace these placeholder links with actual screenshots of your app once you upload them to an `assets/` folder in your repo)*
-
-* `![Python Lab](assets/python-lab.png)`
-* `![Database ERD](assets/db-erd.png)`
-* `![MARIE Simulator](assets/marie-sim.png)`
-
----
 
 ## 🤝 Contact & Connections
 
