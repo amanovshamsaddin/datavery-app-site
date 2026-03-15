@@ -749,7 +749,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
     <div class="s-lm">DV</div>
     <div class="s-lt">
       <span class="s-lmain">DataVery</span>
-      <span class="s-lsub">.app V4.6</span>
+      <span class="s-lsub">.app V4.7</span>
     </div>
   </a>
   <div class="s-online"><div class="ondot"></div><span>System Operational</span></div>
@@ -1338,7 +1338,7 @@ textarea.f-ctrl{resize:vertical;min-height:115px}
       <div><div class="f-col-t">External</div><ul class="f-links"><li><a href="https://github.com/amanovshamsaddin" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/theamanov/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="/cdn-cgi/l/email-protection#b1d0dcd0dfdec7c2d9d0dcc2f1d6dcd0d8dd9fd2dedc">Email</a></li><li><a href="#" onclick="navigate('learn');return false;">Learn</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app V4.6</p>
+      <p class="f-copy">&copy; <span id="footer-yr">2026</span> Shamsaddin Amanov — datavery.app V4.7</p>
       <div class="f-socials">
         <a href="https://www.linkedin.com/in/theamanov/" class="f-soc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         <a href="https://github.com/amanovshamsaddin" class="f-soc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
@@ -2332,22 +2332,49 @@ function startInlineEdit(canvas,tbl,fieldIdx){
   let isCommitted = false;
 
   function commit(){
-    if (isCommitted) return;
-    isCommitted = true;
-    const val=inp.value.trim();
-    if(val){
-      if(fieldIdx<0){
-        const old=tbl.name;tbl.name=val;
-        execSilent(`ALTER TABLE "${old}" RENAME TO "${val}";`);
-      }else{
-        tbl.fields[fieldIdx].name=val;
-      }
-      refreshUI();toast('success','✎','Renamed successfully.');
-    }
+  if (isCommitted) return;
+  isCommitted = true;
+
+  const val = inp.value.trim();
+  if(!val){
     inp.remove();
+    return;
   }
-  inp.addEventListener('blur',commit);
-  inp.addEventListener('keydown',e=>{if(e.key==='Enter')commit();if(e.key==='Escape'){isCommitted=true;inp.remove();}});
+
+  if(fieldIdx < 0){
+    const duplicateTable = erd.tables.some(t =>
+      t.id !== tbl.id && t.name.toLowerCase() === val.toLowerCase()
+    );
+    if(duplicateTable){
+      toast('error','✗','Another table already has this name.');
+      isCommitted = false;
+      inp.focus();
+      return;
+    }
+
+    const old = tbl.name;
+    tbl.name = val;
+    syncRelationRefsAfterTableRename(old, val);
+    execSilent(`ALTER TABLE "${old}" RENAME TO "${val}";`);
+  }else{
+    const duplicateField = tbl.fields.some((f, idx) =>
+      idx !== fieldIdx && f.name.toLowerCase() === val.toLowerCase()
+    );
+    if(duplicateField){
+      toast('error','✗','Another field already has this name.');
+      isCommitted = false;
+      inp.focus();
+      return;
+    }
+
+    const oldFieldName = tbl.fields[fieldIdx].name;
+    tbl.fields[fieldIdx].name = val;
+    syncRelationRefsAfterFieldRename(tbl.id, oldFieldName, val);
+  }
+
+  refreshUI();
+  toast('success','✎','Renamed successfully.');
+  inp.remove();
 }
 
 function addERDListeners(canvas){
@@ -2423,7 +2450,9 @@ function addERDListeners(canvas){
     e.preventDefault();const w=s2w(e.offsetX,e.offsetY);const hit=hitTable(w.x,w.y);
     if(hit){
       const fIdx=hitFieldIdx(hit,w.x,w.y);
-      if(fIdx>=0){if(confirm(`Delete field "${hit.fields[fIdx].name}"?`)){hit.fields.splice(fIdx,1);refreshUI();}}
+      if(fIdx >= 0){
+  deleteField(hit.id, fIdx);
+}
       else{if(confirm(`Delete table "${hit.name}"?`))deleteTable(hit.id);}
     }
   });
@@ -2431,8 +2460,163 @@ function addERDListeners(canvas){
 
 function execSilent(sql){if(!sqlDB)return;try{sqlDB.run(sql);}catch(e){}}
 
-let _fTid=null;
-function openAddFieldModal(tid){_fTid=tid;const tbl=erd.tables.find(t=>t.id===tid);document.getElementById('m-fld-tbl').textContent=tbl?.name||'';document.getElementById('fld-nm').value='';document.getElementById('fld-tp').value='TEXT';document.querySelector('input[name="fk"][value="none"]').checked=true;document.getElementById('fk-ref-g').style.display='none';document.getElementById('fld-nn').checked=false;document.getElementById('fld-uq').checked=false;document.getElementById('fld-ai').checked=false;openModal('m-fld');}
+let _fTid = null;
+let _editFieldIdx = -1;
+let _editRelId = null;
+
+function getTableById(id){
+  return erd.tables.find(t => t.id === id) || null;
+}
+
+function getFieldByName(tbl, fieldName){
+  return tbl?.fields?.find(f => f.name === fieldName) || null;
+}
+
+function syncRelationRefsAfterTableRename(oldName, newName){
+  erd.tables.forEach(tbl=>{
+    tbl.fields.forEach(f=>{
+      if(f.fk && f.fkRef){
+        f.fkRef = f.fkRef.replace(
+          new RegExp(`^"${oldName}"\\.`),
+          `"${newName}".`
+        ).replace(
+          new RegExp(`^${oldName}\\.`),
+          `${newName}.`
+        );
+      }
+    });
+  });
+}
+
+function syncRelationRefsAfterFieldRename(tableId, oldFieldName, newFieldName){
+  erd.relations.forEach(rel=>{
+    if(rel.fromTable === tableId && rel.fromField === oldFieldName){
+      rel.fromField = newFieldName;
+    }
+    if(rel.toTable === tableId && rel.toField === oldFieldName){
+      rel.toField = newFieldName;
+    }
+  });
+
+  const tbl = getTableById(tableId);
+  if(tbl){
+    tbl.fields.forEach(f=>{
+      if(f.fk && f.fkRef){
+        const tableName = tbl.name;
+        const quotedOld = `"${tableName}"."${oldFieldName}"`;
+        const quotedNew = `"${tableName}"."${newFieldName}"`;
+        const plainOld = `${tableName}.${oldFieldName}`;
+        const plainNew = `${tableName}.${newFieldName}`;
+        if(f.fkRef === quotedOld) f.fkRef = quotedNew;
+        if(f.fkRef === plainOld) f.fkRef = plainNew;
+      }
+    });
+  }
+}
+
+function removeRelationsUsingField(tableId, fieldName){
+  erd.relations = erd.relations.filter(rel => {
+    const usesFrom = rel.fromTable === tableId && rel.fromField === fieldName;
+    const usesTo = rel.toTable === tableId && rel.toField === fieldName;
+    return !(usesFrom || usesTo);
+  });
+}
+
+function editField(tableId, fieldIdx){
+  const tbl = getTableById(tableId);
+  if(!tbl || !tbl.fields[fieldIdx]) return;
+
+  const field = tbl.fields[fieldIdx];
+  _fTid = tableId;
+  _editFieldIdx = fieldIdx;
+
+  document.getElementById('m-fld-tbl').textContent = tbl.name;
+  document.getElementById('fld-nm').value = field.name || '';
+  document.getElementById('fld-tp').value = field.type || 'TEXT';
+  document.getElementById('fld-nn').checked = !!field.notNull;
+  document.getElementById('fld-uq').checked = !!field.unique;
+  document.getElementById('fld-ai').checked = !!field.ai;
+
+  let fkMode = 'none';
+  if(field.pk && field.fk) fkMode = 'both';
+  else if(field.pk) fkMode = 'pk';
+  else if(field.fk) fkMode = 'fk';
+
+  const radio = document.querySelector(`input[name="fk"][value="${fkMode}"]`);
+  if(radio) radio.checked = true;
+
+  document.getElementById('fk-ref-g').style.display = (field.fk || field.pk && field.fk) ? '' : 'none';
+  document.getElementById('fk-ref').value = field.fkRef || '';
+
+  openModal('m-fld');
+}
+
+function deleteField(tableId, fieldIdx){
+  const tbl = getTableById(tableId);
+  if(!tbl || !tbl.fields[fieldIdx]) return;
+
+  const field = tbl.fields[fieldIdx];
+
+  if(field.pk){
+    toast('warn','⚠','Primary key fields cannot be deleted directly.');
+    return;
+  }
+
+  if(!confirm(`Delete field "${field.name}" from "${tbl.name}"?`)) return;
+
+  removeRelationsUsingField(tableId, field.name);
+  tbl.fields.splice(fieldIdx, 1);
+
+  refreshUI();
+  toast('info','🗑',`Field "${field.name}" removed.`);
+}
+
+function editRelation(relId){
+  const rel = erd.relations.find(r => r.id === relId);
+  if(!rel) return;
+
+  _editRelId = relId;
+  populateRelModal();
+
+  document.getElementById('rel-ft').value = String(rel.fromTable);
+  document.getElementById('rel-tt').value = String(rel.toTable);
+  updateRelFields();
+
+  document.getElementById('rel-ff').value = rel.fromField;
+  document.getElementById('rel-tf').value = rel.toField;
+  document.getElementById('rel-card').value = rel.card;
+
+  const styleRadio = document.querySelector(`input[name="rs"][value="${rel.style}"]`);
+  if(styleRadio) styleRadio.checked = true;
+
+  openModal('m-rel');
+}
+
+function deleteRelationById(relId){
+  const rel = erd.relations.find(r => r.id === relId);
+  if(!rel) return;
+
+  erd.relations = erd.relations.filter(r => r.id !== relId);
+  refreshUI();
+  toast('info','🗑','Relation removed.');
+}
+function openAddFieldModal(tid){
+  _fTid = tid;
+  _editFieldIdx = -1;
+
+  const tbl = erd.tables.find(t=>t.id===tid);
+  document.getElementById('m-fld-tbl').textContent = tbl?.name || '';
+  document.getElementById('fld-nm').value = '';
+  document.getElementById('fld-tp').value = 'TEXT';
+  document.querySelector('input[name="fk"][value="none"]').checked = true;
+  document.getElementById('fk-ref-g').style.display = 'none';
+  document.getElementById('fk-ref').value = '';
+  document.getElementById('fld-nn').checked = false;
+  document.getElementById('fld-uq').checked = false;
+  document.getElementById('fld-ai').checked = false;
+
+  openModal('m-fld');
+}
 
 function confirmAddTable(){
   const name=document.getElementById('tbl-nm').value.trim();
@@ -2448,21 +2632,86 @@ function confirmAddTable(){
 }
 
 function confirmAddField(){
-  const tbl=erd.tables.find(t=>t.id===_fTid);if(!tbl)return;
-  const fname=document.getElementById('fld-nm').value.trim();
-  if(!fname){toast('error','✗','Field name required.');return;}
-  if(tbl.fields.find(f=>f.name===fname)){toast('error','✗','Field already exists.');return;}
-  const type=document.getElementById('fld-tp').value;
-  const kv=document.querySelector('input[name="fk"]:checked').value;
-  const fkRef=document.getElementById('fk-ref').value.trim();
-  const notNull=document.getElementById('fld-nn').checked,unique=document.getElementById('fld-uq').checked,ai=document.getElementById('fld-ai').checked;
-  tbl.fields.push({name:fname,type,pk:kv==='pk'||kv==='both',fk:kv==='fk'||kv==='both',fkRef,notNull,unique,ai});
+  const tbl = erd.tables.find(t => t.id === _fTid);
+  if(!tbl) return;
+
+  const fname = document.getElementById('fld-nm').value.trim();
+  if(!fname){
+    toast('error','✗','Field name required.');
+    return;
+  }
+
+  const type = document.getElementById('fld-tp').value;
+  const kv = document.querySelector('input[name="fk"]:checked').value;
+  const fkRef = document.getElementById('fk-ref').value.trim();
+  const notNull = document.getElementById('fld-nn').checked;
+  const unique = document.getElementById('fld-uq').checked;
+  const ai = document.getElementById('fld-ai').checked;
+
+  const payload = {
+    name: fname,
+    type,
+    pk: kv === 'pk' || kv === 'both',
+    fk: kv === 'fk' || kv === 'both',
+    fkRef,
+    notNull,
+    unique,
+    ai
+  };
+
+  if(_editFieldIdx >= 0){
+    const oldField = tbl.fields[_editFieldIdx];
+    if(!oldField) return;
+
+    const duplicate = tbl.fields.some((f, idx) =>
+      idx !== _editFieldIdx && f.name.toLowerCase() === fname.toLowerCase()
+    );
+    if(duplicate){
+      toast('error','✗','Another field with this name already exists.');
+      return;
+    }
+
+    const oldName = oldField.name;
+    const wasPk = !!oldField.pk;
+
+    if(wasPk && !payload.pk){
+      toast('warn','⚠','This editor does not allow removing primary-key status from the existing PK field.');
+      return;
+    }
+
+    tbl.fields[_editFieldIdx] = { ...oldField, ...payload };
+
+    if(oldName !== fname){
+      syncRelationRefsAfterFieldRename(tbl.id, oldName, fname);
+    }
+
+    closeModal('m-fld');
+    _editFieldIdx = -1;
+    refreshUI();
+    toast('success','✎',`Field "${oldName}" updated.`);
+    return;
+  }
+
+  if(tbl.fields.find(f => f.name.toLowerCase() === fname.toLowerCase())){
+    toast('error','✗','Field already exists.');
+    return;
+  }
+
+  tbl.fields.push(payload);
+
   const safeFname = fname.replace(/"/g, '""');
-  let col=`"${safeFname}" ${type}`;if(ai&&type==='INTEGER')col+=' AUTOINCREMENT';if(notNull)col+=' NOT NULL';if(unique)col+=' UNIQUE';
+  let col = `"${safeFname}" ${type}`;
+  if(ai && type === 'INTEGER') col += ' AUTOINCREMENT';
+  if(notNull) col += ' NOT NULL';
+  if(unique) col += ' UNIQUE';
+
   execSilent(`ALTER TABLE "${tbl.name}" ADD COLUMN ${col};`);
-  closeModal('m-fld');refreshUI();toast('success','✓',`'${fname}' added to ${tbl.name}.`);
+
+  closeModal('m-fld');
+  _editFieldIdx = -1;
+  refreshUI();
+  toast('success','✓',`'${fname}' added to ${tbl.name}.`);
 }
-document.querySelectorAll('input[name="fk"]').forEach(r=>r.addEventListener('change',()=>{document.getElementById('fk-ref-g').style.display=(r.value==='fk'||r.value==='both')&&r.checked?'':'none';}));
 
 function populateRelModal(){
   ['rel-ft','rel-tt'].forEach(id=>{const sel=document.getElementById(id);sel.innerHTML='';erd.tables.forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=t.name;sel.appendChild(o);});});
@@ -2475,13 +2724,51 @@ function updateRelFields(){
 }
 
 function confirmAddRel(){
-  const fid=parseInt(document.getElementById('rel-ft').value),tid=parseInt(document.getElementById('rel-tt').value);
-  const ff=document.getElementById('rel-ff').value,tf=document.getElementById('rel-tf').value;
-  const style=document.querySelector('input[name="rs"]:checked').value,card=document.getElementById('rel-card').value;
-  if(fid===tid){toast('warn','⚠','Cannot relate table to itself.');return;}
-  erd.relations.push({id:erd.nextId++,fromTable:fid,fromField:ff,toTable:tid,toField:tf,style,card});
-  closeModal('m-rel');refreshUI();
-  const fT=erd.tables.find(t=>t.id===fid),tT=erd.tables.find(t=>t.id===tid);
+  const fid = parseInt(document.getElementById('rel-ft').value);
+  const tid = parseInt(document.getElementById('rel-tt').value);
+  const ff = document.getElementById('rel-ff').value;
+  const tf = document.getElementById('rel-tf').value;
+  const style = document.querySelector('input[name="rs"]:checked').value;
+  const card = document.getElementById('rel-card').value;
+
+  if(fid === tid){
+    toast('warn','⚠','Cannot relate table to itself.');
+    return;
+  }
+
+  if(_editRelId != null){
+    const rel = erd.relations.find(r => r.id === _editRelId);
+    if(!rel) return;
+
+    rel.fromTable = fid;
+    rel.fromField = ff;
+    rel.toTable = tid;
+    rel.toField = tf;
+    rel.style = style;
+    rel.card = card;
+
+    _editRelId = null;
+    closeModal('m-rel');
+    refreshUI();
+    toast('success','✎','Relationship updated.');
+    return;
+  }
+
+  erd.relations.push({
+    id: erd.nextId++,
+    fromTable: fid,
+    fromField: ff,
+    toTable: tid,
+    toField: tf,
+    style,
+    card
+  });
+
+  closeModal('m-rel');
+  refreshUI();
+
+  const fT = erd.tables.find(t=>t.id===fid);
+  const tT = erd.tables.find(t=>t.id===tid);
   toast('success','↔',`${fT?.name} → ${tT?.name}`);
 }
 
@@ -2545,26 +2832,115 @@ function syncERDFromSQL(){
 function refreshUI(){drawERD();updateLeftPanel();refreshSchema();refreshRels();document.getElementById('db-tc').textContent=erd.tables.length;}
 
 function updateLeftPanel(){
-  const body=document.getElementById('db-lp');if(!body)return;body.innerHTML='';
+  const body = document.getElementById('db-lp');
+  if(!body) return;
+  body.innerHTML = '';
+
   erd.tables.forEach(tbl=>{
-    const item=document.createElement('div');item.className='et-item';
-    const hd=document.createElement('div');hd.className='et-h';hd.style.background=erd.selected===tbl.id?'var(--adim)':'';
-    const nm=document.createElement('span');nm.className='et-nm';nm.textContent=tbl.name;
-    const acts=document.createElement('div');acts.className='et-acts';
-    const ab=document.createElement('button');ab.className='ico-btn';ab.textContent='+';ab.title='Add field';ab.addEventListener('click',e=>{e.stopPropagation();openAddFieldModal(tbl.id);});
-    const db=document.createElement('button');db.className='ico-btn dng';db.textContent='🗑';db.title='Delete';db.addEventListener('click',e=>{e.stopPropagation();if(confirm(`Delete "${tbl.name}"?`))deleteTable(tbl.id);});
-    acts.appendChild(ab);acts.appendChild(db);hd.appendChild(nm);hd.appendChild(acts);
-    hd.addEventListener('click',()=>{erd.selected=tbl.id;drawERD();updateLeftPanel();});
-    const fl=document.createElement('div');fl.className='ef-list';
-    tbl.fields.forEach(f=>{
-      const row=document.createElement('div');row.className='ef-row';row.title='Double-click table/field on canvas to rename';
-      const kl=f.pk&&f.fk?'PK+FK':f.pk?'PK':f.fk?'FK':'';
-      if(kl){const k=document.createElement('span');k.className='ef-key '+(f.pk&&f.fk?'kbth':f.pk?'kpk':'kfk');k.textContent=kl;row.appendChild(k);}
-      const fn=document.createElement('span');fn.style.cssText='flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';fn.textContent=f.name;
-      const ft=document.createElement('span');ft.style.cssText='color:var(--txt3);font-size:10px';ft.textContent=f.type;
-      row.appendChild(fn);row.appendChild(ft);fl.appendChild(row);
+    const item = document.createElement('div');
+    item.className = 'et-item';
+
+    const hd = document.createElement('div');
+    hd.className = 'et-h';
+    hd.style.background = erd.selected === tbl.id ? 'var(--adim)' : '';
+
+    const nm = document.createElement('span');
+    nm.className = 'et-nm';
+    nm.textContent = tbl.name;
+    nm.title = 'Double-click to rename table';
+    nm.addEventListener('dblclick', e=>{
+      e.stopPropagation();
+      startInlineEdit(document.getElementById('ec'), tbl, -1);
     });
-    item.appendChild(hd);item.appendChild(fl);body.appendChild(item);
+
+    const acts = document.createElement('div');
+    acts.className = 'et-acts';
+
+    const ab = document.createElement('button');
+    ab.className = 'ico-btn';
+    ab.textContent = '+';
+    ab.title = 'Add field';
+    ab.addEventListener('click', e=>{
+      e.stopPropagation();
+      openAddFieldModal(tbl.id);
+    });
+
+    const db = document.createElement('button');
+    db.className = 'ico-btn dng';
+    db.textContent = '🗑';
+    db.title = 'Delete table';
+    db.addEventListener('click', e=>{
+      e.stopPropagation();
+      if(confirm(`Delete "${tbl.name}"?`)) deleteTable(tbl.id);
+    });
+
+    acts.appendChild(ab);
+    acts.appendChild(db);
+    hd.appendChild(nm);
+    hd.appendChild(acts);
+
+    hd.addEventListener('click', ()=>{
+      erd.selected = tbl.id;
+      drawERD();
+      updateLeftPanel();
+    });
+
+    const fl = document.createElement('div');
+    fl.className = 'ef-list';
+
+    tbl.fields.forEach((f, idx)=>{
+      const row = document.createElement('div');
+      row.className = 'ef-row';
+      row.title = 'Edit or remove this field';
+
+      const kl = f.pk && f.fk ? 'PK+FK' : f.pk ? 'PK' : f.fk ? 'FK' : '';
+      if(kl){
+        const k = document.createElement('span');
+        k.className = 'ef-key ' + (f.pk && f.fk ? 'kbth' : f.pk ? 'kpk' : 'kfk');
+        k.textContent = kl;
+        row.appendChild(k);
+      }
+
+      const fn = document.createElement('span');
+      fn.style.cssText = 'flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';
+      fn.textContent = f.name;
+      fn.addEventListener('dblclick', e=>{
+        e.stopPropagation();
+        startInlineEdit(document.getElementById('ec'), tbl, idx);
+      });
+
+      const ft = document.createElement('span');
+      ft.style.cssText = 'color:var(--txt3);font-size:10px;margin-right:6px';
+      ft.textContent = f.type;
+
+      const editBtn = document.createElement('button');
+      editBtn.className = 'ico-btn';
+      editBtn.textContent = '✎';
+      editBtn.title = 'Edit field';
+      editBtn.addEventListener('click', e=>{
+        e.stopPropagation();
+        editField(tbl.id, idx);
+      });
+
+      const delBtn = document.createElement('button');
+      delBtn.className = 'ico-btn dng';
+      delBtn.textContent = '✕';
+      delBtn.title = 'Delete field';
+      delBtn.addEventListener('click', e=>{
+        e.stopPropagation();
+        deleteField(tbl.id, idx);
+      });
+
+      row.appendChild(fn);
+      row.appendChild(ft);
+      row.appendChild(editBtn);
+      row.appendChild(delBtn);
+      fl.appendChild(row);
+    });
+
+    item.appendChild(hd);
+    item.appendChild(fl);
+    body.appendChild(item);
   });
 }
 
@@ -2582,16 +2958,62 @@ function refreshSchema(){
 }
 
 function refreshRels(){
-  const p=document.getElementById('rels-list');if(!p)return;p.innerHTML='';
-  if(!erd.relations.length){p.innerHTML='<div style="text-align:center;padding:1.5rem;color:var(--txt3);font-family:var(--ff-m);font-size:.66rem;">No relationships yet. Use "Draw Arrow" or "Relation Dialog".</div>';return;}
+  const p = document.getElementById('rels-list');
+  if(!p) return;
+  p.innerHTML = '';
+
+  if(!erd.relations.length){
+    p.innerHTML = '<div style="text-align:center;padding:1.5rem;color:var(--txt3);font-family:var(--ff-m);font-size:.66rem;">No relationships yet. Use "Draw Arrow" or "Relation Dialog".</div>';
+    return;
+  }
+
   erd.relations.forEach(rel=>{
-    const fT=erd.tables.find(t=>t.id===rel.fromTable),tT=erd.tables.find(t=>t.id===rel.toTable);if(!fT||!tT)return;
-    const item=document.createElement('div');item.className=`rel-item rel-${rel.style}`;
-    const h=document.createElement('div');h.className='rel-h';
-    const lb=document.createElement('span');lb.className='rel-lb';lb.textContent=`${fT.name} → ${tT.name}`;
-    const dl=document.createElement('button');dl.className='rel-del';dl.textContent='✕';dl.addEventListener('click',()=>{erd.relations=erd.relations.filter(r=>r.id!==rel.id);refreshUI();toast('info','🗑','Relation removed.');});
-    const sb=document.createElement('div');sb.className='rel-sb';sb.textContent=`${rel.fromField} [${rel.card}] → ${rel.toField} · ${rel.style}`;
-    h.appendChild(lb);h.appendChild(dl);item.appendChild(h);item.appendChild(sb);p.appendChild(item);
+    const fT = erd.tables.find(t=>t.id===rel.fromTable);
+    const tT = erd.tables.find(t=>t.id===rel.toTable);
+    if(!fT || !tT) return;
+
+    const item = document.createElement('div');
+    item.className = `rel-item rel-${rel.style}`;
+
+    const h = document.createElement('div');
+    h.className = 'rel-h';
+
+    const lb = document.createElement('span');
+    lb.className = 'rel-lb';
+    lb.textContent = `${fT.name} → ${tT.name}`;
+
+    const actions = document.createElement('div');
+    actions.style.display = 'flex';
+    actions.style.gap = '.3rem';
+    actions.style.alignItems = 'center';
+
+    const eb = document.createElement('button');
+    eb.className = 'ico-btn';
+    eb.textContent = '✎';
+    eb.title = 'Edit relation';
+    eb.addEventListener('click', ()=>{
+      editRelation(rel.id);
+    });
+
+    const dl = document.createElement('button');
+    dl.className = 'ico-btn dng';
+    dl.textContent = '✕';
+    dl.title = 'Delete relation';
+    dl.addEventListener('click', ()=>{
+      deleteRelationById(rel.id);
+    });
+
+    const sb = document.createElement('div');
+    sb.className = 'rel-sb';
+    sb.textContent = `${rel.fromField} [${rel.card}] → ${rel.toField} · ${rel.style}`;
+
+    actions.appendChild(eb);
+    actions.appendChild(dl);
+    h.appendChild(lb);
+    h.appendChild(actions);
+    item.appendChild(h);
+    item.appendChild(sb);
+    p.appendChild(item);
   });
 }
 
